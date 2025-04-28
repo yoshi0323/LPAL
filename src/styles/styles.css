@@ -1,0 +1,251 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+/* Reset and base styles from globals.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* App container styles from App.css */
+.app-container {
+  display: flex;
+  justify-content: center;
+  background-color: #ECECEC;
+}
+
+.app {
+  width: 100%;
+  max-width: 1440px;
+  height: 7190px;
+  position: relative;
+  background-color: #ECECEC;
+}
+
+/* GradientIcon styles */
+.gradient-icon {
+  position: absolute;
+  left: 60.29px;
+  top: 40px;
+  z-index: 1;
+}
+
+.gradient-icon svg {
+  width: 35.703px;
+  height: 30.134px;
+  transform: rotate(0deg);
+  flex-shrink: 0;
+}
+
+/* LogoSvg styles */
+.logo-svg {
+  position: absolute;
+  left: 108.77px;
+  top: 45.15px;
+  z-index: 1;
+}
+
+.logo-svg svg {
+  width: 121.517px;
+  height: 32.378px;
+  transform: rotate(0deg);
+  flex-shrink: 0;
+}
+
+/* LegacyText styles */
+.legacy-text {
+  position: absolute;
+  left: 189.29px;
+  top: 208.13px;
+  width: 241px;
+  height: 46.125px;
+  flex-shrink: 0;
+  
+  color: #D1342D;
+  font-family: "Lexend Deca", sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 40px */
+  
+  z-index: 1;
+}
+
+/* JapaneseText styles */
+.japanese-text {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 150%;
+  position: absolute;
+  left: 182.29px;
+  top: 274.1px;
+}
+
+/* ModernText styles */
+.modern-text {
+  position: absolute;
+  left: 182px;
+  top: 190px;
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* RedButton styles */
+.red-button {
+  position: absolute;
+  left: 182px;
+  top: 350px;
+  padding: 10px 30px;
+  background-color: #FF4040;
+  color: white;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.red-button:hover {
+  background-color: #D63030;
+}
+
+/* RedHeading styles */
+.red-heading {
+  position: absolute;
+  left: 182px;
+  top: 120px;
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #FF4040;
+  text-transform: uppercase;
+}
+
+/* LogoAlmeni styles */
+.logo-almeni {
+  position: absolute;
+  left: 182px;
+  top: 50px;
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #595453;
+}
+
+.logo-text {
+  letter-spacing: 1px;
+}
+
+/* IconTriangle styles */
+.icon-triangle {
+  position: absolute;
+  left: 75px;
+  top: 50px;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid #FF4040;
+}
+
+/* Responsive styles */
+@media (min-width: 1441px) {
+  .app {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1440px) {
+  .app {
+    width: 100%;
+    max-width: 100%;
+  }
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app {
+    height: auto;
+    min-height: 5000px;
+  }
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    height: auto;
+    min-height: 4000px;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+  .japanese-text {
+    font-size: 42px;
+    left: 80px;
+  }
+  .legacy-text {
+    font-size: 30px;
+    left: 80px;
+  }
+  .modern-text {
+    font-size: 30px;
+    left: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    height: auto;
+    min-height: 3500px;
+  }
+  html {
+    font-size: 14px;
+  }
+  .japanese-text {
+    font-size: 32px;
+    left: 30px;
+  }
+  .legacy-text {
+    font-size: 24px;
+    left: 30px;
+  }
+  .modern-text {
+    font-size: 24px;
+    left: 30px;
+  }
+} 
