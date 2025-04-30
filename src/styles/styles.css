@@ -28,11 +28,13 @@ body {
   padding: 0 2rem;
 }
 
-/* App container styles from App.css */
+/* App container */
 .app-container {
   display: flex;
   justify-content: center;
   background-color: #ECECEC;
+  position: relative;
+  width: 100%;
 }
 
 .app {
@@ -174,78 +176,438 @@ body {
   border-bottom: 30px solid #FF4040;
 }
 
-/* Responsive styles */
-@media (min-width: 1441px) {
-  .app {
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-  .container {
-    max-width: 1440px;
-    margin: 0 auto;
-  }
+/* New styles from the code block */
+.new-element {
+  width: 189px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #D1342D;
+  
+  position: absolute;
+  left: 401.45px;
+  top: 200px;
+  z-index: 1;
 }
 
-@media (max-width: 1440px) {
-  .app {
-    width: 100%;
-    max-width: 100%;
-  }
-  .container {
-    max-width: 100%;
-  }
+.modern-dot-text {
+  color: #FCFCFC;
+  font-family: "Lexend Deca";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 40px */
+  
+  position: absolute;
+  left: 412.11px;
+  top: 208.13px;
+  z-index: 1;
 }
 
-@media (max-width: 1024px) {
-  .app {
-    height: auto;
-    min-height: 5000px;
-  }
-  .container {
-    padding: 0 1.5rem;
-  }
+.description-text {
+  width: 496px;
+  height: 76.874px;
+  flex-shrink: 0;
+  
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 200%; /* 36px */
+  
+  position: absolute;
+  left: 189.29px;
+  top: 459px;
+  z-index: 1;
 }
 
-@media (max-width: 768px) {
-  .app {
-    height: auto;
-    min-height: 4000px;
-  }
-  .container {
-    padding: 0 1rem;
-  }
-  .japanese-text {
-    font-size: 42px;
-    left: 80px;
-  }
-  .legacy-text {
-    font-size: 30px;
-    left: 80px;
-  }
-  .modern-text {
-    font-size: 30px;
-    left: 80px;
-  }
+.white-button {
+  display: flex;
+  width: 305px; /*本来は304*/
+  height: 63px;
+  justify-content: center;
+  align-items: center;
+  
+  border-radius: 80px;
+  background: #FCFCFC;
+  
+  position: absolute;
+  left: 182.29px;
+  top: 559.94px;
+  z-index: 1;
 }
 
-@media (max-width: 480px) {
-  .app {
-    height: auto;
-    min-height: 3500px;
-  }
-  html {
-    font-size: 14px;
-  }
-  .japanese-text {
-    font-size: 32px;
-    left: 30px;
-  }
-  .legacy-text {
-    font-size: 24px;
-    left: 30px;
-  }
-  .modern-text {
-    font-size: 24px;
-    left: 30px;
-  }
+.cliff-question-text {
+  width: 272px;
+  height: 23px;
+  
+  color: #343434;
+  text-align: center;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 22.5px */
+  
+  position: absolute;
+  left: 198.29px;
+  top: 579.94px;
+  z-index: 2;  /* WhiteButtonの上に表示されるように2に設定 */
+}
+
+.gradient-shape {
+  width: 600px;
+  height: 508.721px;
+  flex-shrink: 0;
+  aspect-ratio: 600.00/508.72;
+  
+  position: absolute;
+  left: -118.71px;
+  top: 721px;
+  z-index: 1;
+}
+
+.gradient-shape svg {
+  width: 100%;
+  height: 100%;
+}
+
+.question-icon {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 438.29px;
+  top: 575.44px;
+  z-index: 2;  /* WhiteButtonの上に表示されるように */
+}
+
+.question-icon svg {
+  width: 100%;
+  height: 100%;}
+
+.header-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+  
+  position: absolute;
+  left: 1296.29px;
+  top: 48.27px;
+  z-index: 1;
+}
+
+.support-step-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+  
+  position: absolute;
+  left: 1148.29px;
+  top: 48.27px;
+  z-index: 1;
+}
+
+.case-study-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+  
+  position: absolute;
+  left: 1060.29px;
+  top: 48.27px;
+  z-index: 1;
+}
+
+.value-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+  
+  position: absolute;
+  left: 972.29px;
+  top: 48.27px;
+  z-index: 1;
+}
+
+.about-us-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+  
+  position: absolute;
+  left: 758.29px;
+  top: 48.27px;
+  z-index: 1;
+}
+
+.service-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+  
+  position: absolute;
+  left: 884.29px;
+  top: 48.27px;
+  z-index: 1;
+}
+
+.gradient-header {
+  width: 520px;
+  height: 60px;
+  flex-shrink: 0;
+  
+  border-radius: 4px 4px 0px 0px;
+  background: linear-gradient(91deg, #D1342D 50.48%, #F6835F 100%);
+  
+  position: absolute;
+  left: 860.29px;
+  top: 117.23px;
+  z-index: 1;
+}
+
+.white-container {
+  width: 520px;
+  height: 656px;
+  flex-shrink: 0;
+  
+  border-radius: 4px;
+  background: #FCFCFC;
+  
+  position: absolute;
+  left: 860.29px;
+  top: 177.23px;
+  z-index: 1;
+}
+
+.contact-title {
+  color: #FCFCFC;
+  text-align: center;
+  font-family: "Lexend Deca";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 36px */
+  
+  position: absolute;
+  left: 1019.29px;
+  top: 129.23px;
+  z-index: 2;
+}
+
+.contact-title-jp {
+  color: #FCFCFC;
+  text-align: center;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 22.5px */
+  
+  position: absolute;
+  left: 1131.29px;  /* ContactTitle(1019.29px) + 16px */
+  top: 135.73px;
+  z-index: 2;  /* グラデーションヘッダーの上に表示されるように */
+}
+
+.red-indicator {
+  position: absolute;
+  width: 32px;
+  height: 22px;
+  background: #D1342D;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.required-text {
+  color: #FCFCFC;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+/* 企業名の入力フィールド */
+.input-field {
+  position: absolute;
+  top: 240.23px;
+  left: calc(100% - 92px - 216px); /* 最右辺から92px左に配置、幅が216pxに変更 */
+  z-index: 2;
+  width: 216px; /* 184pxから216pxに変更 */
+  height: 47px; /* 40pxから47pxに変更 */
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  border: 1px solid #D3D3D3;
+  background: #FCFCFC;
+}
+
+.large-input-field {
+  position: absolute;
+  top: 350.23px;
+  left: 892.29px;
+  z-index: 2;
+  width: 456px;
+  height: 120px;
+  border: 1px solid #D3D3D3;
+  background: #FCFCFC;
+  border-radius: 4px;
+}
+
+.name-label {
+  position: absolute;
+  top: 209.73px;
+  left: 936.29px;
+  z-index: 2;
+}
+
+.company-label {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 22.5px */
+  
+  position: absolute;
+  left: 1176.29px;
+  top: 209.73px;
+  z-index: 2;
+}
+
+.contact-content-label {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 22.5px */
+  
+  position: absolute;
+  left: 936.29px;
+  top: 319.73px;
+  z-index: 2;
+}
+
+.privacy-label {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 22.5px */
+  
+  position: absolute;
+  left: 936.29px;
+  top: 498.73px;
+  z-index: 2;
+}
+
+.privacy-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%; /* 26.25px */
+  
+  position: absolute;
+  left: 892.29px;
+  top: 531.23px;
+  z-index: 2;
+  
+  /* テキストを適切な幅に収めるために */
+  max-width: 456px;
+  white-space: pre-wrap;
+}
+
+.privacy-link {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+.check-box {
+  position: absolute;
+  top: 627.23px;
+  left: 1078.79px;
+  z-index: 2;
+}
+
+.agree-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 22.5px */
+  
+  position: absolute;
+  left: 1101.79px;
+  top: 623.23px;
+  z-index: 2;
+}
+
+.name-placeholder {
+  width: 184px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 22.5px */
+  
+  position: absolute;
+  left: calc(892.29px + 16px);  /* 入力フィールドの左端 + 16px */
+  top: calc(240.23px + 12px);   /* 入力フィールドの上端 + 12px */
+  z-index: 3;  /* 入力フィールドの上に表示されるように */
+  pointer-events: none;
+}
+
+/* 企業名のプレースホルダー */
+.company-placeholder {
+  width: 216px; /* 184pxから216pxに変更 */
+  color: #C4C4C4;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 22.5px */
+  position: absolute;
+  left: calc(100% - 92px - 216px + 16px); /* 入力フィールドの左端 + 16px */
+  top: calc(240.23px + 12px);    /* 入力フィールドの上端 + 12px */
+  z-index: 3;  /* 入力フィールドの上に表示されるように */
+  pointer-events: none;
 } 

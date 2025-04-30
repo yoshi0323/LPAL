@@ -92,149 +92,230 @@ export const LogoAlmeni = () => {
   );
 };
 
-// ContactSection Component
-export const ContactSection = () => {
+// RedBox Component
+export const RedBox = () => {
   return (
-    <section className="contact-section">
-      <div className="container">
-        <h2>お問い合わせ</h2>
-        <form className="contact-form">
-          <div className="form-group">
-            <label htmlFor="name">お名前</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">メールアドレス</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="message">メッセージ</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" className="submit-button">送信する</button>
-        </form>
-      </div>
-    </section>
+    <div className="new-element"></div>
   );
 };
 
-// FeaturesSection Component
-export const FeaturesSection = () => {
+// ModernDotText Component
+export const ModernDotText = () => {
   return (
-    <section className="features-section">
-      <div className="container">
-        <h2>特徴</h2>
-        <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon">🚀</div>
-            <h3>高速処理</h3>
-            <p>最新技術による高速なデータ処理を実現</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">🔒</div>
-            <h3>安全性</h3>
-            <p>データセキュリティを最優先に設計</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">🔄</div>
-            <h3>自動化</h3>
-            <p>煩雑な作業を自動化で効率アップ</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div className="modern-dot-text">Modern.</div>
   );
 };
 
-// Layout Component
-export const Layout = ({ children }) => {
+// DescriptionText Component
+export const DescriptionText = () => {
   return (
-    <div className="layout">
-      <header className="header">
-        <div className="container">
-          <LogoAlmeni />
-          <nav className="main-nav">
-            <ul>
-              <li><a href="#features">特徴</a></li>
-              <li><a href="#pricing">料金</a></li>
-              <li><a href="#contact">お問い合わせ</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <main>{children}</main>
-      <footer className="footer">
-        <div className="container">
-          <p>&copy; 2025 Almeni. All rights reserved.</p>
-        </div>
-      </footer>
+    <div className="description-text">
+      「2025年の崖」を越えるべくレガシーコードを再生し、<br />
+      AI時代に最適化されたモダンアーキテクチャへ刷新する。
     </div>
   );
 };
 
-// HeroSection Component
-export const HeroSection = () => {
+// WhiteButton Component
+export const WhiteButton = () => {
   return (
-    <section className="hero-section">
-      <div className="container">
-        <div className="hero-content">
-          <GradientIcon />
-          <LegacyText />
-          <ModernText />
-          <JapaneseText />
-          <button className="cta-button">詳細を見る</button>
-        </div>
-      </div>
-    </section>
+    <div className="white-button"></div>
   );
 };
 
-// PricingSection Component
-export const PricingSection = () => {
+// CliffQuestionText Component
+export const CliffQuestionText = () => {
   return (
-    <section className="pricing-section">
-      <div className="container">
-        <h2>料金プラン</h2>
-        <div className="pricing-grid">
-          <div className="pricing-card">
-            <h3>スタンダード</h3>
-            <div className="price">¥9,800<span>/月</span></div>
-            <ul className="features-list">
-              <li>基本機能</li>
-              <li>5ユーザーまで</li>
-              <li>10GBストレージ</li>
-              <li>メールサポート</li>
-            </ul>
-            <button className="pricing-button">申し込む</button>
-          </div>
-          <div className="pricing-card popular">
-            <div className="popular-badge">人気</div>
-            <h3>プロフェッショナル</h3>
-            <div className="price">¥19,800<span>/月</span></div>
-            <ul className="features-list">
-              <li>すべての基本機能</li>
-              <li>20ユーザーまで</li>
-              <li>50GBストレージ</li>
-              <li>電話・メールサポート</li>
-              <li>API連携</li>
-            </ul>
-            <button className="pricing-button">申し込む</button>
-          </div>
-          <div className="pricing-card">
-            <h3>エンタープライズ</h3>
-            <div className="price">¥39,800<span>/月</span></div>
-            <ul className="features-list">
-              <li>すべてのプロ機能</li>
-              <li>無制限ユーザー</li>
-              <li>500GBストレージ</li>
-              <li>24時間サポート</li>
-              <li>専任カスタマーサクセス</li>
-              <li>カスタム開発</li>
-            </ul>
-            <button className="pricing-button">お問い合わせ</button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div className="cliff-question-text">「2025年の崖」問題？</div>
   );
-}; 
+};
+
+// GradientShape Component
+export const GradientShape = () => {
+  return (
+    <div className="gradient-shape">
+      <svg xmlns="http://www.w3.org/2000/svg" width="481" height="509" viewBox="0 0 481 509" fill="none">
+        <path d="M180.987 250.402L397.321 507.824C449.122 453.912 481 380.683 481 299.987C481 134.319 346.682 0 180.987 0C15.2921 0 -119 134.319 -119 299.987C-119 381.132 -86.7794 454.73 -34.4506 508.721L180.987 250.402Z" fill="url(#paint0_linear_3065_214)"/>
+        <defs>
+          <linearGradient id="paint0_linear_3065_214" x1="180.987" y1="508.721" x2="180.987" y2="0" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#ECECEC" stopOpacity="0"/>
+            <stop offset="1" stopColor="#E73D26"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+// QuestionIcon Component
+export const QuestionIcon = () => {
+  return (
+    <div className="question-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="33" viewBox="0 0 32 33" fill="none">
+        <circle cx="16" cy="16.438" r="16" fill="#D1342D"/>
+        <path d="M15.735 22.8724C16.1103 22.8724 16.4276 22.7428 16.6867 22.4836C16.9459 22.2244 17.0755 21.9072 17.0755 21.5318C17.0755 21.1565 16.9459 20.8392 16.6867 20.5801C16.4276 20.3209 16.1103 20.1913 15.735 20.1913C15.3596 20.1913 15.0424 20.3209 14.7832 20.5801C14.524 20.8392 14.3944 21.1565 14.3944 21.5318C14.3944 21.9072 14.524 22.2244 14.7832 22.4836C15.0424 22.7428 15.3596 22.8724 15.735 22.8724ZM15.8958 11.8265C16.3427 11.8265 16.7314 11.9695 17.0621 12.2555C17.3927 12.5415 17.5581 12.8989 17.5581 13.3279C17.5581 13.7211 17.4374 14.0696 17.1961 14.3735C16.9548 14.6773 16.6823 14.9633 16.3784 15.2314C15.9673 15.5889 15.6054 15.9821 15.2926 16.4111C14.9798 16.84 14.8234 17.3226 14.8234 17.8588C14.8234 18.1091 14.9172 18.3191 15.1049 18.4889C15.2926 18.6587 15.5115 18.7436 15.7618 18.7436C16.0299 18.7436 16.2578 18.6542 16.4454 18.4755C16.6331 18.2967 16.7538 18.0733 16.8074 17.8052C16.8789 17.4299 17.0397 17.0947 17.29 16.7998C17.5402 16.5049 17.8083 16.2234 18.0943 15.9553C18.5054 15.5621 18.8584 15.1331 19.1533 14.6684C19.4482 14.2037 19.5956 13.6854 19.5956 13.1134C19.5956 12.2019 19.2248 11.4556 18.483 10.8748C17.7413 10.2939 16.8789 10.0034 15.8958 10.0034C15.2166 10.0034 14.5687 10.1464 13.9521 10.4324C13.3354 10.7184 12.8663 11.1563 12.5445 11.7461C12.4194 11.9606 12.3792 12.1885 12.4239 12.4298C12.4686 12.671 12.5892 12.8542 12.7858 12.9794C13.0361 13.1223 13.2952 13.167 13.5633 13.1134C13.8314 13.0598 14.0548 12.9079 14.2336 12.6576C14.4302 12.3895 14.676 12.184 14.9709 12.041C15.2658 11.898 15.5741 11.8265 15.8958 11.8265Z" fill="#FCFCFC"/>
+      </svg>
+    </div>
+  );
+};
+
+// HeaderText Component
+export const HeaderText = () => {
+  return (
+    <div className="header-text">お問い合わせ</div>
+  );
+};
+
+// SupportStepText Component
+export const SupportStepText = () => {
+  return (
+    <div className="support-step-text">サポートステップ</div>
+  );
+};
+
+// CaseStudyText Component
+export const CaseStudyText = () => {
+  return (
+    <div className="case-study-text">導入事例</div>
+  );
+};
+
+// ValueText Component
+export const ValueText = () => {
+  return (
+    <div className="value-text">提供価値</div>
+  );
+};
+
+// AboutUsText Component
+export const AboutUsText = () => {
+  return (
+    <div className="about-us-text">私たちについて</div>
+  );
+};
+
+// ServiceText Component
+export const ServiceText = () => {
+  return (
+    <div className="service-text">サービス</div>
+  );
+};
+
+// GradientHeader Component
+export const GradientHeader = () => {
+  return (
+    <div className="gradient-header"></div>
+  );
+};
+
+// WhiteContainer Component
+export const WhiteContainer = () => {
+  return (
+    <div className="white-container"></div>
+  );
+};
+
+// ContactTitle Component
+export const ContactTitle = () => {
+  return (
+    <div className="contact-title">Contact</div>
+  );
+};
+
+// ContactTitleJP Component
+export const ContactTitleJP = () => {
+  return (
+    <div className="contact-title-jp">お問い合わせ</div>
+  );
+};
+
+// RedIndicator Component
+export const RedIndicator = ({ top, left }) => {
+  return (
+    <div className="red-indicator" style={{ top: `${top}px`, left: `${left}px` }}>
+      <span className="required-text">必須</span>
+    </div>
+  );
+};
+
+// InputField Component
+export const InputField = ({ left }) => {
+  return (
+    <div className="input-field" style={{ left: `${left}px` }}></div>
+  );
+};
+
+// LargeInputField Component
+export const LargeInputField = () => {
+  return (
+    <div className="large-input-field"></div>
+  );
+};
+
+// NameLabel Component
+export const NameLabel = () => {
+  return (
+    <div className="name-label">お名前</div>
+  );
+};
+
+// CompanyLabel Component
+export const CompanyLabel = () => {
+  return (
+    <div className="company-label">企業名</div>
+  );
+};
+
+// ContactContentLabel Component
+export const ContactContentLabel = () => {
+  return (
+    <div className="contact-content-label">お問い合わせ内容</div>
+  );
+};
+
+// PrivacyLabel Component
+export const PrivacyLabel = () => {
+  return (
+    <div className="privacy-label">個人情報の取り扱いについての同意</div>
+  );
+};
+
+// PrivacyText Component
+export const PrivacyText = () => {
+  return (
+    <div className="privacy-text">
+      問い合わせにあたり当社がお預かりする個人情報については、
+      <span className="privacy-link">「個人情報の取り扱いについて」</span>
+      に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
+    </div>
+  );
+};
+
+// CheckBox Component
+export const CheckBox = () => {
+  return (
+    <div className="check-box"></div>
+  );
+};
+
+// AgreeText Component
+export const AgreeText = () => {
+  return (
+    <div className="agree-text">同意する</div>
+  );
+};
+
+// NamePlaceholder Component
+export const NamePlaceholder = ({ left, top }) => {
+  return (
+    <div className="name-placeholder" style={{ left: `${left + 16}px`, top: `${top + 12}px` }}>山田 太郎</div>
+  );
+};
+
+// CompanyPlaceholder Component
+export const CompanyPlaceholder = ({ left, top }) => {
+  return (
+    <div className="company-placeholder" style={{ left: `${left + 16}px`, top: `${top + 12}px` }}>企業名を入力してください</div>
+  );
+};
+
