@@ -1,0 +1,234 @@
+.gradient-background{
+  width: 1440px;
+  height: 830px;
+  flex-shrink: 0;
+  background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%);
+  position: absolute;
+  left: 0; /* 左端から配置 */
+  top: 1771.00712px; /* 指定された位置 */
+  z-index: 1; /* 重なり順序 */
+  overflow: hidden; /* はみ出した部分を隠す */
+}
+
+.circle-gradient {
+  width: 224px;
+  height: 224px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  position: absolute;
+  left: 64px; /* 左端から64px */
+  top: 1891.00712px; /* GradientBackgroundの上端(1771.00712px) + 120px */
+  z-index: 2; /* GradientBackgroundの上に表示 */
+}
+
+.circle-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 画像のアスペクト比を維持 */
+}
+
+.large-circle-gradient {
+  width: 600px;
+  height: 600px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  border-radius: 600px;
+  background: linear-gradient(180deg, #E73D26 0%, rgba(231, 61, 38, 0.00) 100%);
+  position: absolute;
+  right: -174px; /* 右端から調整 */
+  bottom: -235px; /* 下端から調整 */
+  z-index: 2;
+}
+
+.large-circle-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 600px; /* 画像も円形に切り抜く */
+}
+
+.service-white-container {
+  width: 1080px;
+  height: 830px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #FCFCFC;
+  position: absolute;
+  left: 180px;
+  top: 1651.00712px; /* gradient-backgroundの上端(1771.00712px) - 120px */
+  z-index: 3; /* 最前面に表示 */
+}
+
+.service-header-text {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 84px */
+  position: absolute;
+  left: 260px;
+  top: 1714.7772px; /* gradient-backgroundの最底辺(1771.00712px + 830px) + 802.23px */
+  z-index: 4; /* service-white-containerの上に表示 */
+}
+
+.service-subtitle-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 31.5px */
+  position: absolute;
+  left: 260px;
+  top: 1786.7772px;
+  z-index: 4;
+}
+
+.service-description-text {
+  flex: 1 0 0;
+  align-self: stretch;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%; /* 26.25px */
+  position: absolute;
+  left: 260px;
+  top: 1834.7772px;
+  z-index: 4;
+}
+
+.service-box {
+  width: 432px;
+  height: 324px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #FFF1EE;
+  position: absolute;
+  top: 1914.0072px;
+  z-index: 4;
+}
+
+.service-box-left {
+  left: 260px;
+}
+
+.service-box-right {
+  left: 748px; /* 260px + 432px + 56px */
+}
+
+.service-image-container {
+  position: absolute;
+  z-index: 5; /* ボックスの上に表示 */
+}
+
+.service-image1-container {
+  left: 300.5px;
+  top: 1946.7772px;
+}
+
+.service-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.service-image2-container {
+  position: absolute;
+  left: 781.15px;
+  top: 1938.7572px;
+  width: 264px;
+  height: 182px;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.svg-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+}
+
+.service-image2 {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(100% - 8px); /* 左右両方から4pxずつ小さく */
+  height: calc(100% - 8px); /* 上下両方から4pxずつ小さく */
+  object-fit: cover;
+  object-position: left center; /* 画像の左側を表示する */
+  z-index: 7;
+  border-radius: 4px; /* 角を丸くして背景のSVGと馴染ませる */
+}
+
+.service-gradient-card {
+  position: absolute;
+  width: 264px;
+  height: 182px;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.service-gradient-card1 {
+  left: 832px;
+  top: 1984.7472px;
+}
+
+.service-gradient-card2 {
+  left: 884px;
+  top: 2023.4872px;
+}
+
+.service-gradient-card .svg-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.image-container {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  overflow: hidden;
+  border-radius: 4px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 一般的なスタイル（transformは削除） */
+.service-gradient-card-image {
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* カード1の画像位置調整 */
+.service-gradient-card1 .service-gradient-card-image {
+  transform: scale(1.5) translate(-3%, 5%); /* 1.5倍に拡大して位置調整 */
+}
+
+/* カード2の画像位置調整 */
+.service-gradient-card2 .service-gradient-card-image {
+  /* 拡大倍率の設定 - 例えば1.3倍 */
+  width: 180%; 
+  height: auto;
+  
+  /* 表示位置の調整 */
+  object-fit: cover;
+  object-position: center 35%; /* 中央から縦方向に35%の位置 */
+  
+  /* または位置をtransformで調整する場合 */
+  transform: translate(15%, -10%); /* 横-10%, 縦-25%の位置にずらす */
+}

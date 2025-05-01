@@ -1,8 +1,10 @@
 import React from 'react';
 import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton } from './components/main.js';
 import { AboutHeaderText, AboutSubtitleText, AlchemyTitleText, AlchemyDescriptionText, AboutWhiteContainer, RotatedRectangle } from './components/body.js';
+import { GradientBackground, CircleGradient, ServiceWhiteContainer, ServiceHeaderText, ServiceSubtitleText, ServiceDescriptionText, ServiceBox1, ServiceBox2, ServiceImage1, ServiceImage2, ServiceGradientCard1, ServiceGradientCard2 } from './components/service.js';
 import './styles/styles.css';
 import './body.css';
+import './styles/service.css';
 
 function App() {
   return (
@@ -87,6 +89,19 @@ function App() {
             <SubmitButton />
           </div>
         </section>
+
+        <ServiceWhiteContainer />
+        <ServiceHeaderText />
+        <ServiceSubtitleText />
+        <ServiceDescriptionText />
+        <ServiceBox1 />
+        <ServiceBox2 />
+        <ServiceImage1 />
+        <ServiceImage2 />
+        <ServiceGradientCard1 />
+        <ServiceGradientCard2 />
+        <GradientBackground />
+        <CircleGradient />
       </div>
     </div>
   );
