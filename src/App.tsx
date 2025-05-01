@@ -1,6 +1,8 @@
 import React from 'react';
-import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder } from './components/main.js';
+import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton } from './components/main.js';
+import { AboutHeaderText, AboutSubtitleText, AlchemyTitleText, AlchemyDescriptionText, AboutWhiteContainer, RotatedRectangle } from './components/body.js';
 import './styles/styles.css';
+import './body.css';
 
 function App() {
   return (
@@ -42,6 +44,12 @@ function App() {
           <AboutUsText />
           <ServiceText />
           <GradientHeader />
+          <AboutHeaderText />
+          <AboutSubtitleText />
+          <AlchemyTitleText />
+          <AlchemyDescriptionText />
+          <AboutWhiteContainer />
+          <RotatedRectangle />
         </section>
 
         {/* Contact Section */}
@@ -68,6 +76,7 @@ function App() {
               <ContactContentLabel />
               <RedIndicator top={319.73} left={892.29} />
               <LargeInputField />
+              <ContentPlaceholder />
             </div>
             <div className="form-group">
               <PrivacyLabel />
@@ -75,6 +84,7 @@ function App() {
               <CheckBox />
               <AgreeText />
             </div>
+            <SubmitButton />
           </div>
         </section>
       </div>
