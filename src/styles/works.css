@@ -1,0 +1,56 @@
+.works-header-text {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 84px */
+  position: absolute;
+  left: 180px;
+  top: calc(1771.00712px + 830px + 1530px); /* 4131.00712px */
+  z-index: 4;
+}
+
+.works-subtitle-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 31.5px */
+  position: absolute;
+  left: 180px;
+  top: calc(1771.00712px + 830px + 1602px); /* 4203.00712px */
+  z-index: 4;
+}
+
+.works-images-container {
+  position: absolute;
+  left: 180px;
+  top: calc(1771.00712px + 830px + 1682px); /* 4283.00712px */
+  display: flex;
+  gap: 56px; /* 画像間の間隔を56pxに設定 */
+  z-index: 4;
+}
+
+.works-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.works-circle-gradient {
+  width: 600px;
+  height: 508.721px;
+  flex-shrink: 0;
+  aspect-ratio: 600.00/508.72;
+  position: absolute;
+  left: 960px;
+  top: calc(1771.00712px + 830px + 2504.51px); /* 5105.51712px */
+  z-index: 3; /* 適切なz-indexに調整 */
+}
+
+.works-circle-gradient svg {
+  width: 100%;
+  height: 100%;
+}

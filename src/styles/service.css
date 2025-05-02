@@ -232,3 +232,59 @@
   /* または位置をtransformで調整する場合 */
   transform: translate(15%, -10%); /* 横-10%, 縦-25%の位置にずらす */
 }
+
+.service-title-text {
+  width: 432px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 42px */
+  position: absolute;
+  left: 260px;
+  top: 2262.00712px;
+  z-index: 5; /* サービスボックスの上に表示されるように */
+}
+
+.service-consulting-description {
+  width: 432px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%; /* 26.25px */
+  position: absolute;
+  left: 260px;
+  top: 2312.00712px;
+  z-index: 5;
+}
+
+.service-saas-title {
+  width: 432px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 42px */
+  position: absolute;
+  left: 748px;
+  top: 2262.00712px;
+  z-index: 5;
+}
+
+.service-saas-description {
+  width: 432px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%; /* 26.25px */
+  position: absolute;
+  left: 748px;
+  top: 2312.00712px;
+  z-index: 5;
+}

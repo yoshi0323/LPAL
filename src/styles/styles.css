@@ -427,7 +427,6 @@ body {
   top: 135.73px;
   z-index: 2;  /* グラデーションヘッダーの上に表示されるように */
 }
-
 .red-indicator {
   position: absolute;
   width: 32px;

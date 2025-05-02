@@ -1,0 +1,133 @@
+.contact-circle-gradient {
+  width: 1080px;
+  height: 1080px;
+  flex-shrink: 0;
+  border-radius: 1080px;
+  background: linear-gradient(180deg, #E73D26 0%, rgba(231, 61, 38, 0.00) 100%);
+  position: absolute;
+  left: 180px;
+  bottom: 95.75px; /* 底辺から1175.76px上 */
+  z-index: 2; /* 適切なz-indexに調整 */
+}
+
+.contact-background-gradient {
+  width: 1440px;
+  height: 978px;
+  flex-shrink: 0;
+  background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%);
+  position: absolute;
+  left: 0; /* 左端から配置 */
+  bottom: 117.53px; /* 底辺から117.53px上 */
+  z-index: 3; /* 円形グラデーションの下に配置 */
+}
+
+.contact-mask-image {
+  position: absolute;
+  left: 0; /* 左端から配置 */
+  bottom: 117.53px; /* 底辺から117.53px上 */
+  z-index: 3; /* グラデーション背景と同じz-indexで配置 */
+  width: 1440px; /* 背景と同じ幅に設定 */
+  height: 978px; /* 背景と同じ高さに設定 */
+}
+
+.contact-mask-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 画像がコンテナにフィットするように */
+}
+
+.contact-group-image {
+  position: absolute;
+  left: 320px; /* 左辺から320px - 0pxから変更 */
+  bottom: 196.53px; /* 本来は底辺から197.53px上にだが、エクスポートした際に画像が1px大きくなったため、1px下に配置   */
+  z-index: 3; /* マスク画像の上に表示 */
+  width: auto;
+  height: auto;
+}
+
+.contact-group-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.contact-second-image {
+  position: absolute;
+  left: 624.5px; /* 左辺から624.5px */
+  bottom: 911.53px; /* 底辺から911.53px上 */
+  z-index: 3; /* マスク画像の上に表示 */
+  width: auto;
+  height: auto;
+}
+
+.contact-second-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.contact-white-footer {
+  width: 1440px;
+  height: 117.53px;
+  flex-shrink: 0;
+  background: #FCFCFC;
+  position: absolute;
+  left: 0; /* 左端から配置 */
+  bottom: 0; /* 底辺に合わせる */
+  z-index: 1; /* 他の要素の下に表示 */
+}
+
+.contact-footer-logo {
+  position: absolute;
+  left: 60px; /* 左辺から60px */
+  bottom: 40px; /* 底辺から40px上 */
+  z-index: 2; /* 白い帯の上に表示 */
+  width: auto;
+  height: auto;
+}
+
+.contact-footer-logo img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.contact-footer-links {
+  position: absolute;
+  bottom: 48.26px; /* 底辺から48.26px上 */
+  z-index: 2; /* 白い帯の上に表示 */
+  display: flex;
+  flex-direction: row; /* 横方向に配置（デフォルト） */
+  gap: 32px; /* リンク間の間隔を32pxに設定 */
+}
+
+.contact-footer-link {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+  text-decoration: none; /* リンクの下線を削除 */
+  white-space: nowrap; /* テキストを折り返さない */
+}
+
+.contact-footer-links-container {
+  position: absolute;
+  left: 290px; /* 左辺から290px */
+  bottom: 0px; 
+  z-index: 2;
+}
+
+.contact-footer-copyright {
+  position: absolute;
+  right: 70px; /* 右辺から70px */
+  bottom: 48.26px; /* 底辺から48.26px上 */
+  color: #C4C4C4;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+  z-index: 2; /* 白い帯の上に表示 */
+}

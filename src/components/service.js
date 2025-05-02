@@ -175,3 +175,38 @@ export const ServiceGradientCard2 = () => {
     </div>
   );
 };
+
+// ServiceTitleText Component
+export const ServiceTitleText = () => {
+  return (
+    <div className="service-title-text">コンサルティング</div>
+  );
+};
+
+// ServiceConsultingDescription Component
+export const ServiceConsultingDescription = () => {
+  return (
+    <div className="service-consulting-description">
+      エンジニア兼コンサルタントが、AI時代の技術と実践知を、貴社の現場に。私たちは、AI駆動開発に強みを持つエンジニアリングと、現場に寄り添うDXコンサルティングを組み合わせたハイブリッドな支援を提供しています。
+    </div>
+  );
+};
+
+// ServiceSaasTitle Component
+export const ServiceSaasTitle = () => {
+  return (
+    <div className="service-saas-title">AlchemySaaS（AI駆動開発ツール）</div>
+  );
+};
+
+// ServiceSaasDescription Component
+export const ServiceSaasDescription = () => {
+  return (
+    <div className="service-saas-description">
+      コーディングの自動化や図の作成などをプロの設計手法を
+      学習したAIによりCopilot化できるツールです。
+      <br />
+      （※オンプレミスにも対応）
+    </div>
+  );
+};

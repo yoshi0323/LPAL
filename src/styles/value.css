@@ -1,0 +1,473 @@
+.value-header-text {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 84px */
+  position: absolute;
+  left: 180px;
+  top: calc(1771.00712px + 830px + 160px); /* 2761.00712px */
+  z-index: 4;
+}
+
+.value-subtitle-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 31.5px */
+  position: absolute;
+  left: 180px;
+  top: calc(1771.00712px + 830px + 232px); /* 2833.00712px */
+  z-index: 4;
+}
+
+.value-white-container {
+  display: flex;
+  width: 806px;
+  height: 270px; /* 219px + 51px */
+  padding: 32px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  background: #FCFCFC;
+  position: absolute;
+  left: 454px;
+  z-index: 4;
+  box-sizing: border-box;
+}
+
+.value-white-container-1 {
+  top: calc(1771.00712px + 830px + 160px); /* 2761.00712px */
+}
+
+.value-white-container-2 {
+  top: calc(2761.00712px + 270px + 16px); /* 3047.00712px */
+}
+
+.value-white-container-3 {
+  top: calc(3047.00712px + 270px + 16px); /* 3333.00712px */
+}
+
+.value-white-container-4 {
+  top: calc(3333.00712px + 270px + 16px); /* 3619.00712px */
+}
+
+.value-white-container-5 {
+  top: calc(3619.00712px + 270px + 16px); /* 3905.00712px */
+}
+
+.value-image-1 img {
+  max-width: 100%;
+  height: auto;
+}
+
+.value-number-1 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(1771.00712px + 830px + 192.5px); /* 2793.50712px */
+  z-index: 10;
+}
+
+.value-title-1 {
+  flex: 1 0 0;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 741px;
+  top: calc(1771.00712px + 830px + 192.5px); /* 2793.50712px */
+  z-index: 10;
+}
+
+.value-description-1 {
+  width: 526px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(2793.50712px + 42px + 8px); /* タイトル1の位置 + タイトルの高さ(42px) + 8px間隔 = 2843.50712px */
+  z-index: 10;
+}
+
+.value-number-2 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(3047.00712px + 32.5px); /* 3079.50712px - コンテナ2 + 32.5px */
+  z-index: 10;
+}
+
+.value-title-2 {
+  flex: 1 0 0;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 741px;
+  top: calc(3047.00712px + 32.5px); /* 3079.50712px - コンテナ2 + 32.5px */
+  z-index: 10;
+}
+
+.value-description-2 {
+  width: 526px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(3079.50712px + 42px + 8px); /* タイトル2の位置 + タイトルの高さ(42px) + 8px間隔 = 3129.50712px */
+  z-index: 10;
+}
+
+.value-number-3 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(3333.00712px + 32.5px); /* 3365.50712px - コンテナ3 + 32.5px */
+  z-index: 10;
+}
+
+.value-number-4 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(3619.00712px + 32.5px); /* 3651.50712px - コンテナ4 + 32.5px */
+  z-index: 10;
+}
+
+.value-number-5 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(3905.00712px + 32.5px); /* 3937.50712px - コンテナ5 + 32.5px */
+  z-index: 10;
+}
+
+.value-title-3 {
+  flex: 1 0 0;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 741px;
+  top: calc(3333.00712px + 32.5px); /* 3365.50712px - コンテナ3 + 32.5px */
+  z-index: 10;
+}
+
+.value-title-4 {
+  flex: 1 0 0;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 741px;
+  top: calc(3619.00712px + 32.5px); /* 3651.50712px - コンテナ4 + 32.5px */
+  z-index: 10;
+}
+
+.value-title-5 {
+  flex: 1 0 0;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%;
+  position: absolute;
+  left: 741px;
+  top: calc(3905.00712px + 32.5px); /* 3937.50712px - コンテナ5 + 32.5px */
+  z-index: 10;
+}
+
+.value-description-3 {
+  width: 526px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(3365.50712px + 42px + 8px); /* タイトル3の位置 + タイトルの高さ(42px) + 8px間隔 = 3415.50712px */
+  z-index: 10;
+}
+
+.value-description-4 {
+  width: 526px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(3651.50712px + 42px + 8px); /* タイトル4の位置 + タイトルの高さ(42px) + 8px間隔 = 3701.50712px */
+  z-index: 10;
+}
+
+.value-description-5 {
+  width: 526px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  position: absolute;
+  left: 702px;
+  top: calc(3937.50712px + 42px + 8px); /* タイトル5の位置 + タイトルの高さ(42px) + 8px間隔 = 3987.50712px */
+  z-index: 10;
+}
+
+.triangle-gradient {
+  width: 592px; /* SVG の width 属性と同じ */
+  height: 713px; /* SVG の height 属性と同じ */
+  flex-shrink: 0;
+  position: absolute;
+  right: 832.93px;
+  top: calc(1771.00712px + 830px + 749.73px); /* 3350.73712px */
+  z-index: 3;
+}
+
+.value-background-image {
+  position: absolute;
+  left: 180px;
+  top: calc(1771.00712px + 830px + 284.5px); /* 2885.50712px */
+  z-index: 4; /* 数字(z-index: 5)の下に表示 */
+}
+
+.value-background-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 元のスタイルを元に戻す */
+.value-small-number-1 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 21px */
+  position: absolute;
+  left: 180px;
+  top: calc(1771.00712px + 830px + 284.5px); /* 2885.50712px */
+  z-index: 5;
+}
+
+.value-small-number-2 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 21px */
+  position: absolute;
+  left: 180px;
+  top: calc(2885.50712px + 40px); /* 2905.50712px */
+  z-index: 5;
+}
+
+.value-small-number-3 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 21px */
+  position: absolute;
+  left: 180px;
+  top: calc(2905.50712px + 60px); /* 2925.50712px */
+  z-index: 5;
+}
+
+.value-small-number-4 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 21px */
+  position: absolute;
+  left: 180px;
+  top: calc(2925.50712px + 80px); /* 2945.50712px */
+  z-index: 5;
+}
+
+.value-small-number-5 {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 21px */
+  position: absolute;
+  left: 180px;
+  top: calc(2945.50712px + 100px); /* 2965.50712px */
+  z-index: 5;
+}
+
+.value-small-title-1 {
+  width: 203px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 24.5px */
+  position: absolute;
+  left: 203px;
+  top: calc(1771.00712px + 830px + 282px); /* 2883.00712px */
+  z-index: 5;
+}
+
+.value-small-title-2 {
+  width: 203px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 24.5px */
+  position: absolute;
+  left: 203px;
+  top: calc(2883.00712px + 24.5px + 16px); /* 2923.50712px - 外注コストの削減の位置 + 高さ + 16px間隔 */
+  z-index: 5;
+}
+
+.value-small-title-3 {
+  width: 203px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 24.5px */
+  position: absolute;
+  left: 203px;
+  top: calc(2923.50712px + 24.5px + 16px); /* 2964.00712px */
+  z-index: 5;
+}
+
+.value-small-title-4 {
+  width: 203px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 24.5px */
+  position: absolute;
+  left: 203px;
+  top: calc(2964.00712px + 24.5px + 16px); /* 3004.50712px */
+  z-index: 5;
+}
+
+.value-small-title-5 {
+  width: 203px;
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 24.5px */
+  position: absolute;
+  left: 203px;
+  top: calc(3004.50712px + 24.5px + 16px); /* 3045.00712px */
+  z-index: 5;
+}
+
+/* ValueBackgroundImage のスタイルを削除（もし追加していた場合） */
+
+/* 新しい画像コンテナスタイル */
+.value-images-container {
+  position: absolute;
+  left: 454px;
+  top: calc(1771.00712px + 830px + 160px); /* 2761.00712px */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* 画像間の間隔を16pxに設定 */
+  z-index: 5;
+}
+
+.value-image {
+  max-width: 100%;
+  height: auto;
+  display: block; /* 余分な隙間を防ぐ */
+}
+
+/* 各画像の位置 - 元のコンテナの位置を使用 */
+.value-image-1-container {
+  left: 454px;
+  top: calc(1771.00712px + 830px + 160px); /* 2761.00712px - 白コンテナ1の位置 */
+}
+
+.value-image-2-container {
+  left: 454px;
+  top: calc(1771.00712px + 830px + 160px + 270px); /* 3047.00712px - 白コンテナ2の位置 */
+}
+
+.value-image-3-container {
+  left: 454px;
+  top: calc(1771.00712px + 830px + 160px + 270px * 2); /* 3333.00712px - 白コンテナ3の位置 */
+}
+
+.value-image-4-container {
+  left: 454px;
+  top: calc(1771.00712px + 830px + 160px + 270px * 3); /* 3619.00712px - 白コンテナ4の位置 */
+}
+
+.value-image-5-container {
+  left: 454px;
+  top: calc(1771.00712px + 830px + 160px + 270px * 4); /* 3905.00712px - 白コンテナ5の位置 */
+}

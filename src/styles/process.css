@@ -1,0 +1,45 @@
+.process-header-text {
+  color: #D1342D;
+  font-family: "Lexend Deca";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 84px */
+  position: absolute;
+  left: 180px;
+  bottom: 1776px; /* 最底辺から1776px上 */
+  z-index: 4;
+}
+
+.process-subtitle-text {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 31.5px */
+  position: absolute;
+  left: 180px;
+  bottom: 1756px; /* 最底辺から1756px上 */
+  z-index: 4;
+}
+
+.process-images-container {
+  position: absolute;
+  left: 180px;
+  bottom: 1256px; /* 底辺から1256px上*/
+  display: flex;
+  gap: 16px;
+  z-index: 4;
+}
+
+.process-image-wrapper {
+  display: flex;
+  align-items: flex-start; /* 上辺を揃える */
+}
+
+.process-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
