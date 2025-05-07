@@ -1,0 +1,133 @@
+.popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 52, 52, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.popup-content {
+  position: absolute;
+  width: 1080px;
+  height: 1348px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 199.98px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #ECECEC;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 10001;
+}
+
+.popup-close-button {
+  position: absolute;
+  top: -80.27px;
+  left: 1016px;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-close-button svg {
+  width: 100%;
+  height: 100%;
+}
+
+.popup-title {
+  position: absolute;
+  top: 64px;
+  left: 80px;
+  width: 918px;
+  color: #D1342D;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 175%; /* 56px */
+}
+
+.popup-description {
+  position: absolute;
+  top: 128px;
+  left: 80px;
+  width: 918px;
+  align-self: stretch;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 175%; /* 31.5px */
+  color: #343434;
+}
+
+.popup-text-bold {
+  font-weight: 700;
+}
+
+.popup-text-normal {
+  font-weight: 400;
+}
+
+.cliff-question-popup-content {
+  padding: 30px;
+  color: #595453;
+}
+
+.cliff-question-popup-content h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.cliff-question-popup-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* 追加: 画像コンテナのスタイル */
+.popup-image-container {
+  position: absolute;
+  top: 64px;
+  left: 80px;
+}
+
+/* 画像のスタイル */
+.popup-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 追加: 下部画像のコンテナ */
+.popup-bottom-image-container {
+  position: absolute;
+  bottom: 0; /* ポップアップの底辺に合わせる */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* 下部画像のスタイル */
+.popup-bottom-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
