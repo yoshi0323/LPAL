@@ -1,0 +1,91 @@
+/* タイピングカーソルのアニメーション */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: currentColor;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+/* テキストのフェードインアニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* スライドインアニメーション */
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  z-index: inherit;
+  will-change: opacity, transform;
+}
+
+.fade-in-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ホバーエフェクト */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* サービスセクション内の要素のアニメーション */
+.service-section .service-white-container {
+  transition-delay: 0s;
+}
+
+.service-section .service-header-text {
+  transition-delay: 0.2s;
+}
+
+.service-section .service-subtitle-text {
+  transition-delay: 0.3s;
+}
+
+.service-section .service-description-text {
+  transition-delay: 0.4s;
+}
+
+.service-section .service-box {
+  transition-delay: 0.5s;
+}
+
+.service-section .service-image-container,
+.service-section .service-gradient-card {
+  transition-delay: 0.6s;
+}
+
+.service-section .service-title-text,
+.service-section .service-consulting-description,
+.service-section .service-saas-title,
+.service-section .service-saas-description {
+  transition-delay: 0.7s;
+}

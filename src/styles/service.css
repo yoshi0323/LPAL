@@ -1,13 +1,21 @@
-.gradient-background{
+/* サービスセクションのラッパー */
+.service-section-wrapper {
+  position: relative;
+  width: 100%;
+  height: 830px;
+  overflow: hidden;
+}
+
+/* 背景要素 */
+.gradient-background {
   width: 1440px;
   height: 830px;
   flex-shrink: 0;
   background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%);
   position: absolute;
-  left: 0; /* 左端から配置 */
-  top: 1771.00712px; /* 指定された位置 */
-  z-index: 1; /* 重なり順序 */
-  overflow: hidden; /* はみ出した部分を隠す */
+  left: 0;
+  top: 1771.00712px;
+  z-index: 1;
 }
 
 .circle-gradient {
@@ -16,9 +24,9 @@
   flex-shrink: 0;
   aspect-ratio: 1/1;
   position: absolute;
-  left: 64px; /* 左端から64px */
-  top: 1891.00712px; /* GradientBackgroundの上端(1771.00712px) + 120px */
-  z-index: 2; /* GradientBackgroundの上に表示 */
+  left: 64px;
+  top: 1891.00712px;
+  z-index: 2;
 }
 
 .circle-image {
@@ -55,8 +63,8 @@
   background: #FCFCFC;
   position: absolute;
   left: 180px;
-  top: 1651.00712px; /* gradient-backgroundの上端(1771.00712px) - 120px */
-  z-index: 3; /* 最前面に表示 */
+  top: 1651.00712px;
+  z-index: 3;
 }
 
 .service-header-text {
@@ -69,7 +77,7 @@
   position: absolute;
   left: 260px;
   top: 1714.7772px; /* gradient-backgroundの最底辺(1771.00712px + 830px) + 802.23px */
-  z-index: 4; /* service-white-containerの上に表示 */
+  z-index: 4;
 }
 
 .service-subtitle-text {
@@ -121,7 +129,7 @@
 
 .service-image-container {
   position: absolute;
-  z-index: 5; /* ボックスの上に表示 */
+  z-index: 5;
 }
 
 .service-image1-container {
@@ -140,7 +148,7 @@
   top: 1938.7572px;
   width: 264px;
   height: 182px;
-  z-index: 5;
+  z-index: 20; /* 他の画像要素より低いz-indexに設定 */
   overflow: hidden;
 }
 
@@ -150,19 +158,19 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 6;
+  z-index: 10; /* 十分高いz-indexに設定する必要はない */
 }
 
 .service-image2 {
   position: absolute;
   top: 4px;
   left: 4px;
-  width: calc(100% - 8px); /* 左右両方から4pxずつ小さく */
-  height: calc(100% - 8px); /* 上下両方から4pxずつ小さく */
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
   object-fit: cover;
-  object-position: left center; /* 画像の左側を表示する */
-  z-index: 7;
-  border-radius: 4px; /* 角を丸くして背景のSVGと馴染ませる */
+  object-position: left center;
+  z-index: 5; /* マスクより低く設定 */
+  border-radius: 4px;
 }
 
 .service-gradient-card {
@@ -189,7 +197,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 4;
+  z-index: 5;
 }
 
 .image-container {
@@ -200,7 +208,7 @@
   height: calc(100% - 8px);
   overflow: hidden;
   border-radius: 4px;
-  z-index: 5;
+  z-index: 6;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -211,7 +219,7 @@
   width: 100%;
   height: auto;
   position: relative;
-  z-index: 5;
+  z-index: 6;
 }
 
 /* カード1の画像位置調整 */
@@ -244,7 +252,7 @@
   position: absolute;
   left: 260px;
   top: 2262.00712px;
-  z-index: 5; /* サービスボックスの上に表示されるように */
+  z-index: 4;
 }
 
 .service-consulting-description {
@@ -258,7 +266,7 @@
   position: absolute;
   left: 260px;
   top: 2312.00712px;
-  z-index: 5;
+  z-index: 4;
 }
 
 .service-saas-title {
@@ -272,7 +280,7 @@
   position: absolute;
   left: 748px;
   top: 2262.00712px;
-  z-index: 5;
+  z-index: 4;
 }
 
 .service-saas-description {
@@ -286,5 +294,10 @@
   position: absolute;
   left: 748px;
   top: 2312.00712px;
-  z-index: 5;
+  z-index: 4;
+}
+
+.service-section {
+  position: relative;
+  z-index: 3;
 }

@@ -12,6 +12,7 @@ import { WorksHeaderText, WorksSubtitleText, WorksImagesContainer, WorksCircleGr
 import { ProcessHeaderText, ProcessSubtitleText, ProcessImagesContainer } from './components/process.js';
 import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, ContactGroupImage, ContactSecondImage, ContactWhiteFooter, ContactFooterLogo, ContactFooterLinks, ContactFooterCopyright } from './components/contact.js';
 import { CliffQuestionPopup } from './components/popup.js';
+import { TypingText, FadeInOnScroll } from './components/animation';
 import './styles/styles.css';
 import './body.css';
 import './styles/service.css';
@@ -20,6 +21,7 @@ import './styles/works.css';
 import './styles/process.css';
 import './styles/contact.css';
 import './styles/popup.css';
+import './styles/animation.css';
 
 function App() {
   // ポップアップの表示状態を管理するためのステート
@@ -71,6 +73,35 @@ function App() {
     );
   };
 
+  const AnimatedLegacyText = () => {
+    return (
+      <TypingText 
+        text="Legacy to" 
+        className="legacy-text"
+        delay={0}
+      />
+    );
+  };
+
+  const AnimatedModernDotText = () => {
+    return (
+      <TypingText 
+        text="Modern." 
+        className="modern-dot-text"
+        delay={1000}
+      />
+    );
+  };
+
+  // FadeInOnScrollコンポーネントを一時的に無効化
+  const FadeInOnScrollTemp = ({ children }: { children: React.ReactNode }) => {
+    return (
+      <div style={{ position: 'relative', zIndex: 'auto' }}>
+        {children}
+      </div>
+    );
+  };
+
   return (
     <div className="app-container">
       <div className="app">
@@ -85,10 +116,10 @@ function App() {
         {/* Hero Section */}
         <section className="hero-section">
           <div className="hero-content">
-            <LegacyText />
+            <AnimatedLegacyText />
             <JapaneseText />
             <RedBox />
-            <ModernDotText />
+            <AnimatedModernDotText />
             <DescriptionText />
             <ClickableWhiteButton />
           </div>
@@ -154,22 +185,147 @@ function App() {
           </div>
         </section>
 
-        <ServiceWhiteContainer />
-        <ServiceHeaderText />
-        <ServiceSubtitleText />
-        <ServiceDescriptionText />
-        <ServiceBox1 />
-        <ServiceBox2 />
-        <ServiceImage1 />
-        <ServiceImage2 />
-        <ServiceTitleText />
-        <ServiceConsultingDescription />
-        <ServiceSaasTitle />
-        <ServiceSaasDescription />
-        <ServiceGradientCard1 />
-        <ServiceGradientCard2 />
-        <GradientBackground />
-        <CircleGradient />
+        {/* Service Section */}
+        <section className="service-section" style={{ position: 'relative', zIndex: 5 }}>
+          {/* 背景要素 - 最背面に配置 - z-indexを負の値に変更 */}
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
+            <GradientBackground />
+            <CircleGradient />
+          </div>
+          
+          {/* サービス白コンテナ - z-indexを上げる */}
+          <FadeInOnScroll delay={0}>
+            <div style={{ position: 'relative', zIndex: 50 }}>
+              <ServiceWhiteContainer />
+            </div>
+          </FadeInOnScroll>
+          
+          {/* テキスト要素 - z-indexを上げる */}
+          <FadeInOnScroll delay={200}>
+            <div style={{ position: 'relative', zIndex: 60 }}>
+              <ServiceHeaderText />
+            </div>
+          </FadeInOnScroll>
+          
+          <FadeInOnScroll delay={300}>
+            <div style={{ position: 'relative', zIndex: 60 }}>
+              <ServiceSubtitleText />
+            </div>
+          </FadeInOnScroll>
+          
+          <FadeInOnScroll delay={400}>
+            <div style={{ position: 'relative', zIndex: 60 }}>
+              <ServiceDescriptionText />
+            </div>
+          </FadeInOnScroll>
+          
+          {/* サービスボックス左右 - z-indexを上げる */}
+          <FadeInOnScroll delay={500}>
+            <div style={{ position: 'relative', zIndex: 60 }}>
+              <ServiceBox1 />
+            </div>
+          </FadeInOnScroll>
+          
+          <FadeInOnScroll delay={550}>
+            <div style={{ position: 'relative', zIndex: 60 }}>
+              <ServiceBox2 />
+            </div>
+          </FadeInOnScroll>
+          
+          {/* サービスイメージ1 - z-indexをさらに上げる */}
+          <FadeInOnScroll delay={600}>
+            <div style={{ position: 'relative', zIndex: 70 }}>
+              <ServiceImage1 />
+            </div>
+          </FadeInOnScroll>
+          
+          {/* サービスイメージ2 - マスクが後ろに来るように */}
+          <FadeInOnScroll delay={650}>
+            <div style={{ position: 'relative', zIndex: 20 }}>
+              <div className="service-image2-container" style={{ overflow: 'visible' }}>
+                {/* SVGマスク */}
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="264" 
+                  height="182" 
+                  viewBox="0 0 264 182" 
+                  fill="none" 
+                  className="svg-mask"
+                  style={{ position: 'absolute', top: 0, left: 0, zIndex: 5 }}
+                >
+                  <path d="M256 0H8C3.58172 0 0 3.58172 0 8V174C0 178.418 3.58171 182 7.99999 182H256C260.418 182 264 178.418 264 174V8C264 3.58172 260.418 0 256 0Z" fill="url(#paint0_linear_3065_442)"/>
+                  <defs>
+                    <linearGradient id="paint0_linear_3065_442" x1="132" y1="0" x2="132" y2="182" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#E7422C"/>
+                      <stop offset="1" stopColor="#F6835F" stopOpacity="0.5"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                
+                {/* 画像 */}
+                <img
+                  src={`${process.env.PUBLIC_URL}/image/236f300a4a1f06bb60f0102218f5fd17d13d18d8.png`}
+                  alt="Service Image 2"
+                  className="service-image2"
+                  style={{ 
+                    position: 'absolute',
+                    top: '4px',
+                    left: '4px',
+                    width: 'calc(100% - 8px)',
+                    height: 'calc(100% - 8px)',
+                    objectFit: 'cover',
+                    objectPosition: 'left center',
+                    zIndex: 10,
+                    borderRadius: '4px'
+                  }}
+                  onError={(e) => {
+                    console.error("Image failed to load");
+                    (e.target as HTMLImageElement).style.backgroundColor = "#D1342D";
+                  }}
+                />
+              </div>
+            </div>
+          </FadeInOnScroll>
+          
+          {/* テキスト要素 */}
+          <FadeInOnScroll delay={700}>
+            <div style={{ position: 'relative', zIndex: 20 }}>
+              <ServiceTitleText />
+            </div>
+          </FadeInOnScroll>
+          
+          <FadeInOnScroll delay={750}>
+            <div style={{ position: 'relative', zIndex: 20 }}>
+              <ServiceConsultingDescription />
+            </div>
+          </FadeInOnScroll>
+          
+          <FadeInOnScroll delay={800}>
+            <div style={{ position: 'relative', zIndex: 20 }}>
+              <ServiceSaasTitle />
+            </div>
+          </FadeInOnScroll>
+          
+          <FadeInOnScroll delay={850}>
+            <div style={{ position: 'relative', zIndex: 20 }}>
+              <ServiceSaasDescription />
+            </div>
+          </FadeInOnScroll>
+          
+          {/* サービスグラディエントカード */}
+          <FadeInOnScroll delay={900} className="hover-scale">
+            <div style={{ position: 'relative', zIndex: 30 }}>
+              <ServiceGradientCard1 />
+            </div>
+          </FadeInOnScroll>
+          
+          <FadeInOnScroll delay={950} className="hover-scale">
+            <div style={{ position: 'relative', zIndex: 30 }}>
+              <ServiceGradientCard2 />
+            </div>
+          </FadeInOnScroll>
+        </section>
+
         <ValueHeaderText />
         <ValueSubtitleText />
         <ValueImagesContainer />
