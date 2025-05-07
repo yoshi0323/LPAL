@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton } from './components/main.js';
 import { AboutHeaderText, AboutSubtitleText, AlchemyTitleText, AlchemyDescriptionText, AboutWhiteContainer, RotatedRectangle } from './components/body.js';
 import { GradientBackground, CircleGradient, ServiceWhiteContainer, ServiceHeaderText, ServiceSubtitleText, ServiceDescriptionText, ServiceBox1, ServiceBox2, ServiceImage1, ServiceImage2, ServiceGradientCard1, ServiceGradientCard2, ServiceTitleText, ServiceConsultingDescription, ServiceSaasTitle, ServiceSaasDescription } from './components/service.js';
@@ -12,7 +12,7 @@ import { WorksHeaderText, WorksSubtitleText, WorksImagesContainer, WorksCircleGr
 import { ProcessHeaderText, ProcessSubtitleText, ProcessImagesContainer } from './components/process.js';
 import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, ContactGroupImage, ContactSecondImage, ContactWhiteFooter, ContactFooterLogo, ContactFooterLinks, ContactFooterCopyright } from './components/contact.js';
 import { CliffQuestionPopup } from './components/popup.js';
-import { TypingText, FadeInOnScroll } from './components/animation';
+import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor } from './components/animation';
 import './styles/styles.css';
 import './body.css';
 import './styles/service.css';
@@ -26,6 +26,13 @@ import './styles/animation.css';
 function App() {
   // ポップアップの表示状態を管理するためのステート
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  // サービスセクションのアニメーションステート
+  const [serviceAnimationTriggered, setServiceAnimationTriggered] = useState(false);
+  // イメージとカードの表示ステート
+  const [showServiceImage1, setShowServiceImage1] = useState(false);
+  const [showServiceImage2, setShowServiceImage2] = useState(false);
+  const [showGradientCard1, setShowGradientCard1] = useState(false);
+  const [showGradientCard2, setShowGradientCard2] = useState(false);
 
   // ポップアップ開閉の関数
   const openPopup = () => {
@@ -34,6 +41,29 @@ function App() {
 
   const closePopup = () => {
     setIsPopupOpen(false);
+  };
+
+  // サービスセクションのアニメーショントリガー
+  const triggerServiceAnimation = () => {
+    setServiceAnimationTriggered(true);
+    
+    // イメージとカードの表示を遅延させる
+    // 順番に表示されるように時間を調整
+    setTimeout(() => {
+      setShowServiceImage1(true);
+    }, 3500);
+    
+    setTimeout(() => {
+      setShowServiceImage2(true);
+    }, 3800);
+    
+    setTimeout(() => {
+      setShowGradientCard1(true);
+    }, 4100);
+    
+    setTimeout(() => {
+      setShowGradientCard2(true);
+    }, 4400);
   };
 
   const CustomRedIndicator = () => {
@@ -185,64 +215,111 @@ function App() {
           </div>
         </section>
 
-        {/* Service Section */}
-        <section className="service-section" style={{ position: 'relative', zIndex: 5 }}>
-          {/* 背景要素 - 最背面に配置 - z-indexを負の値に変更 */}
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
+        {/* Service Section - カーソルトリガー使用 */}
+        <CursorTriggerSection onTrigger={triggerServiceAnimation} className="service-section" style={{ position: 'relative', zIndex: 5 }}>
+          {/* 背景要素 - 最背面に配置 */}
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
             <GradientBackground />
             <CircleGradient />
           </div>
           
-          {/* サービス白コンテナ - z-indexを上げる */}
-          <FadeInOnScroll delay={0}>
-            <div style={{ position: 'relative', zIndex: 50 }}>
-              <ServiceWhiteContainer />
-            </div>
-          </FadeInOnScroll>
+          {/* 1. サービス白コンテナ - 最初に表示 (最背面) */}
+          <div 
+            className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 3, transitionDelay: '0ms' }}
+          >
+            <ServiceWhiteContainer />
+          </div>
           
-          {/* テキスト要素 - z-indexを上げる */}
-          <FadeInOnScroll delay={200}>
-            <div style={{ position: 'relative', zIndex: 60 }}>
-              <ServiceHeaderText />
-            </div>
-          </FadeInOnScroll>
+          {/* 2. サービスヘッダー - 次に表示される重要なテキスト (上部) */}
+          <div 
+            className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '600ms' }}
+          >
+            <ServiceHeaderText />
+          </div>
           
-          <FadeInOnScroll delay={300}>
-            <div style={{ position: 'relative', zIndex: 60 }}>
-              <ServiceSubtitleText />
-            </div>
-          </FadeInOnScroll>
+          {/* 3. サービスサブタイトル (上部) */}
+          <div 
+            className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '900ms' }}
+          >
+            <ServiceSubtitleText />
+          </div>
           
-          <FadeInOnScroll delay={400}>
-            <div style={{ position: 'relative', zIndex: 60 }}>
-              <ServiceDescriptionText />
-            </div>
-          </FadeInOnScroll>
+          {/* 4. サービス説明文 (上部) */}
+          <div 
+            className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '1200ms' }}
+          >
+            <ServiceDescriptionText />
+          </div>
           
-          {/* サービスボックス左右 - z-indexを上げる */}
-          <FadeInOnScroll delay={500}>
-            <div style={{ position: 'relative', zIndex: 60 }}>
-              <ServiceBox1 />
-            </div>
-          </FadeInOnScroll>
+          {/* 5. サービスボックス左 - ゆっくりと左から入る (中央左) */}
+          <div 
+            className={`slide-left ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '1500ms' }}
+          >
+            <ServiceBox1 />
+          </div>
           
-          <FadeInOnScroll delay={550}>
-            <div style={{ position: 'relative', zIndex: 60 }}>
-              <ServiceBox2 />
-            </div>
-          </FadeInOnScroll>
+          {/* 6. サービスボックス右 - ゆっくりと右から入る (中央右) */}
+          <div 
+            className={`slide-right ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '1800ms' }}
+          >
+            <ServiceBox2 />
+          </div>
           
-          {/* サービスイメージ1 - z-indexをさらに上げる */}
-          <FadeInOnScroll delay={600}>
-            <div style={{ position: 'relative', zIndex: 70 }}>
+          {/* 7. サービスタイトル (下部テキスト開始) */}
+          <div 
+            className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '2100ms' }}
+          >
+            <ServiceTitleText />
+          </div>
+          
+          {/* 8. サービスコンサルティングの説明 */}
+          <div 
+            className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '2400ms' }}
+          >
+            <ServiceConsultingDescription />
+          </div>
+          
+          {/* 9. SaaSのタイトル */}
+          <div 
+            className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '2700ms' }}
+          >
+            <ServiceSaasTitle />
+          </div>
+          
+          {/* 10. SaaSの説明 */}
+          <div 
+            className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+            style={{ position: 'relative', zIndex: 10, transitionDelay: '3000ms' }}
+          >
+            <ServiceSaasDescription />
+          </div>
+          
+          {/* 11. サービスイメージ1 - ボックスの後に表示 */}
+          {showServiceImage1 && (
+            <div 
+              className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+              style={{ position: 'relative', zIndex: 15, transitionDelay: '3300ms' }}
+            >
               <ServiceImage1 />
             </div>
-          </FadeInOnScroll>
+          )}
           
-          {/* サービスイメージ2 - マスクが後ろに来るように */}
-          <FadeInOnScroll delay={650}>
-            <div style={{ position: 'relative', zIndex: 20 }}>
-              <div className="service-image2-container" style={{ overflow: 'visible' }}>
+          {/* 12. サービスイメージ2 */}
+          {showServiceImage2 && (
+            <div 
+              className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
+              style={{ position: 'relative', zIndex: 15, transitionDelay: '3600ms' }}
+            >
+              <div className="service-image2-container" style={{ overflow: 'visible', position: 'absolute', width: '264px', height: '182px' }}>
                 {/* SVGマスク */}
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -275,7 +352,7 @@ function App() {
                     height: 'calc(100% - 8px)',
                     objectFit: 'cover',
                     objectPosition: 'left center',
-                    zIndex: 10,
+                    zIndex: 6,
                     borderRadius: '4px'
                   }}
                   onError={(e) => {
@@ -285,46 +362,28 @@ function App() {
                 />
               </div>
             </div>
-          </FadeInOnScroll>
+          )}
           
-          {/* テキスト要素 */}
-          <FadeInOnScroll delay={700}>
-            <div style={{ position: 'relative', zIndex: 20 }}>
-              <ServiceTitleText />
-            </div>
-          </FadeInOnScroll>
-          
-          <FadeInOnScroll delay={750}>
-            <div style={{ position: 'relative', zIndex: 20 }}>
-              <ServiceConsultingDescription />
-            </div>
-          </FadeInOnScroll>
-          
-          <FadeInOnScroll delay={800}>
-            <div style={{ position: 'relative', zIndex: 20 }}>
-              <ServiceSaasTitle />
-            </div>
-          </FadeInOnScroll>
-          
-          <FadeInOnScroll delay={850}>
-            <div style={{ position: 'relative', zIndex: 20 }}>
-              <ServiceSaasDescription />
-            </div>
-          </FadeInOnScroll>
-          
-          {/* サービスグラディエントカード */}
-          <FadeInOnScroll delay={900} className="hover-scale">
-            <div style={{ position: 'relative', zIndex: 30 }}>
+          {/* 13. サービスグラディエントカード1 - 最後に表示 (最前面) */}
+          {showGradientCard1 && (
+            <div 
+              className={`fade-in-element hover-scale ${serviceAnimationTriggered ? 'visible' : ''}`}
+              style={{ position: 'relative', zIndex: 15 }}
+            >
               <ServiceGradientCard1 />
             </div>
-          </FadeInOnScroll>
+          )}
           
-          <FadeInOnScroll delay={950} className="hover-scale">
-            <div style={{ position: 'relative', zIndex: 30 }}>
+          {/* 14. サービスグラディエントカード2 - 最後に表示 (最前面) */}
+          {showGradientCard2 && (
+            <div 
+              className={`fade-in-element hover-scale ${serviceAnimationTriggered ? 'visible' : ''}`}
+              style={{ position: 'relative', zIndex: 15 }}
+            >
               <ServiceGradientCard2 />
             </div>
-          </FadeInOnScroll>
-        </section>
+          )}
+        </CursorTriggerSection>
 
         <ValueHeaderText />
         <ValueSubtitleText />

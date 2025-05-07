@@ -26,7 +26,7 @@
 /* スライドインアニメーション */
 @keyframes slideIn {
   from {
-    transform: translateY(20px);
+    transform: translateY(15px);
     opacity: 0;
   }
   to {
@@ -35,10 +35,74 @@
   }
 }
 
+/* スライドイン（左から）アニメーション */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* スライドイン（右から）アニメーション */
+@keyframes slideInRight {
+  from {
+    transform: translateX(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ズームインアニメーション */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ソフトバウンス効果のあるズームインアニメーション */
+@keyframes softBounceIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 柔らかな回転アニメーション */
+@keyframes softRotateIn {
+  from {
+    transform: rotate(-2deg) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
 .fade-in-element {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(10px);
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
   z-index: inherit;
   will-change: opacity, transform;
 }
@@ -48,13 +112,104 @@
   transform: translateY(0);
 }
 
-/* ホバーエフェクト */
+/* 左からのスライド */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: inherit;
+}
+
+.slide-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 右からのスライド */
+.slide-right {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: inherit;
+}
+
+.slide-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ズームイン効果 */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.99);
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: inherit;
+}
+
+.zoom-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ソフトバウンス効果のあるズームイン */
+.bounce-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: inherit;
+}
+
+.bounce-in.visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: softBounceIn 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* 回転フェードイン効果 */
+.rotate-in {
+  opacity: 0;
+  transform: rotate(-2deg) scale(0.98);
+  transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: inherit;
+}
+
+.rotate-in.visible {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+/* カーソルトリガー用のコンテナ */
+.animation-container {
+  position: relative;
+  z-index: inherit;
+}
+
+.cursor-trigger-section {
+  position: relative;
+  z-index: inherit;
+  cursor: default;
+}
+
+/* ホバーエフェクト - カードにのみ適用 */
 .hover-scale {
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .hover-scale:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
+}
+
+/* 画像にはホバーエフェクトを適用しない */
+.service-image1, 
+.service-image2-container,
+.service-image2 {
+  transition: none !important;
+}
+
+.service-image1:hover, 
+.service-image2-container:hover,
+.service-image2:hover {
+  transform: none !important;
 }
 
 /* サービスセクション内の要素のアニメーション */
@@ -88,4 +243,37 @@
 .service-section .service-saas-title,
 .service-section .service-saas-description {
   transition-delay: 0.7s;
+}
+
+/* グラディエントカードの初期状態を完全に非表示に */
+.service-gradient-card1,
+.service-gradient-card2 {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s 1.4s;
+}
+
+/* トリガーされたときのみ表示 */
+.fade-in-element.visible .service-gradient-card1,
+.fade-in-element.visible .service-gradient-card2,
+div.visible .service-gradient-card1,
+div.visible .service-gradient-card2 {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s;
+}
+
+/* サービスイメージを確実に表示するための追加スタイル */
+.service-image-container,
+.service-image2-container {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 画像コンテナのアニメーションは親要素が制御 */
+.service-image1, 
+.service-image2,
+.service-gradient-card-image {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
