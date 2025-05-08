@@ -249,70 +249,70 @@ export const ValueBackgroundImage = () => {
 // ValueSmallNumber1 Component
 export const ValueSmallNumber1 = () => {
   return (
-    <div className="value-small-number-1">01</div>
+    <div className="value-small-number-1" style={{ opacity: 0.3 }}>01</div>
   );
 };
 
 // ValueSmallNumber2 Component
 export const ValueSmallNumber2 = () => {
   return (
-    <div className="value-small-number-2">02</div>
+    <div className="value-small-number-2" style={{ opacity: 0.3 }}>02</div>
   );
 };
 
 // ValueSmallNumber3 Component
 export const ValueSmallNumber3 = () => {
   return (
-    <div className="value-small-number-3">03</div>
+    <div className="value-small-number-3" style={{ opacity: 0.3 }}>03</div>
   );
 };
 
 // ValueSmallNumber4 Component
 export const ValueSmallNumber4 = () => {
   return (
-    <div className="value-small-number-4">04</div>
+    <div className="value-small-number-4" style={{ opacity: 0.3 }}>04</div>
   );
 };
 
 // ValueSmallNumber5 Component
 export const ValueSmallNumber5 = () => {
   return (
-    <div className="value-small-number-5">05</div>
+    <div className="value-small-number-5" style={{ opacity: 0.3 }}>05</div>
   );
 };
 
 // ValueSmallTitle1 Component
 export const ValueSmallTitle1 = () => {
   return (
-    <div className="value-small-title-1">外注コストの削減</div>
+    <div className="value-small-title-1" style={{ opacity: 0.3 }}>外注コストの削減</div>
   );
 };
 
 // ValueSmallTitle2 Component
 export const ValueSmallTitle2 = () => {
   return (
-    <div className="value-small-title-2">開発スピード・柔軟性の向上</div>
+    <div className="value-small-title-2" style={{ opacity: 0.3 }}>開発スピード・柔軟性の向上</div>
   );
 };
 
 // ValueSmallTitle3 Component
 export const ValueSmallTitle3 = () => {
   return (
-    <div className="value-small-title-3">人材育成・従業員満足度の向上</div>
+    <div className="value-small-title-3" style={{ opacity: 0.3 }}>人材育成・従業員満足度の向上</div>
   );
 };
 
 // ValueSmallTitle4 Component
 export const ValueSmallTitle4 = () => {
   return (
-    <div className="value-small-title-4">DX推進・新規事業創出の可能性</div>
+    <div className="value-small-title-4" style={{ opacity: 0.3 }}>DX推進・新規事業創出の可能性</div>
   );
 };
 
 // ValueSmallTitle5 Component
 export const ValueSmallTitle5 = () => {
   return (
-    <div className="value-small-title-5">投資回収（ROI）の目安</div>
+    <div className="value-small-title-5" style={{ opacity: 0.3 }}>投資回収（ROI）の目安</div>
   );
 };
 
@@ -328,35 +328,104 @@ export const ValueColorBurnImage = () => {
   );
 };
 
-// ValueImagesContainer Component
+// ValueImagesContainer Component - アニメーションコンポーネントを使用
 export const ValueImagesContainer = () => {
+  
+  // マウスが画像に入った時の処理
+  const handleMouseEnter = (index) => {
+    // 対応するスモールナンバーとスモールタイトルのグレーアウトを解除
+    const smallNumber = document.querySelector(`.value-small-number-${index}`);
+    const smallTitle = document.querySelector(`.value-small-title-${index}`);
+    
+    if (smallNumber) {
+      smallNumber.style.opacity = 1;
+      smallNumber.style.transition = 'opacity 0.25s ease';
+    }
+    
+    if (smallTitle) {
+      smallTitle.style.opacity = 1;
+      smallTitle.style.transition = 'opacity 0.25s ease';
+    }
+  };
+  
+  // マウスが画像から出た時の処理
+  const handleMouseLeave = (index) => {
+    // 対応するスモールナンバーとスモールタイトルをグレーアウト状態に戻す
+    const smallNumber = document.querySelector(`.value-small-number-${index}`);
+    const smallTitle = document.querySelector(`.value-small-title-${index}`);
+    
+    if (smallNumber) {
+      smallNumber.style.opacity = 0.3;
+      smallNumber.style.transition = 'opacity 0.25s ease';
+    }
+    
+    if (smallTitle) {
+      smallTitle.style.opacity = 0.3;
+      smallTitle.style.transition = 'opacity 0.25s ease';
+    }
+  };
+  
   return (
     <div className="value-images-container">
-      <img 
-        src={process.env.PUBLIC_URL + "/image/Frame 563 (3).png"} 
-        alt="Value 1" 
-        className="value-image"
-      />
-      <img 
-        src={process.env.PUBLIC_URL + "/image/Frame 564 (1).png"} 
-        alt="Value 2" 
-        className="value-image"
-      />
-      <img 
-        src={process.env.PUBLIC_URL + "/image/Frame 565.png"} 
-        alt="Value 3" 
-        className="value-image"
-      />
-      <img 
-        src={process.env.PUBLIC_URL + "/image/Frame 566.png"} 
-        alt="Value 4" 
-        className="value-image"
-      />
-      <img 
-        src={process.env.PUBLIC_URL + "/image/Frame 567 (2).png"} 
-        alt="Value 5" 
-        className="value-image"
-      />
+      <div 
+        className="value-image-linked-wrapper" 
+        onMouseEnter={() => handleMouseEnter(1)} 
+        onMouseLeave={() => handleMouseLeave(1)}
+      >
+        <img 
+          src={process.env.PUBLIC_URL + "/image/Frame 563 (3).png"} 
+          alt="Value 1" 
+          className="value-image value-image-1 value-image-hover"
+        />
+      </div>
+      
+      <div 
+        className="value-image-linked-wrapper" 
+        onMouseEnter={() => handleMouseEnter(2)} 
+        onMouseLeave={() => handleMouseLeave(2)}
+      >
+        <img 
+          src={process.env.PUBLIC_URL + "/image/Frame 564 (1).png"} 
+          alt="Value 2" 
+          className="value-image value-image-2 value-image-hover"
+        />
+      </div>
+      
+      <div 
+        className="value-image-linked-wrapper" 
+        onMouseEnter={() => handleMouseEnter(3)} 
+        onMouseLeave={() => handleMouseLeave(3)}
+      >
+        <img 
+          src={process.env.PUBLIC_URL + "/image/Frame 565.png"} 
+          alt="Value 3" 
+          className="value-image value-image-3 value-image-hover"
+        />
+      </div>
+      
+      <div 
+        className="value-image-linked-wrapper" 
+        onMouseEnter={() => handleMouseEnter(4)} 
+        onMouseLeave={() => handleMouseLeave(4)}
+      >
+        <img 
+          src={process.env.PUBLIC_URL + "/image/Frame 566.png"} 
+          alt="Value 4" 
+          className="value-image value-image-4 value-image-hover"
+        />
+      </div>
+      
+      <div 
+        className="value-image-linked-wrapper" 
+        onMouseEnter={() => handleMouseEnter(5)} 
+        onMouseLeave={() => handleMouseLeave(5)}
+      >
+        <img 
+          src={process.env.PUBLIC_URL + "/image/Frame 567 (2).png"} 
+          alt="Value 5" 
+          className="value-image value-image-5 value-image-hover"
+        />
+      </div>
     </div>
   );
 };

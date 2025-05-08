@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../styles/works.css';
 
 // WorksHeaderText Component
@@ -41,10 +41,52 @@ export const WorksImage2 = () => {
   );
 };
 
-// WorksImagesContainer Component
+// WorksImagesContainer Component - アニメーション対応版
 export const WorksImagesContainer = () => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // 画像要素を取得
+    const images = container.querySelectorAll('.works-image');
+    
+    // 初期状態では非表示に
+    images.forEach(img => {
+      img.style.opacity = '0';
+    });
+
+    // Intersection Observerの設定
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // 画面に表示されたらアニメーションのクラスを追加
+          images[0].classList.add('animate-work-image-1');
+          images[1].classList.add('animate-work-image-2');
+          
+          // 監視を停止
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.2, // 20%表示されたらトリガー
+        rootMargin: '0px 0px -100px 0px' // 少し早めにトリガー
+      }
+    );
+
+    // コンテナを監視
+    observer.observe(container);
+
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, []);
+
   return (
-    <div className="works-images-container">
+    <div className="works-images-container" ref={containerRef}>
       <img 
         src={process.env.PUBLIC_URL + "/image/Group 570 (2).png"} 
         alt="Works Case Study 1" 

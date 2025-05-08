@@ -4,11 +4,11 @@ import React from 'react';
 export const GradientBackground = () => {
   return (
     <div className="gradient-background">
-      <div className="large-circle-gradient">
+      <div className="mask-image-container">
         <img 
-          src={process.env.PUBLIC_URL + "/image/Ellipse 5.png"} 
-          alt="Large Gradient Circle" 
-          className="large-circle-image" 
+          src={process.env.PUBLIC_URL + "/image/Mask group (1).png"} 
+          alt="Mask Group" 
+          className="mask-group-image" 
         />
       </div>
     </div>
@@ -16,9 +16,9 @@ export const GradientBackground = () => {
 };
 
 // CircleGradient Component
-export const CircleGradient = () => {
+export const CircleGradient = (props) => {
   return (
-    <div className="circle-gradient">
+    <div className="circle-gradient" style={props.style}>
       <img 
         src={process.env.PUBLIC_URL + "/image/Ellipse%206%20(1).png"} 
         alt="Gradient Circle" 

@@ -39,6 +39,47 @@
   display: block;
 }
 
+/* ワークイメージの表示アニメーション */
+@keyframes workImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 初期状態（非表示） */
+.works-images-container .works-image {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Intersection Observerでトリガーされるアニメーション */
+.works-images-container .works-image.animate-work-image-1 {
+  animation: workImageFadeIn 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.works-images-container .works-image.animate-work-image-2 {
+  animation: workImageFadeIn 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.5s;
+}
+
+/* CSSのみで実行されるフォールバックアニメーション（JavaScriptが無効の場合） */
+.works-images-container .works-image:nth-child(1) {
+  animation: none; /* JavaScriptによるアニメーションを優先 */
+}
+
+.works-images-container .works-image:nth-child(2) {
+  animation: none; /* JavaScriptによるアニメーションを優先 */
+}
+
 .works-circle-gradient {
   width: 600px;
   height: 508.721px;

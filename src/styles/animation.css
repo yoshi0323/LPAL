@@ -100,16 +100,8 @@
 }
 
 .fade-in-element {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
-  z-index: inherit;
-  will-change: opacity, transform;
-}
-
-.fade-in-element.visible {
+  transform: translateY(0) !important;
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* 左からのスライド */
@@ -199,6 +191,63 @@
   transform: scale(1.02);
 }
 
+/* バリューイメージの表示を確保するシンプルなスタイル */
+.value-image, 
+.value-image-1, .value-image-2, .value-image-3, .value-image-4, .value-image-5,
+.value-image-container, 
+.value-image-1-container, .value-image-2-container, .value-image-3-container, .value-image-4-container, .value-image-5-container {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* ホバー効果のみを適用するスタイル */
+.value-image-hover {
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.value-image-hover:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(209, 52, 45, 0.3);
+  z-index: 50;
+}
+
+/* 固定要素のスタイル */
+.sticky-active {
+  position: fixed !important;
+  z-index: 100;
+  opacity: 0.3;
+  transition: opacity 0.25s ease;
+}
+
+.sticky-active.active {
+  opacity: 1;
+}
+
+/* 各バリューイメージの個別スタイル（アニメーション微調整用） */
+.value-image-1.value-image-hover:hover {
+  animation-duration: 0.28s;
+}
+
+.value-image-2.value-image-hover:hover {
+  animation-duration: 0.3s;
+}
+
+.value-image-3.value-image-hover:hover {
+  animation-duration: 0.32s;
+}
+
+.value-image-4.value-image-hover:hover {
+  animation-duration: 0.34s;
+}
+
+.value-image-5.value-image-hover:hover {
+  animation-duration: 0.36s;
+}
+
 /* 画像にはホバーエフェクトを適用しない */
 .service-image1, 
 .service-image2-container,
@@ -276,4 +325,275 @@ div.visible .service-gradient-card2 {
 .service-gradient-card-image {
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+/* バリューセクション用のアニメーション */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+}
+
+/* バリュー数字と項目のスタイル - 標準状態は半透明 */
+.sticky-value-number, 
+.sticky-value-title {
+  opacity: 0.3 !important;
+  transition: opacity 0.25s ease !important;
+  will-change: opacity;
+  font-family: inherit; /* オリジナルのフォントを継承 */
+  font-size: inherit; /* オリジナルのサイズを継承 */
+  color: inherit; /* オリジナルの色を継承 */
+}
+
+/* アクティブ状態（ハイライト表示） */
+.sticky-value-number.active, 
+.sticky-value-title.active {
+  opacity: 1 !important;
+  transition: opacity 0.25s ease !important;
+}
+
+/* バリュー数字と項目の追加スタイル - 高い特異性を持たせる */
+div.sticky-element.sticky-value-number,
+div.sticky-element.sticky-value-title,
+span.sticky-element.sticky-value-number,
+span.sticky-element.sticky-value-title,
+p.sticky-element.sticky-value-number,
+p.sticky-element.sticky-value-title {
+  opacity: 0.3 !important;
+}
+
+div.sticky-element.sticky-value-number.active,
+div.sticky-element.sticky-value-title.active,
+span.sticky-element.sticky-value-number.active,
+span.sticky-element.sticky-value-title.active,
+p.sticky-element.sticky-value-number.active,
+p.sticky-element.sticky-value-title.active {
+  opacity: 1 !important;
+}
+
+/* バリュー数字と項目のスペーシング */
+.sticky-value-number {
+  margin-bottom: 20px;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+.sticky-value-title {
+  margin-bottom: 20px;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+/* 各要素ごとにフェードイン/アウトの時間を少しずつずらす - もっと控えめに */
+.value-small-number-1, .value-small-title-1 {
+  transition-delay: 0.05s !important;
+}
+
+.value-small-number-2, .value-small-title-2 {
+  transition-delay: 0.1s !important;
+}
+
+.value-small-number-3, .value-small-title-3 {
+  transition-delay: 0.15s !important;
+}
+
+.value-small-number-4, .value-small-title-4 {
+  transition-delay: 0.2s !important;
+}
+
+.value-small-number-5, .value-small-title-5 {
+  transition-delay: 0.25s !important;
+}
+
+/* ヘッダーとサブタイトルの遅延 */
+.value-header-text,
+.value-subtitle-text {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important; /* トランジションを無効化 */
+}
+
+/* スモールナンバーとタイトルのトランジションを最適化 */
+.value-small-number-1, .value-small-title-1,
+.value-small-number-2, .value-small-title-2,
+.value-small-number-3, .value-small-title-3,
+.value-small-number-4, .value-small-title-4,
+.value-small-number-5, .value-small-title-5 {
+  transition: none !important; /* トランジションを無効化 */
+  transform: none !important;
+}
+
+/* ワークイメージ用のアニメーション - 同時表示 */
+@keyframes workImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 0.85;
+    transform: translateY(3px) scale(0.995);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 第1イメージのアニメーション */
+.work-image-animated-1 {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  animation: none;
+}
+
+.work-image-animated-1.visible {
+  animation: workImageFadeIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.1s; /* すべて同じ遅延 */
+}
+
+/* 第2イメージのアニメーション */
+.work-image-animated-2 {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  animation: none;
+}
+
+.work-image-animated-2.visible {
+  animation: workImageFadeIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.1s; /* すべて同じ遅延 */
+}
+
+/* スタイルが継承されないよう強い指定で上書き */
+.works-images-container .work-image-animated-1,
+.works-images-container .work-image-animated-2 {
+  opacity: 0 !important;
+  visibility: visible !important;
+}
+
+.works-images-container .work-image-animated-1.visible,
+.works-images-container .work-image-animated-2.visible {
+  opacity: 1 !important;
+}
+
+/* プロセスイメージ用のアニメーション - 同時表示 */
+@keyframes processImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 0.85;
+    transform: translateY(3px) scale(0.995);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* プロセスイメージのアニメーション共通クラス */
+.process-image-animated {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  animation: none;
+}
+
+.process-image-animated.visible {
+  animation: processImageFadeIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.1s; /* すべて同じ遅延 */
+}
+
+/* 4つのプロセスイメージに同じ遅延を設定 */
+.process-image-animated-1.visible,
+.process-image-animated-2.visible,
+.process-image-animated-3.visible,
+.process-image-animated-4.visible {
+  animation-delay: 0.1s; /* すべて同じ遅延 */
+}
+
+/* スタイルが確実に適用されるようにする */
+.process-images-container .process-image-animated {
+  opacity: 0 !important;
+  visibility: visible !important;
+}
+
+.process-images-container .process-image-animated.visible {
+  opacity: 1 !important;
+}
+
+/* 常に表示されるように設定するクラス */
+.always-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* バリューイメージのホバーアニメーションを削除 */
+/* @keyframes valueImageHover {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    transform: scale(1.08);
+    box-shadow: 0 8px 16px rgba(209, 52, 45, 0.3);
+  }
+}
+
+@keyframes valueImageOut {
+  0% {
+    transform: scale(1.08);
+    box-shadow: 0 8px 16px rgba(209, 52, 45, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+} */
+
+/* 各バリューイメージの強制表示スタイル - 個別に指定 */
+.value-image-1 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-2 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-3 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-4 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-5 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+
+/* 各バリューイメージコンテナの強制表示スタイル */
+.value-image-1-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-2-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-3-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-4-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-5-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+
+/* バリュー画像のトランジションだけをシンプルに残す */
+.value-image, 
+.value-image-1, 
+.value-image-2, 
+.value-image-3, 
+.value-image-4, 
+.value-image-5 {
+  transition: transform 0.3s ease-out !important;
 }

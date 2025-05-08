@@ -18,6 +18,22 @@
   z-index: 1;
 }
 
+/* 新しいマスク画像のコンテナ */
+.mask-image-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mask-group-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .circle-gradient {
   width: 224px;
   height: 224px;
@@ -27,12 +43,17 @@
   left: 64px;
   top: 1891.00712px;
   z-index: 2;
+  display: none; /* サークルイメージを非表示にする */
 }
 
 .circle-image {
   width: 100%;
   height: 100%;
   object-fit: contain; /* 画像のアスペクト比を維持 */
+}
+
+.large-circle-gradient-hidden {
+  display: none; /* こちらも非表示にする */
 }
 
 .large-circle-gradient {
@@ -46,6 +67,12 @@
   right: -174px; /* 右端から調整 */
   bottom: -235px; /* 下端から調整 */
   z-index: 2;
+}
+
+/* 特定の位置のラージサークルイメージを非表示にする */
+.large-circle-gradient[style*="right: 174.48px"][style*="bottom: 234.51px"],
+.large-circle-gradient[style*="right: -174px"][style*="bottom: -235px"] {
+  display: none;
 }
 
 .large-circle-image {
@@ -300,4 +327,9 @@
 .service-section {
   position: relative;
   z-index: 3;
+}
+
+/* カスタムラッパークラス */
+.custom-gradient-wrapper .gradient-background .large-circle-gradient {
+  display: none;
 }

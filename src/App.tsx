@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton } from './components/main.js';
 import { AboutHeaderText, AboutSubtitleText, AlchemyTitleText, AlchemyDescriptionText, AboutWhiteContainer, RotatedRectangle } from './components/body.js';
 import { GradientBackground, CircleGradient, ServiceWhiteContainer, ServiceHeaderText, ServiceSubtitleText, ServiceDescriptionText, ServiceBox1, ServiceBox2, ServiceImage1, ServiceImage2, ServiceGradientCard1, ServiceGradientCard2, ServiceTitleText, ServiceConsultingDescription, ServiceSaasTitle, ServiceSaasDescription } from './components/service.js';
@@ -6,13 +6,23 @@ import {
   ValueHeaderText, 
   ValueSubtitleText,
   TriangleGradient,
-  ValueImagesContainer
+  ValueImagesContainer,
+  ValueSmallNumber1,
+  ValueSmallNumber2,
+  ValueSmallNumber3,
+  ValueSmallNumber4,
+  ValueSmallNumber5,
+  ValueSmallTitle1,
+  ValueSmallTitle2,
+  ValueSmallTitle3,
+  ValueSmallTitle4,
+  ValueSmallTitle5
 } from './components/value.js';
 import { WorksHeaderText, WorksSubtitleText, WorksImagesContainer, WorksCircleGradient } from './components/works.js';
 import { ProcessHeaderText, ProcessSubtitleText, ProcessImagesContainer } from './components/process.js';
 import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, ContactGroupImage, ContactSecondImage, ContactWhiteFooter, ContactFooterLogo, ContactFooterLinks, ContactFooterCopyright } from './components/contact.js';
 import { CliffQuestionPopup } from './components/popup.js';
-import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor } from './components/animation';
+import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor, ValueStickyComponents, WorkImageAnimation, ProcessImageAnimation } from './components/animation';
 import './styles/styles.css';
 import './body.css';
 import './styles/service.css';
@@ -219,8 +229,11 @@ function App() {
         <CursorTriggerSection onTrigger={triggerServiceAnimation} className="service-section" style={{ position: 'relative', zIndex: 5 }}>
           {/* 背景要素 - 最背面に配置 */}
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
-            <GradientBackground />
-            <CircleGradient />
+            <div className="custom-gradient-wrapper">
+              <GradientBackground />
+            </div>
+            {/* サークルイメージを削除 */}
+            {/* <CircleGradient style={{ display: 'none' }} /> */}
           </div>
           
           {/* 1. サービス白コンテナ - 最初に表示 (最背面) */}
@@ -367,7 +380,7 @@ function App() {
           {/* 13. サービスグラディエントカード1 - 最後に表示 (最前面) */}
           {showGradientCard1 && (
             <div 
-              className={`fade-in-element hover-scale ${serviceAnimationTriggered ? 'visible' : ''}`}
+              className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
               style={{ position: 'relative', zIndex: 15 }}
             >
               <ServiceGradientCard1 />
@@ -377,7 +390,7 @@ function App() {
           {/* 14. サービスグラディエントカード2 - 最後に表示 (最前面) */}
           {showGradientCard2 && (
             <div 
-              className={`fade-in-element hover-scale ${serviceAnimationTriggered ? 'visible' : ''}`}
+              className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
               style={{ position: 'relative', zIndex: 15 }}
             >
               <ServiceGradientCard2 />
@@ -385,17 +398,36 @@ function App() {
           )}
         </CursorTriggerSection>
 
-        <ValueHeaderText />
-        <ValueSubtitleText />
-        <ValueImagesContainer />
-        <TriangleGradient />
+        {/* Value Section - 固定表示コンポーネント */}
+        <section className="value-section">
+          <ValueHeaderText />
+          <ValueSubtitleText />
+          <ValueSmallNumber1 />
+          <ValueSmallNumber2 />
+          <ValueSmallNumber3 />
+          <ValueSmallNumber4 />
+          <ValueSmallNumber5 />
+          <ValueSmallTitle1 />
+          <ValueSmallTitle2 />
+          <ValueSmallTitle3 />
+          <ValueSmallTitle4 />
+          <ValueSmallTitle5 />
+          <ValueImagesContainer />
+          <TriangleGradient />
+          
+          {/* バリューセクション固定表示要素 */}
+          <ValueStickyComponents />
+        </section>
+
         <WorksHeaderText />
         <WorksSubtitleText />
         <WorksImagesContainer />
         <WorksCircleGradient />
+        <WorkImageAnimation />
         <ProcessHeaderText />
         <ProcessSubtitleText />
         <ProcessImagesContainer />
+        <ProcessImageAnimation />
         <ContactWhiteFooter />
         <ContactBackgroundGradient />
         <ContactMaskImage />

@@ -314,7 +314,7 @@
   line-height: 175%; /* 21px */
   position: absolute;
   left: 180px;
-  top: calc(2885.50712px + 40px); /* 2905.50712px */
+  top: calc(2885.50712px + 41px); /* 2926.50712px - using 41px spacing */
   z-index: 5;
 }
 
@@ -327,7 +327,7 @@
   line-height: 175%; /* 21px */
   position: absolute;
   left: 180px;
-  top: calc(2905.50712px + 60px); /* 2925.50712px */
+  top: calc(2926.50712px + 41px); /* 2967.50712px - using 41px spacing */
   z-index: 5;
 }
 
@@ -340,7 +340,7 @@
   line-height: 175%; /* 21px */
   position: absolute;
   left: 180px;
-  top: calc(2925.50712px + 80px); /* 2945.50712px */
+  top: calc(2967.50712px + 41px); /* 3008.50712px - using 41px spacing */
   z-index: 5;
 }
 
@@ -353,7 +353,7 @@
   line-height: 175%; /* 21px */
   position: absolute;
   left: 180px;
-  top: calc(2945.50712px + 100px); /* 2965.50712px */
+  top: calc(3008.50712px + 41px); /* 3049.50712px - using 41px spacing */
   z-index: 5;
 }
 
@@ -367,7 +367,7 @@
   line-height: 175%; /* 24.5px */
   position: absolute;
   left: 203px;
-  top: calc(1771.00712px + 830px + 282px); /* 2883.00712px */
+  top: calc(1771.00712px + 830px + 282px); /* 2883.00712px - aligned with subtitle */
   z-index: 5;
 }
 
@@ -381,7 +381,7 @@
   line-height: 175%; /* 24.5px */
   position: absolute;
   left: 203px;
-  top: calc(2883.00712px + 24.5px + 16px); /* 2923.50712px - 外注コストの削減の位置 + 高さ + 16px間隔 */
+  top: calc(2883.00712px + 41px); /* 2924.00712px - using 41px spacing */
   z-index: 5;
 }
 
@@ -395,7 +395,7 @@
   line-height: 175%; /* 24.5px */
   position: absolute;
   left: 203px;
-  top: calc(2923.50712px + 24.5px + 16px); /* 2964.00712px */
+  top: calc(2924.00712px + 41px); /* 2965.00712px - using 41px spacing */
   z-index: 5;
 }
 
@@ -409,7 +409,7 @@
   line-height: 175%; /* 24.5px */
   position: absolute;
   left: 203px;
-  top: calc(2964.00712px + 24.5px + 16px); /* 3004.50712px */
+  top: calc(2965.00712px + 41px); /* 3006.00712px - using 41px spacing */
   z-index: 5;
 }
 
@@ -423,8 +423,35 @@
   line-height: 175%; /* 24.5px */
   position: absolute;
   left: 203px;
-  top: calc(3004.50712px + 24.5px + 16px); /* 3045.00712px */
+  top: calc(3006.00712px + 41px); /* 3047.00712px - using 41px spacing */
   z-index: 5;
+}
+
+/* スモールナンバーの基本状態（グレーアウト） */
+.value-small-number-1,
+.value-small-number-2,
+.value-small-number-3,
+.value-small-number-4,
+.value-small-number-5 {
+  opacity: 0.3;
+  transition: opacity 0.25s ease;
+}
+
+/* スモールタイトルの基本状態（グレーアウト） */
+.value-small-title-1,
+.value-small-title-2,
+.value-small-title-3,
+.value-small-title-4,
+.value-small-title-5 {
+  opacity: 0.3;
+  transition: opacity 0.25s ease;
+}
+
+/* アクティブ状態 */
+.value-small-number-active,
+.value-small-title-active {
+  opacity: 1 !important;
+  transition: opacity 0.25s ease;
 }
 
 /* ValueBackgroundImage のスタイルを削除（もし追加していた場合） */
@@ -440,13 +467,63 @@
   z-index: 5;
 }
 
+/* 画像ラッパー用のスタイル */
+.value-image-wrapper {
+  display: block;
+  overflow: visible;
+  margin-bottom: 16px; /* 画像間の間隔を確保 */
+  position: relative;
+}
+
 .value-image {
   max-width: 100%;
   height: auto;
   display: block; /* 余分な隙間を防ぐ */
+  transform-origin: center center; /* 変形の中心を設定 */
+  border-radius: 4px; /* 角を少し丸める */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 軽い影をつける */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 拡大アニメーションのためのトランジション */
+  cursor: pointer; /* カーソルをポインタに変更して操作可能なことを示す */
 }
 
-/* 各画像の位置 - 元のコンテナの位置を使用 */
+/* 各画像のホバー効果を個別に設定 */
+.value-image-1:hover {
+  transform: scale(1.08); /* ホバー時に8%拡大 */
+  box-shadow: 0 6px 12px rgba(209, 52, 45, 0.3); /* 影を濃くし赤い色合いに */
+  z-index: 50; /* 他の要素より前面に表示 */
+}
+
+.value-image-2:hover {
+  transform: scale(1.08); /* ホバー時に8%拡大 */
+  box-shadow: 0 6px 12px rgba(209, 52, 45, 0.3); /* 影を濃くし赤い色合いに */
+  z-index: 50;
+}
+
+.value-image-3:hover {
+  transform: scale(1.08); /* ホバー時に8%拡大 */
+  box-shadow: 0 6px 12px rgba(209, 52, 45, 0.3); /* 影を濃くし赤い色合いに */
+  z-index: 50;
+}
+
+.value-image-4:hover {
+  transform: scale(1.08); /* ホバー時に8%拡大 */
+  box-shadow: 0 6px 12px rgba(209, 52, 45, 0.3); /* 影を濃くし赤い色合いに */
+  z-index: 50;
+}
+
+.value-image-5:hover {
+  transform: scale(1.08); /* ホバー時に8%拡大 */
+  box-shadow: 0 6px 12px rgba(209, 52, 45, 0.3); /* 影を濃くし赤い色合いに */
+  z-index: 50;
+}
+
+/* 個別のコンテナスタイル */
+.value-image-container {
+  overflow: visible; /* 拡大時にはみ出ても大丈夫なように */
+  position: relative;
+}
+
+/* 各画像の位置 */
 .value-image-1-container {
   left: 454px;
   top: calc(1771.00712px + 830px + 160px); /* 2761.00712px - 白コンテナ1の位置 */
@@ -470,4 +547,19 @@
 .value-image-5-container {
   left: 454px;
   top: calc(1771.00712px + 830px + 160px + 270px * 4); /* 3905.00712px - 白コンテナ5の位置 */
+}
+
+/* リンクされたアニメーションラッパー */
+.value-image-linked-wrapper {
+  position: relative;
+  display: block;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+/* アクティブ状態のアニメーション */
+.value-small-number-active,
+.value-small-title-active {
+  opacity: 1;
+  transition: opacity 0.25s ease;
 }
