@@ -1,0 +1,115 @@
+
+
+/* モバイル画面のレスポンシブデザイン */
+@media (max-width: 375px) {
+    /* ヘッダーナビゲーション */
+    .header-section {
+        padding: 15px;
+    }
+    
+    /* ロゴとメニューの調整 */
+    .logo-svg, .gradient-icon {
+        width: 116.554px;
+        height: 31.056px;
+        transform: rotate(-90deg);
+        flex-shrink: 0;
+    }
+    
+    /* ハンバーガーメニュー表示 */
+    .header-content .service-text,
+    .header-content .about-us-text,
+    .header-content .value-text,
+    .header-content .case-study-text,
+    .header-content .support-step-text,
+    .header-content .header-text {
+        display: block;
+    }
+    
+    /* メインコンテンツのレイアウト調整 */
+    .app-container {
+        padding: 0 15px;
+    }
+    
+    /* ヒーローセクション */
+    .legacy-text, .modern-dot-text {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+    
+    .japanese-text {
+        font-size: 24px;
+        line-height: 1.4;
+        margin: 20px 0;
+    }
+    
+    .description-text {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 30px;
+    }
+    
+    /* クエスチョンセクション */
+    .cliff-question-text {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    
+    /* お問い合わせボタン */
+    .white-button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    /* 全体のセクション間隔 */
+    section {
+        margin-bottom: 50px;
+    }
+}
+
+/* スマートフォン向け追加調整 */
+@media (max-width: 480px) {
+    .legacy-text, .modern-dot-text {
+        font-size: 28px;
+    }
+    
+    .japanese-text {
+        font-size: 20px;
+    }
+    
+    /* 縦積みレイアウト */
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    /* 入力フィールドの調整 */
+    .input-field, .large-input-field {
+        width: 100%;
+        position: relative;
+        left: 0 !important;
+    }
+    
+    /* プレースホルダーの位置調整 */
+    .name-placeholder, .company-placeholder, .content-placeholder {
+        left: 16px !important;
+        top: auto !important;
+    }
+    
+    /* 送信ボタン */
+    .submit-button {
+        width: 100%;
+        max-width: 280px;
+        left: 50% !important;
+        transform: translateX(-50%);
+    }
+}
+
+
+
+
+

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton } from './components/main.js';
+import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton, ContactButtonMobile } from './components/main.js';
 import { AboutHeaderText, AboutSubtitleText, AlchemyTitleText, AlchemyDescriptionText, AboutWhiteContainer, RotatedRectangle } from './components/body.js';
 import { GradientBackground, CircleGradient, ServiceWhiteContainer, ServiceHeaderText, ServiceSubtitleText, ServiceDescriptionText, ServiceBox1, ServiceBox2, ServiceImage1, ServiceImage2, ServiceGradientCard1, ServiceGradientCard2, ServiceTitleText, ServiceConsultingDescription, ServiceSaasTitle, ServiceSaasDescription } from './components/service.js';
 import { 
@@ -24,6 +24,7 @@ import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, Con
 import { CliffQuestionPopup } from './components/popup.js';
 import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor, ValueStickyComponents, WorkImageAnimation, ProcessImageAnimation, AnimateContactElements, AnimateServiceElements } from './components/animation';
 import './styles/styles.css';
+import './styles/global.css';
 import './body.css';
 import './styles/service.css';
 import './styles/value.css';
@@ -43,6 +44,8 @@ function App() {
   const [showServiceImage2, setShowServiceImage2] = useState(false);
   const [showGradientCard1, setShowGradientCard1] = useState(false);
   const [showGradientCard2, setShowGradientCard2] = useState(false);
+  // モバイル表示を管理するステート
+  const [isMobile, setIsMobile] = useState(false);
 
   // ポップアップ開閉の関数
   const openPopup = () => {
@@ -52,6 +55,79 @@ function App() {
   const closePopup = () => {
     setIsPopupOpen(false);
   };
+  
+  // ビューポートの変更を検知してモバイル表示を切り替える
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 580) {
+        setIsMobile(true);
+        
+        // モバイル表示時にコンタクトフォームを非表示にしてボタンを表示
+        const contactForm = document.querySelector('.contact-form');
+        const contactButton = document.querySelector('.contact-button-mobile');
+        const contactContainer = document.querySelector('.white-container');
+        const contactTitle = document.querySelector('.contact-title');
+        const contactTitleJP = document.querySelector('.contact-title-jp');
+        
+        if (contactForm && contactButton) {
+          // Hide form elements
+          contactForm.setAttribute('style', 'display: none;');
+          if (contactContainer) contactContainer.setAttribute('style', 'display: none;');
+          if (contactTitle) contactTitle.setAttribute('style', 'display: none;');
+          if (contactTitleJP) contactTitleJP.setAttribute('style', 'display: none;');
+          
+          // Show and style mobile button
+          contactButton.setAttribute('style', 'display: flex; width: 272px; height: 63px; margin: 30px auto;');
+        }
+      } else {
+        setIsMobile(false);
+        
+        // デスクトップ表示時にコンタクトフォームを表示してボタンを非表示
+        const contactForm = document.querySelector('.contact-form');
+        const contactButton = document.querySelector('.contact-button-mobile');
+        const contactContainer = document.querySelector('.white-container');
+        const contactTitle = document.querySelector('.contact-title');
+        const contactTitleJP = document.querySelector('.contact-title-jp');
+        
+        if (contactForm && contactButton) {
+          // Show form elements
+          contactForm.setAttribute('style', 'display: block;');
+          if (contactContainer) contactContainer.setAttribute('style', 'display: block;');
+          if (contactTitle) contactTitle.setAttribute('style', 'display: block;');
+          if (contactTitleJP) contactTitleJP.setAttribute('style', 'display: block;');
+          
+          // Hide mobile button
+          contactButton.setAttribute('style', 'display: none;');
+        }
+      }
+    };
+    
+    // 初期表示時と画面サイズ変更時にリサイズハンドラーを実行
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    // クリーンアップ関数
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  // モバイルコンタクトボタンのクリックイベントを処理
+  useEffect(() => {
+    const handleContactPopup = () => {
+      // ここで必要な処理を実行 (例: フォームの表示・非表示切り替えなど)
+      console.log('Contact popup opened');
+      
+      // 必要に応じてポップアップを表示
+      // openPopup();
+    };
+    
+    window.addEventListener('openContactPopup', handleContactPopup);
+    
+    return () => {
+      window.removeEventListener('openContactPopup', handleContactPopup);
+    };
+  }, []);
 
   // サービスセクションのアニメーショントリガー
   const triggerServiceAnimation = () => {
@@ -298,6 +374,9 @@ function App() {
             </div>
             <SubmitButton />
           </div>
+          
+          {/* Mobile contact button - hidden by default, shown on small screens */}
+          <ContactButtonMobile />
         </section>
 
         {/* Service Section - カーソルトリガー使用 */}

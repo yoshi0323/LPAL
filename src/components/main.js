@@ -341,3 +341,30 @@ export const SubmitButton = () => {
   );
 };
 
+// ContactButtonMobile Component for responsive design
+export const ContactButtonMobile = () => {
+  // Handle click on mobile contact button
+  const handleClick = () => {
+    // Trigger a custom event that can be caught in App.tsx
+    window.dispatchEvent(new CustomEvent('openContactPopup'));
+    
+    // Scroll to contact form section
+    const contactForm = document.querySelector('.contact-section');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="contact-button-mobile" onClick={handleClick}>
+      <div className="contact-button-text">お問い合わせ</div>
+      <div className="contact-button-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
+          <circle cx="16.5" cy="16.3003" r="16" fill="#FCFCFC"/>
+          <path d="M15.684 21.6418L15.684 8.95026C15.684 8.7368 15.7665 8.54759 15.9315 8.38264C16.0964 8.21769 16.2856 8.13521 16.4991 8.13521C16.7126 8.13521 16.9018 8.21769 17.0667 8.38264C17.2317 8.54759 17.3141 8.7368 17.3141 8.95026L17.3141 21.6418L20.5744 18.3816C20.7393 18.2166 20.9334 18.1342 21.1565 18.1342C21.3797 18.1342 21.5738 18.2166 21.7387 18.3816C21.9037 18.5465 21.9861 18.7406 21.9861 18.9638C21.9861 19.1869 21.9037 19.381 21.7387 19.5459L17.0813 24.2034C16.9163 24.3683 16.7223 24.4508 16.4991 24.4508C16.2759 24.4508 16.0819 24.3683 15.9169 24.2034L11.2595 19.5459C11.0945 19.381 11.012 19.1869 11.012 18.9638C11.012 18.7406 11.0945 18.5465 11.2595 18.3816C11.4244 18.2166 11.6185 18.1342 11.8416 18.1342C12.0648 18.1342 12.2589 18.2166 12.4238 18.3816L15.684 21.6418Z" fill="#D1342D"/>
+        </svg>
+      </div>
+    </div>
+  );
+};
+

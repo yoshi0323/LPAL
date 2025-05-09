@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/animation.css';
 
 // テキストタイピングアニメーション用のコンポーネント
-export const TypingText = ({ text, className, delay = 0 }) => {
+export const TypingText = ({ text, className, delay = 0, style = {} }) => {
   const [displayText, setDisplayText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const [startAnimation, setStartAnimation] = useState(false);
@@ -34,7 +34,7 @@ export const TypingText = ({ text, className, delay = 0 }) => {
   }, [displayText, text, startAnimation]);
 
   return (
-    <div className={className}>
+    <div className={className} style={style}>
       {displayText}
       {showCursor && startAnimation && <span className="typing-cursor"></span>}
     </div>
@@ -397,7 +397,7 @@ export const ValueStickyComponents = () => {
     
     const handleScroll = throttle(() => {
       const scrollPosition = window.scrollY;
-
+      
       // 初期位置が保存されていなければ再度試行
       if (!document.querySelector('.value-header-text')?.dataset.originalTop) {
         saveOriginalPositions();

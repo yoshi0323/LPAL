@@ -1067,3 +1067,83 @@ p.sticky-element.sticky-value-title.active {
     filter: blur(0);
   }
 }
+
+/* ハンバーガーメニューのアニメーション */
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.hamburger-menu span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #343434;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-menu.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* モバイルメニューのオーバーレイアニメーション */
+.mobile-menu-overlay {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* モバイルメニュー項目のアニメーション */
+.mobile-menu-overlay > div {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.4s ease-in-out forwards;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 18px;
+  font-weight: 500;
+  color: #343434;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.mobile-menu-overlay > div:hover {
+  color: #D1342D;
+}
+
+.mobile-menu-overlay > div:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu-overlay > div:nth-child(2) { animation-delay: 0.2s; }
+.mobile-menu-overlay > div:nth-child(3) { animation-delay: 0.3s; }
+.mobile-menu-overlay > div:nth-child(4) { animation-delay: 0.4s; }
+.mobile-menu-overlay > div:nth-child(5) { animation-delay: 0.5s; }
+.mobile-menu-overlay > div:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

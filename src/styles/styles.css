@@ -669,4 +669,49 @@ body {
   top: 50%;
   transform: translateY(-50%); /* 垂直方向に中央揃え */
   z-index: 35;
-} 
+}
+
+/* Mobile contact button styles - will be controlled by JavaScript */
+.contact-button-mobile {
+  display: none; /* Hidden by default, will be shown with JavaScript */
+  padding: 20px 16px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 80px;
+  background: #D1342D;
+  width: 272px;
+  height: 63px;
+  position: relative;
+  margin: 30px auto;
+}
+
+.contact-button-mobile .contact-button-text {
+  color: #FCFCFC;
+  text-align: center;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 22.5px */
+  width: auto;
+  height: 23px;
+}
+
+.contact-button-mobile .contact-button-arrow {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+
+
+
+
+
+
