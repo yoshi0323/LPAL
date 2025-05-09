@@ -7,7 +7,8 @@
   position: absolute;
   left: 180px;
   bottom: 95.75px; /* 底辺から1175.76px上 */
-  z-index: 2; /* 適切なz-indexに調整 */
+  z-index: 2; /* グラデーション背景の下に配置 */
+  pointer-events: none; /* マウスイベントを通過させる */
 }
 
 .contact-background-gradient {
@@ -18,14 +19,14 @@
   position: absolute;
   left: 0; /* 左端から配置 */
   bottom: 117.53px; /* 底辺から117.53px上 */
-  z-index: 3; /* 円形グラデーションの下に配置 */
+  z-index: 3; /* 値を4から3に下げる */
 }
 
 .contact-mask-image {
   position: absolute;
   left: 0; /* 左端から配置 */
   bottom: 117.53px; /* 底辺から117.53px上 */
-  z-index: 3; /* グラデーション背景と同じz-indexで配置 */
+  z-index: 4; /* 値を5から4に下げる */
   width: 1440px; /* 背景と同じ幅に設定 */
   height: 978px; /* 背景と同じ高さに設定 */
 }
@@ -40,7 +41,7 @@
   position: absolute;
   left: 320px; /* 左辺から320px - 0pxから変更 */
   bottom: 196.53px; /* 本来は底辺から197.53px上にだが、エクスポートした際に画像が1px大きくなったため、1px下に配置   */
-  z-index: 3; /* マスク画像の上に表示 */
+  z-index: 15; /* z-indexを6から15に上げる */
   width: auto;
   height: auto;
 }
@@ -55,7 +56,7 @@
   position: absolute;
   left: 624.5px; /* 左辺から624.5px */
   bottom: 911.53px; /* 底辺から911.53px上 */
-  z-index: 3; /* マスク画像の上に表示 */
+  z-index: 16; /* z-indexを7から16に上げる */
   width: auto;
   height: auto;
 }

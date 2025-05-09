@@ -22,7 +22,7 @@ import { WorksHeaderText, WorksSubtitleText, WorksImagesContainer, WorksCircleGr
 import { ProcessHeaderText, ProcessSubtitleText, ProcessImagesContainer } from './components/process.js';
 import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, ContactGroupImage, ContactSecondImage, ContactWhiteFooter, ContactFooterLogo, ContactFooterLinks, ContactFooterCopyright } from './components/contact.js';
 import { CliffQuestionPopup } from './components/popup.js';
-import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor, ValueStickyComponents, WorkImageAnimation, ProcessImageAnimation } from './components/animation';
+import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor, ValueStickyComponents, WorkImageAnimation, ProcessImageAnimation, AnimateContactElements, AnimateServiceElements } from './components/animation';
 import './styles/styles.css';
 import './body.css';
 import './styles/service.css';
@@ -144,6 +144,19 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* バリューセクションのアニメーション処理 */}
+      <ValueStickyComponents />
+      
+      {/* ワークイメージとプロセスイメージのアニメーション処理 */}
+      <WorkImageAnimation />
+      <ProcessImageAnimation />
+      
+      {/* コンタクトセクションのアニメーション処理 */}
+      <AnimateContactElements />
+      
+      {/* サービスセクションのアニメーション処理 */}
+      <AnimateServiceElements />
+
       <div className="app">
         {/* Header Section */}
         <header className="header-section">

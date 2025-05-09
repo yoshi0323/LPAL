@@ -178,6 +178,7 @@ export const ValueStickyComponents = () => {
   const [imagesInitialized, setImagesInitialized] = useState(false);
   const originalPositionsRef = useRef([]);
   const activeItemsRef = useRef(activeItems); // アクティブ状態を参照として保持
+  const [worksHeaderPosition, setWorksHeaderPosition] = useState(null); // ワークヘッダーの位置
 
   // activeItemsが変更されたら参照を更新
   useEffect(() => {
@@ -195,18 +196,18 @@ export const ValueStickyComponents = () => {
       // イメージにスタイルを適用
       valueImages.forEach(img => {
         if (img) {
-          img.style.opacity = '1';
-          img.style.visibility = 'visible';
-          img.style.display = 'block';
+        img.style.opacity = '1';
+        img.style.visibility = 'visible';
+        img.style.display = 'block';
         }
       });
       
       // コンテナにスタイルを適用
       valueContainers.forEach(container => {
         if (container) {
-          container.style.opacity = '1';
-          container.style.visibility = 'visible';
-          container.style.display = 'block';
+        container.style.opacity = '1';
+        container.style.visibility = 'visible';
+        container.style.display = 'block';
         }
       });
       
@@ -230,11 +231,48 @@ export const ValueStickyComponents = () => {
     };
   }, []);
 
+  // ワークヘッダーの位置を取得
+  useEffect(() => {
+    const getWorksHeaderPosition = () => {
+      const worksHeader = document.querySelector('.works-header-text');
+      if (worksHeader) {
+        const rect = worksHeader.getBoundingClientRect();
+        const position = rect.top + window.scrollY - 300; // 300pxほど手前で消え始める
+        setWorksHeaderPosition(position);
+        console.log('ワークヘッダー位置:', position); // デバッグ用
+      } else {
+        // ワークヘッダーが見つからない場合は、バリューセクションの終了位置を使用
+        setWorksHeaderPosition(4000); // デフォルト値
+        console.log('ワークヘッダーが見つかりません、デフォルト値を設定');
+      }
+    };
+
+    // 初期ロード時とリサイズ時に位置を取得
+    getWorksHeaderPosition();
+    window.addEventListener('resize', getWorksHeaderPosition);
+    
+    // 複数回試行するための遅延実行
+    const timeouts = [
+      setTimeout(getWorksHeaderPosition, 500),
+      setTimeout(getWorksHeaderPosition, 1000),
+      setTimeout(getWorksHeaderPosition, 2000)
+    ];
+    
+    // DOMContentLoaded イベントでも試行
+    document.addEventListener('DOMContentLoaded', getWorksHeaderPosition);
+    
+    return () => {
+      window.removeEventListener('resize', getWorksHeaderPosition);
+      document.removeEventListener('DOMContentLoaded', getWorksHeaderPosition);
+      timeouts.forEach(id => clearTimeout(id));
+    };
+  }, []);
+
   // スクロール位置に基づく表示/非表示
   useEffect(() => {
     // バリューセクションの開始と終了位置を定義（ピクセル単位）
     const valueStart = 2390; // バリューセクションの上端位置
-    const valueEnd = 4200;   // バリューセクションの終わりまで伸ばす
+    const valueEnd = worksHeaderPosition || 4200; // ワークヘッダー位置か、なければデフォルト値
     
     // 要素の状態を追跡するフラグ
     let isFixed = false;
@@ -307,7 +345,7 @@ export const ValueStickyComponents = () => {
         }
       }
     };
-    
+
     // ページロード後に初期位置を保存
     saveOriginalPositions();
     
@@ -349,7 +387,7 @@ export const ValueStickyComponents = () => {
       
       // 状態が変更された場合のみ更新
       if (isChanged) {
-        setActiveItems([...newActiveItems]);
+            setActiveItems([...newActiveItems]);
       }
     };
     
@@ -365,6 +403,14 @@ export const ValueStickyComponents = () => {
       // アクティブ状態を更新
       updateActiveItems(scrollPosition);
 
+      // ワークヘッダーに近づくときのフェードアウト係数を計算
+      let fadeOutFactor = 1;
+      if (worksHeaderPosition && scrollPosition > worksHeaderPosition - 500) {
+        // ワークヘッダーの500px手前から徐々に消えていく（500pxの範囲で1から0に変化）
+        fadeOutFactor = Math.max(0, 1 - (scrollPosition - (worksHeaderPosition - 500)) / 500);
+        fadeOutFactor = Math.pow(fadeOutFactor, 1.5); // イージング効果を強化（より早く消える）
+      }
+
       // セクション内にいるとき
       if (scrollPosition >= valueStart && scrollPosition < valueEnd) {
         if (visibilityState !== 'visible') {
@@ -374,6 +420,12 @@ export const ValueStickyComponents = () => {
         // 固定表示に切り替える
         const headerElement = document.querySelector('.value-header-text');
         const subtitleElement = document.querySelector('.value-subtitle-text');
+        
+        // ヘッダーとサブタイトル全体のコンテナにもフェードアウトを適用
+        const headerContainer = document.querySelector('.value-header-container, .value-header');
+        if (headerContainer) {
+          headerContainer.style.opacity = fadeOutFactor;
+        }
         
         // ヘッダーとサブタイトルを固定表示に
         const headerFixedTop = 60; // ヘッダーが固定される時の上端からの距離
@@ -389,6 +441,10 @@ export const ValueStickyComponents = () => {
             headerElement.style.top = `${headerFixedTop}px`;
             headerElement.style.left = headerElement.dataset.originalLeft;
             headerElement.style.zIndex = '100';
+            // フェードアウト係数を適用
+            headerElement.style.opacity = fadeOutFactor;
+            // トランジションを追加
+            headerElement.style.transition = 'opacity 0.3s ease';
             isFixed = true;
             
             // サブタイトルの固定表示（ヘッダーとの間隔を維持）
@@ -401,6 +457,8 @@ export const ValueStickyComponents = () => {
               subtitleElement.style.top = `${subtitleTop}px`;
               subtitleElement.style.left = subtitleElement.dataset.originalLeft;
               subtitleElement.style.zIndex = '100';
+              // フェードアウト係数を適用
+              subtitleElement.style.opacity = fadeOutFactor;
               
               // 最初のスモールナンバーの固定（サブタイトルとの間隔を維持）
               if (subtitleElement.dataset.numberGap && subtitleElement.dataset.height) {
@@ -419,7 +477,8 @@ export const ValueStickyComponents = () => {
                     numberElement.style.top = `${firstNumberTop}px`;
                     numberElement.style.left = numberElement.dataset.originalLeft;
                     numberElement.style.zIndex = '100';
-                    numberElement.style.opacity = activeItemsRef.current[i-1] ? '1' : '0.3';
+                    // アクティブ状態とフェードアウト係数を組み合わせる
+                    numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
                     
                     // 対応するタイトルも固定
                     if (titleElement) {
@@ -427,7 +486,8 @@ export const ValueStickyComponents = () => {
                       titleElement.style.top = `${firstNumberTop}px`;
                       titleElement.style.left = titleElement.dataset.originalLeft;
                       titleElement.style.zIndex = '100';
-                      titleElement.style.opacity = activeItemsRef.current[i-1] ? '1' : '0.3';
+                      // アクティブ状態とフェードアウト係数を組み合わせる
+                      titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
                     }
                   } else if (i > 1 && numberElement) {
                     // 2番目以降のスモールナンバー
@@ -443,7 +503,8 @@ export const ValueStickyComponents = () => {
                       numberElement.style.top = `${currentTop}px`;
                       numberElement.style.left = numberElement.dataset.originalLeft;
                       numberElement.style.zIndex = '100';
-                      numberElement.style.opacity = activeItemsRef.current[i-1] ? '1' : '0.3';
+                      // アクティブ状態とフェードアウト係数を組み合わせる
+                      numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
                       
                       // 対応するタイトルも固定
                       if (titleElement) {
@@ -451,7 +512,8 @@ export const ValueStickyComponents = () => {
                         titleElement.style.top = `${currentTop}px`;
                         titleElement.style.left = titleElement.dataset.originalLeft;
                         titleElement.style.zIndex = '100';
-                        titleElement.style.opacity = activeItemsRef.current[i-1] ? '1' : '0.3';
+                        // アクティブ状態とフェードアウト係数を組み合わせる
+                        titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
                       }
                     }
                   }
@@ -464,6 +526,7 @@ export const ValueStickyComponents = () => {
             headerElement.style.top = '';
             headerElement.style.left = '';
             headerElement.style.zIndex = '';
+            headerElement.style.opacity = '';
             isFixed = false;
             
             if (subtitleElement) {
@@ -471,6 +534,7 @@ export const ValueStickyComponents = () => {
               subtitleElement.style.top = '';
               subtitleElement.style.left = '';
               subtitleElement.style.zIndex = '';
+              subtitleElement.style.opacity = '';
             }
             
             // スモールナンバーとタイトルも通常位置に戻す
@@ -504,11 +568,13 @@ export const ValueStickyComponents = () => {
             const titleElement = document.querySelector(`.value-small-title-${i}`);
             
             if (numberElement && numberElement.style.position === 'fixed') {
-              numberElement.style.opacity = activeItemsRef.current[i-1] ? '1' : '0.3';
+              // アクティブ状態とフェードアウト係数を組み合わせる
+              numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
             }
             
             if (titleElement && titleElement.style.position === 'fixed') {
-              titleElement.style.opacity = activeItemsRef.current[i-1] ? '1' : '0.3';
+              // アクティブ状態とフェードアウト係数を組み合わせる
+              titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
             }
           }
         }
@@ -531,6 +597,7 @@ export const ValueStickyComponents = () => {
           headerElement.style.top = '';
           headerElement.style.left = '';
           headerElement.style.zIndex = '';
+          headerElement.style.opacity = '';
         }
         
         if (subtitleElement) {
@@ -538,6 +605,7 @@ export const ValueStickyComponents = () => {
           subtitleElement.style.top = '';
           subtitleElement.style.left = '';
           subtitleElement.style.zIndex = '';
+          subtitleElement.style.opacity = '';
         }
         
         for (let i = 1; i <= 5; i++) {
@@ -571,7 +639,7 @@ export const ValueStickyComponents = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // 依存配列を空にして無限ループを防止
+  }, [worksHeaderPosition]); // ワークヘッダー位置が変わったときにエフェクトを再実行
 
   // DOM操作で要素を直接制御するため、Reactのレンダリングは行わない
   return null;
@@ -771,15 +839,28 @@ export const AnimateContactElements = () => {
     const selectors = [
       // コンタクトセクション背景/画像要素のみにアニメーションを適用
       '.contact-white-footer',
-      '.contact-background-gradient', 
+      '.contact-circle-gradient',
+      '.contact-background-gradient',
       '.contact-mask-image',
       '.contact-group-image',
       '.contact-second-image',
-      '.contact-circle-gradient',
       '.contact-footer-logo',
       '.contact-footer-links-container',
       '.contact-footer-copyright'
     ];
+    
+    // 手動でz-indexを設定
+    const zIndexMap = {
+      '.contact-white-footer': 1,
+      '.contact-circle-gradient': 2,
+      '.contact-background-gradient': 3,
+      '.contact-mask-image': 4,
+      '.contact-group-image': 15,
+      '.contact-second-image': 16,
+      '.contact-footer-logo': 5,
+      '.contact-footer-links-container': 5,
+      '.contact-footer-copyright': 5
+    };
     
     // コンタクトフォーム要素からfade-in-elementクラスを削除（もし適用されていれば）
     const formSelectors = [
@@ -793,9 +874,11 @@ export const AnimateContactElements = () => {
       '.contact-form .submit-button'
     ];
     
+    // フォーム要素にz-index 10を設定
     formSelectors.forEach(selector => {
       const elements = document.querySelectorAll(selector);
       elements.forEach(element => {
+        element.style.zIndex = '10';
         // fade-in-elementクラスがあれば削除
         if (element.classList.contains('fade-in-element')) {
           element.classList.remove('fade-in-element');
@@ -834,6 +917,9 @@ export const AnimateContactElements = () => {
     selectors.forEach((selector, index) => {
       const elements = document.querySelectorAll(selector);
       elements.forEach(element => {
+        // z-indexを明示的に設定
+        element.style.zIndex = zIndexMap[selector];
+        
         // 既に fade-in-element クラスを持っていない場合のみ追加
         if (!element.classList.contains('fade-in-element')) {
           element.classList.add('fade-in-element');
@@ -845,6 +931,100 @@ export const AnimateContactElements = () => {
     // クリーンアップ関数
     return () => {
       selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          observer.unobserve(element);
+        });
+      });
+    };
+  }, []);
+  
+  return null; // このコンポーネントは何もレンダリングしない
+};
+
+// サービスセクション用のアニメーションを追加するためのコンポーネント
+export const AnimateServiceElements = () => {
+  useEffect(() => {
+    // サービスセクションの主要な要素
+    const serviceSelectors = [
+      '.service-white-container',
+      '.service-header-text',
+      '.service-subtitle-text',
+      '.service-description-text',
+      '.service-box-1',
+      '.service-box-2',
+      '.service-title-text',
+      '.service-consulting-description',
+      '.service-saas-title',
+      '.service-saas-description',
+      '.service-image1',
+      '.service-image2',
+      '.service-gradient-card1',
+      '.service-gradient-card2'
+    ];
+    
+    // アニメーション用クラスの追加と遅延設定
+    const delayMap = {
+      '.service-white-container': '0ms',
+      '.service-header-text': '200ms',
+      '.service-subtitle-text': '300ms',
+      '.service-description-text': '400ms',
+      '.service-box-1': '500ms',
+      '.service-box-2': '600ms',
+      '.service-title-text': '700ms',
+      '.service-consulting-description': '800ms',
+      '.service-saas-title': '900ms',
+      '.service-saas-description': '1000ms',
+      '.service-image1': '1100ms',
+      '.service-image2': '1200ms',
+      '.service-gradient-card1': '1300ms',
+      '.service-gradient-card2': '1400ms'
+    };
+    
+    // インターセクションオブザーバーの設定
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // 要素が表示されたら遅延付きでvisibleクラスを追加
+            const element = entry.target;
+            const selector = serviceSelectors.find(s => element.classList.contains(s.replace('.', '')));
+            
+            if (selector && delayMap[selector]) {
+              element.style.transitionDelay = delayMap[selector];
+            }
+            
+            // visibleクラスを追加してアニメーション開始
+            setTimeout(() => {
+              element.classList.add('visible');
+            }, 100); // 少し遅延させてDOMに反映させる
+            
+            // 一度表示されたら監視を解除
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1, // 要素が10%表示されたらトリガー
+        rootMargin: '0px'
+      }
+    );
+    
+    // 各要素にアニメーション用クラスを追加して監視を開始
+    serviceSelectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(element => {
+        // fade-in-elementクラスを追加
+        if (!element.classList.contains('fade-in-element')) {
+          element.classList.add('fade-in-element');
+        }
+        observer.observe(element);
+      });
+    });
+    
+    // クリーンアップ関数
+    return () => {
+      serviceSelectors.forEach(selector => {
         const elements = document.querySelectorAll(selector);
         elements.forEach(element => {
           observer.unobserve(element);

@@ -365,7 +365,7 @@ export const ValueImagesContainer = () => {
     }
   };
   
-  return (
+    return (
     <div className="value-images-container">
       <div 
         className="value-image-linked-wrapper" 
