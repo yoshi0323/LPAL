@@ -142,6 +142,68 @@ function App() {
     );
   };
 
+  // 特定の要素へスクロールする関数
+  const scrollToElement = (elementSelector: string) => {
+    const element = document.querySelector(elementSelector);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const absoluteTop = rect.top + window.pageYOffset;
+      window.scrollTo({
+        top: absoluteTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // クリック可能なナビゲーションコンポーネント
+  const ClickableHeaderText = () => {
+    return (
+      <div className="header-text" onClick={() => scrollToElement('.contact-group-image')}>
+        お問い合わせ
+      </div>
+    );
+  };
+
+  const ClickableSupportStepText = () => {
+    return (
+      <div className="support-step-text" onClick={() => scrollToElement('.process-header-text')}>
+        サポートステップ
+      </div>
+    );
+  };
+
+  const ClickableCaseStudyText = () => {
+    return (
+      <div className="case-study-text" onClick={() => scrollToElement('.works-header-text')}>
+        導入事例
+      </div>
+    );
+  };
+
+  const ClickableValueText = () => {
+    return (
+      <div className="value-text" onClick={() => scrollToElement('.value-header-text')}>
+        提供価値
+      </div>
+    );
+  };
+
+  const ClickableAboutUsText = () => {
+    return (
+      <div className="about-us-text" onClick={() => scrollToElement('.about-header-text')}>
+        私たちについて
+      </div>
+    );
+  };
+
+  const ClickableServiceText = () => {
+    return (
+      <div className="service-text" onClick={() => scrollToElement('.service-header-text')}>
+        サービス
+      </div>
+    );
+  };
+
   return (
     <div className="app-container">
       {/* バリューセクションのアニメーション処理 */}
@@ -163,6 +225,12 @@ function App() {
           <div className="header-content">
             <GradientIcon />
             <LogoSvg />
+            <ClickableHeaderText />
+            <ClickableSupportStepText />
+            <ClickableCaseStudyText />
+            <ClickableValueText />
+            <ClickableAboutUsText />
+            <ClickableServiceText />
           </div>
         </header>
 
@@ -187,12 +255,6 @@ function App() {
 
         {/* Main Content Section */}
         <section className="main-content-section">
-          <HeaderText />
-          <SupportStepText />
-          <CaseStudyText />
-          <ValueText />
-          <AboutUsText />
-          <ServiceText />
           <GradientHeader />
           <AboutHeaderText />
           <AboutSubtitleText />

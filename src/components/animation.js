@@ -268,6 +268,39 @@ export const ValueStickyComponents = () => {
     };
   }, []);
 
+  // バリューイメージのホバーイベントを設定
+  useEffect(() => {
+    if (!imagesInitialized) return;
+
+    // マウスホバーイベントを設定する関数
+    const setupHoverEvents = () => {
+      // 各バリューイメージに対して処理
+      for (let i = 1; i <= 5; i++) {
+        const imageContainer = document.querySelector(`.value-image-${i}-container`);
+        const numberElement = document.querySelector(`.value-small-number-${i}`);
+        const titleElement = document.querySelector(`.value-small-title-${i}`);
+
+        if (imageContainer && numberElement && titleElement) {
+          // マウスが画像に乗ったときの処理
+          imageContainer.addEventListener('mouseenter', () => {
+            const newActiveItems = [...activeItemsRef.current];
+            newActiveItems[i-1] = true;
+            setActiveItems(newActiveItems);
+          });
+
+          // マウスが画像から離れたときの処理
+          imageContainer.addEventListener('mouseleave', () => {
+            const newActiveItems = [...activeItemsRef.current];
+            newActiveItems[i-1] = false;
+            setActiveItems(newActiveItems);
+          });
+        }
+      }
+    };
+
+    setupHoverEvents();
+  }, [imagesInitialized]);
+
   // スクロール位置に基づく表示/非表示
   useEffect(() => {
     // バリューセクションの開始と終了位置を定義（ピクセル単位）
@@ -362,35 +395,6 @@ export const ValueStickyComponents = () => {
       }
     };
     
-    // アイテムのアクティブ状態を更新する関数
-    const updateActiveItems = (scrollPosition) => {
-      // 新しい activeItems 配列を作成
-      const newActiveItems = [...activeItemsRef.current];
-      let isChanged = false;
-      
-      // 各アイテムを評価（スクロール位置だけで判定）
-      for (let i = 0; i < 5; i++) {
-        // スクロール位置に基づいて判定
-        const basePosition = 2700; // ベース位置
-        const itemSpacing = 230;   // アイテム間の間隔
-        const activeRange = 250;   // アクティブになる範囲
-        
-        // 特定の範囲内にスクロール位置があればアクティブに
-        const shouldBeActive = scrollPosition >= basePosition + (i * itemSpacing) && 
-                              scrollPosition < basePosition + (i * itemSpacing) + activeRange;
-        
-        if (shouldBeActive !== newActiveItems[i]) {
-          newActiveItems[i] = shouldBeActive;
-          isChanged = true;
-        }
-      }
-      
-      // 状態が変更された場合のみ更新
-      if (isChanged) {
-            setActiveItems([...newActiveItems]);
-      }
-    };
-    
     const handleScroll = throttle(() => {
       const scrollPosition = window.scrollY;
 
@@ -399,9 +403,6 @@ export const ValueStickyComponents = () => {
         saveOriginalPositions();
         return; // 初期位置が取得できなければ処理を中断
       }
-      
-      // アクティブ状態を更新
-      updateActiveItems(scrollPosition);
 
       // ワークヘッダーに近づくときのフェードアウト係数を計算
       let fadeOutFactor = 1;
@@ -477,8 +478,10 @@ export const ValueStickyComponents = () => {
                     numberElement.style.top = `${firstNumberTop}px`;
                     numberElement.style.left = numberElement.dataset.originalLeft;
                     numberElement.style.zIndex = '100';
-                    // アクティブ状態とフェードアウト係数を組み合わせる
+                    // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
                     numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
+                    // トランジションを追加
+                    numberElement.style.transition = 'opacity 0.3s ease';
                     
                     // 対応するタイトルも固定
                     if (titleElement) {
@@ -486,8 +489,10 @@ export const ValueStickyComponents = () => {
                       titleElement.style.top = `${firstNumberTop}px`;
                       titleElement.style.left = titleElement.dataset.originalLeft;
                       titleElement.style.zIndex = '100';
-                      // アクティブ状態とフェードアウト係数を組み合わせる
+                      // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
                       titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
+                      // トランジションを追加
+                      titleElement.style.transition = 'opacity 0.3s ease';
                     }
                   } else if (i > 1 && numberElement) {
                     // 2番目以降のスモールナンバー
@@ -503,8 +508,10 @@ export const ValueStickyComponents = () => {
                       numberElement.style.top = `${currentTop}px`;
                       numberElement.style.left = numberElement.dataset.originalLeft;
                       numberElement.style.zIndex = '100';
-                      // アクティブ状態とフェードアウト係数を組み合わせる
+                      // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
                       numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
+                      // トランジションを追加
+                      numberElement.style.transition = 'opacity 0.3s ease';
                       
                       // 対応するタイトルも固定
                       if (titleElement) {
@@ -512,8 +519,10 @@ export const ValueStickyComponents = () => {
                         titleElement.style.top = `${currentTop}px`;
                         titleElement.style.left = titleElement.dataset.originalLeft;
                         titleElement.style.zIndex = '100';
-                        // アクティブ状態とフェードアウト係数を組み合わせる
+                        // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
                         titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
+                        // トランジションを追加
+                        titleElement.style.transition = 'opacity 0.3s ease';
                       }
                     }
                   }
@@ -547,7 +556,8 @@ export const ValueStickyComponents = () => {
                 numberElement.style.top = '';
                 numberElement.style.left = '';
                 numberElement.style.zIndex = '';
-                numberElement.style.opacity = '';
+                // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
+                numberElement.style.opacity = activeItemsRef.current[i-1] ? 1 : 0.3;
               }
               
               if (titleElement) {
@@ -555,7 +565,8 @@ export const ValueStickyComponents = () => {
                 titleElement.style.top = '';
                 titleElement.style.left = '';
                 titleElement.style.zIndex = '';
-                titleElement.style.opacity = '';
+                // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
+                titleElement.style.opacity = activeItemsRef.current[i-1] ? 1 : 0.3;
               }
             }
           }
@@ -568,12 +579,12 @@ export const ValueStickyComponents = () => {
             const titleElement = document.querySelector(`.value-small-title-${i}`);
             
             if (numberElement && numberElement.style.position === 'fixed') {
-              // アクティブ状態とフェードアウト係数を組み合わせる
+              // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
               numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
             }
             
             if (titleElement && titleElement.style.position === 'fixed') {
-              // アクティブ状態とフェードアウト係数を組み合わせる
+              // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
               titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
             }
           }
@@ -583,7 +594,7 @@ export const ValueStickyComponents = () => {
       else if (scrollPosition < valueStart || scrollPosition >= valueEnd) {
         if (visibilityState !== 'hidden') {
           setVisibilityState('hidden');
-          setActiveItems([false, false, false, false, false]);
+          // アクティブ状態のリセットは行わない - カーソルホバーで制御するため
         }
         
         // すべての要素を元の位置に戻す
@@ -617,7 +628,8 @@ export const ValueStickyComponents = () => {
             numberElement.style.top = '';
             numberElement.style.left = '';
             numberElement.style.zIndex = '';
-            numberElement.style.opacity = '';
+            // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
+            numberElement.style.opacity = activeItemsRef.current[i-1] ? 1 : 0.3;
           }
           
           if (titleElement) {
@@ -625,7 +637,8 @@ export const ValueStickyComponents = () => {
             titleElement.style.top = '';
             titleElement.style.left = '';
             titleElement.style.zIndex = '';
-            titleElement.style.opacity = '';
+            // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
+            titleElement.style.opacity = activeItemsRef.current[i-1] ? 1 : 0.3;
           }
         }
       }
