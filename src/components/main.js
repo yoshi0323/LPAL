@@ -45,8 +45,21 @@ export const LegacyText = () => {
 
 // JapaneseText Component
 export const JapaneseText = () => {
+  const style = window.innerWidth <= 580 ? {
+    position: 'absolute',
+    left: '24px',
+    top: '198.1px',
+    width: '327px',
+    color: '#343434',
+    fontFamily: '"Zen Kaku Gothic New"',
+    fontSize: '40px',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: '150%'
+  } : {};
+  
   return (
-    <div className="japanese-text">
+    <div className="japanese-text" style={style}>
       コードの遺産を、<br />
       未来の資産へ。
     </div>
@@ -94,8 +107,19 @@ export const LogoAlmeni = () => {
 
 // RedBox Component
 export const RedBox = () => {
+  const style = window.innerWidth <= 580 ? {
+    position: 'absolute',
+    left: '358px',
+    top: '148.13px',
+    width: '189px',
+    height: '58px',
+    background: '#D1342D',
+    borderRadius: '4px',
+    zIndex: 1
+  } : {};
+  
   return (
-    <div className="new-element"></div>
+    <div className="new-element" style={style}></div>
   );
 };
 
@@ -108,10 +132,22 @@ export const ModernDotText = () => {
 
 // DescriptionText Component
 export const DescriptionText = () => {
+  // レスポンシブの条件判定（580px以下の場合）
+  const isResponsive = window.innerWidth <= 580;
+  
   return (
     <div className="description-text">
-      「2025年の崖」を越えるべくレガシーコードを再生し、<br />
-      AI時代に最適化されたモダンアーキテクチャへ刷新する。
+      {isResponsive ? (
+        <>
+          「2025年の崖」を越えるべくレガシーコード<br />
+          を再生し、AI時代に最適化されたモダンアー<br />
+          キテクチャへ刷新する。
+        </>
+      ) : (
+        <>
+          「2025年の崖」を越えるべくレガシーコードを再生し、AI時代に最適化されたモダンアーキテクチャへ刷新する。
+        </>
+      )}
     </div>
   );
 };
@@ -365,6 +401,49 @@ export const ContactButtonMobile = () => {
         </svg>
       </div>
     </div>
+  );
+};
+
+// HamburgerMenu Component
+export const HamburgerMenu = () => {
+  const [isActive, setIsActive] = React.useState(false);
+
+  const toggleMenu = () => {
+    setIsActive(!isActive);
+  };
+
+  // 特定の要素へスクロールする関数
+  const scrollToElement = (elementSelector) => {
+    const element = document.querySelector(elementSelector);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const absoluteTop = rect.top + window.pageYOffset;
+      window.scrollTo({
+        top: absoluteTop - 80,
+        behavior: 'smooth'
+      });
+      // メニューを閉じる
+      setIsActive(false);
+    }
+  };
+
+  return (
+    <>
+      <div className={`hamburger-menu ${isActive ? 'active' : ''}`} onClick={toggleMenu}>
+        <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
+      </div>
+      
+      <div className={`mobile-menu ${isActive ? 'active' : ''}`}>
+        <div className="mobile-menu-item" onClick={() => scrollToElement('.service-header-text')}>サービス</div>
+        <div className="mobile-menu-item" onClick={() => scrollToElement('.about-header-text')}>私たちについて</div>
+        <div className="mobile-menu-item" onClick={() => scrollToElement('.value-header-text')}>提供価値</div>
+        <div className="mobile-menu-item" onClick={() => scrollToElement('.works-header-text')}>導入事例</div>
+        <div className="mobile-menu-item" onClick={() => scrollToElement('.process-header-text')}>サポートステップ</div>
+        <div className="mobile-menu-item" onClick={() => scrollToElement('.contact-group-image')}>お問い合わせ</div>
+      </div>
+    </>
   );
 };
 

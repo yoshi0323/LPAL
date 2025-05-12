@@ -318,7 +318,8 @@ export const ValueStickyComponents = () => {
       
       if (headerElement && !headerElement.dataset.originalTop) {
         const headerRect = headerElement.getBoundingClientRect();
-        headerElement.dataset.originalLeft = headerRect.left + 'px';
+        // 位置を計算する際にwindow.scrollX（水平スクロール位置）を考慮
+        headerElement.dataset.originalLeft = (headerRect.left + window.scrollX) + 'px';
         headerElement.dataset.originalTop = (headerRect.top + window.scrollY) + 'px';
         headerElement.dataset.height = headerRect.height + 'px';
       }
@@ -331,7 +332,8 @@ export const ValueStickyComponents = () => {
         const verticalGap = subtitleRect.top - (headerRect.top + headerRect.height);
         headerElement.dataset.subtitleGap = verticalGap + 'px';
         
-        subtitleElement.dataset.originalLeft = subtitleRect.left + 'px';
+        // 位置を計算する際にwindow.scrollX（水平スクロール位置）を考慮
+        subtitleElement.dataset.originalLeft = (subtitleRect.left + window.scrollX) + 'px';
         subtitleElement.dataset.originalTop = (subtitleRect.top + window.scrollY) + 'px';
         subtitleElement.dataset.height = subtitleRect.height + 'px';
       }
@@ -343,7 +345,8 @@ export const ValueStickyComponents = () => {
         
         if (numberElement && !numberElement.dataset.originalTop) {
           const numberRect = numberElement.getBoundingClientRect();
-          numberElement.dataset.originalLeft = numberRect.left + 'px';
+          // 位置を計算する際にwindow.scrollX（水平スクロール位置）を考慮
+          numberElement.dataset.originalLeft = (numberRect.left + window.scrollX) + 'px';
           numberElement.dataset.originalTop = (numberRect.top + window.scrollY) + 'px';
           numberElement.dataset.height = numberRect.height + 'px';
           
@@ -370,8 +373,8 @@ export const ValueStickyComponents = () => {
             const horizontalGap = titleRect.left - numberRect.right;
             numberElement.dataset.horizontalGap = horizontalGap + 'px';
             
-            // タイトルの位置も保存
-            titleElement.dataset.originalLeft = titleRect.left + 'px';
+            // タイトルの位置も保存（水平スクロール位置を考慮）
+            titleElement.dataset.originalLeft = (titleRect.left + window.scrollX) + 'px';
             titleElement.dataset.originalTop = (titleRect.top + window.scrollY) + 'px';
             titleElement.dataset.height = titleRect.height + 'px';
           }
@@ -438,9 +441,12 @@ export const ValueStickyComponents = () => {
           
           // 固定表示条件：元の位置がビューポート上部に達した場合
           if (headerCurrentTop <= headerFixedTop) {
+            // 追加: 現在のスクロール位置に応じた左位置の計算
             headerElement.style.position = 'fixed';
             headerElement.style.top = `${headerFixedTop}px`;
-            headerElement.style.left = headerElement.dataset.originalLeft;
+            // window.scrollXを考慮して正確な水平位置を設定
+            const headerLeft = parseFloat(headerElement.dataset.originalLeft) - window.scrollX;
+            headerElement.style.left = `${headerLeft}px`;
             headerElement.style.zIndex = '100';
             // フェードアウト係数を適用
             headerElement.style.opacity = fadeOutFactor;
@@ -456,7 +462,9 @@ export const ValueStickyComponents = () => {
               
               subtitleElement.style.position = 'fixed';
               subtitleElement.style.top = `${subtitleTop}px`;
-              subtitleElement.style.left = subtitleElement.dataset.originalLeft;
+              // window.scrollXを考慮して正確な水平位置を設定
+              const subtitleLeft = parseFloat(subtitleElement.dataset.originalLeft) - window.scrollX;
+              subtitleElement.style.left = `${subtitleLeft}px`;
               subtitleElement.style.zIndex = '100';
               // フェードアウト係数を適用
               subtitleElement.style.opacity = fadeOutFactor;
@@ -476,7 +484,9 @@ export const ValueStickyComponents = () => {
                     // 最初のスモールナンバー
                     numberElement.style.position = 'fixed';
                     numberElement.style.top = `${firstNumberTop}px`;
-                    numberElement.style.left = numberElement.dataset.originalLeft;
+                    // window.scrollXを考慮して正確な水平位置を設定
+                    const numberLeft = parseFloat(numberElement.dataset.originalLeft) - window.scrollX;
+                    numberElement.style.left = `${numberLeft}px`;
                     numberElement.style.zIndex = '100';
                     // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
                     numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
@@ -487,7 +497,9 @@ export const ValueStickyComponents = () => {
                     if (titleElement) {
                       titleElement.style.position = 'fixed';
                       titleElement.style.top = `${firstNumberTop}px`;
-                      titleElement.style.left = titleElement.dataset.originalLeft;
+                      // window.scrollXを考慮して正確な水平位置を設定
+                      const titleLeft = parseFloat(titleElement.dataset.originalLeft) - window.scrollX;
+                      titleElement.style.left = `${titleLeft}px`;
                       titleElement.style.zIndex = '100';
                       // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
                       titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
@@ -506,7 +518,9 @@ export const ValueStickyComponents = () => {
                       
                       numberElement.style.position = 'fixed';
                       numberElement.style.top = `${currentTop}px`;
-                      numberElement.style.left = numberElement.dataset.originalLeft;
+                      // window.scrollXを考慮して正確な水平位置を設定
+                      const numberLeft = parseFloat(numberElement.dataset.originalLeft) - window.scrollX;
+                      numberElement.style.left = `${numberLeft}px`;
                       numberElement.style.zIndex = '100';
                       // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
                       numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
@@ -517,7 +531,9 @@ export const ValueStickyComponents = () => {
                       if (titleElement) {
                         titleElement.style.position = 'fixed';
                         titleElement.style.top = `${currentTop}px`;
-                        titleElement.style.left = titleElement.dataset.originalLeft;
+                        // window.scrollXを考慮して正確な水平位置を設定
+                        const titleLeft = parseFloat(titleElement.dataset.originalLeft) - window.scrollX;
+                        titleElement.style.left = `${titleLeft}px`;
                         titleElement.style.zIndex = '100';
                         // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
                         titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);

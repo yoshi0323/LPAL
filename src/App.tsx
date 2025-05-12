@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton, ContactButtonMobile } from './components/main.js';
+import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton, ContactButtonMobile, HamburgerMenu } from './components/main.js';
 import { AboutHeaderText, AboutSubtitleText, AlchemyTitleText, AlchemyDescriptionText, AboutWhiteContainer, RotatedRectangle } from './components/body.js';
 import { GradientBackground, CircleGradient, ServiceWhiteContainer, ServiceHeaderText, ServiceSubtitleText, ServiceDescriptionText, ServiceBox1, ServiceBox2, ServiceImage1, ServiceImage2, ServiceGradientCard1, ServiceGradientCard2, ServiceTitleText, ServiceConsultingDescription, ServiceSaasTitle, ServiceSaasDescription } from './components/service.js';
 import { 
@@ -190,21 +190,45 @@ function App() {
   };
 
   const AnimatedLegacyText = () => {
+    const style = window.innerWidth <= 580 ? {
+      position: 'absolute',
+      left: '24px',
+      top: '148.13px',
+      color: '#D1342D',
+      fontFamily: '"Lexend Deca", sans-serif',
+      fontSize: '24px',
+      fontWeight: 700,
+      lineHeight: '100%',
+      zIndex: 10
+    } : {};
+    
     return (
       <TypingText 
         text="Legacy to" 
         className="legacy-text"
         delay={0}
+        style={style}
       />
     );
   };
 
   const AnimatedModernDotText = () => {
+    const style = window.innerWidth <= 580 ? {
+      position: 'absolute',
+      left: '358px',
+      top: '148.13px',
+      color: '#FCFCFC',
+      fontSize: '24px',
+      lineHeight: '100%',
+      zIndex: 10
+    } : {};
+    
     return (
       <TypingText 
         text="Modern." 
         className="modern-dot-text"
         delay={1000}
+        style={style}
       />
     );
   };
@@ -301,6 +325,9 @@ function App() {
           <div className="header-content">
             <GradientIcon />
             <LogoSvg />
+            {/* レスポンシブ表示時のハンバーガーメニュー */}
+            {isMobile && <HamburgerMenu />}
+            {/* 通常のメニュー項目 - レスポンシブ時はCSSで非表示 */}
             <ClickableHeaderText />
             <ClickableSupportStepText />
             <ClickableCaseStudyText />

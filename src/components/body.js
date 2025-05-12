@@ -23,8 +23,25 @@ export const AlchemyTitleText = () => {
 
 // AlchemyDescriptionText Component
 export const AlchemyDescriptionText = () => {
-    return (
-      <div className="alchemy-description-text">
+    // モバイル・タブレット向けのテキスト（レスポンシブ表示用）
+    const mobileText = (
+      <>
+        <span className="bold-text">
+          AI駆動開発のコンサルティング、開発+AI駆動マ<br />
+          ネジメントツールなどを提供するアーキテクチャ<br />
+          モダナイズサービスです。
+        </span>
+        <br />
+        お客様の業務に合わせてヒアリングを行いなが<br />
+        ら、ニーズに合わせて使い方のカスタマイズが<br />
+        可能です。これにより、ROIの合う施策の立案が<br />
+        可能に。
+      </>
+    );
+    
+    // デスクトップ向けのテキスト（PC表示用）
+    const desktopText = (
+      <>
         <span className="bold-text">
           AI駆動開発のコンサルティング、開発+AI駆動マネジメン<br />
           トツールなどを提供するアーキテクチャモダナイズサー<br />
@@ -34,6 +51,14 @@ export const AlchemyDescriptionText = () => {
         お客様の業務に合わせてヒアリングを行いながら、ニー<br />
         ズに合わせて使い方のカスタマイズが可能です。これに<br />
         より、ROIの合う施策の立案が可能に。
+      </>
+    );
+    
+    return (
+      <div className="alchemy-description-text">
+        {/* レスポンシブ対応 - PCではデスクトップ用テキスト、モバイル・タブレットではモバイル用テキストを表示 */}
+        <div className="desktop-only">{desktopText}</div>
+        <div className="mobile-only">{mobileText}</div>
       </div>
     );
   };
