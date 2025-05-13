@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { GradientIcon, LogoSvg, LegacyText, JapaneseText, RedBox, ModernDotText, DescriptionText, WhiteButton, CliffQuestionText, GradientShape, QuestionIcon, HeaderText, SupportStepText, CaseStudyText, ValueText, AboutUsText, ServiceText, GradientHeader, WhiteContainer, ContactTitle, ContactTitleJP, RedIndicator, InputField, LargeInputField, NameLabel, CompanyLabel, ContactContentLabel, PrivacyLabel, PrivacyText, CheckBox, AgreeText, NamePlaceholder, CompanyPlaceholder, ContentPlaceholder, SubmitButton, ContactButtonMobile, HamburgerMenu } from './components/main.js';
 import { AboutHeaderText, AboutSubtitleText, AlchemyTitleText, AlchemyDescriptionText, AboutWhiteContainer, RotatedRectangle } from './components/body.js';
-import { GradientBackground, CircleGradient, ServiceWhiteContainer, ServiceHeaderText, ServiceSubtitleText, ServiceDescriptionText, ServiceBox1, ServiceBox2, ServiceImage1, ServiceImage2, ServiceGradientCard1, ServiceGradientCard2, ServiceTitleText, ServiceConsultingDescription, ServiceSaasTitle, ServiceSaasDescription } from './components/service.js';
+import { GradientBackground, CircleGradient, ServiceWhiteContainer, ServiceHeaderText, ServiceSubtitleText, ServiceDescriptionText, ServiceBox1, ServiceBox2, ServiceImage1, ServiceImage2, ServiceGradientCard1, ServiceGradientCard2, ServiceTitleText, ServiceConsultingDescription, ServiceSaasTitle, ServiceSaasDescription, ServiceMobileImage } from './components/service.js';
 import { 
   ValueHeaderText, 
   ValueSubtitleText,
@@ -16,7 +16,8 @@ import {
   ValueSmallTitle2,
   ValueSmallTitle3,
   ValueSmallTitle4,
-  ValueSmallTitle5
+  ValueSmallTitle5,
+  ValueMobile
 } from './components/value.js';
 import { WorksHeaderText, WorksSubtitleText, WorksImagesContainer, WorksCircleGradient } from './components/works.js';
 import { ProcessHeaderText, ProcessSubtitleText, ProcessImagesContainer } from './components/process.js';
@@ -35,17 +36,17 @@ import './styles/popup.css';
 import './styles/animation.css';
 
 function App() {
-  // ポップアップの表示状態を管理するためのステート
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  // サービスセクションのアニメーションステート
+  const [isAnimationTriggered, setIsAnimationTriggered] = useState(false);
   const [serviceAnimationTriggered, setServiceAnimationTriggered] = useState(false);
-  // イメージとカードの表示ステート
   const [showServiceImage1, setShowServiceImage1] = useState(false);
   const [showServiceImage2, setShowServiceImage2] = useState(false);
   const [showGradientCard1, setShowGradientCard1] = useState(false);
   const [showGradientCard2, setShowGradientCard2] = useState(false);
-  // モバイル表示を管理するステート
   const [isMobile, setIsMobile] = useState(false);
+  
+  // アニメーション遅延用の状態
+  const [shouldAnimateDelayed, setShouldAnimateDelayed] = useState(false);
 
   // ポップアップ開閉の関数
   const openPopup = () => {
@@ -56,59 +57,27 @@ function App() {
     setIsPopupOpen(false);
   };
   
-  // ビューポートの変更を検知してモバイル表示を切り替える
+  // モバイル表示の検出
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 580) {
-        setIsMobile(true);
-        
-        // モバイル表示時にコンタクトフォームを非表示にしてボタンを表示
-        const contactForm = document.querySelector('.contact-form');
-        const contactButton = document.querySelector('.contact-button-mobile');
-        const contactContainer = document.querySelector('.white-container');
-        const contactTitle = document.querySelector('.contact-title');
-        const contactTitleJP = document.querySelector('.contact-title-jp');
-        
-        if (contactForm && contactButton) {
-          // Hide form elements
-          contactForm.setAttribute('style', 'display: none;');
-          if (contactContainer) contactContainer.setAttribute('style', 'display: none;');
-          if (contactTitle) contactTitle.setAttribute('style', 'display: none;');
-          if (contactTitleJP) contactTitleJP.setAttribute('style', 'display: none;');
-          
-          // Show and style mobile button
-          contactButton.setAttribute('style', 'display: flex; width: 272px; height: 63px; margin: 30px auto;');
-        }
-      } else {
-        setIsMobile(false);
-        
-        // デスクトップ表示時にコンタクトフォームを表示してボタンを非表示
-        const contactForm = document.querySelector('.contact-form');
-        const contactButton = document.querySelector('.contact-button-mobile');
-        const contactContainer = document.querySelector('.white-container');
-        const contactTitle = document.querySelector('.contact-title');
-        const contactTitleJP = document.querySelector('.contact-title-jp');
-        
-        if (contactForm && contactButton) {
-          // Show form elements
-          contactForm.setAttribute('style', 'display: block;');
-          if (contactContainer) contactContainer.setAttribute('style', 'display: block;');
-          if (contactTitle) contactTitle.setAttribute('style', 'display: block;');
-          if (contactTitleJP) contactTitleJP.setAttribute('style', 'display: block;');
-          
-          // Hide mobile button
-          contactButton.setAttribute('style', 'display: none;');
-        }
-      }
+    const mediaQuery = window.matchMedia('(max-width: 580px)');
+    setIsMobile(mediaQuery.matches);
+    
+    const handleMediaChange = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
     };
     
-    // 初期表示時と画面サイズ変更時にリサイズハンドラーを実行
-    handleResize();
-    window.addEventListener('resize', handleResize);
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleMediaChange);
+    } else {
+      mediaQuery.addListener(handleMediaChange);
+    }
     
-    // クリーンアップ関数
     return () => {
-      window.removeEventListener('resize', handleResize);
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleMediaChange);
+      } else {
+        mediaQuery.removeListener(handleMediaChange);
+      }
     };
   }, []);
   
@@ -133,6 +102,16 @@ function App() {
   const triggerServiceAnimation = () => {
     setServiceAnimationTriggered(true);
     
+    // PC表示の場合はすぐに表示
+    if (window.innerWidth > 580) {
+      setShowServiceImage1(true);
+      setShowServiceImage2(true);
+      setShowGradientCard1(true);
+      setShowGradientCard2(true);
+      return;
+    }
+    
+    // モバイル表示の場合はアニメーションを遅延させる
     // イメージとカードの表示を遅延させる
     // 順番に表示されるように時間を調整
     setTimeout(() => {
@@ -407,7 +386,7 @@ function App() {
         </section>
 
         {/* Service Section - カーソルトリガー使用 */}
-        <CursorTriggerSection onTrigger={triggerServiceAnimation} className="service-section" style={{ position: 'relative', zIndex: 5 }}>
+        <CursorTriggerSection className="service-section" onTrigger={() => setServiceAnimationTriggered(true)} style={{ position: 'relative', height: '830px', marginTop: '100px', marginBottom: '100px' }}>
           {/* 背景要素 - 最背面に配置 */}
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
             <div className="custom-gradient-wrapper">
@@ -416,6 +395,8 @@ function App() {
             {/* サークルイメージを削除 */}
             {/* <CircleGradient style={{ display: 'none' }} /> */}
           </div>
+          
+          {/* モバイル用の画像表示はセクションの外に移動 */}
           
           {/* 1. サービス白コンテナ - 最初に表示 (最背面) */}
           <div 
@@ -579,10 +560,45 @@ function App() {
           )}
         </CursorTriggerSection>
 
+        {/* モバイルの場合のみ表示するサービス画像を外に出す */}
+        {isMobile && <div className="mobile-service-section" style={{ position: 'relative', marginTop: '-100px', marginBottom: '100px' }}>
+          <ServiceMobileImage />
+        </div>}
+
         {/* Value Section - 固定表示コンポーネント */}
         <section className="value-section">
+          {/* ヘッダーとサブタイトルは常に表示 */}
           <ValueHeaderText />
           <ValueSubtitleText />
+          
+          {/* モバイル表示時のメイン画像 - モバイル時はこれ以外の要素は非表示 */}
+          {isMobile && (
+            <div 
+              className="value-mobile-main-image"
+              style={{
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                top: '0px',
+                width: '100%',
+                maxWidth: '335px',
+                zIndex: 9999
+              }}
+            >
+              <img 
+                src={`${process.env.PUBLIC_URL}/image/main (1).png`} 
+                alt="Value Mobile Main"
+                style={{ 
+                  width: '100%', 
+                  height: 'auto', 
+                  borderRadius: '8px',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                }}
+              />
+            </div>
+          )}
+          
+          {/* PC表示時のみ表示される要素 */}
           <ValueSmallNumber1 />
           <ValueSmallNumber2 />
           <ValueSmallNumber3 />
@@ -596,7 +612,7 @@ function App() {
           <ValueImagesContainer />
           <TriangleGradient />
           
-          {/* バリューセクション固定表示要素 */}
+          {/* バリューセクション固定表示要素 - PC表示時のみ適用 */}
           <ValueStickyComponents />
         </section>
 

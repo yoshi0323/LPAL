@@ -45,12 +45,10 @@ body {
   background-color: #ECECEC;
 }
 
-/* GradientIcon styles - 
-   コメントアウト：global.cssでレスポンシブ対応するため */
-/*
+/* GradientIcon styles */
 .gradient-icon {
   position: absolute;
-  left:60.29px;
+  left:100.29px;
   top: 40px;
   z-index: 1;
 }
@@ -61,7 +59,7 @@ body {
   transform: rotate(0deg);
   flex-shrink: 0;
 }
-*/
+
 
 /* LogoSvg styles */
 .logo-svg {
@@ -264,7 +262,6 @@ body {
   height: 508.721px;
   flex-shrink: 0;
   aspect-ratio: 600.00/508.72;
-  
   position: absolute;
   left: 0px;
   top: 721px;

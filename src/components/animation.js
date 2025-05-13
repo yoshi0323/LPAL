@@ -234,6 +234,11 @@ export const ValueStickyComponents = () => {
   // ワークヘッダーの位置を取得
   useEffect(() => {
     const getWorksHeaderPosition = () => {
+      // モバイル表示時は処理しない
+      if (window.innerWidth <= 580) {
+        return;
+      }
+      
       const worksHeader = document.querySelector('.works-header-text');
       if (worksHeader) {
         const rect = worksHeader.getBoundingClientRect();
@@ -265,6 +270,64 @@ export const ValueStickyComponents = () => {
       window.removeEventListener('resize', getWorksHeaderPosition);
       document.removeEventListener('DOMContentLoaded', getWorksHeaderPosition);
       timeouts.forEach(id => clearTimeout(id));
+    };
+  }, []);
+
+  // モバイル/デスクトップの切り替え時に要素をリセット
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobileView = window.innerWidth <= 580;
+      
+      // モバイル表示に切り替わった時、固定された要素をリセット
+      if (isMobileView) {
+        const headerElement = document.querySelector('.value-header-text');
+        const subtitleElement = document.querySelector('.value-subtitle-text');
+        
+        if (headerElement) {
+          headerElement.style.position = '';
+          headerElement.style.top = '';
+          headerElement.style.left = '';
+          headerElement.style.zIndex = '';
+          headerElement.style.opacity = '';
+        }
+        
+        if (subtitleElement) {
+          subtitleElement.style.position = '';
+          subtitleElement.style.top = '';
+          subtitleElement.style.left = '';
+          subtitleElement.style.zIndex = '';
+          subtitleElement.style.opacity = '';
+        }
+        
+        for (let i = 1; i <= 5; i++) {
+          const numberElement = document.querySelector(`.value-small-number-${i}`);
+          const titleElement = document.querySelector(`.value-small-title-${i}`);
+          
+          if (numberElement) {
+            numberElement.style.position = '';
+            numberElement.style.top = '';
+            numberElement.style.left = '';
+            numberElement.style.zIndex = '';
+            numberElement.style.opacity = '';
+          }
+          
+          if (titleElement) {
+            titleElement.style.position = '';
+            titleElement.style.top = '';
+            titleElement.style.left = '';
+            titleElement.style.zIndex = '';
+            titleElement.style.opacity = '';
+          }
+        }
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    // 初期ロード時にも一度実行
+    handleResize();
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -310,8 +373,18 @@ export const ValueStickyComponents = () => {
     // 要素の状態を追跡するフラグ
     let isFixed = false;
     
+    // モバイル表示の場合は何もしない
+    if (window.innerWidth <= 580) {
+      return;
+    }
+    
     // 各要素の初期位置を保存する
     const saveOriginalPositions = () => {
+      // モバイル表示の場合は何もしない
+      if (window.innerWidth <= 580) {
+        return;
+      }
+      
       // ヘッダーとサブタイトル
       const headerElement = document.querySelector('.value-header-text');
       const subtitleElement = document.querySelector('.value-subtitle-text');
@@ -371,235 +444,103 @@ export const ValueStickyComponents = () => {
           if (titleElement) {
             const titleRect = titleElement.getBoundingClientRect();
             const horizontalGap = titleRect.left - numberRect.right;
-            numberElement.dataset.horizontalGap = horizontalGap + 'px';
-            
-            // タイトルの位置も保存（水平スクロール位置を考慮）
-            titleElement.dataset.originalLeft = (titleRect.left + window.scrollX) + 'px';
-            titleElement.dataset.originalTop = (titleRect.top + window.scrollY) + 'px';
-            titleElement.dataset.height = titleRect.height + 'px';
+            numberElement.dataset.titleGap = horizontalGap + 'px';
           }
         }
       }
+      
+      // いくつかのコンソール出力でデバッグ
+      // console.log('ヘッダー初期位置:', headerElement?.dataset.originalTop);
+      // console.log('サブタイトル初期位置:', subtitleElement?.dataset.originalTop);
     };
 
-    // ページロード後に初期位置を保存
+    // 初期位置を保存
     saveOriginalPositions();
     
-    // スクロールイベントの節約のために、throttle関数を実装
+    // スクロールハンドラの頻度を制限する関数
     const throttle = (func, delay) => {
       let lastCall = 0;
-      return function(...args) {
+      return (...args) => {
         const now = new Date().getTime();
         if (now - lastCall < delay) {
           return;
         }
         lastCall = now;
         return func(...args);
-      }
+      };
     };
-    
+
+    // スクロールイベントのハンドラ
     const handleScroll = throttle(() => {
+      // モバイル表示時は処理しない
+      if (window.innerWidth <= 580) {
+        return;
+      }
+      
+      // スクロール位置を取得
       const scrollPosition = window.scrollY;
       
-      // 初期位置が保存されていなければ再度試行
-      if (!document.querySelector('.value-header-text')?.dataset.originalTop) {
-        saveOriginalPositions();
-        return; // 初期位置が取得できなければ処理を中断
-      }
-
-      // ワークヘッダーに近づくときのフェードアウト係数を計算
-      let fadeOutFactor = 1;
-      if (worksHeaderPosition && scrollPosition > worksHeaderPosition - 500) {
-        // ワークヘッダーの500px手前から徐々に消えていく（500pxの範囲で1から0に変化）
-        fadeOutFactor = Math.max(0, 1 - (scrollPosition - (worksHeaderPosition - 500)) / 500);
-        fadeOutFactor = Math.pow(fadeOutFactor, 1.5); // イージング効果を強化（より早く消える）
-      }
-
-      // セクション内にいるとき
+      // バリューセクション内の場合
       if (scrollPosition >= valueStart && scrollPosition < valueEnd) {
+        const progress = (scrollPosition - valueStart) / (valueEnd - valueStart);
+        const fadeOutFactor = 1 - progress; // 進行に応じて徐々に消える係数
+        
         if (visibilityState !== 'visible') {
           setVisibilityState('visible');
         }
         
-        // 固定表示に切り替える
+        // 要素の位置を固定
         const headerElement = document.querySelector('.value-header-text');
         const subtitleElement = document.querySelector('.value-subtitle-text');
         
-        // ヘッダーとサブタイトル全体のコンテナにもフェードアウトを適用
-        const headerContainer = document.querySelector('.value-header-container, .value-header');
-        if (headerContainer) {
-          headerContainer.style.opacity = fadeOutFactor;
+        // ヘッダー要素を固定
+        if (headerElement) {
+          // 元の位置に戻す（必要に応じて位置を修正）
+          headerElement.style.position = 'fixed';
+          headerElement.style.top = '100px'; // 固定位置（画面上部から100px）
+          headerElement.style.left = '180px'; // 固定位置（左端から180px）
+          headerElement.style.zIndex = '50';
+          headerElement.style.opacity = fadeOutFactor.toString();
         }
         
-        // ヘッダーとサブタイトルを固定表示に
-        const headerFixedTop = 60; // ヘッダーが固定される時の上端からの距離
+        // サブタイトル要素を固定
+        if (subtitleElement) {
+          // 元の位置に戻す（必要に応じて位置を修正）
+          subtitleElement.style.position = 'fixed';
+          subtitleElement.style.top = '170px'; // 固定位置（画面上部から170px）
+          subtitleElement.style.left = '180px'; // 固定位置（左端から180px）
+          subtitleElement.style.zIndex = '50';
+          subtitleElement.style.opacity = fadeOutFactor.toString();
+        }
         
-        if (headerElement && headerElement.dataset.originalTop) {
-          const headerOriginalTop = parseInt(headerElement.dataset.originalTop);
-          // 現在のビューポート内位置を計算
-          const headerCurrentTop = headerOriginalTop - scrollPosition;
+        // 各スモールナンバーとタイトルも固定
+        for (let i = 1; i <= 5; i++) {
+          const numberElement = document.querySelector(`.value-small-number-${i}`);
+          const titleElement = document.querySelector(`.value-small-title-${i}`);
           
-          // 固定表示条件：元の位置がビューポート上部に達した場合
-          if (headerCurrentTop <= headerFixedTop) {
-            // 追加: 現在のスクロール位置に応じた左位置の計算
-            headerElement.style.position = 'fixed';
-            headerElement.style.top = `${headerFixedTop}px`;
-            // window.scrollXを考慮して正確な水平位置を設定
-            const headerLeft = parseFloat(headerElement.dataset.originalLeft) - window.scrollX;
-            headerElement.style.left = `${headerLeft}px`;
-            headerElement.style.zIndex = '100';
-            // フェードアウト係数を適用
-            headerElement.style.opacity = fadeOutFactor;
-            // トランジションを追加
-            headerElement.style.transition = 'opacity 0.3s ease';
-            isFixed = true;
+          // 固定位置のY座標を計算（最初のナンバーは240px、以降は45pxずつ下）
+          const topPosition = 240 + (i - 1) * 45;
+          
+          if (numberElement) {
+            numberElement.style.position = 'fixed';
+            numberElement.style.top = `${topPosition}px`;
+            numberElement.style.left = '180px';
+            numberElement.style.zIndex = '50';
             
-            // サブタイトルの固定表示（ヘッダーとの間隔を維持）
-            if (subtitleElement && headerElement.dataset.subtitleGap && headerElement.dataset.height) {
-              const headerHeight = parseInt(headerElement.dataset.height);
-              const subtitleGap = parseInt(headerElement.dataset.subtitleGap);
-              const subtitleTop = headerFixedTop + headerHeight + subtitleGap;
-              
-              subtitleElement.style.position = 'fixed';
-              subtitleElement.style.top = `${subtitleTop}px`;
-              // window.scrollXを考慮して正確な水平位置を設定
-              const subtitleLeft = parseFloat(subtitleElement.dataset.originalLeft) - window.scrollX;
-              subtitleElement.style.left = `${subtitleLeft}px`;
-              subtitleElement.style.zIndex = '100';
-              // フェードアウト係数を適用
-              subtitleElement.style.opacity = fadeOutFactor;
-              
-              // 最初のスモールナンバーの固定（サブタイトルとの間隔を維持）
-              if (subtitleElement.dataset.numberGap && subtitleElement.dataset.height) {
-                const subtitleHeight = parseInt(subtitleElement.dataset.height);
-                const numberGap = parseInt(subtitleElement.dataset.numberGap);
-                const firstNumberTop = subtitleTop + subtitleHeight + numberGap;
-                
-                // スモールナンバーとタイトルを固定
-                for (let i = 1; i <= 5; i++) {
-                  const numberElement = document.querySelector(`.value-small-number-${i}`);
-                  const titleElement = document.querySelector(`.value-small-title-${i}`);
-                  
-                  if (i === 1 && numberElement) {
-                    // 最初のスモールナンバー
-                    numberElement.style.position = 'fixed';
-                    numberElement.style.top = `${firstNumberTop}px`;
-                    // window.scrollXを考慮して正確な水平位置を設定
-                    const numberLeft = parseFloat(numberElement.dataset.originalLeft) - window.scrollX;
-                    numberElement.style.left = `${numberLeft}px`;
-                    numberElement.style.zIndex = '100';
-                    // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
-                    numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
-                    // トランジションを追加
-                    numberElement.style.transition = 'opacity 0.3s ease';
-                    
-                    // 対応するタイトルも固定
-                    if (titleElement) {
-                      titleElement.style.position = 'fixed';
-                      titleElement.style.top = `${firstNumberTop}px`;
-                      // window.scrollXを考慮して正確な水平位置を設定
-                      const titleLeft = parseFloat(titleElement.dataset.originalLeft) - window.scrollX;
-                      titleElement.style.left = `${titleLeft}px`;
-                      titleElement.style.zIndex = '100';
-                      // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
-                      titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
-                      // トランジションを追加
-                      titleElement.style.transition = 'opacity 0.3s ease';
-                    }
-                  } else if (i > 1 && numberElement) {
-                    // 2番目以降のスモールナンバー
-                    const prevNumberElement = document.querySelector(`.value-small-number-${i-1}`);
-                    
-                    if (prevNumberElement && prevNumberElement.dataset.nextGap && prevNumberElement.dataset.height) {
-                      const prevTop = parseInt(prevNumberElement.style.top);
-                      const prevHeight = parseInt(prevNumberElement.dataset.height);
-                      const nextGap = parseInt(prevNumberElement.dataset.nextGap);
-                      const currentTop = prevTop + prevHeight + nextGap;
-                      
-                      numberElement.style.position = 'fixed';
-                      numberElement.style.top = `${currentTop}px`;
-                      // window.scrollXを考慮して正確な水平位置を設定
-                      const numberLeft = parseFloat(numberElement.dataset.originalLeft) - window.scrollX;
-                      numberElement.style.left = `${numberLeft}px`;
-                      numberElement.style.zIndex = '100';
-                      // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
-                      numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
-                      // トランジションを追加
-                      numberElement.style.transition = 'opacity 0.3s ease';
-                      
-                      // 対応するタイトルも固定
-                      if (titleElement) {
-                        titleElement.style.position = 'fixed';
-                        titleElement.style.top = `${currentTop}px`;
-                        // window.scrollXを考慮して正確な水平位置を設定
-                        const titleLeft = parseFloat(titleElement.dataset.originalLeft) - window.scrollX;
-                        titleElement.style.left = `${titleLeft}px`;
-                        titleElement.style.zIndex = '100';
-                        // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
-                        titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
-                        // トランジションを追加
-                        titleElement.style.transition = 'opacity 0.3s ease';
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          } else {
-            // まだビューポート内に収まっている場合は通常位置
-            headerElement.style.position = '';
-            headerElement.style.top = '';
-            headerElement.style.left = '';
-            headerElement.style.zIndex = '';
-            headerElement.style.opacity = '';
-            isFixed = false;
-            
-            if (subtitleElement) {
-              subtitleElement.style.position = '';
-              subtitleElement.style.top = '';
-              subtitleElement.style.left = '';
-              subtitleElement.style.zIndex = '';
-              subtitleElement.style.opacity = '';
-            }
-            
-            // スモールナンバーとタイトルも通常位置に戻す
-            for (let i = 1; i <= 5; i++) {
-              const numberElement = document.querySelector(`.value-small-number-${i}`);
-              const titleElement = document.querySelector(`.value-small-title-${i}`);
-              
-              if (numberElement) {
-                numberElement.style.position = '';
-                numberElement.style.top = '';
-                numberElement.style.left = '';
-                numberElement.style.zIndex = '';
-                // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
-                numberElement.style.opacity = activeItemsRef.current[i-1] ? 1 : 0.3;
-              }
-              
-              if (titleElement) {
-                titleElement.style.position = '';
-                titleElement.style.top = '';
-                titleElement.style.left = '';
-                titleElement.style.zIndex = '';
-                // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
-                titleElement.style.opacity = activeItemsRef.current[i-1] ? 1 : 0.3;
-              }
-            }
-          }
-        }
-        
-        // 固定表示されている要素の透明度のみ更新
-        if (isFixed) {
-          for (let i = 1; i <= 5; i++) {
-            const numberElement = document.querySelector(`.value-small-number-${i}`);
-            const titleElement = document.querySelector(`.value-small-title-${i}`);
-            
-            if (numberElement && numberElement.style.position === 'fixed') {
+            // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
+            if (numberElement.style.position === 'fixed') {
               // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
               numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
             }
+          }
+          
+          if (titleElement) {
+            titleElement.style.position = 'fixed';
+            titleElement.style.top = `${topPosition}px`;
+            titleElement.style.left = '203px';
+            titleElement.style.zIndex = '50';
             
-            if (titleElement && titleElement.style.position === 'fixed') {
+            if (titleElement.style.position === 'fixed') {
               // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
               titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
             }

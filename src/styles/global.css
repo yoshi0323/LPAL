@@ -109,6 +109,23 @@
         z-index: 20 !important;
     }
     
+    /* GradientShapeの位置調整 */
+    .gradient-shape {
+        width: 600px !important;
+        height: 508.721px !important;
+        position: absolute !important;
+        left: -80px !important;
+        top: 656.1px !important;
+        z-index: 1 !important;
+        overflow: visible !important;
+    }
+    
+    .gradient-shape svg {
+        width: 100% !important;
+        height: 100% !important;
+        transform: scale(1) !important;
+    }
+    
     .contact-button-mobile .contact-button-text {
         color: #FCFCFC !important;
         text-align: center !important;
@@ -320,10 +337,10 @@
     
     .gradient-icon {
         position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
-        width: 600px !important;
-        height: 508.721px !important;
+        left: 13px !important;
+        top:  40px!important;
+        width: 35.70px !important;
+        height: 30.134px !important;
         flex-shrink: 0 !important;
         aspect-ratio: 600.00/508.72 !important;
         z-index: 1 !important;
@@ -382,7 +399,7 @@
         position: absolute !important;
         left: 13px !important;
         top: 1221.1px !important;
-        z-index: 1 !important;
+        z-index: 2 !important; /* z-indexを2に明示的に設定 */
     }
     
     /* ロゴイメージの位置と大きさの調整 */
@@ -391,14 +408,271 @@
         height: 55px !important;
         position: absolute !important;
         left: 50px !important;
-        top: 1300px !important;
-        z-index: 3 !important;
+        top: 1294px !important; /* アバウトコンテナの中央に配置 */
+        z-index: 3 !important; /* z-indexを3に設定してアバウトコンテナの上に表示 */
     }
     
     .logo-image {
         width: 100% !important;
         height: 100% !important;
         object-fit: contain !important;
+    }
+
+    /* サービスセクションのレスポンシブ対応 */
+    .service-white-container {
+        width: 327px !important;
+        height: 1157.5px !important;
+        position: absolute !important;
+        left: 13px !important;
+        top: 800px !important; /* アバウトコンテナの下端(1221.1px + 201px) + 280px = 1702.1px */
+        z-index: 2 !important; /* z-indexを2に設定してアバウトコンテナと同じレベル */
+    }
+    
+    .service-header-text {
+        left: 48px !important;
+        top: 840px !important; /* service-white-containerの位置 + 30px */
+        font-size: 40px !important;
+        line-height: 150% !important;
+        z-index: 3 !important; /* サービスコンテナの上に表示 */
+        position: absolute !important; /* position: absoluteを明示的に設定 */
+    }
+    
+    .service-subtitle-text {
+        left: 48px !important;
+        top: 890px !important; /* service-header-textの下 */
+        font-size: 18px !important;
+        z-index: 3 !important; /* サービスコンテナの上に表示 */
+        position: absolute !important; /* position: absoluteを明示的に設定 */
+    }
+
+    .service-description-text {
+        width: 279px !important;
+        left: 48px !important;
+        top: 930px !important; /* service-subtitle-textの下 */
+        font-size: 14px !important;
+        z-index: 3 !important; /* サービスコンテナの上に表示 */
+        position: absolute !important; /* position: absoluteを明示的に設定 */
+        white-space: pre-line !important; /* 改行を保持して表示 */
+        line-height: 1.7 !important; /* 行間を調整 */
+    }
+    
+    .service-box {
+        width: 279px !important;
+        height: 209px !important;
+        top: 1203.1px !important; /* service-description-textの下 */
+    }
+    
+    .service-box-left {
+        left: 36px !important;
+    }
+    
+    .service-box-right {
+        left: 36px !important;
+        top: 1659.26px !important; /* service-box-leftの下 + マージン */
+    }
+    
+    .service-image1-container {
+        left: 42px !important;
+        top: 1932.1px !important; /* service-box-leftの中 */
+        transform: scale(0.8) !important;
+    }
+    
+    .service-image2-container {
+        left: 42px !important;
+        top: 2192.1px !important; /* service-box-rightの中 */
+        transform: scale(0.8) !important;
+    }
+    
+    .service-title-text {
+        left: 24px !important;
+        top: 2432.1px !important; /* service-box-rightの下 + マージン */
+        font-size: 22px !important;
+        z-index: 10 !important;
+    }
+    
+    .service-consulting-description {
+        width: 296px !important;
+        left: 24px !important;
+        top: 2470.1px !important; /* service-title-textの下 */
+        font-size: 14px !important;
+        z-index: 10 !important;
+    }
+    
+    .service-saas-title {
+        left: 24px !important;
+        top: 2552.1px !important; /* service-consulting-descriptionの下 + マージン */
+        font-size: 22px !important;
+        z-index: 10 !important;
+    }
+    
+    .service-saas-description {
+        width: 296px !important;
+        left: 24px !important;
+        top: 2590.1px !important; /* service-saas-titleの下 */
+        font-size: 14px !important;
+        z-index: 10 !important;
+    }
+    
+    .service-gradient-card1 {
+        left: 176px !important;
+        top: 1982.1px !important; /* service-box-leftの中 */
+        transform: scale(0.7) !important;
+    }
+    
+    .service-gradient-card2 {
+        left: 176px !important;
+        top: 2242.1px !important; /* service-box-rightの中 */
+        transform: scale(0.7) !important;
+    }
+
+    /* グラデーション背景のレスポンシブ対応 */
+    .gradient-background {
+        width: 375px !important;
+        height: 1158px !important; /* 高さを明示的に指定 */
+        position: absolute !important;
+        left: -8px !important;
+        top: 880px !important;
+        z-index: 4 !important;
+        overflow: visible !important; /* overflowをvisibleに変更 */
+        display: block !important;
+        /* フォールバック用の背景グラデーション */
+        background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%) !important;
+    }
+    
+    .mask-image-container {
+        width: 100% !important;
+        height: 100% !important;
+        overflow: visible !important; /* overflowをvisibleに変更 */
+        display: block !important;
+        position: relative !important; /* 位置関係を明確に */
+    }
+    
+    .mask-group-image {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 300px !important; /* 最小高さを指定 */
+        object-fit: cover !important;
+        display: block !important;
+        position: relative !important; /* 位置関係を明確に */
+    }
+
+    /* サービスセクションのモバイル対応 - 不要な要素を非表示 */
+    .service-box,
+    .service-image1-container,
+    .service-image2-container,
+    .service-gradient-card1,
+    .service-gradient-card2,
+    .service-title-text,
+    .service-consulting-description,
+    .service-saas-title,
+    .service-saas-description {
+        display: none !important;
+    }
+    
+    /* サービスセクションのモバイル対応 */
+    .service-section {
+        height: auto !important;
+        min-height: 400px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    /* モバイル用の画像コンテナを表示 */
+    .service-mobile-image-container {
+        display: block !important;
+        width: 279px !important;
+        max-width: 375px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+        padding-top: 40px !important;
+        position: absolute !important; /* absoluteに変更 */
+        left: 51% !important; /* 中央配置のための設定 */
+        transform: translateX(-50%) !important; /* 中央配置 */
+        top: 780px !important; /* この値を変更すると画像の位置が変わります */
+        z-index: 9999 !important; /* 最前面に表示 */
+        transition: none !important; /* transitionを無効化 */
+    }
+    
+    .service-mobile-image {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 375px !important;
+    }
+    
+    /* バリューセクションのモバイル対応 - 不要な要素を非表示 */
+    .value-small-number-1,
+    .value-small-number-2,
+    .value-small-number-3,
+    .value-small-number-4,
+    .value-small-number-5,
+    .value-small-title-1,
+    .value-small-title-2,
+    .value-small-title-3,
+    .value-small-title-4,
+    .value-small-title-5,
+    .value-images-container,
+    .triangle-gradient,
+    .value-white-container,
+    .value-number-1,
+    .value-number-2,
+    .value-number-3,
+    .value-number-4,
+    .value-number-5,
+    .value-title-1,
+    .value-title-2,
+    .value-title-3,
+    .value-title-4,
+    .value-title-5,
+    .value-description-1,
+    .value-description-2,
+    .value-description-3,
+    .value-description-4,
+    .value-description-5,
+    .value-image-container,
+    .value-image-1-container,
+    .value-image-2-container,
+    .value-image-3-container,
+    .value-image-4-container,
+    .value-image-5-container {
+        display: none !important;
+    }
+    
+    /* バリューセクションの基本要素は表示 */
+    .value-section {
+        top: 1900px !important;
+        min-height: auto !important;
+        position: relative !important;
+        overflow: visible !important;
+        margin-top: 70px !important; /* 上部マージンを増やす */
+        margin-bottom: 70px !important; /* 下部マージンを増やす */
+        padding-bottom: 40px !important; /* 下部パディングを増やす */
+    }
+    
+    /* バリューセクションのヘッダーとサブタイトル */
+    .value-header-text {
+        position: absolute !important;
+        left: 20px !important;
+        top: 100px !important;
+        font-size: 40px !important;
+    }
+    
+    .value-subtitle-text {
+        position: absolute !important;
+        left: 20px !important;
+        top: 100px !important;
+        font-size: 18px !important;
+    }
+}
+
+/* PC表示での設定（580px超） */
+@media (min-width: 581px) {
+    /* モバイル用の画像コンテナを非表示 */
+    .service-mobile-image-container {
+        display: none !important;
+    }
+    
+    /* モバイル用のバリュー要素を非表示（将来的に追加する場合） */
+    .mobile-value-section {
+        display: none !important;
     }
 }
 
@@ -542,10 +816,27 @@
 @media (min-width: 581px) {
     .gradient-icon {
         position: absolute !important;
-        left: 0px !important;
-        top: 35px !important;
+        left: 60.29px !important;
+        top: 40px !important;
         width: 35.703px !important;
         height: 30.134px !important;
+    }
+    
+    /* GradientShapeのPC表示設定 */
+    .gradient-shape {
+        width: 600px !important;
+        height: 508.721px !important;
+        flex-shrink: 0 !important;
+        aspect-ratio: 600.00/508.72 !important;
+        position: absolute !important;
+        left: 0px !important;
+        top: 721px !important;
+        z-index: 1 !important;
+    }
+    
+    .gradient-shape svg {
+        width: 100% !important;
+        height: 100% !important;
     }
     
     /* PC表示用のアバウトセクション設定 */
@@ -627,7 +918,82 @@
         justify-content: center;
         align-items: center;
     }
+    
+    /* サービスセクションのPC表示設定 */
+    .service-white-container {
+        width: 1080px;
+        height: 830px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        background: #FCFCFC;
+        position: absolute;
+        left: 180px;
+        top: 1651.0071px;
+        z-index: 3;
+    }
+    
+    .service-header-text {
+        color: #D1342D;
+        font-family: "Lexend Deca";
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 175%;
+        position: absolute;
+        left: 260px;
+        top: 1714.7772px;
+        z-index: 4;
+    }
+    
+    .service-subtitle-text {
+        color: #343434;
+        font-family: "Zen Kaku Gothic New";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 175%;
+        position: absolute;
+        left: 260px;
+        top: 1786.7772px;
+        z-index: 4;
+    }
+    
+    .service-description-text {
+        color: #343434;
+        font-family: "Zen Kaku Gothic New";
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 175%;
+        position: absolute;
+        left: 260px;
+        top: 1834.7772px;
+        z-index: 4;
+        white-space: pre-line !important; /* 改行を保持して表示 */
+        width: 580px; /* テキストの幅を設定 */
+    }
+    
+    .service-box {
+        width: 432px;
+        height: 324px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        background: #FFF1EE;
+        position: absolute;
+        top: 1914.0072px;
+        z-index: 4;
+    }
+    
+    .service-box-left {
+        left: 260px;
+    }
+    
+    .service-box-right {
+        left: 748px;
+    }
 }
+
+/* !important: この順序を維持してください。メディアクエリが後に定義されているため優先されます */
 
 /* 共通のロゴスタイル */
 .logo-svg {
@@ -641,7 +1007,133 @@
     object-fit: contain;
 }
 
-/* !important: この順序を維持してください。メディアクエリが後に定義されているため優先されます */
+/* サービスコンポーネントのモバイル表示切り替え (580px以下) */
+@media (max-width: 580px) {
+    /* サービスセクションのモバイル対応 - 不要な要素を非表示 */
+    .service-box,
+    .service-image1-container,
+    .service-image2-container,
+    .service-gradient-card1,
+    .service-gradient-card2,
+    .service-title-text,
+    .service-consulting-description,
+    .service-saas-title,
+    .service-saas-description {
+        display: none !important;
+    }
+    
+    /* サービスセクションのモバイル対応 */
+    .service-section {
+        height: auto !important;
+        min-height: 400px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    /* モバイル用の画像コンテナを表示 */
+    .service-mobile-image-container {
+        display: block !important;
+        width: 279px !important;
+        max-width: 375px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+        padding-top: 40px !important;
+        position: absolute !important; /* absoluteに変更 */
+        left: 51% !important; /* 中央配置のための設定 */
+        transform: translateX(-50%) !important; /* 中央配置 */
+        top: 620px !important; /* この値を変更すると画像の位置が変わります */
+        z-index: 9999 !important; /* 最前面に表示 */
+        transition: none !important; /* transitionを無効化 */
+    }
+    
+    .service-mobile-image {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 375px !important;
+    }
+    
+    /* バリューセクションのモバイル対応 - 不要な要素を非表示 */
+    .value-small-number-1,
+    .value-small-number-2,
+    .value-small-number-3,
+    .value-small-number-4,
+    .value-small-number-5,
+    .value-small-title-1,
+    .value-small-title-2,
+    .value-small-title-3,
+    .value-small-title-4,
+    .value-small-title-5,
+    .value-images-container,
+    .triangle-gradient,
+    .value-white-container,
+    .value-number-1,
+    .value-number-2,
+    .value-number-3,
+    .value-number-4,
+    .value-number-5,
+    .value-title-1,
+    .value-title-2,
+    .value-title-3,
+    .value-title-4,
+    .value-title-5,
+    .value-description-1,
+    .value-description-2,
+    .value-description-3,
+    .value-description-4,
+    .value-description-5,
+    .value-image-container,
+    .value-image-1-container,
+    .value-image-2-container,
+    .value-image-3-container,
+    .value-image-4-container,
+    .value-image-5-container {
+        display: none !important;
+    }
+    
+    /* バリューセクションの基本要素は表示 */
+    .value-section {
+        top: 1900px !important;
+        min-height: auto !important;
+        position: relative !important;
+        overflow: visible !important;
+        margin-top: 70px !important; /* 上部マージンを増やす */
+        margin-bottom: 70px !important; /* 下部マージンを増やす */
+        padding-bottom: 40px !important; /* 下部パディングを増やす */
+    }
+    
+    /* バリューセクションのヘッダーとサブタイトル */
+    .value-header-text {
+        position: absolute !important;
+        left: 20px !important;
+        top: 40px !important;
+        font-size: 40px !important;
+    }
+    
+    .value-subtitle-text {
+        position: absolute !important;
+        left: 20px !important;
+        top: 100px !important;
+        font-size: 18px !important;
+    }
+}
+
+/* PC表示での設定（580px超） */
+@media (min-width: 581px) {
+    /* モバイル用の画像コンテナを非表示 */
+    .service-mobile-image-container {
+        display: none !important;
+    }
+    
+    /* モバイル用のバリュー要素を非表示（将来的に追加する場合） */
+    .mobile-value-section {
+        display: none !important;
+    }
+}
+
+/* 以下のグローバルスコープの定義を削除します */
+/* .service-mobile-image-container {
+    position: relative !important;
+    top: 1300px !important;
+} */
 
 
 

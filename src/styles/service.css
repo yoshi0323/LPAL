@@ -164,6 +164,47 @@
   top: 1946.7772px;
 }
 
+/* レスポンシブ表示用の特別なクラス */
+.responsive-mode {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+/* レスポンシブ対応のメディアクエリを追加 */
+@media screen and (max-width: 991px) {
+  .service-image1-container {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin-top: 20px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+  }
+  
+  /* 画像も確実に表示 */
+  .service-image1 {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .service-image1-container {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .service-image1-container {
+    margin: 20px auto;
+  }
+}
+
 .service-image {
   max-width: 100%;
   height: auto;
@@ -265,7 +306,7 @@
   object-position: center 35%; /* 中央から縦方向に35%の位置 */
   
   /* または位置をtransformで調整する場合 */
-  transform: translate(15%, -10%); /* 横-10%, 縦-25%の位置にずらす */
+  transform: translate(0, -10%); /* 横-10%, 縦-25%の位置にずらす */
 }
 
 .service-title-text {
@@ -332,4 +373,37 @@
 /* カスタムラッパークラス */
 .custom-gradient-wrapper .gradient-background .large-circle-gradient {
   display: none;
+}
+
+/* レスポンシブ対応のためのメディアクエリ */
+@media (max-width: 580px) {
+  .gradient-background {
+    width: 375px !important;
+    height: 1158px !important;
+    position: absolute !important;
+    left: -15px !important;
+    top: 880px !important;
+    z-index: 4 !important;
+    overflow: visible !important;
+    display: block !important;
+    /* フォールバック用の背景グラデーション */
+    background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%) !important;
+  }
+  
+  .mask-image-container {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible !important;
+    display: block !important;
+    position: relative !important;
+  }
+  
+  .mask-group-image {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 300px !important;
+    object-fit: cover !important;
+    display: block !important;
+    position: relative !important;
+  }
 }
