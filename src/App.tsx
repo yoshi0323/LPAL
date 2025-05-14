@@ -21,7 +21,7 @@ import {
 } from './components/value.js';
 import { WorksHeaderText, WorksSubtitleText, WorksImagesContainer, WorksCircleGradient } from './components/works.js';
 import { ProcessHeaderText, ProcessSubtitleText, ProcessImagesContainer } from './components/process.js';
-import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, ContactGroupImage, ContactSecondImage, ContactWhiteFooter, ContactFooterLogo, ContactFooterLinks, ContactFooterCopyright } from './components/contact.js';
+import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, ContactGroupImage, ContactSecondImage, ContactWhiteFooter, ContactFooterLogo, ContactFooterLinks, ContactFooterCopyright, ContactFormMobile, ContactMobileFooter } from './components/contact.js';
 import { CliffQuestionPopup } from './components/popup.js';
 import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor, ValueStickyComponents, WorkImageAnimation, ProcessImageAnimation, AnimateContactElements, AnimateServiceElements } from './components/animation';
 import './styles/styles.css';
@@ -579,7 +579,7 @@ function App() {
                 position: 'absolute',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                top: '0px',
+                top: '-80px',
                 width: '100%',
                 maxWidth: '335px',
                 zIndex: 9999
@@ -628,12 +628,12 @@ function App() {
         <ContactWhiteFooter />
         <ContactBackgroundGradient />
         <ContactMaskImage />
-        <ContactGroupImage />
-        <ContactSecondImage />
+        <ContactFormMobile />
         <ContactCircleGradient />
         <ContactFooterLogo />
         <ContactFooterLinks />
         <ContactFooterCopyright />
+        <ContactMobileFooter />
         <CustomRedIndicator />
         
         {/* ポップアップコンポーネント */}

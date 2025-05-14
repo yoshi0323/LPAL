@@ -95,3 +95,84 @@
   width: 100%;
   height: 100%;
 }
+
+/* モバイル表示用のスタイル */
+@media (max-width: 580px) {
+  .works-header-text {
+    position: absolute;
+    left: 13px;
+    top: 5192px; /* モバイルでの位置を調整 */
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 150%;
+    z-index: 10;
+    color: #D1342D; /* 色を明示的に指定 */
+    font-family: "Lexend Deca";
+  }
+  
+  .works-subtitle-text {
+    position: absolute;
+    left: 13px;
+    top: 5256px; /* ヘッダーの下に配置 */
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 150%;
+    z-index: 10;
+    color: #343434; /* 色を明示的に指定 */
+    font-family: "Zen Kaku Gothic New";
+  }
+  
+  .works-images-container {
+    position: absolute;
+    left: 13px;
+    top: 5300px; /* サブタイトルの下に配置 */
+    width: calc(100% - 26px); /* 左右のマージンを考慮 */
+    max-width: 335px;
+    display: block; /* flexからblockに変更 */
+    gap: 0;
+    z-index: 10;
+    background-color: transparent; /* 背景を透明に */
+    padding: 0; /* パディングを削除 */
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  /* モバイル用の全幅画像スタイル */
+  .works-mobile-full-image {
+    width: 100%;
+    height: auto;
+    min-height: 50px; /* 最小の高さを設定 */
+    display: block !important; /* 強制表示 */
+    border-radius: 4px; /* 画像の角を丸く */
+    border: none; /* 枠線を削除 */
+    background-color: transparent; /* 背景色を透明に */
+    object-fit: contain; /* 画像のアスペクト比を保持 */
+  }
+  
+  /* モバイル表示時のみPC用の画像を非表示に */
+  .works-images-container .works-image {
+    display: none;
+  }
+  
+  /* グラデーション円の位置調整 - 表示問題の修正 */
+  .works-circle-gradient {
+    position: absolute !important;
+    left: -187.5px;
+    top: 6880px; /* 画像の下に配置 */
+    width: 600px; /* 幅を小さく */
+    height: 509px; /* 高さを小さく */
+    transform: scale(1); /* スケールをリセット */
+    z-index: 2; /* 重なり順を高く設定して確実に表示 */
+    opacity: 1; /* 完全に不透明に */
+    display: block !important; /* 強制表示 */
+    visibility: visible !important; /* 可視性を強制 */
+    overflow: visible !important; /* オーバーフローを許可 */
+  }
+  
+  .works-circle-gradient svg {
+    width: 100%;
+    height: 100%;
+    display: block !important; /* SVGも強制表示 */
+    visibility: visible !important;
+  }
+}

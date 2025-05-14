@@ -132,3 +132,214 @@
   line-height: 150%; /* 21px */
   z-index: 2; /* 白い帯の上に表示 */
 }
+
+/* モバイル表示用のスタイル */
+@media (max-width: 580px) {
+  /* グラデーション円 */
+  .contact-circle-gradient.mobile {
+    width: 375px;
+    height: 375px;
+    left: 0;
+    top: 8254px;
+    bottom: auto; /* appコンテナの最低辺から1098px上 */
+    border-radius: 375px;
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  
+  /* 背景グラデーション */
+  .contact-background-gradient.mobile {
+    width: 375px;
+    height: 1098px;
+    left: 0;
+    top: 8289px;
+    bottom: auto; /* グラデーション円の下に配置 */
+    z-index: 3;
+    background: none; /* グラデーションを削除 */
+    opacity: 1; /* 不透明度を1に設定 */
+  }
+  
+  /* マスク画像 */
+  .contact-mask-image.mobile {
+    width: 375px;
+    height: 1098px;
+    left: 0;
+    top: 8289px;
+    bottom: auto; /* 背景と同じ位置に */
+    z-index: 10; /* z-indexを上げて確実に表示 */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .contact-mask-image.mobile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* グループ画像 */
+  .contact-group-image.mobile {
+    width: 335px;
+    left: 20px;
+    top: 8000px;
+    bottom: auto; /* 背景内に配置 */
+    z-index: 15;
+  }
+  
+  .contact-group-image.mobile img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* セカンド画像 */
+  .contact-second-image.mobile {
+    width: 200px;
+    left: 87.5px;
+    top: 8000px;
+    bottom: auto; /* グループ画像の上に配置 */
+    z-index: 16;
+  }
+  
+  .contact-second-image.mobile img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* フッター白背景 */
+  .contact-white-footer.mobile {
+    width: 375px;
+    height: 190px;
+    bottom: 598px; /* グラデーション背景の下に配置 */
+    z-index: 1;
+  }
+  
+  /* フッターロゴ */
+  .contact-footer-logo.mobile {
+    left: 30px;
+    bottom: 748px; /* フッター内の上部に配置 */
+    z-index: 2;
+    transform: scale(0.8);
+  }
+  
+  /* フッターリンク */
+  .contact-footer-links-container.mobile {
+    left: 30px;
+    bottom: 648px; /* フッター内の中央部に配置 */
+    z-index: 2;
+  }
+  
+  .contact-footer-links.mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* コピーライト */
+  .contact-footer-copyright.mobile {
+    right: auto;
+    left: 30px;
+    bottom: 618px; /* フッター内の下部に配置 */
+    font-size: 12px;
+  }
+  
+  /* 背景グラデーション - 画像のみ */
+  .contact-background-gradient.mobile.image-only {
+    width: 375px;
+    height: 1098px;
+    left: 0;
+    top: 8289px;
+    bottom: auto;
+    z-index: 3;
+    background: none;
+    opacity: 1;
+  }
+  
+  /* マスク画像 - 強制表示 */
+  .contact-mask-image.mobile.force-visible {
+    width: 375px;
+    height: 1098px;
+    left: 0;
+    top: 8289px;
+    bottom: auto;
+    z-index: 10;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .contact-mask-image.mobile.force-visible img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* モバイル用のコンタクトフォーム */
+.contact-form-mobile {
+  width: 335px;
+  background: #FCFCFC;
+  border-radius: 4px;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 20px;
+  top: 8450px;
+  z-index: 25;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* モバイル用のフッター */
+.contact-mobile-footer {
+  width: 375px;
+  background: #FCFCFC;
+  padding: 30px 0;
+  position: absolute;
+  left: 0;
+  top: 8750px; /* フォームの下に適切に配置 */
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-mobile-footer .alchemy-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.contact-mobile-footer .alchemy-logo-container img {
+  height: 24px;
+  width: auto;
+}
+
+.contact-mobile-footer img {
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.contact-mobile-footer a {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.contact-mobile-footer .copyright {
+  color: #C4C4C4;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 12px;
+  margin-top: 10px;
+}

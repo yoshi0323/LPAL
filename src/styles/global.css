@@ -646,21 +646,7 @@
         margin-bottom: 70px !important; /* 下部マージンを増やす */
         padding-bottom: 40px !important; /* 下部パディングを増やす */
     }
-    
-    /* バリューセクションのヘッダーとサブタイトル */
-    .value-header-text {
-        position: absolute !important;
-        left: 20px !important;
-        top: 100px !important;
-        font-size: 40px !important;
-    }
-    
-    .value-subtitle-text {
-        position: absolute !important;
-        left: 20px !important;
-        top: 100px !important;
-        font-size: 18px !important;
-    }
+
 }
 
 /* PC表示での設定（580px超） */
@@ -1103,15 +1089,15 @@
     /* バリューセクションのヘッダーとサブタイトル */
     .value-header-text {
         position: absolute !important;
-        left: 20px !important;
-        top: 40px !important;
+        left: 13px !important;
+        top: -200px !important;
         font-size: 40px !important;
     }
     
     .value-subtitle-text {
         position: absolute !important;
         left: 20px !important;
-        top: 100px !important;
+        top: -142px !important;
         font-size: 18px !important;
     }
 }
