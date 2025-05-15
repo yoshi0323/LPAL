@@ -1,5 +1,5 @@
 .popup-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -8,29 +8,87 @@
   height: 100%;
   background: rgba(52, 52, 52, 0.6);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  z-index: 10000;
+  z-index: 99999;
+  overflow-y: auto;
+  padding-bottom: 0;
+}
+
+.popup-container {
+  position: relative;
+  width: 1080px;
+  margin-top: 199.98px;
 }
 
 .popup-content {
-  position: absolute;
+  position: relative;
   width: 1080px;
   height: 1348px;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 199.98px;
+  margin-top: 0;
   flex-shrink: 0;
   border-radius: 4px;
   background: #ECECEC;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  z-index: 10001;
+  z-index: 100000;
+  overflow: hidden;
+}
+
+/* モバイル用のスタイル */
+@media (max-width: 767px) {
+  .popup-content {
+    position: relative;
+    width: 327px !important;
+    height: 1464.81px !important;
+    flex-shrink: 0;
+    top: 0;
+    margin: 20px auto;
+    overflow-y: auto;
+  }
+  
+  /* モバイル版での画像コンテナと画像位置調整 */
+  .popup-content .popup-images-wrapper .popup-image-container {
+    position: absolute !important;
+    top: 103.98px !important; /* 上辺からの距離を指定 */
+    left: 0 !important;
+    width: 100% !important;
+    display: block !important;
+    justify-content: flex-start !important;
+  }
+  
+  .popup-content .popup-images-wrapper .popup-image-container .popup-image {
+    position: absolute !important;
+    top: 40px !important; /* 103.98px + 40px = 143.98px (コンテナ上辺 + この値 = 画像上辺) */
+    width: 100% !important;
+    height: auto !important;
+    max-width: 327px !important;
+    margin-top: 0 !important; /* PCのmargin-topをリセット */
+  }
+  
+  .popup-content .popup-images-wrapper .popup-bottom-image-container .popup-bottom-image {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 327px !important;
+  }
+  
+  .popup-content .popup-images-wrapper {
+    width: 327px !important;
+    height: 1464.81px !important;
+  }
+  
+  /* カスタム閉じるボタンのモバイル配置調整 */
+  .popup-custom-close-button {
+    top: 60px !important;
+    right: 20px !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
 }
 
 .popup-close-button {
   position: absolute;
-  top: -80.27px;
-  left: 1016px;
+  top: -80px;
+  right: -30px;
   width: 64px;
   height: 64px;
   flex-shrink: 0;
@@ -39,10 +97,20 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  z-index: 10002;
+  z-index: 100001;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* モバイル用の閉じるボタンスタイル */
+@media (max-width: 767px) {
+  .popup-close-button {
+    top: -40px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .popup-close-button svg {
@@ -103,31 +171,59 @@
 
 /* 追加: 画像コンテナのスタイル */
 .popup-image-container {
-  position: absolute;
-  top: 64px;
-  left: 80px;
-}
-
-/* 画像のスタイル */
-.popup-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* 追加: 下部画像のコンテナ */
-.popup-bottom-image-container {
-  position: absolute;
-  bottom: 0; /* ポップアップの底辺に合わせる */
-  left: 0;
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
+/* 画像のスタイル */
+.popup-image {
+  width: 918px;
+  height: 797px;
+  flex-shrink: 0;
+  display: block;
+  margin-top: 64px;
+}
+
+/* 追加: 下部画像のコンテナ */
+.popup-bottom-image-container {
+  position: relative;
+  width: 100%;
+  margin-top: auto; /* 上部の余白を自動調整して下部に配置 */
+}
+
 /* 下部画像のスタイル */
 .popup-bottom-image {
-  max-width: 100%;
-  height: auto;
+  width: 1080px;
+  height: 423px;
+  flex-shrink: 0;
   display: block;
+}
+
+/* 画像コンテナを包むラッパーを追加 */
+.popup-images-wrapper {
+  width: 1080px;
+  height: 1348px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-images-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup-images-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+/* 追加: カスタム閉じるボタンのスタイル */
+.popup-custom-close-button {
+  position: absolute;
+  right: 180px;
+  top: 119.71px; /* ポップアップ上辺から119.71px */
+  cursor: pointer;
+  z-index: 100002; /* 既存のclose-buttonより前面に */
 }

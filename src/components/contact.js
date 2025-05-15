@@ -346,12 +346,14 @@ export const ContactFormMobile = () => {
       </div>
 
       <button style={{ 
-        width: '100%',
-        padding: '12px',
+        width: '278px',
+        height: '63px',
+        top: '8373px',
+        padding: '20px 16px',
         backgroundColor: '#F6835F',
-        color: '#FCFCFC',
+        color: '#FAD4D3',
         border: 'none',
-        borderRadius: '25px',
+        borderRadius: '80px',
         fontSize: '16px',
         fontWeight: 'bold',
         display: 'flex',

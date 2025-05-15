@@ -558,8 +558,6 @@
 
     /* サービスセクションのモバイル対応 - 不要な要素を非表示 */
     .service-box,
-    .service-image1-container,
-    .service-image2-container,
     .service-gradient-card1,
     .service-gradient-card2,
     .service-title-text,
@@ -576,6 +574,28 @@
         padding-bottom: 40px !important;
     }
     
+    /* service-image1-container と service-image2-container のスタイルをモバイル用に調整 */
+    .service-image1-container,
+    .service-image2-container {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important; 
+        max-width: 280px !important;
+        margin: 20px auto !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        z-index: 10 !important;
+    }
+    
+    /* サービスイメージ本体のサイズ調整 */
+    .service-image1,
+    .service-image2 {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+    }
+    
     /* モバイル用の画像コンテナを表示 */
     .service-mobile-image-container {
         display: block !important;
@@ -584,12 +604,12 @@
         margin: 0 auto !important;
         text-align: center !important;
         padding-top: 40px !important;
-        position: absolute !important; /* absoluteに変更 */
-        left: 51% !important; /* 中央配置のための設定 */
-        transform: translateX(-50%) !important; /* 中央配置 */
-        top: 780px !important; /* この値を変更すると画像の位置が変わります */
-        z-index: 9999 !important; /* 最前面に表示 */
-        transition: none !important; /* transitionを無効化 */
+        position: absolute !important;
+        left: 51% !important;
+        transform: translateX(-50%) !important;
+        top: 620px !important;
+        z-index: 9999 !important;
+        transition: none !important;
     }
     
     .service-mobile-image {
@@ -997,8 +1017,6 @@
 @media (max-width: 580px) {
     /* サービスセクションのモバイル対応 - 不要な要素を非表示 */
     .service-box,
-    .service-image1-container,
-    .service-image2-container,
     .service-gradient-card1,
     .service-gradient-card2,
     .service-title-text,
@@ -1015,6 +1033,28 @@
         padding-bottom: 40px !important;
     }
     
+    /* service-image1-container と service-image2-container のスタイルをモバイル用に調整 */
+    .service-image1-container,
+    .service-image2-container {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important; 
+        max-width: 280px !important;
+        margin: 20px auto !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        z-index: 10 !important;
+    }
+    
+    /* サービスイメージ本体のサイズ調整 */
+    .service-image1,
+    .service-image2 {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+    }
+    
     /* モバイル用の画像コンテナを表示 */
     .service-mobile-image-container {
         display: block !important;
@@ -1023,12 +1063,12 @@
         margin: 0 auto !important;
         text-align: center !important;
         padding-top: 40px !important;
-        position: absolute !important; /* absoluteに変更 */
-        left: 51% !important; /* 中央配置のための設定 */
-        transform: translateX(-50%) !important; /* 中央配置 */
-        top: 620px !important; /* この値を変更すると画像の位置が変わります */
-        z-index: 9999 !important; /* 最前面に表示 */
-        transition: none !important; /* transitionを無効化 */
+        position: absolute !important;
+        left: 51% !important;
+        transform: translateX(-50%) !important;
+        top: 620px !important;
+        z-index: 9999 !important;
+        transition: none !important;
     }
     
     .service-mobile-image {

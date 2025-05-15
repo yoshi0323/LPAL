@@ -832,6 +832,24 @@ export const AnimateContactElements = () => {
       '.contact-footer-copyright': 5
     };
     
+    // モバイル用フォームの設定（アニメーションから除外し、確実に表示）
+    const mobileFormElements = document.querySelectorAll('.contact-form-mobile, .contact-mobile-footer');
+    mobileFormElements.forEach(element => {
+      if (element) {
+        element.style.opacity = '1';
+        element.style.visibility = 'visible';
+        element.style.zIndex = element.classList.contains('contact-form-mobile') ? '25' : '30';
+        
+        // アニメーションクラスがあれば削除
+        if (element.classList.contains('fade-in-element')) {
+          element.classList.remove('fade-in-element');
+        }
+        if (element.classList.contains('visible')) {
+          element.classList.remove('visible');
+        }
+      }
+    });
+    
     // コンタクトフォーム要素からfade-in-elementクラスを削除（もし適用されていれば）
     const formSelectors = [
       '.contact-section .white-container',

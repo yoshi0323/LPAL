@@ -236,7 +236,8 @@ body {
   position: absolute;
   left: 182.29px;
   top: 559.94px;
-  z-index: 1;
+  z-index: 50;
+  cursor: pointer;
 }
 
 .cliff-question-text {
@@ -254,7 +255,9 @@ body {
   position: absolute;
   left: 198.29px;
   top: 579.94px;
-  z-index: 2;  /* WhiteButtonの上に表示されるように2に設定 */
+  z-index: 51;  /* WhiteButtonの上に表示されるように */
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .gradient-shape {
@@ -279,7 +282,9 @@ body {
   position: absolute;
   left: 438.29px;
   top: 575.44px;
-  z-index: 2;  /* WhiteButtonの上に表示されるように */
+  z-index: 52;  /* WhiteButtonの上に表示されるように */
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .question-icon svg {
