@@ -7,14 +7,14 @@ export const Popup = ({ isOpen, onClose, children }) => {
 
   return (
     <div className="popup-overlay">
+      <button className="popup-close-button" onClick={onClose}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="65" viewBox="0 0 64 65" fill="none">
+          <circle cx="32" cy="32.7334" r="32" fill="#343434"/>
+          <rect x="39.7773" y="23.5409" width="2" height="24" transform="rotate(45 39.7773 23.5409)" fill="#FCFCFC"/>
+          <rect x="41.1914" y="40.5115" width="2" height="24" transform="rotate(135 41.1914 40.5115)" fill="#FCFCFC"/>
+        </svg>
+      </button>
       <div className="popup-content">
-        <button className="popup-close-button" onClick={onClose}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="65" viewBox="0 0 64 65" fill="none">
-            <circle cx="32" cy="32.7334" r="32" fill="#343434"/>
-            <rect x="39.7773" y="23.5409" width="2" height="24" transform="rotate(45 39.7773 23.5409)" fill="#FCFCFC"/>
-            <rect x="41.1914" y="40.5115" width="2" height="24" transform="rotate(135 41.1914 40.5115)" fill="#FCFCFC"/>
-          </svg>
-        </button>
         {children}
       </div>
     </div>
@@ -56,48 +56,43 @@ export const CliffQuestionPopup = ({ isOpen, onClose }) => {
   console.log(`Current display mode: ${isMobile ? 'Mobile' : 'Desktop'}, Image path: ${popupImagePath}`);
   
   return (
-    <div className="popup-container">
-      <img 
-        src={`${process.env.PUBLIC_URL}/image/Group 592.png`}
-        alt="Close popup" 
-        className="popup-custom-close-button" 
-        onClick={onClose}
-      />
-      <Popup isOpen={true} onClose={onClose}>
-        <div className="popup-images-wrapper">
-          <div className="popup-image-container">
-            <img 
-              src={popupImagePath}
-              alt="2025年の崖問題" 
-              className="popup-image" 
-              style={isMobile ? {
-                position: 'absolute',
-                top: '40px',
-                width: '100%',
-                height: 'auto',
-                maxWidth: '327px',
-                marginTop: 0
-              } : {}}
-              onError={(e) => {
-                console.error("Failed to load image:", e.target.src);
-                e.target.src = `${process.env.PUBLIC_URL}/image/contents01.png`; // フォールバック画像
-              }}
-            />
-          </div>
-          <div className="popup-bottom-image-container">
-            <img 
-              src={`${process.env.PUBLIC_URL}/image/Group 628.png`}
-              alt="Bottom Image" 
-              className="popup-bottom-image" 
-              style={isMobile ? {
-                width: '100%',
-                height: 'auto',
-                maxWidth: '327px'
-              } : {}}
-            />
-          </div>
+    <Popup isOpen={true} onClose={onClose}>
+      <div className="popup-images-wrapper">
+        <div className="popup-image-container">
+          <img 
+            src={popupImagePath}
+            alt="2025年の崖問題" 
+            className="popup-image" 
+            style={isMobile ? {
+              position: 'absolute',
+              top: '40px',
+              width: '100%',
+              height: 'auto',
+              maxWidth: '327px',
+              marginTop: 0
+            } : {}}
+            onError={(e) => {
+              console.error("Failed to load image:", e.target.src);
+              e.target.src = `${process.env.PUBLIC_URL}/image/contents01.png`; // フォールバック画像
+            }}
+          />
         </div>
-      </Popup>
-    </div>
+        <div className="popup-bottom-image-container">
+          <img 
+            src={isMobile 
+              ? `${process.env.PUBLIC_URL}/image/contents02.png`
+              : `${process.env.PUBLIC_URL}/image/Group 628.png`
+            }
+            alt="Bottom Image" 
+            className="popup-bottom-image" 
+            style={isMobile ? {
+              width: '100%',
+              height: 'auto',
+              maxWidth: '327px'
+            } : {}}
+          />
+        </div>
+      </div>
+    </Popup>
   );
 };

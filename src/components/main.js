@@ -436,12 +436,12 @@ export const HamburgerMenu = () => {
       </div>
       
       <div className={`mobile-menu ${isActive ? 'active' : ''}`}>
-        <div className="mobile-menu-item" onClick={() => scrollToElement('.service-header-text')}>サービス</div>
-        <div className="mobile-menu-item" onClick={() => scrollToElement('.about-header-text')}>私たちについて</div>
-        <div className="mobile-menu-item" onClick={() => scrollToElement('.value-header-text')}>提供価値</div>
-        <div className="mobile-menu-item" onClick={() => scrollToElement('.works-header-text')}>導入事例</div>
-        <div className="mobile-menu-item" onClick={() => scrollToElement('.process-header-text')}>サポートステップ</div>
-        <div className="mobile-menu-item" onClick={() => scrollToElement('.contact-group-image')}>お問い合わせ</div>
+        <div id="service-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.about-header-text')}>私たちについて</div>
+        <div id="about-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.service-header-text')}>サービス</div>
+        <div id="value-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.value-header-text')}>提供価値</div>
+        <div id="works-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.works-header-text')}>導入事例</div>
+        <div id="process-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.process-header-text')}>サポートステップ</div>
+        <div id="contact-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.contact-group-image')}>お問い合わせ</div>
       </div>
     </>
   );

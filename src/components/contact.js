@@ -409,3 +409,196 @@ export const ContactMobileFooter = () => {
     </div>
   );
 };
+
+// PCコンタクトコンテナ
+export const PcContactContainer = () => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-contact-container"></div>
+  );
+};
+
+// PC Redインジケーター
+export const PcRedIndicator = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-red-indicator" style={{ top, left }}>
+      <span className="pc-required-text">必須</span>
+    </div>
+  );
+};
+
+// PC入力フィールド
+export const PcInputField = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-input-field" style={{ top, left }}></div>
+  );
+};
+
+// PC大きな入力フィールド
+export const PcLargeInputField = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-large-input-field" style={{ top, left }}></div>
+  );
+};
+
+// PC名前ラベル
+export const PcNameLabel = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-name-label" style={{ top, left }}>
+      お名前
+    </div>
+  );
+};
+
+// PC会社ラベル
+export const PcCompanyLabel = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-company-label" style={{ top, left }}>
+      会社名
+    </div>
+  );
+};
+
+// PCコンタクト内容ラベル
+export const PcContactContentLabel = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-contact-content-label" style={{ top, left }}>
+      お問い合わせ内容
+    </div>
+  );
+};
+
+// PCプライバシーラベル
+export const PcPrivacyLabel = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-privacy-label" style={{ top, left }}>
+      個人情報の取り扱いについて
+    </div>
+  );
+};
+
+// PCプライバシーテキスト
+export const PcPrivacyText = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-privacy-text" style={{ top, left }}>
+      個人情報保護方針に基づき適切に対応いたします。詳しくは<a href="#" className="pc-privacy-link">プライバシーポリシー</a>をご覧ください。
+    </div>
+  );
+};
+
+// PCチェックボックス
+export const PcCheckBox = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-check-box" style={{ top, left }}></div>
+  );
+};
+
+// PC同意テキスト
+export const PcAgreeText = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-agree-text" style={{ top, left }}>
+      個人情報の取り扱いに同意する
+    </div>
+  );
+};
+
+// PC名前プレースホルダー
+export const PcNamePlaceholder = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-name-placeholder" style={{ top, left }}>
+      山田 太郎
+    </div>
+  );
+};
+
+// PC会社プレースホルダー
+export const PcCompanyPlaceholder = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-company-placeholder" style={{ top, left }}>
+      株式会社
+    </div>
+  );
+};
+
+// PCコンテンツプレースホルダー
+export const PcContentPlaceholder = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-content-placeholder" style={{ top, left }}>
+      こちらにお問い合わせ内容をご記入ください
+    </div>
+  );
+};
+
+// PC送信ボタン
+export const PcSubmitButton = ({ top, left }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) return null;
+  
+  return (
+    <div className="pc-submit-button" style={{ top, left }}>
+      送信する
+      <div className="pc-arrow-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 27C22.0751 27 27 22.0751 27 16C27 9.92487 22.0751 5 16 5C9.92487 5 5 9.92487 5 16C5 22.0751 9.92487 27 16 27Z" stroke="#FCFCFC" />
+          <path d="M16.5303 20.5303C16.2374 20.8232 15.7626 20.8232 15.4697 20.5303C15.1768 20.2374 15.1768 19.7626 15.4697 19.4697L16.5303 20.5303ZM19 16L19.5303 16.5303C19.8232 16.2374 19.8232 15.7626 19.5303 15.4697L19 16ZM15.4697 12.5303C15.7626 12.2374 16.2374 12.2374 16.5303 12.5303C16.8232 12.8232 16.8232 13.2981 16.5303 13.5911L15.4697 12.5303ZM12 16C11.4477 16 11 15.5523 11 15C11 14.4477 11.4477 14 12 14L12 16ZM15.4697 19.4697L18.4697 16.4697L19.5303 17.5303L16.5303 20.5303L15.4697 19.4697ZM18.4697 15.5303L15.4697 12.5303L16.5303 13.5911L19.5303 16.5911L18.4697 15.5303ZM19 15L12 15L12 17L19 17L19 15Z" fill="#FCFCFC" />
+        </svg>
+      </div>
+    </div>
+  );
+};

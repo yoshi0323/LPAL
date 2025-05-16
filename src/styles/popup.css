@@ -25,7 +25,7 @@
   position: relative;
   width: 1080px;
   height: 1348px;
-  margin-top: 0;
+  margin-top: 199.98px;
   flex-shrink: 0;
   border-radius: 4px;
   background: #ECECEC;
@@ -42,27 +42,27 @@
     height: 1464.81px !important;
     flex-shrink: 0;
     top: 0;
-    margin: 20px auto;
+    margin: 60px auto 20px;
     overflow-y: auto;
   }
   
   /* モバイル版での画像コンテナと画像位置調整 */
   .popup-content .popup-images-wrapper .popup-image-container {
     position: absolute !important;
-    top: 103.98px !important; /* 上辺からの距離を指定 */
-    left: 0 !important;
-    width: 100% !important;
+    top: 40px !important; /* ここを変更: イメージコンテナの上端位置 */
+    left: 24px !important;
+    width: 279px !important;
     display: block !important;
     justify-content: flex-start !important;
   }
   
   .popup-content .popup-images-wrapper .popup-image-container .popup-image {
     position: absolute !important;
-    top: 40px !important; /* 103.98px + 40px = 143.98px (コンテナ上辺 + この値 = 画像上辺) */
-    width: 100% !important;
-    height: auto !important;
-    max-width: 327px !important;
-    margin-top: 0 !important; /* PCのmargin-topをリセット */
+    top: 0px !important; /* ここを変更: コンテナ内での画像の上端位置 */
+    width: 279.5px !important;
+    height: 1042.81018px !important;
+    max-width: 327px !important; /* ここを変更: 画像の最大幅 */
+    margin-top: 0 !important;
   }
   
   .popup-content .popup-images-wrapper .popup-bottom-image-container .popup-bottom-image {
@@ -75,20 +75,12 @@
     width: 327px !important;
     height: 1464.81px !important;
   }
-  
-  /* カスタム閉じるボタンのモバイル配置調整 */
-  .popup-custom-close-button {
-    top: 60px !important;
-    right: 20px !important;
-    width: 40px !important;
-    height: 40px !important;
-  }
 }
 
 .popup-close-button {
   position: absolute;
-  top: -80px;
-  right: -30px;
+  top: 119.71px;
+  right: calc(50% - 540px + 20px); /* 中央から右側にポップアップの半分の幅+20px */
   width: 64px;
   height: 64px;
   flex-shrink: 0;
@@ -106,10 +98,10 @@
 /* モバイル用の閉じるボタンスタイル */
 @media (max-width: 767px) {
   .popup-close-button {
-    top: -40px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
+    top: 6.98px;
+    right: calc(50% - 163.5px + 10px); /* 中央から右側にポップアップの半分の幅+10px */
+    width: 48px;
+    height: 48px;
   }
 }
 
@@ -217,13 +209,4 @@
 .popup-images-wrapper::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
-}
-
-/* 追加: カスタム閉じるボタンのスタイル */
-.popup-custom-close-button {
-  position: absolute;
-  right: 180px;
-  top: 119.71px; /* ポップアップ上辺から119.71px */
-  cursor: pointer;
-  z-index: 100002; /* 既存のclose-buttonより前面に */
 }
