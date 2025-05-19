@@ -441,7 +441,12 @@ export const PcInputField = ({ top, left }) => {
   if (isMobile) return null;
   
   return (
-    <div className="pc-input-field" style={{ top, left }}></div>
+    <input
+      type="text"
+      className="pc-input-field"
+      style={{ top, left }}
+      placeholder="山田太郎"
+    />
   );
 };
 
@@ -452,7 +457,11 @@ export const PcLargeInputField = ({ top, left }) => {
   if (isMobile) return null;
   
   return (
-    <div className="pc-large-input-field" style={{ top, left }}></div>
+    <textarea
+      className="pc-large-input-field"
+      style={{ top, left }}
+      placeholder="こちらにお問い合わせ内容をご記入ください"
+    ></textarea>
   );
 };
 
@@ -547,41 +556,20 @@ export const PcAgreeText = ({ top, left }) => {
 
 // PC名前プレースホルダー
 export const PcNamePlaceholder = ({ top, left }) => {
-  const isMobile = useIsMobile();
-  
-  if (isMobile) return null;
-  
-  return (
-    <div className="pc-name-placeholder" style={{ top, left }}>
-      山田 太郎
-    </div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // PC会社プレースホルダー
 export const PcCompanyPlaceholder = ({ top, left }) => {
-  const isMobile = useIsMobile();
-  
-  if (isMobile) return null;
-  
-  return (
-    <div className="pc-company-placeholder" style={{ top, left }}>
-      株式会社
-    </div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // PCコンテンツプレースホルダー
 export const PcContentPlaceholder = ({ top, left }) => {
-  const isMobile = useIsMobile();
-  
-  if (isMobile) return null;
-  
-  return (
-    <div className="pc-content-placeholder" style={{ top, left }}>
-      こちらにお問い合わせ内容をご記入ください
-    </div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // PC送信ボタン

@@ -350,218 +350,93 @@
   margin-top: 10px;
 }
 
-/* PC版コンタクトフォーム要素 */
-.pc-contact-container {
-  width: 520px;
-  height: 596px;
-  flex-shrink: 0;
-  border-radius: 4px;
-  background: #FCFCFC;
-  position: absolute;
-  left: 320px;
-  bottom: 372.53px;
-  z-index: 20;
+.contact-textbox-left {
+  position: absolute; /* 絶対位置配置 */
+  left: 392px; /* 左端からの距離 */
+  bottom: 705.5px; /* 下端からの距離 */
+  width: 316px; /* テキストボックスの幅 */
+  height: 47px; /* テキストボックスの高さ（paddingを除く内部の高さ） */
+  padding: 12px 16px; /* 内部の余白（上下12px、左右16px） */
+  gap: 10px; /* 要素間の間隔 */
+  border-radius: 4px; /* 角の丸み */
+  border: 1px solid #D3D3D3; /* 境界線（1pxの灰色の実線） */
+  background: #FCFCFC; /* 背景色（白） */
+  z-index: 25; /* 重なり順序（数値が大きいほど前面に表示） */
+  font-family: "Zen Kaku Gothic New"; /* フォント種類 */
+  font-size: 15px; /* フォントサイズ */
+  color: #343434; /* テキスト色（濃いグレー） */
+  outline: none; /* フォーカス時の外枠を非表示 */
 }
 
-.pc-red-indicator {
-  position: absolute;
-  width: 32px;
-  height: 22px;
-  background: #D1342D;
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 25;
+.contact-textbox-right {
+  position: absolute; /* 絶対位置配置 */
+  left: 732px; /* 左端からの距離（392px + 340px） */
+  bottom: 705.5px; /* 下端からの距離 */
+  width: 316px; /* テキストボックスの幅 */
+  height: 47px; /* テキストボックスの高さ（paddingを除く内部の高さ） */
+  padding: 12px 16px; /* 内部の余白（上下12px、左右16px） */
+  gap: 10px; /* 要素間の間隔 */
+  border-radius: 4px; /* 角の丸み */
+  border: 1px solid #D3D3D3; /* 境界線（1pxの灰色の実線） */
+  background: #FCFCFC; /* 背景色（白） */
+  z-index: 25; /* 重なり順序（数値が大きいほど前面に表示） */
+  font-family: "Zen Kaku Gothic New"; /* フォント種類 */
+  font-size: 15px; /* フォントサイズ */
+  color: #343434; /* テキスト色（濃いグレー） */
+  outline: none; /* フォーカス時の外枠を非表示 */
 }
 
-.pc-required-text {
-  color: #FCFCFC;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 150%;
+.contact-textbox-left::placeholder,
+.contact-textbox-right::placeholder {
+  color: #C4C4C4; /* プレースホルダーテキストの色（薄いグレー） */
+  font-family: "Zen Kaku Gothic New"; /* プレースホルダーのフォント種類 */
+  font-size: 15px; /* プレースホルダーのフォントサイズ */
 }
 
-.pc-input-field {
-  position: absolute;
-  z-index: 25;
-  width: 216px;
-  height: 47px;
-  display: flex;
-  padding: 12px 16px;
-  align-items: center;
-  gap: 10px;
-  border-radius: 4px;
-  border: 1px solid #D3D3D3;
-  background: #FCFCFC;
+.contact-textarea {
+  position: absolute; /* 絶対位置配置 */
+  left: 392px; /* 左端からの距離 */
+  bottom: 526.53px; /* 下端からの距離 */
+  width: 656px; /* テキストエリアの幅（732+316-392=656） */
+  height: 120px; /* テキストエリアの高さ */
+  padding: 12px 16px; /* 内部の余白（上下12px、左右16px） */
+  border-radius: 4px; /* 角の丸み */
+  border: 1px solid #D3D3D3; /* 境界線（1pxの灰色の実線） */
+  background: #FCFCFC; /* 背景色（白） */
+  font-family: "Zen Kaku Gothic New"; /* フォント種類 */
+  font-size: 15px; /* フォントサイズ */
+  color: #343434; /* テキスト色（濃いグレー） */
+  resize: none; /* リサイズ機能を無効化 */
+  outline: none; /* フォーカス時の外枠を非表示 */
+  z-index: 25; /* 重なり順序（数値が大きいほど前面に表示） */
 }
 
-.pc-large-input-field {
-  position: absolute;
-  z-index: 25;
-  width: 456px;
-  height: 120px;
-  border: 1px solid #D3D3D3;
-  background: #FCFCFC;
-  border-radius: 4px;
+.contact-textarea::placeholder {
+  color: #C4C4C4; /* プレースホルダーテキストの色（薄いグレー） */
+  font-family: "Zen Kaku Gothic New"; /* プレースホルダーのフォント種類 */
+  font-size: 15px; /* プレースホルダーのフォントサイズ */
 }
 
-.pc-name-label {
-  position: absolute;
-  z-index: 25;
-  color: #343434;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%;
+.contact-checkbox {
+  position: absolute; /* 絶対位置配置 */
+  left: 678.5px; /* 左端からの距離（指定通り） */
+  bottom: 376.53px; /* 下端からの距離 */
+  width: 15px; /* チェックボックスの幅 */
+  height: 15px; /* チェックボックスの高さ */
+  border-radius: 2px; /* 角の丸み */
+  border: 1px solid #D3D3D3; /* 境界線（1pxの灰色の実線） */
+  background: #FCFCFC; /* 背景色（白） */
+  z-index: 25; /* 重なり順序（数値が大きいほど前面に表示） */
+  appearance: none; /* ブラウザ標準のスタイルを無効化 */
+  -webkit-appearance: none; /* Safari/Chrome用 */
+  cursor: pointer; /* マウスカーソルをポインターに */
 }
 
-.pc-company-label {
-  color: #343434;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%;
-  position: absolute;
-  z-index: 25;
-}
-
-.pc-contact-content-label {
-  color: #343434;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%;
-  position: absolute;
-  z-index: 25;
-}
-
-.pc-privacy-label {
-  color: #343434;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%;
-  position: absolute;
-  z-index: 25;
-}
-
-.pc-privacy-text {
-  color: #343434;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 175%;
-  position: absolute;
-  z-index: 25;
-  max-width: 456px;
-  white-space: pre-wrap;
-}
-
-.pc-privacy-link {
-  color: #343434;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 175%;
-  text-decoration-line: underline;
-}
-
-.pc-check-box {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #D3D3D3;
-  background: #FCFCFC;
-  border-radius: 2px;
-  z-index: 25;
-}
-
-.pc-agree-text {
-  color: #343434;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  position: absolute;
-  z-index: 25;
-}
-
-.pc-name-placeholder {
-  width: 184px;
-  color: #C4C4C4;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  position: absolute;
-  z-index: 35;
-  pointer-events: none;
-}
-
-.pc-company-placeholder {
-  width: 216px;
-  color: #C4C4C4;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  position: absolute;
-  z-index: 35;
-  pointer-events: none;
-}
-
-.pc-content-placeholder {
-  width: 424px;
-  color: #C4C4C4;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  position: absolute;
-  z-index: 35;
-  pointer-events: none;
-}
-
-.pc-submit-button {
-  display: flex;
-  width: 304px;
-  height: 63px;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-  border-radius: 80px;
-  background: #FAD4D3;
-  position: absolute;
-  z-index: 25;
-  color: #FCFCFC;
-  text-align: center;
-  font-family: "Zen Kaku Gothic New";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%;
-  cursor: pointer;
-}
-
-.pc-arrow-icon {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 35;
-}
-
+.contact-checkbox:checked {
+  background-color: #D1342D; /* チェック時の背景色（赤） */
+  border-color: #D1342D; /* チェック時の境界線色（赤） */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z' fill='%23FCFCFC'/%3E%3C/svg%3E"); /* チェックマークの白いアイコン */
+  background-position: center; /* アイコンを中央に配置 */
+  background-repeat: no-repeat; /* アイコンの繰り返しを無効化 */
+  background-size: 10px; /* アイコンのサイズ調整 */
+} 

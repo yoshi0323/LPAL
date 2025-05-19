@@ -172,18 +172,284 @@ export const AnimateOnCursor = ({ children, className = '', delay = 0, animation
 
 // バリューセクション用の固定表示コンポーネント
 export const ValueStickyComponents = () => {
-  const [visibilityState, setVisibilityState] = useState('hidden'); // 'hidden', 'visible'
-  const [activeItems, setActiveItems] = useState([false, false, false, false, false]); // 各アイテムのアクティブ状態
-  const observersRef = useRef([]);
+  const [visibilityState, setVisibilityState] = useState('visible');
+  const [activeItems, setActiveItems] = useState([false, false, false, false, false]);
   const [imagesInitialized, setImagesInitialized] = useState(false);
-  const originalPositionsRef = useRef([]);
-  const activeItemsRef = useRef(activeItems); // アクティブ状態を参照として保持
-  const [worksHeaderPosition, setWorksHeaderPosition] = useState(null); // ワークヘッダーの位置
+  const originalPositionsRef = useRef(null);
+  const activeItemsRef = useRef(activeItems);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // activeItemsが変更されたら参照を更新
   useEffect(() => {
     activeItemsRef.current = activeItems;
   }, [activeItems]);
+
+  // 初期表示の設定
+  useEffect(() => {
+    const setInitialVisibility = () => {
+      const headerElement = document.querySelector('.value-header-text');
+      const subtitleElement = document.querySelector('.value-subtitle-text');
+      const numberElements = Array.from({ length: 5 }, (_, i) => document.querySelector(`.value-small-number-${i + 1}`));
+      const titleElements = Array.from({ length: 5 }, (_, i) => document.querySelector(`.value-small-title-${i + 1}`));
+
+      // ヘッダーとサブタイトルの初期表示
+      if (headerElement) {
+        headerElement.style.cssText = `
+          position: absolute;
+          left: 180px;
+          opacity: 1;
+          visibility: visible;
+          display: block;
+          z-index: 50;
+        `;
+      }
+
+      if (subtitleElement) {
+        subtitleElement.style.cssText = `
+          position: absolute;
+          left: 180px;
+          opacity: 1;
+          visibility: visible;
+          display: block;
+          z-index: 50;
+        `;
+      }
+
+      // 数字とタイトルの初期表示
+      for (let i = 0; i < 5; i++) {
+        const numberElement = numberElements[i];
+        const titleElement = titleElements[i];
+
+        if (numberElement) {
+          numberElement.style.cssText = `
+            position: absolute;
+            left: 180px;
+            opacity: ${activeItemsRef.current[i] ? '1' : '0.3'};
+            visibility: visible;
+            display: block;
+            z-index: 50;
+          `;
+        }
+
+        if (titleElement) {
+          titleElement.style.cssText = `
+            position: absolute;
+            left: 203px;
+            opacity: ${activeItemsRef.current[i] ? '1' : '0.3'};
+            visibility: visible;
+            display: block;
+            z-index: 50;
+          `;
+        }
+      }
+    };
+
+    // 即時実行
+    setInitialVisibility();
+
+    // DOMContentLoadedとloadイベントでも実行
+    document.addEventListener('DOMContentLoaded', setInitialVisibility);
+    window.addEventListener('load', setInitialVisibility);
+
+    return () => {
+      document.removeEventListener('DOMContentLoaded', setInitialVisibility);
+      window.removeEventListener('load', setInitialVisibility);
+    };
+  }, []);
+
+  // 初期化処理
+  useEffect(() => {
+    if (isInitialized) return;
+
+    const initialize = () => {
+      // 要素の初期位置を保存
+      const positions = {
+        header: null,
+        subtitle: null,
+        numbers: [],
+        titles: []
+      };
+
+      const headerElement = document.querySelector('.value-header-text');
+      const subtitleElement = document.querySelector('.value-subtitle-text');
+
+      if (headerElement) {
+        const rect = headerElement.getBoundingClientRect();
+        positions.header = {
+          top: rect.top + window.scrollY
+        };
+      }
+
+      if (subtitleElement) {
+        const rect = subtitleElement.getBoundingClientRect();
+        positions.subtitle = {
+          top: rect.top + window.scrollY
+        };
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        const numberElement = document.querySelector(`.value-small-number-${i}`);
+        const titleElement = document.querySelector(`.value-small-title-${i}`);
+
+        if (numberElement) {
+          const rect = numberElement.getBoundingClientRect();
+          positions.numbers[i-1] = {
+            top: rect.top + window.scrollY
+          };
+        }
+
+        if (titleElement) {
+          const rect = titleElement.getBoundingClientRect();
+          positions.titles[i-1] = {
+            top: rect.top + window.scrollY
+          };
+        }
+      }
+
+      originalPositionsRef.current = positions;
+      setIsInitialized(true);
+    };
+
+    // 初期化を実行
+    initialize();
+  }, [isInitialized]);
+
+  // スクロール処理
+  useEffect(() => {
+    if (!isInitialized) return;
+
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (window.innerWidth <= 580) return;
+
+      const scrollPosition = window.scrollY;
+      const valueStart = 2390;
+      
+      // ワークスヘッダーの位置を取得
+      const worksHeader = document.querySelector('.works-header-text');
+      if (!worksHeader) return;
+      
+      const worksHeaderRect = worksHeader.getBoundingClientRect();
+      const worksHeaderTop = worksHeaderRect.top + window.scrollY;
+      const valueEnd = worksHeaderTop - 300;
+
+      // 要素を取得
+      const headerElement = document.querySelector('.value-header-text');
+      const subtitleElement = document.querySelector('.value-subtitle-text');
+      const numberElements = Array.from({ length: 5 }, (_, i) => document.querySelector(`.value-small-number-${i + 1}`));
+      const titleElements = Array.from({ length: 5 }, (_, i) => document.querySelector(`.value-small-title-${i + 1}`));
+
+      const positions = originalPositionsRef.current;
+      if (!positions) return;
+
+      // セクション内の場合
+      if (scrollPosition >= valueStart && scrollPosition < valueEnd) {
+        const scrollDiff = scrollPosition - valueStart;
+        const progress = Math.min((scrollPosition - valueStart) / (valueEnd - valueStart), 1);
+        const fadeOutFactor = Math.max(1 - progress, 0.2);
+
+        // ヘッダーとサブタイトルの更新
+        if (headerElement && positions.header) {
+          headerElement.style.cssText = `
+            position: absolute;
+            top: ${positions.header.top + scrollDiff}px;
+            left: 180px;
+            opacity: ${fadeOutFactor};
+            visibility: visible;
+            display: block;
+            z-index: 50;
+            transition: opacity 0.3s ease-out;
+          `;
+        }
+
+        if (subtitleElement && positions.subtitle) {
+          subtitleElement.style.cssText = `
+            position: absolute;
+            top: ${positions.subtitle.top + scrollDiff}px;
+            left: 180px;
+            opacity: ${fadeOutFactor};
+            visibility: visible;
+            display: block;
+            z-index: 50;
+            transition: opacity 0.3s ease-out;
+          `;
+        }
+
+        // 数字とタイトルの更新
+        for (let i = 0; i < 5; i++) {
+          const numberElement = numberElements[i];
+          const titleElement = titleElements[i];
+
+          if (numberElement && positions.numbers[i]) {
+            const opacity = activeItemsRef.current[i] ? fadeOutFactor : Math.min(fadeOutFactor, 0.3);
+            numberElement.style.cssText = `
+              position: absolute;
+              top: ${positions.numbers[i].top + scrollDiff}px;
+              left: 180px;
+              opacity: ${opacity};
+              visibility: visible;
+              display: block;
+              z-index: 50;
+              transition: opacity 0.3s ease-out;
+            `;
+          }
+
+          if (titleElement && positions.titles[i]) {
+            const opacity = activeItemsRef.current[i] ? fadeOutFactor : Math.min(fadeOutFactor, 0.3);
+            titleElement.style.cssText = `
+              position: absolute;
+              top: ${positions.titles[i].top + scrollDiff}px;
+              left: 203px;
+              opacity: ${opacity};
+              visibility: visible;
+              display: block;
+              z-index: 50;
+              transition: opacity 0.3s ease-out;
+            `;
+          }
+        }
+
+        setVisibilityState('visible');
+      } else {
+        // セクション外では完全に非表示
+        const hideElement = (element) => {
+          if (element) {
+            element.style.cssText = `
+              position: absolute;
+              opacity: 0;
+              visibility: hidden;
+              display: none;
+              z-index: 50;
+              transition: opacity 0.3s ease-out;
+            `;
+          }
+        };
+
+        hideElement(headerElement);
+        hideElement(subtitleElement);
+        numberElements.forEach(hideElement);
+        titleElements.forEach(hideElement);
+
+        setVisibilityState('hidden');
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isInitialized]);
 
   // 画像要素を表示させる - シンプルな実装
   useEffect(() => {
@@ -196,18 +462,18 @@ export const ValueStickyComponents = () => {
       // イメージにスタイルを適用
       valueImages.forEach(img => {
         if (img) {
-        img.style.opacity = '1';
-        img.style.visibility = 'visible';
-        img.style.display = 'block';
+          img.style.opacity = '1';
+          img.style.visibility = 'visible';
+          img.style.display = 'block';
         }
       });
       
       // コンテナにスタイルを適用
       valueContainers.forEach(container => {
         if (container) {
-        container.style.opacity = '1';
-        container.style.visibility = 'visible';
-        container.style.display = 'block';
+          container.style.opacity = '1';
+          container.style.visibility = 'visible';
+          container.style.display = 'block';
         }
       });
       
@@ -243,11 +509,9 @@ export const ValueStickyComponents = () => {
       if (worksHeader) {
         const rect = worksHeader.getBoundingClientRect();
         const position = rect.top + window.scrollY - 300; // 300pxほど手前で消え始める
-        setWorksHeaderPosition(position);
         console.log('ワークヘッダー位置:', position); // デバッグ用
       } else {
         // ワークヘッダーが見つからない場合は、バリューセクションの終了位置を使用
-        setWorksHeaderPosition(4000); // デフォルト値
         console.log('ワークヘッダーが見つかりません、デフォルト値を設定');
       }
     };
@@ -270,64 +534,6 @@ export const ValueStickyComponents = () => {
       window.removeEventListener('resize', getWorksHeaderPosition);
       document.removeEventListener('DOMContentLoaded', getWorksHeaderPosition);
       timeouts.forEach(id => clearTimeout(id));
-    };
-  }, []);
-
-  // モバイル/デスクトップの切り替え時に要素をリセット
-  useEffect(() => {
-    const handleResize = () => {
-      const isMobileView = window.innerWidth <= 580;
-      
-      // モバイル表示に切り替わった時、固定された要素をリセット
-      if (isMobileView) {
-        const headerElement = document.querySelector('.value-header-text');
-        const subtitleElement = document.querySelector('.value-subtitle-text');
-        
-        if (headerElement) {
-          headerElement.style.position = '';
-          headerElement.style.top = '';
-          headerElement.style.left = '';
-          headerElement.style.zIndex = '';
-          headerElement.style.opacity = '';
-        }
-        
-        if (subtitleElement) {
-          subtitleElement.style.position = '';
-          subtitleElement.style.top = '';
-          subtitleElement.style.left = '';
-          subtitleElement.style.zIndex = '';
-          subtitleElement.style.opacity = '';
-        }
-        
-        for (let i = 1; i <= 5; i++) {
-          const numberElement = document.querySelector(`.value-small-number-${i}`);
-          const titleElement = document.querySelector(`.value-small-title-${i}`);
-          
-          if (numberElement) {
-            numberElement.style.position = '';
-            numberElement.style.top = '';
-            numberElement.style.left = '';
-            numberElement.style.zIndex = '';
-            numberElement.style.opacity = '';
-          }
-          
-          if (titleElement) {
-            titleElement.style.position = '';
-            titleElement.style.top = '';
-            titleElement.style.left = '';
-            titleElement.style.zIndex = '';
-            titleElement.style.opacity = '';
-          }
-        }
-      }
-    };
-    
-    window.addEventListener('resize', handleResize);
-    // 初期ロード時にも一度実行
-    handleResize();
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -363,253 +569,6 @@ export const ValueStickyComponents = () => {
 
     setupHoverEvents();
   }, [imagesInitialized]);
-
-  // スクロール位置に基づく表示/非表示
-  useEffect(() => {
-    // バリューセクションの開始と終了位置を定義（ピクセル単位）
-    const valueStart = 2390; // バリューセクションの上端位置
-    const valueEnd = worksHeaderPosition || 4200; // ワークヘッダー位置か、なければデフォルト値
-    
-    // 要素の状態を追跡するフラグ
-    let isFixed = false;
-    
-    // モバイル表示の場合は何もしない
-    if (window.innerWidth <= 580) {
-      return;
-    }
-    
-    // 各要素の初期位置を保存する
-    const saveOriginalPositions = () => {
-      // モバイル表示の場合は何もしない
-      if (window.innerWidth <= 580) {
-        return;
-      }
-      
-      // ヘッダーとサブタイトル
-      const headerElement = document.querySelector('.value-header-text');
-      const subtitleElement = document.querySelector('.value-subtitle-text');
-      
-      if (headerElement && !headerElement.dataset.originalTop) {
-        const headerRect = headerElement.getBoundingClientRect();
-        // 位置を計算する際にwindow.scrollX（水平スクロール位置）を考慮
-        headerElement.dataset.originalLeft = (headerRect.left + window.scrollX) + 'px';
-        headerElement.dataset.originalTop = (headerRect.top + window.scrollY) + 'px';
-        headerElement.dataset.height = headerRect.height + 'px';
-      }
-      
-      if (subtitleElement && !headerElement.dataset.subtitleGap && headerElement) {
-        const subtitleRect = subtitleElement.getBoundingClientRect();
-        const headerRect = headerElement.getBoundingClientRect();
-        
-        // ヘッダーとサブタイトルの間隔を計算して保存
-        const verticalGap = subtitleRect.top - (headerRect.top + headerRect.height);
-        headerElement.dataset.subtitleGap = verticalGap + 'px';
-        
-        // 位置を計算する際にwindow.scrollX（水平スクロール位置）を考慮
-        subtitleElement.dataset.originalLeft = (subtitleRect.left + window.scrollX) + 'px';
-        subtitleElement.dataset.originalTop = (subtitleRect.top + window.scrollY) + 'px';
-        subtitleElement.dataset.height = subtitleRect.height + 'px';
-      }
-      
-      // スモールナンバーとタイトル
-      for (let i = 1; i <= 5; i++) {
-        const numberElement = document.querySelector(`.value-small-number-${i}`);
-        const titleElement = document.querySelector(`.value-small-title-${i}`);
-        
-        if (numberElement && !numberElement.dataset.originalTop) {
-          const numberRect = numberElement.getBoundingClientRect();
-          // 位置を計算する際にwindow.scrollX（水平スクロール位置）を考慮
-          numberElement.dataset.originalLeft = (numberRect.left + window.scrollX) + 'px';
-          numberElement.dataset.originalTop = (numberRect.top + window.scrollY) + 'px';
-          numberElement.dataset.height = numberRect.height + 'px';
-          
-          // 最初のスモールナンバーとサブタイトルの間隔を計算して保存
-          if (i === 1 && subtitleElement && !subtitleElement.dataset.numberGap) {
-            const subtitleRect = subtitleElement.getBoundingClientRect();
-            const verticalGap = numberRect.top - (subtitleRect.top + subtitleRect.height);
-            subtitleElement.dataset.numberGap = verticalGap + 'px';
-          }
-          
-          // 前のスモールナンバーとの間隔を計算して保存
-          if (i > 1) {
-            const prevNumberElement = document.querySelector(`.value-small-number-${i-1}`);
-            if (prevNumberElement) {
-              const prevRect = prevNumberElement.getBoundingClientRect();
-              const verticalGap = numberRect.top - (prevRect.top + prevRect.height);
-              prevNumberElement.dataset.nextGap = verticalGap + 'px';
-            }
-          }
-          
-          // スモールナンバーとスモールタイトルの水平方向の差を保存
-          if (titleElement) {
-            const titleRect = titleElement.getBoundingClientRect();
-            const horizontalGap = titleRect.left - numberRect.right;
-            numberElement.dataset.titleGap = horizontalGap + 'px';
-          }
-        }
-      }
-      
-      // いくつかのコンソール出力でデバッグ
-      // console.log('ヘッダー初期位置:', headerElement?.dataset.originalTop);
-      // console.log('サブタイトル初期位置:', subtitleElement?.dataset.originalTop);
-    };
-
-    // 初期位置を保存
-    saveOriginalPositions();
-    
-    // スクロールハンドラの頻度を制限する関数
-    const throttle = (func, delay) => {
-      let lastCall = 0;
-      return (...args) => {
-        const now = new Date().getTime();
-        if (now - lastCall < delay) {
-          return;
-        }
-        lastCall = now;
-        return func(...args);
-      };
-    };
-    
-    // スクロールイベントのハンドラ
-    const handleScroll = throttle(() => {
-      // モバイル表示時は処理しない
-      if (window.innerWidth <= 580) {
-        return;
-      }
-
-      // スクロール位置を取得
-      const scrollPosition = window.scrollY;
-      
-      // バリューセクション内の場合
-      if (scrollPosition >= valueStart && scrollPosition < valueEnd) {
-        const progress = (scrollPosition - valueStart) / (valueEnd - valueStart);
-        const fadeOutFactor = 1 - progress; // 進行に応じて徐々に消える係数
-        
-        if (visibilityState !== 'visible') {
-          setVisibilityState('visible');
-        }
-        
-        // 要素の位置を固定
-        const headerElement = document.querySelector('.value-header-text');
-        const subtitleElement = document.querySelector('.value-subtitle-text');
-        
-        // ヘッダー要素を固定
-        if (headerElement) {
-          // 元の位置に戻す（必要に応じて位置を修正）
-            headerElement.style.position = 'fixed';
-          headerElement.style.top = '100px'; // 固定位置（画面上部から100px）
-          headerElement.style.left = '180px'; // 固定位置（左端から180px）
-          headerElement.style.zIndex = '50';
-          headerElement.style.opacity = fadeOutFactor.toString();
-        }
-        
-        // サブタイトル要素を固定
-        if (subtitleElement) {
-          // 元の位置に戻す（必要に応じて位置を修正）
-              subtitleElement.style.position = 'fixed';
-          subtitleElement.style.top = '170px'; // 固定位置（画面上部から170px）
-          subtitleElement.style.left = '180px'; // 固定位置（左端から180px）
-          subtitleElement.style.zIndex = '50';
-          subtitleElement.style.opacity = fadeOutFactor.toString();
-        }
-                
-        // 各スモールナンバーとタイトルも固定
-                for (let i = 1; i <= 5; i++) {
-                  const numberElement = document.querySelector(`.value-small-number-${i}`);
-                  const titleElement = document.querySelector(`.value-small-title-${i}`);
-                  
-          // 固定位置のY座標を計算（最初のナンバーは240px、以降は45pxずつ下）
-          const topPosition = 240 + (i - 1) * 45;
-          
-          if (numberElement) {
-                      numberElement.style.position = 'fixed';
-            numberElement.style.top = `${topPosition}px`;
-            numberElement.style.left = '180px';
-            numberElement.style.zIndex = '50';
-            
-            // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
-            if (numberElement.style.position === 'fixed') {
-                        // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
-              numberElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
-            }
-              }
-              
-              if (titleElement) {
-            titleElement.style.position = 'fixed';
-            titleElement.style.top = `${topPosition}px`;
-            titleElement.style.left = '203px';
-            titleElement.style.zIndex = '50';
-            
-            if (titleElement.style.position === 'fixed') {
-              // アクティブ状態とフェードアウト係数を組み合わせる（カーソルホバー時のみアクティブ）
-              titleElement.style.opacity = activeItemsRef.current[i-1] ? fadeOutFactor : (0.3 * fadeOutFactor);
-            }
-          }
-        }
-      } 
-      // セクションを出たとき
-      else if (scrollPosition < valueStart || scrollPosition >= valueEnd) {
-        if (visibilityState !== 'hidden') {
-          setVisibilityState('hidden');
-          // アクティブ状態のリセットは行わない - カーソルホバーで制御するため
-        }
-        
-        // すべての要素を元の位置に戻す
-        isFixed = false;
-        
-        const headerElement = document.querySelector('.value-header-text');
-        const subtitleElement = document.querySelector('.value-subtitle-text');
-        
-        if (headerElement) {
-          headerElement.style.position = '';
-          headerElement.style.top = '';
-          headerElement.style.left = '';
-          headerElement.style.zIndex = '';
-          headerElement.style.opacity = '';
-        }
-        
-        if (subtitleElement) {
-          subtitleElement.style.position = '';
-          subtitleElement.style.top = '';
-          subtitleElement.style.left = '';
-          subtitleElement.style.zIndex = '';
-          subtitleElement.style.opacity = '';
-        }
-        
-        for (let i = 1; i <= 5; i++) {
-          const numberElement = document.querySelector(`.value-small-number-${i}`);
-          const titleElement = document.querySelector(`.value-small-title-${i}`);
-          
-          if (numberElement) {
-            numberElement.style.position = '';
-            numberElement.style.top = '';
-            numberElement.style.left = '';
-            numberElement.style.zIndex = '';
-            // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
-            numberElement.style.opacity = activeItemsRef.current[i-1] ? 1 : 0.3;
-          }
-          
-          if (titleElement) {
-            titleElement.style.position = '';
-            titleElement.style.top = '';
-            titleElement.style.left = '';
-            titleElement.style.zIndex = '';
-            // アクティブ状態に基づいて不透明度を設定（カーソルホバー時のみアクティブ）
-            titleElement.style.opacity = activeItemsRef.current[i-1] ? 1 : 0.3;
-          }
-        }
-      }
-    }, 100); // 100ミリ秒ごとに実行を制限
-
-    window.addEventListener('scroll', handleScroll);
-    
-    // 初期ロード時にもスクロール位置をチェック
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [worksHeaderPosition]); // ワークヘッダー位置が変わったときにエフェクトを再実行
 
   // DOM操作で要素を直接制御するため、Reactのレンダリングは行わない
   return null;

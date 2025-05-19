@@ -21,7 +21,7 @@ import {
 } from './components/value.js';
 import { WorksHeaderText, WorksSubtitleText, WorksImagesContainer, WorksCircleGradient } from './components/works.js';
 import { ProcessHeaderText, ProcessSubtitleText, ProcessImagesContainer } from './components/process.js';
-import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, ContactGroupImage, ContactSecondImage, ContactWhiteFooter, ContactFooterLogo, ContactFooterLinks, ContactFooterCopyright, ContactFormMobile, ContactMobileFooter, PcContactContainer, PcNameLabel, PcRedIndicator, PcInputField, PcLargeInputField, PcCompanyLabel, PcContactContentLabel, PcPrivacyLabel, PcPrivacyText, PcCheckBox, PcAgreeText, PcNamePlaceholder, PcCompanyPlaceholder, PcContentPlaceholder, PcSubmitButton } from './components/contact.js';
+import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, ContactGroupImage, ContactSecondImage, ContactWhiteFooter, ContactFooterLogo, ContactFooterLinks, ContactFooterCopyright, ContactFormMobile, ContactMobileFooter } from './components/contact.js';
 import { CliffQuestionPopup } from './components/popup.js';
 import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor, ValueStickyComponents, WorkImageAnimation, ProcessImageAnimation, AnimateContactElements, AnimateServiceElements } from './components/animation';
 import './styles/styles.css';
@@ -34,6 +34,18 @@ import './styles/process.css';
 import './styles/contact.css';
 import './styles/popup.css';
 import './styles/animation.css';
+
+// InputFieldコンポーネントの型を定義
+interface InputFieldProps {
+  left: number;
+  type?: string;
+}
+
+// InputFieldコンポーネントのラッパー関数
+const InputFieldWithType = (props: { left: number, type?: string }) => {
+  // @ts-ignore - JavaScriptコンポーネントへの型エラーを抑制
+  return <InputField {...props} />;
+};
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -405,7 +417,7 @@ function App() {
               <div className="form-group">
                 <CompanyLabel />
                 <RedIndicator top={209.73} left={1132.29} />
-                <InputField left={1132.29} />
+                <InputFieldWithType left={1132.29} type="company" />
                 <CompanyPlaceholder left={1132.29} top={240.23} />
               </div>
             </div>
@@ -622,7 +634,7 @@ function App() {
                 position: 'absolute',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                top: '-80px',
+                top: '1900px',
                 width: '100%',
                 maxWidth: '335px',
                 zIndex: 9999
@@ -672,32 +684,12 @@ function App() {
         <ContactBackgroundGradient />
         <ContactMaskImage />
         
-        {/* PC版コンタクトフォーム - ContactGroupImageより前に配置 */}
-        <PcContactContainer />
-        <PcNameLabel top={120} left={32} />
-        <PcRedIndicator top={120} left={80} />
-        <PcInputField top={150} left={32} />
-        <PcNamePlaceholder top={162} left={48} />
-        
-        <PcCompanyLabel top={120} left={270} />
-        <PcRedIndicator top={120} left={320} />
-        <PcInputField top={150} left={270} />
-        <PcCompanyPlaceholder top={162} left={286} />
-        
-        <PcContactContentLabel top={230} left={32} />
-        <PcRedIndicator top={230} left={145} />
-        <PcLargeInputField top={260} left={32} />
-        <PcContentPlaceholder top={272} left={48} />
-        
-        <PcPrivacyLabel top={410} left={32} />
-        <PcPrivacyText top={440} left={32} />
-        <PcCheckBox top={520} left={32} />
-        <PcAgreeText top={518} left={55} />
-        
-        <PcSubmitButton top={560} left={108} />
-        
         {!isMobile && <ContactGroupImage />}
         {!isMobile && <ContactSecondImage />}
+        {!isMobile && <input type="text" className="contact-textbox-left" placeholder="山田太郎" />}
+        {!isMobile && <input type="text" className="contact-textbox-right" placeholder="企業名を入力してください" />}
+        {!isMobile && <textarea className="contact-textarea" placeholder="こちらにお問い合わせ内容をご記入ください"></textarea>}
+        {!isMobile && <input type="checkbox" className="contact-checkbox" id="privacy-checkbox" />}
         <ContactFormMobile />
         <ContactCircleGradient />
         <ContactFooterLogo />

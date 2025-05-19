@@ -658,15 +658,42 @@
     
     /* バリューセクションの基本要素は表示 */
     .value-section {
-        top: 1900px !important;
-        min-height: auto !important;
         position: relative !important;
         overflow: visible !important;
-        margin-top: 70px !important; /* 上部マージンを増やす */
-        margin-bottom: 70px !important; /* 下部マージンを増やす */
-        padding-bottom: 40px !important; /* 下部パディングを増やす */
+        margin-top: 70px !important;
+        margin-bottom: 70px !important;
+        padding-bottom: 40px !important;
+        min-height: 1000px !important; /* 十分な高さを確保 */
     }
 
+    /* バリューセクションのヘッダーとサブタイトル */
+    .value-header-text {
+        position: absolute !important;
+        left: 13px !important;
+        top: 0% !important;
+        color: #D1342D !important;
+        font-family: "Lexend Deca" !important;
+        font-size: 48px !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        line-height: 175% !important;
+        z-index: 999 !important;
+        display: block !important;
+    }
+    
+    .value-subtitle-text {
+        position: absolute !important;
+        left: 13px !important;
+        top: 2132.37px !important; /* 2048.87px + 84px (line-height) */
+        color: #343434 !important;
+        font-family: "Zen Kaku Gothic New" !important;
+        font-size: 18px !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        line-height: 175% !important;
+        z-index: 999 !important;
+        display: block !important;
+    }
 }
 
 /* PC表示での設定（580px超） */
@@ -1117,28 +1144,41 @@
     
     /* バリューセクションの基本要素は表示 */
     .value-section {
-        top: 1900px !important;
-        min-height: auto !important;
         position: relative !important;
         overflow: visible !important;
-        margin-top: 70px !important; /* 上部マージンを増やす */
-        margin-bottom: 70px !important; /* 下部マージンを増やす */
-        padding-bottom: 40px !important; /* 下部パディングを増やす */
+        margin-top: 70px !important;
+        margin-bottom: 70px !important;
+        padding-bottom: 40px !important;
+        min-height: 1000px !important; /* 十分な高さを確保 */
     }
     
     /* バリューセクションのヘッダーとサブタイトル */
     .value-header-text {
         position: absolute !important;
         left: 13px !important;
-        top: -200px !important;
-        font-size: 40px !important;
+        top: 1700px !important;
+        color: #D1342D !important;
+        font-family: "Lexend Deca" !important;
+        font-size: 48px !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        line-height: 175% !important;
+        z-index: 999 !important;
+        display: block !important;
     }
     
     .value-subtitle-text {
         position: absolute !important;
-        left: 20px !important;
-        top: -142px !important;
+        left: 13px !important;
+        top: 1780px !important; /* 2048.87px + 84px (line-height) */
+        color: #343434 !important;
+        font-family: "Zen Kaku Gothic New" !important;
         font-size: 18px !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        line-height: 175% !important;
+        z-index: 999 !important;
+        display: block !important;
     }
 }
 

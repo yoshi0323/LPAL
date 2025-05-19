@@ -275,16 +275,31 @@ export const RedIndicator = ({ top, left }) => {
 };
 
 // InputField Component
-export const InputField = ({ left }) => {
+export const InputField = (props) => {
+  const { left, type } = props;
+  // 左右の位置によって異なるプレースホルダーを設定
+  let placeholder = "山田太郎";
+  if (left === 1132.29 || type === "company") {
+    placeholder = "企業名を入力してください";
+  }
+  
   return (
-    <div className="input-field" style={{ left: `${left}px` }}></div>
+    <input
+      type="text"
+      className="input-field"
+      style={{ left: `${left}px` }}
+      placeholder={placeholder}
+    />
   );
 };
 
 // LargeInputField Component
 export const LargeInputField = () => {
   return (
-    <div className="large-input-field"></div>
+    <textarea 
+      className="large-input-field" 
+      placeholder="お問い合わせ内容を入力してください"
+    ></textarea>
   );
 };
 
@@ -343,23 +358,20 @@ export const AgreeText = () => {
 
 // NamePlaceholder Component
 export const NamePlaceholder = ({ left, top }) => {
-  return (
-    <div className="name-placeholder" style={{ left: `${left + 16}px`, top: `${top + 12}px` }}>山田 太郎</div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // CompanyPlaceholder Component
 export const CompanyPlaceholder = ({ left, top }) => {
-  return (
-    <div className="company-placeholder" style={{ left: `${left + 16}px`, top: `${top + 12}px` }}>企業名を入力してください</div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // ContentPlaceholder Component
 export const ContentPlaceholder = () => {
-  return (
-    <div className="content-placeholder">お問い合わせ内容を入力してください</div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // SubmitButton Component

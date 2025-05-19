@@ -8,13 +8,13 @@
 
 /* 背景要素 */
 .gradient-background {
-  width: 1440px;
-  height: 830px;
+  width: 100%;
+  height: 100%;
   flex-shrink: 0;
   background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%);
   position: absolute;
   left: 0;
-  top: 1771.00712px;
+  top: 1771px;
   z-index: 1;
 }
 
@@ -82,6 +82,7 @@
   border-radius: 600px; /* 画像も円形に切り抜く */
 }
 
+/* サービス白コンテナ */
 .service-white-container {
   width: 1080px;
   height: 830px;
@@ -94,47 +95,49 @@
   z-index: 3;
 }
 
+/* サービスヘッダーテキスト */
 .service-header-text {
   color: #D1342D;
   font-family: "Lexend Deca";
   font-size: 48px;
   font-style: normal;
   font-weight: 700;
-  line-height: 175%; /* 84px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 1714.7772px; /* gradient-backgroundの最底辺(1771.00712px + 830px) + 802.23px */
   z-index: 4;
 }
 
+/* サービスサブタイトル */
 .service-subtitle-text {
   color: #343434;
   font-family: "Zen Kaku Gothic New";
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  line-height: 175%; /* 31.5px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 1786.7772px;
   z-index: 4;
 }
 
+/* サービス説明文 */
 .service-description-text {
-  flex: 1 0 0;
-  align-self: stretch;
   color: #343434;
   font-family: "Zen Kaku Gothic New";
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 175%; /* 26.25px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 1834.7772px;
   z-index: 4;
 }
 
+/* サービスボックス */
 .service-box {
   width: 432px;
   height: 324px;
@@ -151,9 +154,10 @@
 }
 
 .service-box-right {
-  left: 748px; /* 260px + 432px + 56px */
+  left: 748px;
 }
 
+/* サービス画像コンテナ */
 .service-image-container {
   position: absolute;
   z-index: 5;
@@ -162,6 +166,16 @@
 .service-image1-container {
   left: 300.5px;
   top: 1946.7772px;
+}
+
+.service-image2-container {
+  position: absolute;
+  left: 781.15px;
+  top: 1947.7472px;
+  width: 264px;
+  height: 182px;
+  z-index: 5;
+  overflow: hidden;
 }
 
 /* レスポンシブ表示用の特別なクラス */
@@ -210,16 +224,6 @@
   height: auto;
 }
 
-.service-image2-container {
-  position: absolute;
-  left: 781.15px;
-  top: 1938.7572px;
-  width: 264px;
-  height: 182px;
-  z-index: 20; /* 他の画像要素より低いz-indexに設定 */
-  overflow: hidden;
-}
-
 .svg-mask {
   position: absolute;
   top: 0;
@@ -241,6 +245,7 @@
   border-radius: 4px;
 }
 
+/* サービスグラデーションカード */
 .service-gradient-card {
   position: absolute;
   width: 264px;
@@ -309,6 +314,7 @@
   transform: translate(0, -10%); /* 横-10%, 縦-25%の位置にずらす */
 }
 
+/* サービスタイトルテキスト */
 .service-title-text {
   width: 432px;
   color: #343434;
@@ -316,13 +322,14 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: 175%; /* 42px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 2262.00712px;
   z-index: 4;
 }
 
+/* サービスコンサルティング説明 */
 .service-consulting-description {
   width: 432px;
   color: #343434;
@@ -330,13 +337,14 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 175%; /* 26.25px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 2312.00712px;
   z-index: 4;
 }
 
+/* サービスSaaSタイトル */
 .service-saas-title {
   width: 432px;
   color: #343434;
@@ -344,13 +352,14 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: 175%; /* 42px */
+  line-height: 175%;
   position: absolute;
   left: 748px;
   top: 2262.00712px;
   z-index: 4;
 }
 
+/* サービスSaaS説明 */
 .service-saas-description {
   width: 432px;
   color: #343434;
@@ -358,13 +367,14 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 175%; /* 26.25px */
+  line-height: 175%;
   position: absolute;
   left: 748px;
   top: 2312.00712px;
   z-index: 4;
 }
 
+/* サービスセクション */
 .service-section {
   position: relative;
   z-index: 3;

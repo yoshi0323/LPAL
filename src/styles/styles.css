@@ -476,6 +476,8 @@ body {
   z-index: 25;
   width: 456px;
   height: 120px;
+  display: flex;
+  padding: 12px 16px;
   border: 1px solid #D3D3D3;
   background: #FCFCFC;
   border-radius: 4px;
