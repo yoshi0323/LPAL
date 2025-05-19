@@ -1,13 +1,37 @@
-.gradient-background{
-  width: 1440px;
+/* サービスセクションのラッパー */
+.service-section-wrapper {
+  position: relative;
+  width: 100%;
   height: 830px;
+  overflow: hidden;
+}
+
+/* 背景要素 */
+.gradient-background {
+  width: 100%;
+  height: 100%;
   flex-shrink: 0;
   background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%);
   position: absolute;
-  left: 0; /* 左端から配置 */
-  top: 1771.00712px; /* 指定された位置 */
-  z-index: 1; /* 重なり順序 */
-  overflow: hidden; /* はみ出した部分を隠す */
+  left: 0;
+  top: 1771px;
+  z-index: 1;
+}
+
+/* 新しいマスク画像のコンテナ */
+.mask-image-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mask-group-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .circle-gradient {
@@ -16,15 +40,20 @@
   flex-shrink: 0;
   aspect-ratio: 1/1;
   position: absolute;
-  left: 64px; /* 左端から64px */
-  top: 1891.00712px; /* GradientBackgroundの上端(1771.00712px) + 120px */
-  z-index: 2; /* GradientBackgroundの上に表示 */
+  left: 64px;
+  top: 1891.00712px;
+  z-index: 2;
+  display: none; /* サークルイメージを非表示にする */
 }
 
 .circle-image {
   width: 100%;
   height: 100%;
   object-fit: contain; /* 画像のアスペクト比を維持 */
+}
+
+.large-circle-gradient-hidden {
+  display: none; /* こちらも非表示にする */
 }
 
 .large-circle-gradient {
@@ -40,6 +69,12 @@
   z-index: 2;
 }
 
+/* 特定の位置のラージサークルイメージを非表示にする */
+.large-circle-gradient[style*="right: 174.48px"][style*="bottom: 234.51px"],
+.large-circle-gradient[style*="right: -174px"][style*="bottom: -235px"] {
+  display: none;
+}
+
 .large-circle-image {
   width: 100%;
   height: 100%;
@@ -47,6 +82,7 @@
   border-radius: 600px; /* 画像も円形に切り抜く */
 }
 
+/* サービス白コンテナ */
 .service-white-container {
   width: 1080px;
   height: 830px;
@@ -55,51 +91,53 @@
   background: #FCFCFC;
   position: absolute;
   left: 180px;
-  top: 1651.00712px; /* gradient-backgroundの上端(1771.00712px) - 120px */
-  z-index: 3; /* 最前面に表示 */
+  top: 1651.00712px;
+  z-index: 3;
 }
 
+/* サービスヘッダーテキスト */
 .service-header-text {
   color: #D1342D;
   font-family: "Lexend Deca";
   font-size: 48px;
   font-style: normal;
   font-weight: 700;
-  line-height: 175%; /* 84px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 1714.7772px; /* gradient-backgroundの最底辺(1771.00712px + 830px) + 802.23px */
-  z-index: 4; /* service-white-containerの上に表示 */
+  z-index: 4;
 }
 
+/* サービスサブタイトル */
 .service-subtitle-text {
   color: #343434;
   font-family: "Zen Kaku Gothic New";
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  line-height: 175%; /* 31.5px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 1786.7772px;
   z-index: 4;
 }
 
+/* サービス説明文 */
 .service-description-text {
-  flex: 1 0 0;
-  align-self: stretch;
   color: #343434;
   font-family: "Zen Kaku Gothic New";
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 175%; /* 26.25px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 1834.7772px;
   z-index: 4;
 }
 
+/* サービスボックス */
 .service-box {
   width: 432px;
   height: 324px;
@@ -116,12 +154,13 @@
 }
 
 .service-box-right {
-  left: 748px; /* 260px + 432px + 56px */
+  left: 748px;
 }
 
+/* サービス画像コンテナ */
 .service-image-container {
   position: absolute;
-  z-index: 5; /* ボックスの上に表示 */
+  z-index: 5;
 }
 
 .service-image1-container {
@@ -129,19 +168,60 @@
   top: 1946.7772px;
 }
 
-.service-image {
-  max-width: 100%;
-  height: auto;
-}
-
 .service-image2-container {
   position: absolute;
   left: 781.15px;
-  top: 1938.7572px;
+  top: 1947.7472px;
   width: 264px;
   height: 182px;
   z-index: 5;
   overflow: hidden;
+}
+
+/* レスポンシブ表示用の特別なクラス */
+.responsive-mode {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+/* レスポンシブ対応のメディアクエリを追加 */
+@media screen and (max-width: 991px) {
+  .service-image1-container {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin-top: 20px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+  }
+  
+  /* 画像も確実に表示 */
+  .service-image1 {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .service-image1-container {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .service-image1-container {
+    margin: 20px auto;
+  }
+}
+
+.service-image {
+  max-width: 100%;
+  height: auto;
 }
 
 .svg-mask {
@@ -150,21 +230,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 6;
+  z-index: 10; /* 十分高いz-indexに設定する必要はない */
 }
 
 .service-image2 {
   position: absolute;
   top: 4px;
   left: 4px;
-  width: calc(100% - 8px); /* 左右両方から4pxずつ小さく */
-  height: calc(100% - 8px); /* 上下両方から4pxずつ小さく */
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
   object-fit: cover;
-  object-position: left center; /* 画像の左側を表示する */
-  z-index: 7;
-  border-radius: 4px; /* 角を丸くして背景のSVGと馴染ませる */
+  object-position: left center;
+  z-index: 5; /* マスクより低く設定 */
+  border-radius: 4px;
 }
 
+/* サービスグラデーションカード */
 .service-gradient-card {
   position: absolute;
   width: 264px;
@@ -189,7 +270,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 4;
+  z-index: 5;
 }
 
 .image-container {
@@ -200,7 +281,7 @@
   height: calc(100% - 8px);
   overflow: hidden;
   border-radius: 4px;
-  z-index: 5;
+  z-index: 6;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -211,7 +292,7 @@
   width: 100%;
   height: auto;
   position: relative;
-  z-index: 5;
+  z-index: 6;
 }
 
 /* カード1の画像位置調整 */
@@ -230,9 +311,10 @@
   object-position: center 35%; /* 中央から縦方向に35%の位置 */
   
   /* または位置をtransformで調整する場合 */
-  transform: translate(15%, -10%); /* 横-10%, 縦-25%の位置にずらす */
+  transform: translate(0, -10%); /* 横-10%, 縦-25%の位置にずらす */
 }
 
+/* サービスタイトルテキスト */
 .service-title-text {
   width: 432px;
   color: #343434;
@@ -240,13 +322,14 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: 175%; /* 42px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 2262.00712px;
-  z-index: 5; /* サービスボックスの上に表示されるように */
+  z-index: 4;
 }
 
+/* サービスコンサルティング説明 */
 .service-consulting-description {
   width: 432px;
   color: #343434;
@@ -254,13 +337,14 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 175%; /* 26.25px */
+  line-height: 175%;
   position: absolute;
   left: 260px;
   top: 2312.00712px;
-  z-index: 5;
+  z-index: 4;
 }
 
+/* サービスSaaSタイトル */
 .service-saas-title {
   width: 432px;
   color: #343434;
@@ -268,13 +352,14 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: 175%; /* 42px */
+  line-height: 175%;
   position: absolute;
   left: 748px;
   top: 2262.00712px;
-  z-index: 5;
+  z-index: 4;
 }
 
+/* サービスSaaS説明 */
 .service-saas-description {
   width: 432px;
   color: #343434;
@@ -282,9 +367,53 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 175%; /* 26.25px */
+  line-height: 175%;
   position: absolute;
   left: 748px;
   top: 2312.00712px;
-  z-index: 5;
+  z-index: 4;
+}
+
+/* サービスセクション */
+.service-section {
+  position: relative;
+  z-index: 3;
+}
+
+/* カスタムラッパークラス */
+.custom-gradient-wrapper .gradient-background .large-circle-gradient {
+  display: none;
+}
+
+/* レスポンシブ対応のためのメディアクエリ */
+@media (max-width: 580px) {
+  .gradient-background {
+    width: 375px !important;
+    height: 1158px !important;
+    position: absolute !important;
+    left: -15px !important;
+    top: 880px !important;
+    z-index: 4 !important;
+    overflow: visible !important;
+    display: block !important;
+    /* フォールバック用の背景グラデーション */
+    background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%) !important;
+  }
+  
+  .mask-image-container {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible !important;
+    display: block !important;
+    position: relative !important;
+  }
+  
+  .mask-group-image {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 300px !important;
+    object-fit: cover !important;
+    display: block !important;
+    position: relative !important;
+  }
 }

@@ -1,24 +1,106 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // GradientBackground Component
 export const GradientBackground = () => {
+  // 画像URLを状態として保存（初期値をnullに設定）
+  const [mobileBgUrl, setMobileBgUrl] = useState(null);
+  const [desktopBgUrl, setDesktopBgUrl] = useState(null);
+  // isMobileの状態を追加
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // メディアクエリの状態を監視する
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    
+    // 初期値を設定
+    setIsMobile(mediaQuery.matches);
+    console.log('Is mobile:', mediaQuery.matches);
+    
+    // メディアクエリの変更を監視するリスナー
+    const handleMediaChange = (e) => {
+      setIsMobile(e.matches);
+      console.log('Is mobile:', e.matches);
+    };
+    
+    // リスナーを追加
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleMediaChange);
+    } else {
+      // 古いブラウザ用のフォールバック
+      mediaQuery.addListener(handleMediaChange);
+    }
+    
+    // クリーンアップ関数
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleMediaChange);
+      } else {
+        // 古いブラウザ用のフォールバック
+        mediaQuery.removeListener(handleMediaChange);
+      }
+    };
+  }, []);
+  
+  // 画像URL生成のためのuseEffect
+  useEffect(() => {
+    // 完全URLを生成
+    const mobileUrl = `${window.location.origin}${process.env.PUBLIC_URL}/image/bg-mask.png`;
+    const desktopUrl = `${window.location.origin}${process.env.PUBLIC_URL}/image/Mask group (1).png`;
+    
+    // 状態を更新
+    setMobileBgUrl(mobileUrl);
+    setDesktopBgUrl(desktopUrl);
+    
+    // デバッグ情報をコンソールに出力
+    console.log('Mobile background URL:', mobileUrl);
+    console.log('Desktop background URL:', desktopUrl);
+  }, []);
+  
   return (
     <div className="gradient-background">
-      <div className="large-circle-gradient">
-        <img 
-          src={process.env.PUBLIC_URL + "/image/Ellipse 5.png"} 
-          alt="Large Gradient Circle" 
-          className="large-circle-image" 
-        />
+      <div className="mask-image-container">
+        {isMobile ? 
+          // モバイル表示用画像
+          (mobileBgUrl && <img 
+            src={mobileBgUrl}
+            alt="Mobile Background" 
+            className="mask-group-image" 
+            style={{ 
+              width: '100%', 
+              height: 'auto', 
+              minHeight: '300px',
+              objectFit: 'cover', 
+              display: 'block',
+              position: 'relative'
+            }}
+            onLoad={() => console.log('Mobile image loaded')}
+            onError={() => console.error('Failed to load mobile image')}
+          />) : 
+          // デスクトップ表示用画像
+          (desktopBgUrl && <img 
+            src={desktopBgUrl}
+            alt="Desktop Background" 
+            className="mask-group-image" 
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'cover', 
+              display: 'block',
+              position: 'relative'
+            }}
+            onLoad={() => console.log('Desktop image loaded')}
+            onError={() => console.error('Failed to load desktop image')}
+          />)
+        }
       </div>
     </div>
   );
 };
 
 // CircleGradient Component
-export const CircleGradient = () => {
+export const CircleGradient = (props) => {
   return (
-    <div className="circle-gradient">
+    <div className="circle-gradient" style={props.style}>
       <img 
         src={process.env.PUBLIC_URL + "/image/Ellipse%206%20(1).png"} 
         alt="Gradient Circle" 
@@ -68,10 +150,20 @@ export const ServiceSubtitleText = () => {
 
 // ServiceDescriptionText Component
 export const ServiceDescriptionText = () => {
+  // モバイル表示用のテキスト（レスポンシブ表示用）
+  const mobileText = `Alchemyはさまざまな課題に対し、柔軟な
+解決法を持っています。
+以下は代表的なサポート内容です。`;
+  
+  // デスクトップ表示用のテキスト（PC表示用）
+  const desktopText = `Alchemyはさまざまな課題に対し、柔軟な解決法を持っています。
+以下は代表的なサポート内容です。`;
+  
   return (
     <div className="service-description-text">
-      Alchemyはさまざまな課題に対し、柔軟な解決法を持っています。<br />
-      以下は代表的なサポート内容です。
+      {/* レスポンシブ対応 - PCではデスクトップ用テキスト、モバイルではモバイル用テキストを表示 */}
+      <div className="desktop-only">{desktopText}</div>
+      <div className="mobile-only">{mobileText}</div>
     </div>
   );
 };
@@ -92,12 +184,54 @@ export const ServiceBox2 = () => {
 
 // ServiceImage1 Component
 export const ServiceImage1 = () => {
+  // isMobile状態を追加
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // メディアクエリをチェック
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mediaQuery.matches);
+    
+    const handleMediaChange = (e) => {
+      setIsMobile(e.matches);
+    };
+    
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleMediaChange);
+    } else {
+      mediaQuery.addListener(handleMediaChange);
+    }
+    
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleMediaChange);
+      } else {
+        mediaQuery.removeListener(handleMediaChange);
+      }
+    };
+  }, []);
+  
   return (
-    <div className="service-image-container service-image1-container">
+    <div className="service-image-container service-image1-container" 
+      style={{
+        display: 'flex',
+        justifyContent: isMobile ? 'flex-end' : 'flex-start',
+        alignItems: 'center',
+        margin: isMobile ? '20px 20px 20px auto' : 'initial',
+        width: isMobile ? '80%' : '100%',
+        maxWidth: isMobile ? '300px' : 'none'
+      }}>
       <img
         src={process.env.PUBLIC_URL + "/image/_レイヤー_1.png"}
         alt="Service Image 1"
         className="service-image service-image1"
+        style={{
+          width: isMobile ? '100%' : 'auto',
+          height: isMobile ? 'auto' : '2640px',
+          objectFit: 'contain',
+          maxWidth: '351px',
+          maxHeight: '291px'
+        }}
         onError={(e) => {
           console.error("Image failed to load");
         }}
@@ -108,9 +242,45 @@ export const ServiceImage1 = () => {
 
 // ServiceImage2 Component
 export const ServiceImage2 = () => {
+  // isMobile状態を追加
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // メディアクエリをチェック
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mediaQuery.matches);
+    
+    const handleMediaChange = (e) => {
+      setIsMobile(e.matches);
+    };
+    
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleMediaChange);
+    } else {
+      mediaQuery.addListener(handleMediaChange);
+    }
+    
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleMediaChange);
+      } else {
+        mediaQuery.removeListener(handleMediaChange);
+      }
+    };
+  }, []);
+  
   return (
-    <div className="service-image2-container">
-      <svg xmlns="http://www.w3.org/2000/svg" width="264" height="182" viewBox="0 0 264 182" fill="none" className="svg-mask">
+    <div className="service-image2-container"
+      style={{
+        display: 'flex',
+        justifyContent: isMobile ? 'center' : 'flex-start',
+        alignItems: 'center',
+        margin: isMobile ? '20px auto' : 'initial',
+        width: isMobile ? '80%' : '100%',
+        maxWidth: isMobile ? '300px' : 'none',
+        position: 'relative'
+      }}>
+      <svg xmlns="http://www.w3.org/2000/svg" width={isMobile ? "220" : "264"} height={isMobile ? "150" : "182"} viewBox="0 0 264 182" fill="none" className="svg-mask" style={{position: 'absolute', zIndex: 1}}>
         <path d="M256 0H8C3.58172 0 0 3.58172 0 8V174C0 178.418 3.58171 182 7.99999 182H256C260.418 182 264 178.418 264 174V8C264 3.58172 260.418 0 256 0Z" fill="url(#paint0_linear_3065_442)"/>
         <defs>
           <linearGradient id="paint0_linear_3065_442" x1="132" y1="0" x2="132" y2="182" gradientUnits="userSpaceOnUse">
@@ -123,6 +293,13 @@ export const ServiceImage2 = () => {
         src={process.env.PUBLIC_URL + "/image/236f300a4a1f06bb60f0102218f5fd17d13d18d8.png"}
         alt="Service Image 2"
         className="service-image2"
+        style={{
+          width: isMobile ? '100%' : 'auto',
+          height: 'auto',
+          objectFit: 'contain',
+          position: 'relative',
+          zIndex: 2
+        }}
       />
     </div>
   );
@@ -207,6 +384,34 @@ export const ServiceSaasDescription = () => {
       学習したAIによりCopilot化できるツールです。
       <br />
       （※オンプレミスにも対応）
+    </div>
+  );
+};
+
+// ServiceMobileImage Component - only for mobile view
+export const ServiceMobileImage = () => {
+  return (
+    <div className="service-mobile-image-container" style={{ 
+      position: 'relative',
+      width: '279px',
+      maxWidth: '375px',
+      margin: '0 auto',
+      textAlign: 'center',
+      padding: '40px 0',
+      zIndex: 9999
+    }}>
+      <img
+        src={`${process.env.PUBLIC_URL}/image/main.png`}
+        alt="Service Mobile View"
+        className="service-mobile-image"
+        style={{
+          width: '100%',
+          height: 'auto',
+          maxWidth: '375px',
+          margin: '0 auto',
+          display: 'block'
+        }}
+      />
     </div>
   );
 };

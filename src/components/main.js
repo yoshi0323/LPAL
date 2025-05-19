@@ -45,8 +45,21 @@ export const LegacyText = () => {
 
 // JapaneseText Component
 export const JapaneseText = () => {
+  const style = window.innerWidth <= 580 ? {
+    position: 'absolute',
+    left: '24px',
+    top: '198.1px',
+    width: '327px',
+    color: '#343434',
+    fontFamily: '"Zen Kaku Gothic New"',
+    fontSize: '40px',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: '150%'
+  } : {};
+  
   return (
-    <div className="japanese-text">
+    <div className="japanese-text" style={style}>
       コードの遺産を、<br />
       未来の資産へ。
     </div>
@@ -94,8 +107,19 @@ export const LogoAlmeni = () => {
 
 // RedBox Component
 export const RedBox = () => {
+  const style = window.innerWidth <= 580 ? {
+    position: 'absolute',
+    left: '358px',
+    top: '148.13px',
+    width: '189px',
+    height: '58px',
+    background: '#D1342D',
+    borderRadius: '4px',
+    zIndex: 1
+  } : {};
+  
   return (
-    <div className="new-element"></div>
+    <div className="new-element" style={style}></div>
   );
 };
 
@@ -108,10 +132,22 @@ export const ModernDotText = () => {
 
 // DescriptionText Component
 export const DescriptionText = () => {
+  // レスポンシブの条件判定（580px以下の場合）
+  const isResponsive = window.innerWidth <= 580;
+  
   return (
     <div className="description-text">
-      「2025年の崖」を越えるべくレガシーコードを再生し、<br />
-      AI時代に最適化されたモダンアーキテクチャへ刷新する。
+      {isResponsive ? (
+        <>
+          「2025年の崖」を越えるべくレガシーコード<br />
+          を再生し、AI時代に最適化されたモダンアー<br />
+          キテクチャへ刷新する。
+        </>
+      ) : (
+        <>
+          「2025年の崖」を越えるべくレガシーコードを再生し、AI時代に最適化されたモダンアーキテクチャへ刷新する。
+        </>
+      )}
     </div>
   );
 };
@@ -239,16 +275,31 @@ export const RedIndicator = ({ top, left }) => {
 };
 
 // InputField Component
-export const InputField = ({ left }) => {
+export const InputField = (props) => {
+  const { left, type } = props;
+  // 左右の位置によって異なるプレースホルダーを設定
+  let placeholder = "山田太郎";
+  if (left === 1132.29 || type === "company") {
+    placeholder = "企業名を入力してください";
+  }
+  
   return (
-    <div className="input-field" style={{ left: `${left}px` }}></div>
+    <input
+      type="text"
+      className="input-field"
+      style={{ left: `${left}px` }}
+      placeholder={placeholder}
+    />
   );
 };
 
 // LargeInputField Component
 export const LargeInputField = () => {
   return (
-    <div className="large-input-field"></div>
+    <textarea 
+      className="large-input-field" 
+      placeholder="お問い合わせ内容を入力してください"
+    ></textarea>
   );
 };
 
@@ -307,23 +358,20 @@ export const AgreeText = () => {
 
 // NamePlaceholder Component
 export const NamePlaceholder = ({ left, top }) => {
-  return (
-    <div className="name-placeholder" style={{ left: `${left + 16}px`, top: `${top + 12}px` }}>山田 太郎</div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // CompanyPlaceholder Component
 export const CompanyPlaceholder = ({ left, top }) => {
-  return (
-    <div className="company-placeholder" style={{ left: `${left + 16}px`, top: `${top + 12}px` }}>企業名を入力してください</div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // ContentPlaceholder Component
 export const ContentPlaceholder = () => {
-  return (
-    <div className="content-placeholder">お問い合わせ内容を入力してください</div>
-  );
+  // プレースホルダーは不要になったためnullを返す
+  return null;
 };
 
 // SubmitButton Component
@@ -338,6 +386,76 @@ export const SubmitButton = () => {
         </svg>
       </div>
     </div>
+  );
+};
+
+// ContactButtonMobile Component for responsive design
+export const ContactButtonMobile = () => {
+  // Handle click on mobile contact button
+  const handleClick = () => {
+    // Trigger a custom event that can be caught in App.tsx
+    window.dispatchEvent(new CustomEvent('openContactPopup'));
+    
+    // Scroll to contact form section
+    const contactForm = document.querySelector('.contact-section');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="contact-button-mobile" onClick={handleClick}>
+      <div className="contact-button-text">お問い合わせ</div>
+      <div className="contact-button-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
+          <circle cx="16.5" cy="16.3003" r="16" fill="#FCFCFC"/>
+          <path d="M15.684 21.6418L15.684 8.95026C15.684 8.7368 15.7665 8.54759 15.9315 8.38264C16.0964 8.21769 16.2856 8.13521 16.4991 8.13521C16.7126 8.13521 16.9018 8.21769 17.0667 8.38264C17.2317 8.54759 17.3141 8.7368 17.3141 8.95026L17.3141 21.6418L20.5744 18.3816C20.7393 18.2166 20.9334 18.1342 21.1565 18.1342C21.3797 18.1342 21.5738 18.2166 21.7387 18.3816C21.9037 18.5465 21.9861 18.7406 21.9861 18.9638C21.9861 19.1869 21.9037 19.381 21.7387 19.5459L17.0813 24.2034C16.9163 24.3683 16.7223 24.4508 16.4991 24.4508C16.2759 24.4508 16.0819 24.3683 15.9169 24.2034L11.2595 19.5459C11.0945 19.381 11.012 19.1869 11.012 18.9638C11.012 18.7406 11.0945 18.5465 11.2595 18.3816C11.4244 18.2166 11.6185 18.1342 11.8416 18.1342C12.0648 18.1342 12.2589 18.2166 12.4238 18.3816L15.684 21.6418Z" fill="#D1342D"/>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+// HamburgerMenu Component
+export const HamburgerMenu = () => {
+  const [isActive, setIsActive] = React.useState(false);
+
+  const toggleMenu = () => {
+    setIsActive(!isActive);
+  };
+
+  // 特定の要素へスクロールする関数
+  const scrollToElement = (elementSelector) => {
+    const element = document.querySelector(elementSelector);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const absoluteTop = rect.top + window.pageYOffset;
+      window.scrollTo({
+        top: absoluteTop - 80,
+        behavior: 'smooth'
+      });
+      // メニューを閉じる
+      setIsActive(false);
+    }
+  };
+
+  return (
+    <>
+      <div className={`hamburger-menu ${isActive ? 'active' : ''}`} onClick={toggleMenu}>
+        <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
+      </div>
+      
+      <div className={`mobile-menu ${isActive ? 'active' : ''}`}>
+        <div id="service-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.about-header-text')}>私たちについて</div>
+        <div id="about-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.service-header-text')}>サービス</div>
+        <div id="value-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.value-header-text')}>提供価値</div>
+        <div id="works-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.works-header-text')}>導入事例</div>
+        <div id="process-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.process-header-text')}>サポートステップ</div>
+        <div id="contact-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.contact-group-image')}>お問い合わせ</div>
+      </div>
+    </>
   );
 };
 

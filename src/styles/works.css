@@ -39,6 +39,47 @@
   display: block;
 }
 
+/* ワークイメージの表示アニメーション */
+@keyframes workImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 初期状態（非表示） */
+.works-images-container .works-image {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Intersection Observerでトリガーされるアニメーション */
+.works-images-container .works-image.animate-work-image-1 {
+  animation: workImageFadeIn 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.works-images-container .works-image.animate-work-image-2 {
+  animation: workImageFadeIn 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.5s;
+}
+
+/* CSSのみで実行されるフォールバックアニメーション（JavaScriptが無効の場合） */
+.works-images-container .works-image:nth-child(1) {
+  animation: none; /* JavaScriptによるアニメーションを優先 */
+}
+
+.works-images-container .works-image:nth-child(2) {
+  animation: none; /* JavaScriptによるアニメーションを優先 */
+}
+
 .works-circle-gradient {
   width: 600px;
   height: 508.721px;
@@ -53,4 +94,85 @@
 .works-circle-gradient svg {
   width: 100%;
   height: 100%;
+}
+
+/* モバイル表示用のスタイル */
+@media (max-width: 580px) {
+  .works-header-text {
+    position: absolute;
+    left: 13px;
+    top: 5192px; /* モバイルでの位置を調整 */
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 150%;
+    z-index: 10;
+    color: #D1342D; /* 色を明示的に指定 */
+    font-family: "Lexend Deca";
+  }
+  
+  .works-subtitle-text {
+    position: absolute;
+    left: 13px;
+    top: 5256px; /* ヘッダーの下に配置 */
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 150%;
+    z-index: 10;
+    color: #343434; /* 色を明示的に指定 */
+    font-family: "Zen Kaku Gothic New";
+  }
+  
+  .works-images-container {
+    position: absolute;
+    left: 13px;
+    top: 5300px; /* サブタイトルの下に配置 */
+    width: calc(100% - 26px); /* 左右のマージンを考慮 */
+    max-width: 335px;
+    display: block; /* flexからblockに変更 */
+    gap: 0;
+    z-index: 10;
+    background-color: transparent; /* 背景を透明に */
+    padding: 0; /* パディングを削除 */
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  /* モバイル用の全幅画像スタイル */
+  .works-mobile-full-image {
+    width: 100%;
+    height: auto;
+    min-height: 50px; /* 最小の高さを設定 */
+    display: block !important; /* 強制表示 */
+    border-radius: 4px; /* 画像の角を丸く */
+    border: none; /* 枠線を削除 */
+    background-color: transparent; /* 背景色を透明に */
+    object-fit: contain; /* 画像のアスペクト比を保持 */
+  }
+  
+  /* モバイル表示時のみPC用の画像を非表示に */
+  .works-images-container .works-image {
+    display: none;
+  }
+  
+  /* グラデーション円の位置調整 - 表示問題の修正 */
+  .works-circle-gradient {
+    position: absolute !important;
+    left: -187.5px;
+    top: 6880px; /* 画像の下に配置 */
+    width: 600px; /* 幅を小さく */
+    height: 509px; /* 高さを小さく */
+    transform: scale(1); /* スケールをリセット */
+    z-index: 2; /* 重なり順を高く設定して確実に表示 */
+    opacity: 1; /* 完全に不透明に */
+    display: block !important; /* 強制表示 */
+    visibility: visible !important; /* 可視性を強制 */
+    overflow: visible !important; /* オーバーフローを許可 */
+  }
+  
+  .works-circle-gradient svg {
+    width: 100%;
+    height: 100%;
+    display: block !important; /* SVGも強制表示 */
+    visibility: visible !important;
+  }
 }

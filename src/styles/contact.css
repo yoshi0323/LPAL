@@ -7,7 +7,8 @@
   position: absolute;
   left: 180px;
   bottom: 95.75px; /* 底辺から1175.76px上 */
-  z-index: 2; /* 適切なz-indexに調整 */
+  z-index: 2; /* グラデーション背景の下に配置 */
+  pointer-events: none; /* マウスイベントを通過させる */
 }
 
 .contact-background-gradient {
@@ -18,14 +19,14 @@
   position: absolute;
   left: 0; /* 左端から配置 */
   bottom: 117.53px; /* 底辺から117.53px上 */
-  z-index: 3; /* 円形グラデーションの下に配置 */
+  z-index: 3; /* 値を4から3に下げる */
 }
 
 .contact-mask-image {
   position: absolute;
   left: 0; /* 左端から配置 */
   bottom: 117.53px; /* 底辺から117.53px上 */
-  z-index: 3; /* グラデーション背景と同じz-indexで配置 */
+  z-index: 4; /* 値を5から4に下げる */
   width: 1440px; /* 背景と同じ幅に設定 */
   height: 978px; /* 背景と同じ高さに設定 */
 }
@@ -40,7 +41,7 @@
   position: absolute;
   left: 320px; /* 左辺から320px - 0pxから変更 */
   bottom: 196.53px; /* 本来は底辺から197.53px上にだが、エクスポートした際に画像が1px大きくなったため、1px下に配置   */
-  z-index: 3; /* マスク画像の上に表示 */
+  z-index: 15; /* z-indexを6から15に上げる */
   width: auto;
   height: auto;
 }
@@ -55,7 +56,7 @@
   position: absolute;
   left: 624.5px; /* 左辺から624.5px */
   bottom: 911.53px; /* 底辺から911.53px上 */
-  z-index: 3; /* マスク画像の上に表示 */
+  z-index: 16; /* z-indexを7から16に上げる */
   width: auto;
   height: auto;
 }
@@ -131,3 +132,311 @@
   line-height: 150%; /* 21px */
   z-index: 2; /* 白い帯の上に表示 */
 }
+
+/* モバイル表示用のスタイル */
+@media (max-width: 580px) {
+  /* グラデーション円 */
+  .contact-circle-gradient.mobile {
+    width: 375px;
+    height: 375px;
+    left: 0;
+    top: 8254px;
+    bottom: auto; /* appコンテナの最低辺から1098px上 */
+    border-radius: 375px;
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  
+  /* 背景グラデーション */
+  .contact-background-gradient.mobile {
+    width: 375px;
+    height: 1098px;
+    left: 0;
+    top: 8289px;
+    bottom: auto; /* グラデーション円の下に配置 */
+    z-index: 3;
+    background: none; /* グラデーションを削除 */
+    opacity: 1; /* 不透明度を1に設定 */
+  }
+  
+  /* マスク画像 */
+  .contact-mask-image.mobile {
+    width: 375px;
+    height: 1098px;
+    left: 0;
+    top: 8289px;
+    bottom: auto; /* 背景と同じ位置に */
+    z-index: 10; /* z-indexを上げて確実に表示 */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .contact-mask-image.mobile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* グループ画像 */
+  .contact-group-image.mobile {
+    width: 335px;
+    left: 20px;
+    top: 8000px;
+    bottom: auto; /* 背景内に配置 */
+    z-index: 15;
+  }
+  
+  .contact-group-image.mobile img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* セカンド画像 */
+  .contact-second-image.mobile {
+    width: 200px;
+    left: 87.5px;
+    top: 8000px;
+    bottom: auto; /* グループ画像の上に配置 */
+    z-index: 16;
+  }
+  
+  .contact-second-image.mobile img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* フッター白背景 */
+  .contact-white-footer.mobile {
+    width: 375px;
+    height: 160px;
+    left: -13px;
+    bottom: auto;
+    top: 9387px; /* マスク画像の下に配置 (8289px + 1098px) */
+    position: absolute;
+    z-index: 20;
+  }
+  
+  /* フッターロゴ */
+  .contact-footer-logo.mobile {
+    left: 30px;
+    bottom: 748px; /* フッター内の上部に配置 */
+    z-index: 2;
+    transform: scale(0.8);
+  }
+  
+  /* フッターリンク */
+  .contact-footer-links-container.mobile {
+    left: 30px;
+    bottom: 648px; /* フッター内の中央部に配置 */
+    z-index: 2;
+  }
+  
+  .contact-footer-links.mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* コピーライト */
+  .contact-footer-copyright.mobile {
+    right: auto;
+    left: 30px;
+    bottom: 618px; /* フッター内の下部に配置 */
+    font-size: 12px;
+  }
+  
+  /* 背景グラデーション - 画像のみ */
+  .contact-background-gradient.mobile.image-only {
+    width: 375px;
+    height: 1098px;
+    left: -13px;
+    top: 8289px;
+    bottom: auto;
+    z-index: 3;
+    background: none;
+    opacity: 1;
+  }
+  
+  /* マスク画像 - 強制表示 */
+  .contact-mask-image.mobile.force-visible {
+    width: 375px;
+    height: 1098px;
+    left: -13px;
+    top: 8289px;
+    bottom: auto;
+    z-index: 10;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .contact-mask-image.mobile.force-visible img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* モバイル用のコンタクトフォーム */
+.contact-form-mobile {
+  width: 327px;
+  height: 812px;
+  background: #FCFCFC;
+  border-radius: 4px;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 13px;
+  top: 8494px;
+  z-index: 25;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* モバイル用のフッター */
+.contact-mobile-footer {
+  width: 375px;
+  height: 280px;
+  background: #FCFCFC;
+  padding: 30px 20px;
+  position: absolute;
+  left: -13px;
+  top: 9387px; /* 白背景と同じ位置に配置 */
+  bottom: auto;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-mobile-footer .alchemy-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.contact-mobile-footer .alchemy-logo-container img {
+  height: 24px;
+  width: auto;
+}
+
+.contact-mobile-footer img {
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.contact-mobile-footer a {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.contact-mobile-footer .copyright {
+  color: #C4C4C4;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.contact-textbox-left {
+  position: absolute; /* 絶対位置配置 */
+  left: 392px; /* 左端からの距離 */
+  bottom: 705.5px; /* 下端からの距離 */
+  width: 316px; /* テキストボックスの幅 */
+  height: 47px; /* テキストボックスの高さ（paddingを除く内部の高さ） */
+  padding: 12px 16px; /* 内部の余白（上下12px、左右16px） */
+  gap: 10px; /* 要素間の間隔 */
+  border-radius: 4px; /* 角の丸み */
+  border: 1px solid #D3D3D3; /* 境界線（1pxの灰色の実線） */
+  background: #FCFCFC; /* 背景色（白） */
+  z-index: 25; /* 重なり順序（数値が大きいほど前面に表示） */
+  font-family: "Zen Kaku Gothic New"; /* フォント種類 */
+  font-size: 15px; /* フォントサイズ */
+  color: #343434; /* テキスト色（濃いグレー） */
+  outline: none; /* フォーカス時の外枠を非表示 */
+}
+
+.contact-textbox-right {
+  position: absolute; /* 絶対位置配置 */
+  left: 732px; /* 左端からの距離（392px + 340px） */
+  bottom: 705.5px; /* 下端からの距離 */
+  width: 316px; /* テキストボックスの幅 */
+  height: 47px; /* テキストボックスの高さ（paddingを除く内部の高さ） */
+  padding: 12px 16px; /* 内部の余白（上下12px、左右16px） */
+  gap: 10px; /* 要素間の間隔 */
+  border-radius: 4px; /* 角の丸み */
+  border: 1px solid #D3D3D3; /* 境界線（1pxの灰色の実線） */
+  background: #FCFCFC; /* 背景色（白） */
+  z-index: 25; /* 重なり順序（数値が大きいほど前面に表示） */
+  font-family: "Zen Kaku Gothic New"; /* フォント種類 */
+  font-size: 15px; /* フォントサイズ */
+  color: #343434; /* テキスト色（濃いグレー） */
+  outline: none; /* フォーカス時の外枠を非表示 */
+}
+
+.contact-textbox-left::placeholder,
+.contact-textbox-right::placeholder {
+  color: #C4C4C4; /* プレースホルダーテキストの色（薄いグレー） */
+  font-family: "Zen Kaku Gothic New"; /* プレースホルダーのフォント種類 */
+  font-size: 15px; /* プレースホルダーのフォントサイズ */
+}
+
+.contact-textarea {
+  position: absolute; /* 絶対位置配置 */
+  left: 392px; /* 左端からの距離 */
+  bottom: 526.53px; /* 下端からの距離 */
+  width: 656px; /* テキストエリアの幅（732+316-392=656） */
+  height: 120px; /* テキストエリアの高さ */
+  padding: 12px 16px; /* 内部の余白（上下12px、左右16px） */
+  border-radius: 4px; /* 角の丸み */
+  border: 1px solid #D3D3D3; /* 境界線（1pxの灰色の実線） */
+  background: #FCFCFC; /* 背景色（白） */
+  font-family: "Zen Kaku Gothic New"; /* フォント種類 */
+  font-size: 15px; /* フォントサイズ */
+  color: #343434; /* テキスト色（濃いグレー） */
+  resize: none; /* リサイズ機能を無効化 */
+  outline: none; /* フォーカス時の外枠を非表示 */
+  z-index: 25; /* 重なり順序（数値が大きいほど前面に表示） */
+}
+
+.contact-textarea::placeholder {
+  color: #C4C4C4; /* プレースホルダーテキストの色（薄いグレー） */
+  font-family: "Zen Kaku Gothic New"; /* プレースホルダーのフォント種類 */
+  font-size: 15px; /* プレースホルダーのフォントサイズ */
+}
+
+.contact-checkbox {
+  position: absolute; /* 絶対位置配置 */
+  left: 678.5px; /* 左端からの距離（指定通り） */
+  bottom: 376.53px; /* 下端からの距離 */
+  width: 15px; /* チェックボックスの幅 */
+  height: 15px; /* チェックボックスの高さ */
+  border-radius: 2px; /* 角の丸み */
+  border: 1px solid #D3D3D3; /* 境界線（1pxの灰色の実線） */
+  background: #FCFCFC; /* 背景色（白） */
+  z-index: 25; /* 重なり順序（数値が大きいほど前面に表示） */
+  appearance: none; /* ブラウザ標準のスタイルを無効化 */
+  -webkit-appearance: none; /* Safari/Chrome用 */
+  cursor: pointer; /* マウスカーソルをポインターに */
+}
+
+.contact-checkbox:checked {
+  background-color: #D1342D; /* チェック時の背景色（赤） */
+  border-color: #D1342D; /* チェック時の境界線色（赤） */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z' fill='%23FCFCFC'/%3E%3C/svg%3E"); /* チェックマークの白いアイコン */
+  background-position: center; /* アイコンを中央に配置 */
+  background-repeat: no-repeat; /* アイコンの繰り返しを無効化 */
+  background-size: 10px; /* アイコンのサイズ調整 */
+} 

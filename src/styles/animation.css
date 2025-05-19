@@ -1,0 +1,1149 @@
+/* タイピングカーソルのアニメーション */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: currentColor;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+/* テキストのフェードインアニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* スライドインアニメーション */
+@keyframes slideIn {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* スライドイン（左から）アニメーション */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* スライドイン（右から）アニメーション */
+@keyframes slideInRight {
+  from {
+    transform: translateX(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ズームインアニメーション */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ソフトバウンス効果のあるズームインアニメーション */
+@keyframes softBounceIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 柔らかな回転アニメーション */
+@keyframes softRotateIn {
+  from {
+    transform: rotate(-2deg) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: inherit;
+}
+
+/* visible クラスが付いたときに表示 */
+.fade-in-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 左からのスライド */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: inherit;
+}
+
+.slide-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 右からのスライド */
+.slide-right {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: inherit;
+}
+
+.slide-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ズームイン効果 */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.99);
+  transition: opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1), transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: inherit;
+}
+
+.zoom-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ソフトバウンス効果のあるズームイン */
+.bounce-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: inherit;
+}
+
+.bounce-in.visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: softBounceIn 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* 回転フェードイン効果 */
+.rotate-in {
+  opacity: 0;
+  transform: rotate(-2deg) scale(0.98);
+  transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: inherit;
+}
+
+.rotate-in.visible {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+/* カーソルトリガー用のコンテナ */
+.animation-container {
+  position: relative;
+  z-index: inherit;
+}
+
+.cursor-trigger-section {
+  position: relative;
+  z-index: inherit;
+  cursor: default;
+}
+
+/* ホバーエフェクト - カードにのみ適用 */
+.hover-scale {
+  transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* バリューイメージの表示を確保するシンプルなスタイル */
+.value-image,
+.value-image-1, .value-image-2, .value-image-3, .value-image-4, .value-image-5,
+.value-image-container,
+.value-image-1-container, .value-image-2-container, .value-image-3-container, .value-image-4-container, .value-image-5-container {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* ホバー効果のみを適用するスタイル */
+.value-image-hover {
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.value-image-hover:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(209, 52, 45, 0.3);
+  z-index: 50;
+}
+
+/* 固定要素のスタイル */
+.sticky-active {
+  position: fixed !important;
+  z-index: 100;
+  opacity: 0.3;
+  transition: opacity 0.25s ease;
+}
+
+.sticky-active.active {
+  opacity: 1;
+}
+
+/* 各バリューイメージの個別スタイル（アニメーション微調整用） */
+.value-image-1.value-image-hover:hover {
+  animation-duration: 0.28s;
+}
+
+.value-image-2.value-image-hover:hover {
+  animation-duration: 0.3s;
+}
+
+.value-image-3.value-image-hover:hover {
+  animation-duration: 0.32s;
+}
+
+.value-image-4.value-image-hover:hover {
+  animation-duration: 0.34s;
+}
+
+.value-image-5.value-image-hover:hover {
+  animation-duration: 0.36s;
+}
+
+/* 画像にはホバーエフェクトを適用しない */
+.service-image1, 
+.service-image2-container,
+.service-image2 {
+  transition: none !important;
+}
+
+.service-image1:hover, 
+.service-image2-container:hover,
+.service-image2:hover {
+  transform: none !important;
+}
+
+/* サービスセクション内の要素のアニメーション */
+.service-section .service-white-container {
+  transition-delay: 0s;
+}
+
+.service-section .service-header-text {
+  transition-delay: 0.2s;
+}
+
+.service-section .service-subtitle-text {
+  transition-delay: 0.3s;
+}
+
+.service-section .service-description-text {
+  transition-delay: 0.4s;
+}
+
+.service-section .service-box {
+  transition-delay: 0.5s;
+}
+
+.service-section .service-image-container,
+.service-section .service-gradient-card {
+  transition-delay: 0.6s;
+}
+
+.service-section .service-title-text,
+.service-section .service-consulting-description,
+.service-section .service-saas-title,
+.service-section .service-saas-description {
+  transition-delay: 0.7s;
+}
+
+/* サービスイメージを確実に表示するための追加スタイル */
+.service-image-container,
+.service-image2-container {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 画像コンテナのアニメーションは親要素が制御 */
+.service-image1, 
+.service-image2,
+.service-gradient-card-image {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* サービスイメージのアニメーション用キーフレーム - 極めて滑らかな版 */
+@keyframes serviceImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+    filter: blur(3px);
+  }
+  30% {
+    opacity: 0.45;
+    transform: translateY(8px) scale(0.97);
+    filter: blur(2.5px);
+  }
+  45% {
+    opacity: 0.62;
+    transform: translateY(6px) scale(0.975);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 0.75;
+    transform: translateY(4px) scale(0.98);
+    filter: blur(1.5px);
+  }
+  70% {
+    opacity: 0.82;
+    transform: translateY(3px) scale(0.985);
+    filter: blur(1.2px);
+  }
+  78% {
+    opacity: 0.88;
+    transform: translateY(2px) scale(0.99);
+    filter: blur(0.9px);
+  }
+  85% {
+    opacity: 0.92;
+    transform: translateY(1.5px) scale(0.992);
+    filter: blur(0.7px);
+  }
+  90% {
+    opacity: 0.95;
+    transform: translateY(1px) scale(0.995);
+    filter: blur(0.5px);
+  }
+  93% {
+    opacity: 0.97;
+    transform: translateY(0.6px) scale(0.997);
+    filter: blur(0.3px);
+  }
+  96% {
+    opacity: 0.98;
+    transform: translateY(0.3px) scale(0.998);
+    filter: blur(0.2px);
+  }
+  98% {
+    opacity: 0.99;
+    transform: translateY(0.15px) scale(0.999);
+    filter: blur(0.1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* サービスカードのアニメーション用キーフレーム - 極めて滑らかな版 */
+@keyframes serviceCardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+    filter: blur(4px);
+  }
+  25% {
+    opacity: 0.32;
+    transform: translateY(12px) scale(0.96);
+    filter: blur(3.5px);
+  }
+  40% {
+    opacity: 0.52;
+    transform: translateY(9px) scale(0.97);
+    filter: blur(3px);
+  }
+  55% {
+    opacity: 0.68;
+    transform: translateY(7px) scale(0.98);
+    filter: blur(2.5px);
+  }
+  65% {
+    opacity: 0.78;
+    transform: translateY(5px) scale(0.985);
+    filter: blur(2px);
+  }
+  74% {
+    opacity: 0.84;
+    transform: translateY(3.5px) scale(0.99);
+    filter: blur(1.5px);
+  }
+  80% {
+    opacity: 0.88;
+    transform: translateY(2.5px) scale(0.993);
+    filter: blur(1.2px);
+  }
+  85% {
+    opacity: 0.92;
+    transform: translateY(1.8px) scale(0.995);
+    filter: blur(0.9px);
+  }
+  89% {
+    opacity: 0.94;
+    transform: translateY(1.2px) scale(0.997);
+    filter: blur(0.7px);
+  }
+  92% {
+    opacity: 0.96;
+    transform: translateY(0.8px) scale(0.998);
+    filter: blur(0.5px);
+  }
+  95% {
+    opacity: 0.98;
+    transform: translateY(0.4px) scale(0.999);
+    filter: blur(0.3px);
+  }
+  97% {
+    opacity: 0.99;
+    transform: translateY(0.2px) scale(0.9995);
+    filter: blur(0.15px);
+  }
+  99% {
+    opacity: 0.995;
+    transform: translateY(0.1px) scale(0.9998);
+    filter: blur(0.05px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* サービスイメージをアニメーション対応に修正 */
+.service-image1, 
+.service-image2 {
+  opacity: 0;
+  visibility: visible;
+  will-change: opacity, transform, filter;
+  animation: none;
+  backface-visibility: hidden; /* ぎこちなさを防止 */
+  perspective: 1000; /* レンダリング品質向上 */
+}
+
+.fade-in-element.visible .service-image1,
+.fade-in-element.visible .service-image2,
+div.visible .service-image1,
+div.visible .service-image2 {
+  animation: serviceImageFadeIn 0.95s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* サービスイメージコンテナのアニメーション対応 */
+.service-image-container,
+.service-image2-container {
+  opacity: 0;
+  visibility: visible;
+  will-change: opacity, transform;
+  backface-visibility: hidden; /* ぎこちなさを防止 */
+}
+
+.fade-in-element.visible .service-image-container,
+.fade-in-element.visible .service-image2-container,
+div.visible .service-image-container,
+div.visible .service-image2-container {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* グラディエントカードのアニメーション改善 */
+.service-gradient-card1,
+.service-gradient-card2 {
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, transform, filter;
+  animation: none;
+  backface-visibility: hidden; /* ぎこちなさを防止 */
+  perspective: 1000; /* レンダリング品質向上 */
+}
+
+/* トリガーされたときのみ表示 - アニメーション改善 */
+.fade-in-element.visible .service-gradient-card1,
+.fade-in-element.visible .service-gradient-card2,
+div.visible .service-gradient-card1,
+div.visible .service-gradient-card2 {
+  visibility: visible;
+  animation: serviceCardFadeIn 1.05s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* グラディエントカード内の画像もアニメーション */
+.service-gradient-card-image {
+  opacity: 0;
+  will-change: opacity, transform;
+  backface-visibility: hidden; /* ぎこちなさを防止 */
+}
+
+.fade-in-element.visible .service-gradient-card-image,
+div.visible .service-gradient-card-image {
+  opacity: 1;
+  transition: opacity 0.85s cubic-bezier(0.165, 0.84, 0.44, 1) 0.09s;
+}
+
+/* バリューセクション用のアニメーション */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+}
+
+/* バリュー数字と項目のスタイル - 標準状態は半透明 */
+.sticky-value-number, 
+.sticky-value-title {
+  opacity: 0.3 !important;
+  transition: opacity 0.25s ease !important;
+  will-change: opacity;
+  font-family: inherit; /* オリジナルのフォントを継承 */
+  font-size: inherit; /* オリジナルのサイズを継承 */
+  color: inherit; /* オリジナルの色を継承 */
+}
+
+/* アクティブ状態（ハイライト表示） */
+.sticky-value-number.active, 
+.sticky-value-title.active {
+  opacity: 1 !important;
+  transition: opacity 0.25s ease !important;
+}
+
+/* バリュー数字と項目の追加スタイル - 高い特異性を持たせる */
+div.sticky-element.sticky-value-number,
+div.sticky-element.sticky-value-title,
+span.sticky-element.sticky-value-number,
+span.sticky-element.sticky-value-title,
+p.sticky-element.sticky-value-number,
+p.sticky-element.sticky-value-title {
+  opacity: 0.3 !important;
+}
+
+div.sticky-element.sticky-value-number.active,
+div.sticky-element.sticky-value-title.active,
+span.sticky-element.sticky-value-number.active,
+span.sticky-element.sticky-value-title.active,
+p.sticky-element.sticky-value-number.active,
+p.sticky-element.sticky-value-title.active {
+  opacity: 1 !important;
+}
+
+/* バリュー数字と項目のスペーシング */
+.sticky-value-number {
+  margin-bottom: 20px;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+.sticky-value-title {
+  margin-bottom: 20px;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+/* 各要素ごとにフェードイン/アウトの時間を少しずつずらす - もっと控えめに */
+.value-small-number-1, .value-small-title-1 {
+  transition-delay: 0.05s !important;
+}
+
+.value-small-number-2, .value-small-title-2 {
+  transition-delay: 0.1s !important;
+}
+
+.value-small-number-3, .value-small-title-3 {
+  transition-delay: 0.15s !important;
+}
+
+.value-small-number-4, .value-small-title-4 {
+  transition-delay: 0.2s !important;
+}
+
+.value-small-number-5, .value-small-title-5 {
+  transition-delay: 0.25s !important;
+}
+
+/* ヘッダーとサブタイトルの遅延 */
+.value-header-text,
+.value-subtitle-text {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important; /* トランジションを無効化 */
+}
+
+/* スモールナンバーとタイトルのトランジションを最適化 */
+.value-small-number-1, .value-small-title-1,
+.value-small-number-2, .value-small-title-2,
+.value-small-number-3, .value-small-title-3,
+.value-small-number-4, .value-small-title-4,
+.value-small-number-5, .value-small-title-5 {
+  transition: none !important; /* トランジションを無効化 */
+  transform: none !important;
+}
+
+/* ワークイメージ用のアニメーション - 同時表示 */
+@keyframes workImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 0.85;
+    transform: translateY(3px) scale(0.995);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 第1イメージのアニメーション */
+.work-image-animated-1 {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  animation: none;
+}
+
+.work-image-animated-1.visible {
+  animation: workImageFadeIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.1s; /* すべて同じ遅延 */
+}
+
+/* 第2イメージのアニメーション */
+.work-image-animated-2 {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  animation: none;
+}
+
+.work-image-animated-2.visible {
+  animation: workImageFadeIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.1s; /* すべて同じ遅延 */
+}
+
+/* スタイルが継承されないよう強い指定で上書き */
+.works-images-container .work-image-animated-1,
+.works-images-container .work-image-animated-2 {
+  opacity: 0 !important;
+  visibility: visible !important;
+}
+
+.works-images-container .work-image-animated-1.visible,
+.works-images-container .work-image-animated-2.visible {
+  opacity: 1 !important;
+}
+
+/* プロセスイメージ用のアニメーション - 同時表示 */
+@keyframes processImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 0.85;
+    transform: translateY(3px) scale(0.995);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* プロセスイメージのアニメーション共通クラス */
+.process-image-animated {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  animation: none;
+}
+
+.process-image-animated.visible {
+  animation: processImageFadeIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.1s; /* すべて同じ遅延 */
+}
+
+/* 4つのプロセスイメージに同じ遅延を設定 */
+.process-image-animated-1.visible,
+.process-image-animated-2.visible,
+.process-image-animated-3.visible,
+.process-image-animated-4.visible {
+  animation-delay: 0.1s; /* すべて同じ遅延 */
+}
+
+/* スタイルが確実に適用されるようにする */
+.process-images-container .process-image-animated {
+  opacity: 0 !important;
+  visibility: visible !important;
+}
+
+.process-images-container .process-image-animated.visible {
+  opacity: 1 !important;
+}
+
+/* 常に表示されるように設定するクラス */
+.always-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* バリューイメージのホバーアニメーションを削除 */
+/* @keyframes valueImageHover {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    transform: scale(1.08);
+    box-shadow: 0 8px 16px rgba(209, 52, 45, 0.3);
+  }
+}
+
+@keyframes valueImageOut {
+  0% {
+    transform: scale(1.08);
+    box-shadow: 0 8px 16px rgba(209, 52, 45, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+} */
+
+/* 各バリューイメージの強制表示スタイル - 個別に指定 */
+.value-image-1 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-2 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-3 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-4 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-5 { opacity: 1 !important; visibility: visible !important; display: block !important; }
+
+/* 各バリューイメージコンテナの強制表示スタイル */
+.value-image-1-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-2-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-3-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-4-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+.value-image-5-container { opacity: 1 !important; visibility: visible !important; display: block !important; }
+
+/* バリュー画像のトランジションだけをシンプルに残す */
+.value-image, 
+.value-image-1, 
+.value-image-2, 
+.value-image-3, 
+.value-image-4, 
+.value-image-5 {
+  transition: transform 0.3s ease-out !important;
+}
+
+/* サービスイメージのアニメーション用キーフレーム - 究極に滑らかな版 */
+@keyframes serviceImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+    filter: blur(3px);
+  }
+  15% {
+    opacity: 0.23;
+    transform: translateY(9px) scale(0.965);
+    filter: blur(2.8px);
+  }
+  25% {
+    opacity: 0.35;
+    transform: translateY(8.2px) scale(0.968);
+    filter: blur(2.6px);
+  }
+  30% {
+    opacity: 0.45;
+    transform: translateY(7.5px) scale(0.97);
+    filter: blur(2.5px);
+  }
+  37% {
+    opacity: 0.55;
+    transform: translateY(6.8px) scale(0.973);
+    filter: blur(2.2px);
+  }
+  45% {
+    opacity: 0.62;
+    transform: translateY(6px) scale(0.975);
+    filter: blur(2px);
+  }
+  52% {
+    opacity: 0.68;
+    transform: translateY(5px) scale(0.978);
+    filter: blur(1.8px);
+  }
+  60% {
+    opacity: 0.75;
+    transform: translateY(4px) scale(0.98);
+    filter: blur(1.5px);
+  }
+  65% {
+    opacity: 0.79;
+    transform: translateY(3.5px) scale(0.983);
+    filter: blur(1.3px);
+  }
+  70% {
+    opacity: 0.82;
+    transform: translateY(3px) scale(0.985);
+    filter: blur(1.2px);
+  }
+  74% {
+    opacity: 0.85;
+    transform: translateY(2.5px) scale(0.988);
+    filter: blur(1px);
+  }
+  78% {
+    opacity: 0.88;
+    transform: translateY(2px) scale(0.99);
+    filter: blur(0.9px);
+  }
+  82% {
+    opacity: 0.9;
+    transform: translateY(1.7px) scale(0.991);
+    filter: blur(0.8px);
+  }
+  85% {
+    opacity: 0.92;
+    transform: translateY(1.5px) scale(0.992);
+    filter: blur(0.7px);
+  }
+  88% {
+    opacity: 0.94;
+    transform: translateY(1.2px) scale(0.994);
+    filter: blur(0.6px);
+  }
+  90% {
+    opacity: 0.95;
+    transform: translateY(1px) scale(0.995);
+    filter: blur(0.5px);
+  }
+  92% {
+    opacity: 0.96;
+    transform: translateY(0.8px) scale(0.996);
+    filter: blur(0.4px);
+  }
+  93.5% {
+    opacity: 0.97;
+    transform: translateY(0.6px) scale(0.9985);
+    filter: blur(0.4px);
+  }
+  95% {
+    opacity: 0.98;
+    transform: translateY(0.4px) scale(0.999);
+    filter: blur(0.3px);
+  }
+  96% {
+    opacity: 0.985;
+    transform: translateY(0.3px) scale(0.9993);
+    filter: blur(0.22px);
+  }
+  97% {
+    opacity: 0.99;
+    transform: translateY(0.2px) scale(0.9995);
+    filter: blur(0.15px);
+  }
+  98% {
+    opacity: 0.993;
+    transform: translateY(0.15px) scale(0.9997);
+    filter: blur(0.1px);
+  }
+  99% {
+    opacity: 0.997;
+    transform: translateY(0.07px) scale(0.9999);
+    filter: blur(0.05px);
+  }
+  99.5% {
+    opacity: 0.999;
+    transform: translateY(0.03px) scale(0.9999);
+    filter: blur(0.02px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* サービスカードのアニメーション用キーフレーム - 究極に滑らかな版 */
+@keyframes serviceCardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+    filter: blur(4px);
+  }
+  12% {
+    opacity: 0.16;
+    transform: translateY(13.5px) scale(0.955);
+    filter: blur(3.8px);
+  }
+  20% {
+    opacity: 0.25;
+    transform: translateY(12.5px) scale(0.958);
+    filter: blur(3.6px);
+  }
+  25% {
+    opacity: 0.32;
+    transform: translateY(12px) scale(0.96);
+    filter: blur(3.5px);
+  }
+  33% {
+    opacity: 0.42;
+    transform: translateY(10.5px) scale(0.965);
+    filter: blur(3.2px);
+  }
+  40% {
+    opacity: 0.52;
+    transform: translateY(9px) scale(0.97);
+    filter: blur(3px);
+  }
+  47% {
+    opacity: 0.61;
+    transform: translateY(8px) scale(0.975);
+    filter: blur(2.7px);
+  }
+  55% {
+    opacity: 0.68;
+    transform: translateY(7px) scale(0.98);
+    filter: blur(2.5px);
+  }
+  60% {
+    opacity: 0.73;
+    transform: translateY(6px) scale(0.983);
+    filter: blur(2.2px);
+  }
+  65% {
+    opacity: 0.78;
+    transform: translateY(5px) scale(0.985);
+    filter: blur(2px);
+  }
+  70% {
+    opacity: 0.81;
+    transform: translateY(4.2px) scale(0.988);
+    filter: blur(1.8px);
+  }
+  74% {
+    opacity: 0.84;
+    transform: translateY(3.5px) scale(0.99);
+    filter: blur(1.5px);
+  }
+  77% {
+    opacity: 0.86;
+    transform: translateY(3px) scale(0.992);
+    filter: blur(1.3px);
+  }
+  80% {
+    opacity: 0.88;
+    transform: translateY(2.5px) scale(0.993);
+    filter: blur(1.2px);
+  }
+  83% {
+    opacity: 0.9;
+    transform: translateY(2.1px) scale(0.994);
+    filter: blur(1px);
+  }
+  85% {
+    opacity: 0.92;
+    transform: translateY(1.8px) scale(0.995);
+    filter: blur(0.9px);
+  }
+  87% {
+    opacity: 0.93;
+    transform: translateY(1.5px) scale(0.996);
+    filter: blur(0.8px);
+  }
+  89% {
+    opacity: 0.94;
+    transform: translateY(1.2px) scale(0.997);
+    filter: blur(0.7px);
+  }
+  91% {
+    opacity: 0.95;
+    transform: translateY(1px) scale(0.9975);
+    filter: blur(0.6px);
+  }
+  92% {
+    opacity: 0.96;
+    transform: translateY(0.8px) scale(0.998);
+    filter: blur(0.5px);
+  }
+  93.5% {
+    opacity: 0.97;
+    transform: translateY(0.6px) scale(0.9985);
+    filter: blur(0.4px);
+  }
+  95% {
+    opacity: 0.98;
+    transform: translateY(0.4px) scale(0.999);
+    filter: blur(0.3px);
+  }
+  96% {
+    opacity: 0.985;
+    transform: translateY(0.3px) scale(0.9993);
+    filter: blur(0.22px);
+  }
+  97% {
+    opacity: 0.99;
+    transform: translateY(0.2px) scale(0.9995);
+    filter: blur(0.15px);
+  }
+  98% {
+    opacity: 0.993;
+    transform: translateY(0.15px) scale(0.9997);
+    filter: blur(0.1px);
+  }
+  99% {
+    opacity: 0.997;
+    transform: translateY(0.07px) scale(0.9999);
+    filter: blur(0.05px);
+  }
+  99.5% {
+    opacity: 0.999;
+    transform: translateY(0.03px) scale(0.9999);
+    filter: blur(0.02px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* ハンバーガーメニューのアニメーション */
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.hamburger-menu span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #343434;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-menu.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* モバイルメニューのオーバーレイアニメーション */
+.mobile-menu-overlay {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* モバイルメニュー項目のアニメーション */
+.mobile-menu-overlay > div {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.4s ease-in-out forwards;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 18px;
+  font-weight: 500;
+  color: #343434;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.mobile-menu-overlay > div:hover {
+  color: #D1342D;
+}
+
+.mobile-menu-overlay > div:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu-overlay > div:nth-child(2) { animation-delay: 0.2s; }
+.mobile-menu-overlay > div:nth-child(3) { animation-delay: 0.3s; }
+.mobile-menu-overlay > div:nth-child(4) { animation-delay: 0.4s; }
+.mobile-menu-overlay > div:nth-child(5) { animation-delay: 0.5s; }
+.mobile-menu-overlay > div:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

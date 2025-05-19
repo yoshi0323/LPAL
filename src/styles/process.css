@@ -43,3 +43,59 @@
   height: auto;
   display: block;
 }
+
+/* モバイル表示用のスタイル */
+@media (max-width: 580px) {
+  .process-header-text {
+    position: absolute;
+    left: 13px;
+    top: 7230px; /* モバイルでの上からの位置 */
+    bottom: auto; /* bottom位置をリセット */
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 150%;
+    z-index: 10;
+  }
+  
+  .process-subtitle-text {
+    position: absolute;
+    left: 13px;
+    top: 7292px; /* ヘッダーの下に配置 */
+    bottom: auto; /* bottom位置をリセット */
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 150%;
+    z-index: 10;
+  }
+  
+  .process-images-container {
+    position: absolute;
+    left: 13px;
+    top: 7358px; /* サブタイトルの下に配置 */
+    bottom: auto; /* bottom位置をリセット */
+    width: calc(100% - 26px); /* 左右のマージンを考慮 */
+    max-width: 335px;
+    display: block; /* flexからblockに変更 */
+    gap: 0;
+    z-index: 10;
+  }
+  
+  /* モバイル用の画像ラッパー */
+  .process-mobile-image-wrapper {
+    width: 100%;
+  }
+  
+  /* モバイル用の全幅画像スタイル */
+  .process-mobile-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px; /* 画像の角を丸く */
+    object-fit: contain; /* 画像のアスペクト比を保持 */
+  }
+  
+  /* PC用の画像は表示しない（念のため） */
+  .process-image-wrapper {
+    display: none;
+  }
+}
