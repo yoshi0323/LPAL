@@ -306,7 +306,7 @@ function App() {
 
   const ClickableValueText = () => {
     return (
-      <div className="value-text" onClick={() => scrollToElement('.value-header-text')}>
+      <div className="value-text" onClick={() => scrollToElement('.value-subtitle-text')}>
         提供価値
       </div>
     );
@@ -441,7 +441,7 @@ function App() {
         </section>
 
         {/* Service Section - カーソルトリガー使用 */}
-        <CursorTriggerSection className="service-section" onTrigger={() => setServiceAnimationTriggered(true)} style={{ position: 'relative', height: '830px', marginTop: '100px', marginBottom: '100px' }}>
+        <CursorTriggerSection className="service-section" onTrigger={() => setServiceAnimationTriggered(true)} style={{ position: 'relative', height: '830px', marginTop: '0px', marginBottom: '200px' }}>
           {/* 背景要素 - 最背面に配置 */}
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
             <div className="custom-gradient-wrapper">

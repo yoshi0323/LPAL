@@ -393,13 +393,19 @@ export const SubmitButton = () => {
 export const ContactButtonMobile = () => {
   // Handle click on mobile contact button
   const handleClick = () => {
-    // Trigger a custom event that can be caught in App.tsx
-    window.dispatchEvent(new CustomEvent('openContactPopup'));
+    // ポップアップを表示するイベントをコメントアウト
+    // window.dispatchEvent(new CustomEvent('openContactPopup'));
     
-    // Scroll to contact form section
-    const contactForm = document.querySelector('.contact-section');
-    if (contactForm) {
-      contactForm.scrollIntoView({ behavior: 'smooth' });
+    // コンタクトフォームモバイルセクションにスクロールするように変更
+    const contactFormMobile = document.querySelector('.contact-form-mobile');
+    if (contactFormMobile) {
+      contactFormMobile.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // フォールバックとして従来のコンタクトセクションにスクロール
+      const contactForm = document.querySelector('.contact-section');
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
