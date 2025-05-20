@@ -337,7 +337,7 @@ export const ContactFormMobile = () => {
           marginTop: '5px',
           fontFamily: '"Zen Kaku Gothic New"'
         }}>
-          問い合わせにあたり当社がお預かりする個人情報については、「<a href="#" style={{ color: '#1976D2', textDecoration: 'underline' }}>個人情報の取り扱いについて</a>」に従い、取り扱います。
+          問い合わせにあたり当社がお預かりする個人情報については、「<a href="#" style={{ color: '#1976D2', textDecoration: 'underline' }}>個人情報の取り扱いについて</a>」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
         </p>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
           <input type="checkbox" id="agree" style={{ marginRight: '8px' }} />
