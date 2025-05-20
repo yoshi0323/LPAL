@@ -35,6 +35,9 @@ import './styles/contact.css';
 import './styles/popup.css';
 import './styles/animation.css';
 
+// TypeScriptモジュールとして認識されるために必要な空のexport
+export {};
+
 // InputFieldコンポーネントの型を定義
 interface InputFieldProps {
   left: number;
@@ -268,61 +271,160 @@ function App() {
 
   // 特定の要素へスクロールする関数
   const scrollToElement = (elementSelector: string) => {
+    console.log(`Attempting to scroll to: ${elementSelector}`);
     const element = document.querySelector(elementSelector);
+    
     if (element) {
+      console.log(`Element found: ${elementSelector}`);
       const rect = element.getBoundingClientRect();
       const absoluteTop = rect.top + window.pageYOffset;
       window.scrollTo({
         top: absoluteTop - 80,
         behavior: 'smooth'
       });
+    } else {
+      console.error(`Element not found: ${elementSelector}`);
+      // フォールバック - セレクターが見つからない場合はIDを試す
+      if (elementSelector.startsWith('.')) {
+        const idSelector = elementSelector.substring(1);
+        const elementById = document.getElementById(idSelector);
+        if (elementById) {
+          console.log(`Element found by ID: ${idSelector}`);
+          const rect = elementById.getBoundingClientRect();
+          const absoluteTop = rect.top + window.pageYOffset;
+          window.scrollTo({
+            top: absoluteTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      }
     }
   };
 
   // クリック可能なナビゲーションコンポーネント
   const ClickableHeaderText = () => {
+    const handleClick = () => {
+      // デバイスによって適切なスクロール位置を計算
+      const isMobileDevice = window.innerWidth <= 580;
+      // スクロール位置を600px下に調整（元の位置 + 600px）
+      const scrollPosition = isMobileDevice ? 4800 : 6000; // 元の値4200/5400から600px増加
+      
+      // お問い合わせセクションへ直接スクロール
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+      console.log(`Clicked ClickableHeaderText - Direct scroll to contact section (${isMobileDevice ? 'mobile' : 'desktop'}: ${scrollPosition}px)`);
+    };
+    
     return (
-      <div className="header-text" onClick={() => scrollToElement('.contact-group-image')}>
+      <div className="header-text" onClick={handleClick}>
         お問い合わせ
       </div>
     );
   };
 
   const ClickableSupportStepText = () => {
+    const handleClick = () => {
+      // デバイスによって適切なスクロール位置を計算
+      const isMobileDevice = window.innerWidth <= 580;
+      // スクロール位置を600px下に調整（元の位置 + 600px）
+      const scrollPosition = isMobileDevice ? 4300 : 5300; // 元の値3700/4700から600px増加
+      
+      // サポートステップセクションへ直接スクロール
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+      console.log(`Clicked ClickableSupportStepText - Direct scroll to support step section (${isMobileDevice ? 'mobile' : 'desktop'}: ${scrollPosition}px)`);
+    };
+    
     return (
-      <div className="support-step-text" onClick={() => scrollToElement('.process-header-text')}>
+      <div className="support-step-text" onClick={handleClick}>
         サポートステップ
       </div>
     );
   };
 
   const ClickableCaseStudyText = () => {
+    const handleClick = () => {
+      // デバイスによって適切なスクロール位置を計算
+      const isMobileDevice = window.innerWidth <= 580;
+      const scrollPosition = isMobileDevice ? 3300 : 4200; // モバイルとデスクトップで異なる位置
+      
+      // 導入事例セクションへ直接スクロール
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+      console.log(`Clicked ClickableCaseStudyText - Direct scroll to case study section (${isMobileDevice ? 'mobile' : 'desktop'}: ${scrollPosition}px)`);
+    };
+    
     return (
-      <div className="case-study-text" onClick={() => scrollToElement('.works-header-text')}>
+      <div className="case-study-text" onClick={handleClick}>
         導入事例
       </div>
     );
   };
 
   const ClickableValueText = () => {
+    const handleClick = () => {
+      // デバイスによって適切なスクロール位置を計算
+      const isMobileDevice = window.innerWidth <= 580;
+      const scrollPosition = isMobileDevice ? 1860 : 2833; // モバイルとデスクトップで異なる位置
+      
+      // 提供価値セクションへ直接スクロール
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+      console.log(`Clicked ClickableValueText - Direct scroll to value section (${isMobileDevice ? 'mobile' : 'desktop'}: ${scrollPosition}px)`);
+    };
+    
     return (
-      <div className="value-text" onClick={() => scrollToElement('.value-subtitle-text')}>
+      <div className="value-text" onClick={handleClick}>
         提供価値
       </div>
     );
   };
 
   const ClickableAboutUsText = () => {
+    const handleClick = () => {
+      // デバイスによって適切なスクロール位置を計算
+      const isMobileDevice = window.innerWidth <= 580;
+      const scrollPosition = isMobileDevice ? 900 : 1100; // モバイルとデスクトップで異なる位置
+      
+      // 私たちについてセクションへ直接スクロール
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+      console.log(`Clicked ClickableAboutUsText - Direct scroll to about us section (${isMobileDevice ? 'mobile' : 'desktop'}: ${scrollPosition}px)`);
+    };
+    
     return (
-      <div className="about-us-text" onClick={() => scrollToElement('.about-header-text')}>
+      <div className="about-us-text" onClick={handleClick}>
         私たちについて
       </div>
     );
   };
 
   const ClickableServiceText = () => {
+    const handleClick = () => {
+      // デバイスによって適切なスクロール位置を計算
+      const isMobileDevice = window.innerWidth <= 580;
+      const scrollPosition = isMobileDevice ? 1400 : 1800; // モバイルとデスクトップで異なる位置
+      
+      // サービスセクションへ直接スクロール
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+      console.log(`Clicked ClickableServiceText - Direct scroll to service section (${isMobileDevice ? 'mobile' : 'desktop'}: ${scrollPosition}px)`);
+    };
+    
     return (
-      <div className="service-text" onClick={() => scrollToElement('.service-header-text')}>
+      <div className="service-text" onClick={handleClick}>
         サービス
       </div>
     );
@@ -616,7 +718,7 @@ function App() {
         </CursorTriggerSection>
 
         {/* モバイルの場合のみ表示するサービス画像を外に出す */}
-        {isMobile && <div className="mobile-service-section" style={{ position: 'relative', marginTop: '-100px', marginBottom: '100px' }}>
+        {isMobile && <div className="mobile-service-section" style={{ position: 'relative', marginTop: '-200px', marginBottom: '0px' }}>
           <ServiceMobileImage />
         </div>}
 
@@ -634,7 +736,7 @@ function App() {
                 position: 'absolute',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                top: '1900px',
+                top: '1860px',
                 width: '100%',
                 maxWidth: '335px',
                 zIndex: 9999

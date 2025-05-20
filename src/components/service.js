@@ -393,11 +393,12 @@ export const ServiceMobileImage = () => {
   return (
     <div className="service-mobile-image-container" style={{ 
       position: 'relative',
+      top: '-100px',
       width: '279px',
-      maxWidth: '375px',
+      maxWidth: '100%',
       margin: '0 auto',
       textAlign: 'center',
-      padding: '40px 0',
+      padding: '0 0 40px',
       zIndex: 9999
     }}>
       <img
@@ -407,9 +408,11 @@ export const ServiceMobileImage = () => {
         style={{
           width: '100%',
           height: 'auto',
-          maxWidth: '375px',
+          maxWidth: '335px',
           margin: '0 auto',
-          display: 'block'
+          display: 'block',
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
         }}
       />
     </div>

@@ -424,42 +424,118 @@ export const ContactButtonMobile = () => {
 
 // HamburgerMenu Component
 export const HamburgerMenu = () => {
+  // メニューの開閉状態を管理するstate
   const [isActive, setIsActive] = React.useState(false);
 
+  // ハンバーガーメニューのクリックイベントハンドラ
   const toggleMenu = () => {
     setIsActive(!isActive);
   };
 
-  // 特定の要素へスクロールする関数
-  const scrollToElement = (elementSelector) => {
-    const element = document.querySelector(elementSelector);
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      const absoluteTop = rect.top + window.pageYOffset;
-      window.scrollTo({
-        top: absoluteTop - 80,
-        behavior: 'smooth'
-      });
-      // メニューを閉じる
-      setIsActive(false);
+  // 固定位置へのスクロール関数
+  const scrollToPosition = (position, event) => {
+    // ---------------------------------------------
+    // イベント処理の改善
+    // ---------------------------------------------
+    // イベントの伝播を止める（他の要素のクリックイベントへの干渉を防止）
+    if (event) {
+      event.preventDefault();   // ブラウザのデフォルト動作を停止
+      event.stopPropagation();  // 親要素へのイベント伝播を停止
     }
+    
+    // デバイスによって適切なスクロール位置を計算
+    const isMobileDevice = window.innerWidth <= 580;
+    let scrollPosition;
+    
+    // 各メニュー項目のスクロール位置（App.tsxのナビゲーションと一致させる）
+    // ※セレクタ探索に依存せず、直接座標値を指定する方法に変更
+    switch(position) {
+      case 'about':
+        scrollPosition = isMobileDevice ? 900 : 1100;
+        break;
+      case 'service':
+        scrollPosition = isMobileDevice ? 1400 : 1800;
+        break;
+      case 'value':
+        // 提供価値を600px下に調整（モバイルのみ）
+        scrollPosition = isMobileDevice ? 1860 + 600 : 2833;
+        break;
+      case 'works':
+        // 導入事例を1700px下に調整（モバイルのみ）
+        scrollPosition = isMobileDevice ? 3300 + 1700 : 4200;
+        break;
+      case 'process':
+        // サポートステップを2500px下に調整（モバイルのみ）
+        scrollPosition = isMobileDevice ? 4300 + 2500 : 5300;
+        break;
+      case 'contact':
+        // お問い合わせを3000px下に調整（モバイルのみ）
+        scrollPosition = isMobileDevice ? 4800 + 3000 : 6000;
+        break;
+      default:
+        scrollPosition = 0;
+    }
+    
+    // ---------------------------------------------
+    // 複数のスクロール方法と処理タイミングの制御
+    // ---------------------------------------------
+    try {
+      // ---------------------------------------------
+      // Step 1: 最初のスクロール方法（最も一般的な方法）
+      // ---------------------------------------------
+      // 方法1: window.scrollTo - モダンブラウザで広くサポートされている
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'  // スムーズスクロール効果
+      });
+      
+      // ---------------------------------------------
+      // Step 2: 補助的なスクロール方法（少し遅延させて実行）
+      // ---------------------------------------------
+      // タイミングをずらすことで処理の競合を避け、少なくとも1つの方法が成功する確率を上げる
+      setTimeout(() => {
+        // 方法2: documentElement.scrollTop - IE/Edgeなどで使用
+        document.documentElement.scrollTop = scrollPosition;
+        // 方法3: body.scrollTop - 古いブラウザ(Safari等)で使用
+        document.body.scrollTop = scrollPosition;
+      }, 50);  // 50ms遅延（0.05秒後に実行）
+      
+      console.log(`Menu: Scrolled to ${position} section (${isMobileDevice ? 'mobile' : 'desktop'}: ${scrollPosition}px)`);
+    } catch (error) {
+      // エラーハンドリング: どの方法も失敗した場合のフォールバック
+      console.error('スクロールに失敗しました:', error);
+      document.documentElement.scrollTop = scrollPosition;
+      document.body.scrollTop = scrollPosition;
+    }
+    
+    // ---------------------------------------------
+    // Step 3: UIの更新（スクロール開始後に実行）
+    // ---------------------------------------------
+    // メニューを閉じる処理を遅延させることで、スクロールとUI更新の競合を防ぐ
+    // これにより、「クリック→スクロール開始→メニュー閉じる」という自然な流れになる
+    setTimeout(() => {
+      setIsActive(false);  // メニューを閉じる
+    }, 100);  // 100ms遅延（0.1秒後に実行）
   };
 
   return (
     <>
+      {/* ハンバーガーアイコン部分 */}
       <div className={`hamburger-menu ${isActive ? 'active' : ''}`} onClick={toggleMenu}>
         <div className="hamburger-line"></div>
         <div className="hamburger-line"></div>
         <div className="hamburger-line"></div>
       </div>
       
+      {/* メニュー項目部分 - isActiveがtrueの時のみ表示 */}
       <div className={`mobile-menu ${isActive ? 'active' : ''}`}>
-        <div id="service-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.about-header-text')}>私たちについて</div>
-        <div id="about-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.service-header-text')}>サービス</div>
-        <div id="value-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.value-header-text')}>提供価値</div>
-        <div id="works-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.works-header-text')}>導入事例</div>
-        <div id="process-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.process-header-text')}>サポートステップ</div>
-        <div id="contact-menu-item" className="mobile-menu-item" onClick={() => scrollToElement('.contact-group-image')}>お問い合わせ</div>
+        {/* 各メニュー項目: クリック時にイベントオブジェクトを渡して処理 */}
+        <div id="about-menu-item" className="mobile-menu-item" onClick={(e) => scrollToPosition('about', e)}>私たちについて</div>
+        <div id="service-menu-item" className="mobile-menu-item" onClick={(e) => scrollToPosition('service', e)}>サービス</div>
+        <div id="value-menu-item" className="mobile-menu-item" onClick={(e) => scrollToPosition('value', e)}>提供価値</div>
+        <div id="works-menu-item" className="mobile-menu-item" onClick={(e) => scrollToPosition('works', e)}>導入事例</div>
+        <div id="process-menu-item" className="mobile-menu-item" onClick={(e) => scrollToPosition('process', e)}>サポートステップ</div>
+        <div id="contact-menu-item" className="mobile-menu-item" onClick={(e) => scrollToPosition('contact', e)}>お問い合わせ</div>
       </div>
     </>
   );
