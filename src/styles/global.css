@@ -377,7 +377,7 @@
     .alchemy-title-text {
         position: absolute !important;
         left: 13px !important;
-        top: 984.6px !important;
+        top: 954.6px !important; /* 984.6pxから30px上げて954.6pxに変更 */
         font-size: 22px !important;
         line-height: 175% !important;
         z-index: 10 !important;
@@ -386,7 +386,7 @@
     .alchemy-description-text {
         position: absolute !important;
         left: 13px !important;
-        top: 1023.6px !important;
+        top: 993.6px !important; /* 1023.6pxから30px上げて993.6pxに変更 */
         font-size: 14px !important;
         line-height: 175% !important;
         z-index: 10 !important;
@@ -398,7 +398,7 @@
         height: 201px !important;
         position: absolute !important;
         left: 13px !important;
-        top: 1221.1px !important;
+        top: 1191.1px !important; /* 1221.1pxから30px上げて1191.1pxに変更 */
         z-index: 2 !important; /* z-indexを2に明示的に設定 */
     }
     
@@ -408,7 +408,7 @@
         height: 55px !important;
         position: absolute !important;
         left: 50px !important;
-        top: 1294px !important; /* アバウトコンテナの中央に配置 */
+        top: 1264px !important; /* 1294pxから30px上げて1264pxに変更 */
         z-index: 3 !important; /* z-indexを3に設定してアバウトコンテナの上に表示 */
     }
     
@@ -424,13 +424,13 @@
         height: 1157.5px !important;
         position: absolute !important;
         left: 13px !important;
-        top: 800px !important; /* アバウトコンテナの下端(1221.1px + 201px) + 280px = 1702.1px */
+        top: 950px !important; /* 880pxからさらに70px下げて950pxに変更 */
         z-index: 2 !important; /* z-indexを2に設定してアバウトコンテナと同じレベル */
     }
     
     .service-header-text {
         left: 48px !important;
-        top: 840px !important; /* service-white-containerの位置 + 30px */
+        top: 990px !important; /* 920pxからさらに70px下げて990pxに変更 */
         font-size: 40px !important;
         line-height: 150% !important;
         z-index: 3 !important; /* サービスコンテナの上に表示 */
@@ -439,7 +439,7 @@
     
     .service-subtitle-text {
         left: 48px !important;
-        top: 890px !important; /* service-header-textの下 */
+        top: 1040px !important; /* 970pxからさらに70px下げて1040pxに変更 */
         font-size: 18px !important;
         z-index: 3 !important; /* サービスコンテナの上に表示 */
         position: absolute !important; /* position: absoluteを明示的に設定 */
@@ -448,7 +448,7 @@
     .service-description-text {
         width: 279px !important;
         left: 48px !important;
-        top: 930px !important; /* service-subtitle-textの下 */
+        top: 1080px !important; /* 1010pxからさらに70px下げて1080pxに変更 */
         font-size: 14px !important;
         z-index: 3 !important; /* サービスコンテナの上に表示 */
         position: absolute !important; /* position: absoluteを明示的に設定 */
@@ -531,7 +531,7 @@
         height: 1158px !important; /* 高さを明示的に指定 */
         position: absolute !important;
         left: -8px !important;
-        top: 880px !important;
+        top: 1030px !important; /* 1110pxから70px上げて1040pxに変更 */
         z-index: 4 !important;
         overflow: visible !important; /* overflowをvisibleに変更 */
         display: block !important;
@@ -607,7 +607,7 @@
         position: absolute !important;
         left: 51% !important;
         transform: translateX(-50%) !important;
-        top: 620px !important;
+        top: 770px !important; /* 700pxからさらに70px下げて770pxに変更 */
         z-index: 9999 !important;
         transition: none !important;
     }
@@ -670,7 +670,7 @@
     .value-header-text {
         position: absolute !important;
         left: 13px !important;
-        top: 0% !important;
+        top: 1780px !important; /* 1700pxから80px下げて1780pxに変更 */
         color: #D1342D !important;
         font-family: "Lexend Deca" !important;
         font-size: 48px !important;
@@ -684,7 +684,7 @@
     .value-subtitle-text {
         position: absolute !important;
         left: 13px !important;
-        top: 2132.37px !important; /* 2048.87px + 84px (line-height) */
+        top: 1860px !important; /* 1780pxから80px下げて1860pxに変更 */
         color: #343434 !important;
         font-family: "Zen Kaku Gothic New" !important;
         font-size: 18px !important;
@@ -693,6 +693,15 @@
         line-height: 175% !important;
         z-index: 999 !important;
         display: block !important;
+    }
+    
+    /* PC用コンタクトフォーム要素を完全に非表示 */
+    .input-field, .large-input-field, 
+    .name-label, .company-label, .contact-content-label,
+    .privacy-label, .privacy-text, .check-box, .agree-text,
+    .name-placeholder, .company-placeholder, .content-placeholder,
+    .submit-button {
+        display: none !important;
     }
 }
 
@@ -1093,7 +1102,7 @@
         position: absolute !important;
         left: 51% !important;
         transform: translateX(-50%) !important;
-        top: 620px !important;
+        top: 770px !important; /* 700pxからさらに70px下げて770pxに変更 */
         z-index: 9999 !important;
         transition: none !important;
     }
@@ -1156,7 +1165,7 @@
     .value-header-text {
         position: absolute !important;
         left: 13px !important;
-        top: 1700px !important;
+        top: 1780px !important; /* 1700pxから80px下げて1780pxに変更 */
         color: #D1342D !important;
         font-family: "Lexend Deca" !important;
         font-size: 48px !important;
@@ -1170,7 +1179,7 @@
     .value-subtitle-text {
         position: absolute !important;
         left: 13px !important;
-        top: 1780px !important; /* 2048.87px + 84px (line-height) */
+        top: 1860px !important; /* 1780pxから80px下げて1860pxに変更 */
         color: #343434 !important;
         font-family: "Zen Kaku Gothic New" !important;
         font-size: 18px !important;

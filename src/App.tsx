@@ -736,7 +736,7 @@ function App() {
                 position: 'absolute',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                top: '1860px',
+                top: '1940px',
                 width: '100%',
                 maxWidth: '335px',
                 zIndex: 9999

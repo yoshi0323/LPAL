@@ -392,7 +392,7 @@
     height: 1158px !important;
     position: absolute !important;
     left: -15px !important;
-    top: 880px !important;
+    top: 1030px !important; /* 1110pxから70px上げて1040pxに変更 */
     z-index: 4 !important;
     overflow: visible !important;
     display: block !important;
