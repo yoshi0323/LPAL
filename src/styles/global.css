@@ -670,7 +670,7 @@
     .value-header-text {
         position: absolute !important;
         left: 13px !important;
-        top: 1780px !important; /* 1700pxから80px下げて1780pxに変更 */
+        top: 1860px !important; /* 1780pxから80px下げて1860pxに変更 */
         color: #D1342D !important;
         font-family: "Lexend Deca" !important;
         font-size: 48px !important;
@@ -684,7 +684,7 @@
     .value-subtitle-text {
         position: absolute !important;
         left: 13px !important;
-        top: 1860px !important; /* 1780pxから80px下げて1860pxに変更 */
+        top: 1940px !important; /* 1860pxから80px下げて1940pxに変更 */
         color: #343434 !important;
         font-family: "Zen Kaku Gothic New" !important;
         font-size: 18px !important;
@@ -1165,7 +1165,7 @@
     .value-header-text {
         position: absolute !important;
         left: 13px !important;
-        top: 1780px !important; /* 1700pxから80px下げて1780pxに変更 */
+        top: 1860px !important; /* 1780pxから80px下げて1860pxに変更 */
         color: #D1342D !important;
         font-family: "Lexend Deca" !important;
         font-size: 48px !important;
@@ -1179,7 +1179,7 @@
     .value-subtitle-text {
         position: absolute !important;
         left: 13px !important;
-        top: 1860px !important; /* 1780pxから80px下げて1860pxに変更 */
+        top: 1940px !important; /* 1860pxから80px下げて1940pxに変更 */
         color: #343434 !important;
         font-family: "Zen Kaku Gothic New" !important;
         font-size: 18px !important;

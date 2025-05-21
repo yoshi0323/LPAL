@@ -451,26 +451,26 @@ export const HamburgerMenu = () => {
     // ※セレクタ探索に依存せず、直接座標値を指定する方法に変更
     switch(position) {
       case 'about':
-        scrollPosition = isMobileDevice ? 800 : 1100;
+        scrollPosition = isMobileDevice ? 900 : 1100;
         break;
       case 'service':
         scrollPosition = isMobileDevice ? 1400 : 1800;
         break;
       case 'value':
         // 提供価値を600px下に調整（モバイルのみ）
-        scrollPosition = isMobileDevice ? 2200 + 600 : 2833;
+        scrollPosition = isMobileDevice ? 1860 + 600 : 2833;
         break;
       case 'works':
         // 導入事例を1700px下に調整（モバイルのみ）
-        scrollPosition = isMobileDevice ? 3500 + 1700 : 4200;
+        scrollPosition = isMobileDevice ? 3300 + 1700 : 4200;
         break;
       case 'process':
         // サポートステップを2500px下に調整（モバイルのみ）
-        scrollPosition = isMobileDevice ? 4700 + 2500 : 5300;
+        scrollPosition = isMobileDevice ? 4300 + 2500 : 5300;
         break;
       case 'contact':
         // お問い合わせを3000px下に調整（モバイルのみ）
-        scrollPosition = isMobileDevice ? 5500 + 3000 : 6000;
+        scrollPosition = isMobileDevice ? 4800 + 3000 : 6000;
         break;
       default:
         scrollPosition = 0;

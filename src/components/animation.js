@@ -345,7 +345,7 @@ export const ValueStickyComponents = () => {
 
       // セクション内の場合
       if (scrollPosition >= valueStart && scrollPosition < valueEnd) {
-        const scrollDiff = scrollPosition - valueStart;
+        const scrollDiff = (scrollPosition - valueStart) * 0.7; // スクロール量の半分だけ移動するように修正
         const progress = Math.min((scrollPosition - valueStart) / (valueEnd - valueStart), 1);
         const fadeOutFactor = Math.max(1 - progress, 0.2);
 
@@ -569,6 +569,48 @@ export const ValueStickyComponents = () => {
 
     setupHoverEvents();
   }, [imagesInitialized]);
+
+  // リサイズ対応処理
+  useEffect(() => {
+    let resizeTimeout;
+    
+    const handleResize = () => {
+      // デバウンス処理
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // モバイル→PCへの切り替え時の処理
+        if (window.innerWidth > 580) {
+          // 要素を強制的に再表示
+          const headerElement = document.querySelector('.value-header-text');
+          const subtitleElement = document.querySelector('.value-subtitle-text');
+          const numberElements = Array.from({ length: 5 }, (_, i) => document.querySelector(`.value-small-number-${i + 1}`));
+          const titleElements = Array.from({ length: 5 }, (_, i) => document.querySelector(`.value-small-title-${i + 1}`));
+          
+          // 要素が存在する場合、表示設定
+          if (headerElement) headerElement.style.display = 'block';
+          if (subtitleElement) subtitleElement.style.display = 'block';
+          
+          numberElements.forEach(element => {
+            if (element) element.style.display = 'block';
+          });
+          
+          titleElements.forEach(element => {
+            if (element) element.style.display = 'block';
+          });
+          
+          // 位置情報を再初期化
+          setIsInitialized(false);
+        }
+      }, 300);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
+    };
+  }, []);
 
   // DOM操作で要素を直接制御するため、Reactのレンダリングは行わない
   return null;
@@ -969,6 +1011,29 @@ export const AnimateServiceElements = () => {
       });
     });
     
+    // リサイズイベントハンドラー
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // モバイル→PCに切り替わった場合
+        if (window.innerWidth > 580) {
+          // サービスイメージとカードを表示
+          const serviceImages = document.querySelectorAll('.service-image1, .service-image2, .service-gradient-card1, .service-gradient-card2');
+          serviceImages.forEach(element => {
+            if (element) {
+              element.style.display = 'block';
+              element.style.opacity = '1';
+              element.style.visibility = 'visible';
+              element.classList.add('visible');
+            }
+          });
+        }
+      }, 300);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
     // クリーンアップ関数
     return () => {
       serviceSelectors.forEach(selector => {
@@ -977,6 +1042,8 @@ export const AnimateServiceElements = () => {
           observer.unobserve(element);
         });
       });
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
     };
   }, []);
   
