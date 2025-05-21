@@ -2,7 +2,7 @@
 import '../styles/contact.css';
 import '../styles/styles.css';
 
-// モバイル表示の検出用カスタムフック
+// 繝｢繝舌う繝ｫ陦ｨ遉ｺ縺ｮ讀懶ｿｽE逕ｨ繧ｫ繧ｹ繧ｿ繝繝輔ャ繧ｯ
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
   
@@ -11,11 +11,10 @@ const useIsMobile = () => {
       setIsMobile(window.innerWidth <= 580);
     };
     
-    // 初期チェック
+    // 蛻晄悄繝√ぉ繝・・ｽ・ｽ
     checkIsMobile();
     
-    // リサイズ時の処理
-    window.addEventListener('resize', checkIsMobile);
+    // 繝ｪ繧ｵ繧､繧ｺ譎ゑｿｽE蜃ｦ逅・    window.addEventListener('resize', checkIsMobile);
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
   
@@ -69,12 +68,12 @@ export const ContactMaskImage = () => {
           width: '375px',
           height: '1098px',
           left: 0,
-          top: '8289px', // 背景画像と同じ位置に配置
-          zIndex: 10, // z-indexを高くして確実に表示
+          top: '8289px', // 閭梧勹逕ｻ蜒上→蜷後§菴咲ｽｮ縺ｫ驟咲ｽｮ
+          zIndex: 10, // z-index繧帝ｫ倥￥縺励※遒ｺ螳溘↓陦ｨ遉ｺ
           position: 'absolute',
           opacity: 1,
-          display: 'block', // 要素が表示されることを確実に
-          visibility: 'visible', // 要素が可視であることを確実に
+          display: 'block', // 隕∫ｴ縺瑚｡ｨ遉ｺ縺輔ｌ繧九％縺ｨ繧堤｢ｺ螳溘↓
+          visibility: 'visible', // 隕∫ｴ縺悟庄隕悶〒縺ゅｋ縺薙→繧堤｢ｺ螳溘↓
           backgroundImage: `url(${process.env.PUBLIC_URL}/image/bg-mask.png)`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',
@@ -175,9 +174,9 @@ export const ContactFooterLinks = () => {
   return (
     <div className={`contact-footer-links-container ${isMobile ? 'mobile' : ''}`}>
       <div className={`contact-footer-links ${isMobile ? 'mobile' : ''}`}>
-        <a href="#" className="contact-footer-link">運用会社情報</a>
-        <a href="#" className="contact-footer-link">プライバシーポリシー</a>
-        <a href="#" className="contact-footer-link">個人情報の取り扱いについて</a>
+        <a href="#" className="contact-footer-link">驕狗畑莨夂､ｾ諠・・ｽ・ｽ</a>
+        <a href="#" className="contact-footer-link">繝励Λ繧､繝舌す繝ｼ繝昴Μ繧ｷ繝ｼ</a>
+        <a href="#" className="contact-footer-link">蛟倶ｺｺ諠・・ｽ・ｽ縺ｮ蜿悶ｊ謇ｱ縺・・ｽ・ｽ縺､縺・・ｽ・ｽ</a>
       </div>
     </div>
   );
@@ -218,28 +217,28 @@ export const ContactFormMobile = () => {
         fontWeight: 700,
         marginTop: 0,
         marginBottom: '20px'
-      }}>お問い合わせ</p>
+      }}>縺雁撫縺・・ｽ・ｽ繧上○</p>
 
       <div style={{ marginBottom: '15px' }}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
           <div style={{ 
-            backgroundColor: '#D1342D', 
+            backgroundcolor: '#D1342D', 
             color: '#FCFCFC', 
             padding: '2px 5px', 
             borderRadius: '2px',
             fontSize: '12px',
             marginRight: '8px',
             fontFamily: '"Zen Kaku Gothic New"'
-          }}>必須</div>
+          }}>蠢・・ｽ・ｽE/div>
           <span style={{ 
             fontFamily: '"Zen Kaku Gothic New"',
             fontSize: '15px',
             fontWeight: 700
-          }}>お名前</span>
+          }}>縺雁錐蜑・/span>
         </div>
         <input 
           type="text" 
-          placeholder="山田 太郎" 
+          placeholder="螻ｱ逕ｰ 螟ｪ驛・ 
           style={{
             width: '100%',
             padding: '12px',
@@ -254,23 +253,23 @@ export const ContactFormMobile = () => {
       <div style={{ marginBottom: '15px' }}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
           <div style={{ 
-            backgroundColor: '#D1342D', 
+            backgroundcolor: '#D1342D', 
             color: '#FCFCFC', 
             padding: '2px 5px', 
             borderRadius: '2px',
             fontSize: '12px',
             marginRight: '8px',
             fontFamily: '"Zen Kaku Gothic New"'
-          }}>必須</div>
+          }}>蠢・・ｽ・ｽE/div>
           <span style={{ 
             fontFamily: '"Zen Kaku Gothic New"',
             fontSize: '15px',
             fontWeight: 700
-          }}>企業名</span>
+          }}>莨∵･ｭ蜷・/span>
         </div>
         <input 
           type="text" 
-          placeholder="企業名をご入力してください" 
+          placeholder="莨∵･ｭ蜷阪ｒ縺費ｿｽE蜉帙＠縺ｦ縺上□縺輔＞" 
           style={{
             width: '100%',
             padding: '12px',
@@ -285,22 +284,22 @@ export const ContactFormMobile = () => {
       <div style={{ marginBottom: '15px' }}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
           <div style={{ 
-            backgroundColor: '#D1342D', 
+            backgroundcolor: '#D1342D', 
             color: '#FCFCFC', 
             padding: '2px 5px', 
             borderRadius: '2px',
             fontSize: '12px',
             marginRight: '8px',
             fontFamily: '"Zen Kaku Gothic New"'
-          }}>必須</div>
+          }}>蠢・・ｽ・ｽE/div>
           <span style={{ 
             fontFamily: '"Zen Kaku Gothic New"',
             fontSize: '15px',
             fontWeight: 700
-          }}>お問い合わせ内容</span>
+          }}>縺雁撫縺・・ｽ・ｽ繧上○蜀・・ｽ・ｽ</span>
         </div>
         <textarea 
-          placeholder="お問い合わせ内容をご入力ください" 
+          placeholder="縺雁撫縺・・ｽ・ｽ繧上○蜀・・ｽ・ｽ繧偵＃蜈･蜉帙￥縺縺輔＞" 
           style={{
             width: '100%',
             height: '120px',
@@ -317,19 +316,19 @@ export const ContactFormMobile = () => {
       <div style={{ marginBottom: '15px' }}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
           <div style={{ 
-            backgroundColor: '#D1342D', 
+            backgroundcolor: '#D1342D', 
             color: '#FCFCFC', 
             padding: '2px 5px', 
             borderRadius: '2px',
             fontSize: '12px',
             marginRight: '8px',
             fontFamily: '"Zen Kaku Gothic New"'
-          }}>必須</div>
+          }}>蠢・・ｽ・ｽE/div>
           <span style={{ 
             fontFamily: '"Zen Kaku Gothic New"',
             fontSize: '15px',
             fontWeight: 700
-          }}>個人情報の取り扱いについての同意</span>
+          }}>蛟倶ｺｺ諠・・ｽ・ｽ縺ｮ蜿悶ｊ謇ｱ縺・・ｽ・ｽ縺､縺・・ｽ・ｽ縺ｮ蜷梧э</span>
         </div>
         <p style={{ 
           fontSize: '14px',
@@ -337,11 +336,10 @@ export const ContactFormMobile = () => {
           marginTop: '5px',
           fontFamily: '"Zen Kaku Gothic New"'
         }}>
-          問い合わせにあたり当社がお預かりする個人情報については、「<a href="#" style={{ color: '#1976D2', textDecoration: 'underline' }}>個人情報の取り扱いについて</a>」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
-        </p>
+          蝠上＞蜷医ｏ縺帙↓縺ゅ◆繧雁ｽ鍋､ｾ縺後♀鬆舌°繧翫☆繧句倶ｺｺ諠・・ｽ・ｽ縺ｫ縺､縺・・ｽ・ｽ縺ｯ縲√・a href="#" style={{ color: '#1976D2', textDecoration: 'underline' }}>蛟倶ｺｺ諠・・ｽ・ｽ縺ｮ蜿悶ｊ謇ｱ縺・・ｽ・ｽ縺､縺・・ｽ・ｽ</a>縲阪↓蠕薙＞縲∝叙繧頑桶縺・・ｽ・ｽ縺吶ょ酔諢上＞縺溘□縺代ｋ蝣ｴ蜷茨ｿｽE縲√悟酔諢上☆繧九阪↓繝√ぉ繝・・ｽ・ｽ繧抵ｿｽE繧後※縺上□縺輔＞縲・        </p>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
           <input type="checkbox" id="agree" style={{ marginRight: '8px' }} />
-          <label htmlFor="agree" style={{ fontSize: '15px', fontFamily: '"Zen Kaku Gothic New"' }}>同意する</label>
+          <label htmlFor="agree" style={{ fontSize: '15px', fontFamily: '"Zen Kaku Gothic New"' }}>蜷梧э縺吶ｋ</label>
         </div>
       </div>
 
@@ -362,7 +360,7 @@ export const ContactFormMobile = () => {
         cursor: 'pointer',
         marginTop: '20px'
       }}>
-        送信する
+        騾∽ｿ｡縺吶ｋ
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '8px' }}>
           <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
         </svg>
@@ -398,9 +396,9 @@ export const ContactMobileFooter = () => {
       </div>
       
       <div>
-        <a href="#">運用会社情報</a>
-        <a href="#">プライバシーポリシー</a>
-        <a href="#">個人情報の取り扱いについて</a>
+        <a href="#">驕狗畑莨夂､ｾ諠・・ｽ・ｽ</a>
+        <a href="#">繝励Λ繧､繝舌す繝ｼ繝昴Μ繧ｷ繝ｼ</a>
+        <a href="#">蛟倶ｺｺ諠・・ｽ・ｽ縺ｮ蜿悶ｊ謇ｱ縺・・ｽ・ｽ縺､縺・・ｽ・ｽ</a>
       </div>
       
       <div className="copyright">
@@ -410,7 +408,7 @@ export const ContactMobileFooter = () => {
   );
 };
 
-// PCコンタクトコンテナ
+// PC繧ｳ繝ｳ繧ｿ繧ｯ繝医さ繝ｳ繝・・ｽ・ｽ
 export const PcContactContainer = () => {
   const isMobile = useIsMobile();
   
@@ -421,7 +419,7 @@ export const PcContactContainer = () => {
   );
 };
 
-// PC Redインジケーター
+// PC Red繧､繝ｳ繧ｸ繧ｱ繝ｼ繧ｿ繝ｼ
 export const PcRedIndicator = ({ top, left }) => {
   const isMobile = useIsMobile();
   
@@ -429,28 +427,27 @@ export const PcRedIndicator = ({ top, left }) => {
   
   return (
     <div className="pc-red-indicator" style={{ top, left }}>
-      <span className="required-text">必須</span>
+      <span className="pc-required-text">蠢・・ｽ・ｽE/span>
     </div>
   );
 };
 
-// PC入力フィールド
-export const PcInputField = ({ top, left }) => {
+// PC蜈･蜉帙ヵ繧｣繝ｼ繝ｫ繝・export const PcInputField = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <input 
+    <input
       type="text"
       className="pc-input-field"
-      style={{ position: 'absolute', top, left }}
+      style={{ top, left }}
+      placeholder="螻ｱ逕ｰ螟ｪ驛・
     />
   );
 };
 
-// PC大型入力フィールド（テキストエリア）
-export const PcLargeInputField = ({ top, left }) => {
+// PC螟ｧ縺阪↑蜈･蜉帙ヵ繧｣繝ｼ繝ｫ繝・export const PcLargeInputField = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
@@ -458,143 +455,129 @@ export const PcLargeInputField = ({ top, left }) => {
   return (
     <textarea
       className="pc-large-input-field"
-      style={{ position: 'absolute', top, left }}
+      style={{ top, left }}
+      placeholder="縺薙■繧峨↓縺雁撫縺・・ｽ・ｽ繧上○蜀・・ｽ・ｽ繧偵＃險假ｿｽE縺上□縺輔＞"
     ></textarea>
   );
 };
 
-// PC名前ラベル
+// PC蜷榊燕繝ｩ繝吶Ν
 export const PcNameLabel = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <div className="pc-name-label" style={{ position: 'absolute', top, left }}>
-      お名前
-    </div>
+    <div className="pc-name-label" style={{ top, left }}>
+      縺雁錐蜑・    </div>
   );
 };
 
-// PC企業ラベル
+// PC莨夂､ｾ繝ｩ繝吶Ν
 export const PcCompanyLabel = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <div className="pc-company-label" style={{ position: 'absolute', top, left }}>
-      企業名
-    </div>
+    <div className="pc-company-label" style={{ top, left }}>
+      莨夂､ｾ蜷・    </div>
   );
 };
 
-// PCお問い合わせ内容ラベル
+// PC繧ｳ繝ｳ繧ｿ繧ｯ繝茨ｿｽE螳ｹ繝ｩ繝吶Ν
 export const PcContactContentLabel = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <div className="pc-contact-content-label" style={{ position: 'absolute', top, left }}>
-      お問い合わせ内容
+    <div className="pc-contact-content-label" style={{ top, left }}>
+      縺雁撫縺・・ｽ・ｽ繧上○蜀・・ｽ・ｽ
     </div>
   );
 };
 
-// PCプライバシーラベル
+// PC繝励Λ繧､繝舌す繝ｼ繝ｩ繝吶Ν
 export const PcPrivacyLabel = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <div className="pc-privacy-label" style={{ position: 'absolute', top, left }}>
-      個人情報の取り扱いについての同意
+    <div className="pc-privacy-label" style={{ top, left }}>
+      蛟倶ｺｺ諠・・ｽ・ｽ縺ｮ蜿悶ｊ謇ｱ縺・・ｽ・ｽ縺､縺・・ｽ・ｽ
     </div>
   );
 };
 
-// PCプライバシーテキスト
-export const PcPrivacyText = ({ top, left }) => {
+// PC繝励Λ繧､繝舌す繝ｼ繝・・ｽ・ｽ繧ｹ繝・export const PcPrivacyText = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <div className="pc-privacy-text" style={{ position: 'absolute', top, left }}>
-      問い合わせにあたり当社がお預かりする個人情報については、「<a href="#">個人情報の取り扱いについて</a>」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
-    </div>
+    <div className="pc-privacy-text" style={{ top, left }}>
+      蛟倶ｺｺ諠・・ｽ・ｽ菫晁ｭｷ譁ｹ驥昴↓蝓ｺ縺･縺埼←蛻・・ｽ・ｽ蟇ｾ蠢懊＞縺溘＠縺ｾ縺吶りｩｳ縺励￥縺ｯ<a href="#" className="pc-privacy-link">繝励Λ繧､繝舌す繝ｼ繝昴Μ繧ｷ繝ｼ</a>繧偵＃隕ｧ縺上□縺輔＞縲・    </div>
   );
 };
 
-// PCチェックボックス
+// PC繝√ぉ繝・・ｽ・ｽ繝懊ャ繧ｯ繧ｹ
 export const PcCheckBox = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <input 
-      type="checkbox"
-      className="pc-checkbox"
-      style={{ position: 'absolute', top, left }}
-    />
+    <div className="pc-check-box" style={{ top, left }}></div>
   );
 };
 
-// PC同意テキスト
-export const PcAgreeText = ({ top, left }) => {
+// PC蜷梧э繝・・ｽ・ｽ繧ｹ繝・export const PcAgreeText = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <div className="pc-agree-text" style={{ position: 'absolute', top, left }}>
-      同意する
+    <div className="pc-agree-text" style={{ top, left }}>
+      蛟倶ｺｺ諠・・ｽ・ｽ縺ｮ蜿悶ｊ謇ｱ縺・・ｽ・ｽ蜷梧э縺吶ｋ
     </div>
   );
 };
 
-// PC名前プレースホルダー
+// PC蜷榊燕繝励Ξ繝ｼ繧ｹ繝帙Ν繝繝ｼ
 export const PcNamePlaceholder = ({ top, left }) => {
-  return (
-    <div className="pc-name-placeholder" style={{ position: 'absolute', top, left, pointerEvents: 'none' }}>
-      山田 太郎
-    </div>
-  );
+  // 繝励Ξ繝ｼ繧ｹ繝帙Ν繝繝ｼ縺ｯ荳崎ｦ√↓縺ｪ縺｣縺溘◆繧］ull繧定ｿ斐☆
+  return null;
 };
 
-// PC企業名プレースホルダー
+// PC莨夂､ｾ繝励Ξ繝ｼ繧ｹ繝帙Ν繝繝ｼ
 export const PcCompanyPlaceholder = ({ top, left }) => {
-  return (
-    <div className="pc-company-placeholder" style={{ position: 'absolute', top, left, pointerEvents: 'none' }}>
-      企業名をご入力してください
-    </div>
-  );
+  // 繝励Ξ繝ｼ繧ｹ繝帙Ν繝繝ｼ縺ｯ荳崎ｦ√↓縺ｪ縺｣縺溘◆繧］ull繧定ｿ斐☆
+  return null;
 };
 
-// PCお問い合わせ内容プレースホルダー
+// PC繧ｳ繝ｳ繝・・ｽ・ｽ繝・・ｽE繝ｬ繝ｼ繧ｹ繝帙Ν繝繝ｼ
 export const PcContentPlaceholder = ({ top, left }) => {
-  return (
-    <div className="pc-content-placeholder" style={{ position: 'absolute', top, left, pointerEvents: 'none' }}>
-      こちらにお問い合わせ内容をご記入ください
-    </div>
-  );
+  // 繝励Ξ繝ｼ繧ｹ繝帙Ν繝繝ｼ縺ｯ荳崎ｦ√↓縺ｪ縺｣縺溘◆繧］ull繧定ｿ斐☆
+  return null;
 };
 
-// PC送信ボタン
+// PC騾∽ｿ｡繝懊ち繝ｳ
 export const PcSubmitButton = ({ top, left }) => {
   const isMobile = useIsMobile();
   
   if (isMobile) return null;
   
   return (
-    <button className="pc-submit-button" style={{ position: 'absolute', top, left }}>
-      送信する
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '8px' }}>
-        <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
-      </svg>
-    </button>
+    <div className="pc-submit-button" style={{ top, left }}>
+      騾∽ｿ｡縺吶ｋ
+      <div className="pc-arrow-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 27C22.0751 27 27 22.0751 27 16C27 9.92487 22.0751 5 16 5C9.92487 5 5 9.92487 5 16C5 22.0751 9.92487 27 16 27Z" stroke="#FCFCFC" />
+          <path d="M16.5303 20.5303C16.2374 20.8232 15.7626 20.8232 15.4697 20.5303C15.1768 20.2374 15.1768 19.7626 15.4697 19.4697L16.5303 20.5303ZM19 16L19.5303 16.5303C19.8232 16.2374 19.8232 15.7626 19.5303 15.4697L19 16ZM15.4697 12.5303C15.7626 12.2374 16.2374 12.2374 16.5303 12.5303C16.8232 12.8232 16.8232 13.2981 16.5303 13.5911L15.4697 12.5303ZM12 16C11.4477 16 11 15.5523 11 15C11 14.4477 11.4477 14 12 14L12 16ZM15.4697 19.4697L18.4697 16.4697L19.5303 17.5303L16.5303 20.5303L15.4697 19.4697ZM18.4697 15.5303L15.4697 12.5303L16.5303 13.5911L19.5303 16.5911L18.4697 15.5303ZM19 15L12 15L12 17L19 17L19 15Z" fill="#FCFCFC" />
+        </svg>
+      </div>
+    </div>
   );
 };

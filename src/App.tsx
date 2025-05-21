@@ -96,6 +96,17 @@ function App() {
     };
   }, []);
   
+  // isMobileの変更を検知して、サービスイメージ表示状態を更新
+  useEffect(() => {
+    if (!isMobile) {
+      // PC表示の場合は全ての要素を表示
+      setShowServiceImage1(true);
+      setShowServiceImage2(true);
+      setShowGradientCard1(true);
+      setShowGradientCard2(true);
+    }
+  }, [isMobile]);
+
   // モバイルコンタクトボタンのクリックイベントを処理
   useEffect(() => {
     const handleContactPopup = () => {
@@ -736,7 +747,7 @@ function App() {
                 position: 'absolute',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                top: '1860px',
+                top: '2020px',
                 width: '100%',
                 maxWidth: '335px',
                 zIndex: 9999
@@ -798,7 +809,6 @@ function App() {
         <ContactFooterLinks />
         <ContactFooterCopyright />
         <ContactMobileFooter />
-        <CustomRedIndicator />
         
         {/* ポップアップコンポーネント - 最前面に配置 */}
         <CliffQuestionPopup isOpen={isPopupOpen} onClose={closePopup} />

@@ -101,7 +101,7 @@
   .works-header-text {
     position: absolute;
     left: 13px;
-    top: 5192px; /* モバイルでの位置を調整 */
+    top: 5252px; /* 5192pxから60px下げて5252pxに変更 */
     font-size: 40px;
     font-weight: 700;
     line-height: 150%;
@@ -113,7 +113,7 @@
   .works-subtitle-text {
     position: absolute;
     left: 13px;
-    top: 5256px; /* ヘッダーの下に配置 */
+    top: 5316px; /* 5256pxから60px下げて5316pxに変更 */
     font-size: 18px;
     font-weight: 700;
     line-height: 150%;
@@ -125,7 +125,7 @@
   .works-images-container {
     position: absolute;
     left: 13px;
-    top: 5300px; /* サブタイトルの下に配置 */
+    top: 5360px; /* ここの値を変更すると画像全体の垂直位置が変わります (5400pxから変更) */
     width: calc(100% - 26px); /* 左右のマージンを考慮 */
     max-width: 335px;
     display: block; /* flexからblockに変更 */
@@ -147,6 +147,8 @@
     border: none; /* 枠線を削除 */
     background-color: transparent; /* 背景色を透明に */
     object-fit: contain; /* 画像のアスペクト比を保持 */
+    margin-top: 10px; /* 上部余白を調整して位置を微調整できます */
+    margin-bottom: 20px; /* 下部余白を調整して位置を微調整できます */
   }
   
   /* モバイル表示時のみPC用の画像を非表示に */
@@ -158,7 +160,7 @@
   .works-circle-gradient {
     position: absolute !important;
     left: -187.5px;
-    top: 6880px; /* 画像の下に配置 */
+    top: 6940px; /* 画像の下に配置 - この値を変更するとグラデーションの位置が変わります */
     width: 600px; /* 幅を小さく */
     height: 509px; /* 高さを小さく */
     transform: scale(1); /* スケールをリセット */
@@ -174,5 +176,12 @@
     height: 100%;
     display: block !important; /* SVGも強制表示 */
     visibility: visible !important;
+  }
+}
+
+/* PC表示では明示的にモバイル画像を非表示にする */
+@media (min-width: 581px) {
+  .works-mobile-full-image {
+    display: none !important;
   }
 }
