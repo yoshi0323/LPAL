@@ -1,31 +1,67 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/animation.css';
 
-// テキストタイピングアニメーション用のコンポーネント
+/* 
+ * ===========================================
+ * animation.js - アニメーション関連コンポーネント
+ * ===========================================
+ * このファイルには、サイト全体で使用される様々なアニメーション効果を
+ * 実現するためのコンポーネントが含まれています。
+ * 
+ * 主なコンポーネント:
+ * - TypingText: タイピングアニメーション
+ * - FadeInOnScroll: スクロールに応じてフェードインするアニメーション
+ * - AnimateOnCursor: カーソルが要素に乗ったときのアニメーション
+ * - ValueStickyComponents: 固定表示要素のスクロールアニメーション
+ * - WorkImageAnimation: ワークイメージのアニメーション
+ * - ProcessImageAnimation: プロセスイメージのアニメーション
+ * - AnimateContactElements: コンタクトセクション要素のアニメーション
+ * - AnimateServiceElements: サービスセクション要素のアニメーション
+ */
+
+/* 
+ * ===========================================
+ * TypingText - タイピングアニメーションコンポーネント
+ * ===========================================
+ * テキストを1文字ずつタイプしているように表示するアニメーションを実現します。
+ * 
+ * パラメータ:
+ * - text: アニメーションで表示するテキスト
+ * - className: 適用するCSSクラス名
+ * - delay: アニメーション開始までの遅延時間(ミリ秒)
+ * - style: 追加のスタイル設定
+ */
 export const TypingText = ({ text, className, delay = 0, style = {} }) => {
+  // 表示するテキストの状態
   const [displayText, setDisplayText] = useState('');
+  // カーソルの表示/非表示の状態
   const [showCursor, setShowCursor] = useState(true);
+  // アニメーション開始状態
   const [startAnimation, setStartAnimation] = useState(false);
 
+  // 指定された遅延後にアニメーションを開始
   useEffect(() => {
     // 遅延後にアニメーションを開始
     const delayTimeout = setTimeout(() => {
       setStartAnimation(true);
     }, delay);
 
+    // クリーンアップ関数
     return () => clearTimeout(delayTimeout);
   }, [delay]);
 
+  // 文字を1つずつ表示するアニメーション処理
   useEffect(() => {
     if (!startAnimation) return;
 
     if (displayText.length < text.length) {
+      // まだ表示していない文字がある場合、次の文字を表示
       const timeout = setTimeout(() => {
         setDisplayText(text.substring(0, displayText.length + 1));
       }, 100); // タイピング速度
       return () => clearTimeout(timeout);
     } else {
-      // テキスト完成後にカーソルを点滅
+      // テキスト表示完了後、カーソルを点滅させる
       const cursorTimeout = setTimeout(() => {
         setShowCursor(prev => !prev);
       }, 500); // カーソル点滅速度
@@ -33,6 +69,7 @@ export const TypingText = ({ text, className, delay = 0, style = {} }) => {
     }
   }, [displayText, text, startAnimation]);
 
+  // レンダリング
   return (
     <div className={className} style={style}>
       {displayText}
@@ -41,9 +78,23 @@ export const TypingText = ({ text, className, delay = 0, style = {} }) => {
   );
 };
 
-// スクロールアニメーション用のコンポーネント
+/* 
+ * ===========================================
+ * FadeInOnScroll - スクロールによるフェードインアニメーション
+ * ===========================================
+ * 要素がビューポート内に入ったときに、フェードインや
+ * スライドインなどのアニメーションを適用するコンポーネント。
+ * 
+ * パラメータ:
+ * - children: アニメーションを適用する子要素
+ * - className: 追加のCSSクラス名
+ * - delay: アニメーション開始の遅延時間(ミリ秒)
+ * - animation: アニメーションの種類('fade', 'slide-left', 'slide-right', 'zoom')
+ */
 export const FadeInOnScroll = ({ children, className = '', delay = 0, animation = 'fade' }) => {
+  // 要素が表示されたかどうかの状態
   const [isVisible, setIsVisible] = useState(false);
+  // 監視対象要素への参照
   const elementRef = useRef(null);
 
   // アニメーションタイプを選択する関数
@@ -61,10 +112,12 @@ export const FadeInOnScroll = ({ children, className = '', delay = 0, animation 
     }
   };
 
+  // IntersectionObserverを使って要素の可視性を監視
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // 要素が表示されたら状態を更新して監視を停止
           setIsVisible(true);
           observer.unobserve(entry.target);
         }
@@ -75,10 +128,12 @@ export const FadeInOnScroll = ({ children, className = '', delay = 0, animation 
       }
     );
 
+    // 要素が存在すれば監視を開始
     if (elementRef.current) {
       observer.observe(elementRef.current);
     }
 
+    // クリーンアップ関数
     return () => {
       if (elementRef.current) {
         observer.unobserve(elementRef.current);
@@ -86,9 +141,12 @@ export const FadeInOnScroll = ({ children, className = '', delay = 0, animation 
     };
   }, []);
 
+  // 遅延があれば適用するスタイル
   const style = delay ? { transitionDelay: `${delay}ms` } : {};
+  // アニメーション用のクラス名
   const animationClass = getAnimationClass(animation);
 
+  // レンダリング
   return (
     <div 
       ref={elementRef}
@@ -100,9 +158,24 @@ export const FadeInOnScroll = ({ children, className = '', delay = 0, animation 
   );
 };
 
-// カーソルがセクションに入った時にアニメーションをトリガーするコンポーネント
+/* 
+ * ===========================================
+ * AnimateOnCursor - マウスオーバーでアニメーション
+ * ===========================================
+ * カーソルが要素の上に乗ったときにのみ
+ * アニメーションを開始するコンポーネント。
+ * 
+ * パラメータ:
+ * - children: アニメーションを適用する子要素
+ * - className: 追加のCSSクラス名
+ * - delay: アニメーション開始の遅延時間(ミリ秒)
+ * - animation: アニメーションの種類('fade', 'slide-left', 'slide-right', 'zoom')
+ * - containerClassName: コンテナに適用する追加のクラス名
+ */
 export const AnimateOnCursor = ({ children, className = '', delay = 0, animation = 'fade', containerClassName = '' }) => {
+  // 要素が表示されたかどうかの状態
   const [isVisible, setIsVisible] = useState(false);
+  // コンテナ要素への参照
   const containerRef = useRef(null);
 
   // アニメーションタイプを選択する関数
@@ -120,17 +193,17 @@ export const AnimateOnCursor = ({ children, className = '', delay = 0, animation
     }
   };
 
-  // マウスが入った時にアニメーションをトリガー
+  // マウスが入った時にアニメーションをトリガーする関数
   const handleMouseEnter = () => {
     setIsVisible(true);
   };
 
-  // スクロールで要素が表示されたら準備状態にする（自動的にアニメーションを開始しない）
+  // スクロールで要素が表示されたことを検知するための監視
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // ここでは表示状態を変更せず、マウス侵入を待つ
+          // 要素が表示されたら監視を停止（まだアニメーションは開始しない）
           observer.unobserve(entry.target);
         }
       },
@@ -140,10 +213,12 @@ export const AnimateOnCursor = ({ children, className = '', delay = 0, animation
       }
     );
 
+    // 要素が存在すれば監視を開始
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
 
+    // クリーンアップ関数
     return () => {
       if (containerRef.current) {
         observer.unobserve(containerRef.current);
@@ -151,9 +226,12 @@ export const AnimateOnCursor = ({ children, className = '', delay = 0, animation
     };
   }, []);
 
+  // 遅延があれば適用するスタイル
   const style = delay ? { transitionDelay: `${delay}ms` } : {};
+  // アニメーション用のクラス名
   const animationClass = getAnimationClass(animation);
 
+  // レンダリング
   return (
     <div 
       ref={containerRef}
@@ -170,13 +248,32 @@ export const AnimateOnCursor = ({ children, className = '', delay = 0, animation
   );
 };
 
-// バリューセクション用の固定表示コンポーネント
+/* 
+ * ===========================================
+ * ValueStickyComponents - 固定表示スクロールアニメーション
+ * ===========================================
+ * バリューセクションの要素をスクロールに応じて移動させる
+ * 高度なアニメーションを実現するコンポーネントです。
+ * スクロール量に応じて要素の位置や透明度を制御します。
+ * 
+ * 主な機能:
+ * - スクロール量に応じた要素の上下移動
+ * - スクロール進行で徐々に透明になる効果
+ * - 要素のホバー時の強調表示
+ * - モバイル/PC表示の切り替え対応
+ */
 export const ValueStickyComponents = () => {
+  // 要素の表示/非表示状態
   const [visibilityState, setVisibilityState] = useState('visible');
+  // アクティブな項目の状態（ホバー時に使用）
   const [activeItems, setActiveItems] = useState([false, false, false, false, false]);
+  // 画像初期化状態
   const [imagesInitialized, setImagesInitialized] = useState(false);
+  // 要素の元の位置を保存する参照
   const originalPositionsRef = useRef(null);
+  // アクティブ項目状態への参照（最新の状態にアクセスするため）
   const activeItemsRef = useRef(activeItems);
+  // 初期化完了状態
   const [isInitialized, setIsInitialized] = useState(false);
 
   // activeItemsが変更されたら参照を更新
@@ -184,7 +281,13 @@ export const ValueStickyComponents = () => {
     activeItemsRef.current = activeItems;
   }, [activeItems]);
 
-  // 初期表示の設定
+  /* 
+   * ===========================================
+   * 初期表示設定
+   * ===========================================
+   * ヘッダー、サブタイトル、数字、タイトルなどの要素の
+   * 初期表示スタイルを設定します。
+   */
   useEffect(() => {
     const setInitialVisibility = () => {
       const headerElement = document.querySelector('.value-header-text');
@@ -257,7 +360,13 @@ export const ValueStickyComponents = () => {
     };
   }, []);
 
-  // 初期化処理
+  /* 
+   * ===========================================
+   * 要素の位置情報初期化
+   * ===========================================
+   * 各要素の初期位置を取得して保存します。
+   * この情報はスクロール時の位置計算に使用されます。
+   */
   useEffect(() => {
     if (isInitialized) return;
 
@@ -314,17 +423,25 @@ export const ValueStickyComponents = () => {
     initialize();
   }, [isInitialized]);
 
-  // スクロール処理
+  /* 
+   * ===========================================
+   * スクロール処理
+   * ===========================================
+   * スクロール位置に応じて要素の位置と透明度を更新します。
+   * スクロール量の0.7倍の速度で要素を移動させ、
+   * スクロールが進むにつれて徐々に透明になるように設定されています。
+   */
   useEffect(() => {
     if (!isInitialized) return;
 
     let ticking = false;
 
     const handleScroll = () => {
+      // モバイル表示時は処理しない
       if (window.innerWidth <= 580) return;
 
       const scrollPosition = window.scrollY;
-      const valueStart = 2390;
+      const valueStart = 2390; // バリューセクション開始位置
       
       // ワークスヘッダーの位置を取得
       const worksHeader = document.querySelector('.works-header-text');
@@ -332,7 +449,7 @@ export const ValueStickyComponents = () => {
       
       const worksHeaderRect = worksHeader.getBoundingClientRect();
       const worksHeaderTop = worksHeaderRect.top + window.scrollY;
-      const valueEnd = worksHeaderTop - 300;
+      const valueEnd = worksHeaderTop - 300; // バリューセクション終了位置（ワークスヘッダーの300px手前）
 
       // 要素を取得
       const headerElement = document.querySelector('.value-header-text');
@@ -345,9 +462,9 @@ export const ValueStickyComponents = () => {
 
       // セクション内の場合
       if (scrollPosition >= valueStart && scrollPosition < valueEnd) {
-        const scrollDiff = (scrollPosition - valueStart) * 0.7; // スクロール量の半分だけ移動するように修正
+        const scrollDiff = (scrollPosition - valueStart) * 0.7; // スクロール量の0.7倍だけ移動するように修正
         const progress = Math.min((scrollPosition - valueStart) / (valueEnd - valueStart), 1);
-        const fadeOutFactor = Math.max(1 - progress, 0.2);
+        const fadeOutFactor = Math.max(1 - progress, 0.2); // 最小0.2の透明度を維持
 
         // ヘッダーとサブタイトルの更新
         if (headerElement && positions.header) {
