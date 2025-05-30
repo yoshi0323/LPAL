@@ -188,25 +188,6 @@
   display: flex !important;
 }
 
-/* レスポンシブ対応のメディアクエリを追加 */
-@media screen and (max-width: 991px) {
-  .service-image1-container {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    margin-top: 20px;
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: flex !important;
-  }
-  
-  /* 画像も確実に表示 */
-  .service-image1 {
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-}
-
 @media screen and (max-width: 767px) {
   .service-image1-container {
     margin-right: 20px;
@@ -415,5 +396,45 @@
     object-fit: cover !important;
     display: block !important;
     position: relative !important;
+  }
+}
+
+/* 581以上: PC版レスポンシブデザイン */
+@media screen and (min-width: 581px) {
+  /* global.cssで非表示にされた要素をPC版では表示する */
+  .service-box,
+  .service-gradient-card1,
+  .service-gradient-card2,
+  .service-title-text,
+  .service-consulting-description,
+  .service-saas-title,
+  .service-saas-description {
+    display: block !important;  /* 非表示を解除 */
+  }
+  
+  /* サービスイメージ1をPC版の位置に戻す */
+  .service-image-container.service-image1-container {
+    position: absolute !important;
+    left: 300.5px !important;
+    top: 1946.7772px !important;
+    margin: 0 !important;  /* marginをリセット */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+  
+  /* サービスイメージ2もPC版の位置に */
+  .service-image2-container {
+    position: absolute !important;
+    left: 781.15px !important;
+    top: 1947.7472px !important;
+    width: 264px !important;
+    height: 182px !important;
+    margin: 0 !important;
+    display: block !important;
+    transform: none !important;
   }
 }

@@ -25,15 +25,38 @@ import { ContactCircleGradient, ContactBackgroundGradient, ContactMaskImage, Con
 import { CliffQuestionPopup } from './components/popup.js';
 import { TypingText, FadeInOnScroll, CursorTriggerSection, AnimateOnCursor, ValueStickyComponents, WorkImageAnimation, ProcessImageAnimation, AnimateContactElements, AnimateServiceElements } from './components/animation';
 import './styles/styles.css';
-import './styles/global.css';
 import './body.css';
-import './styles/service.css';
 import './styles/value.css';
 import './styles/works.css';
 import './styles/process.css';
 import './styles/contact.css';
 import './styles/popup.css';
 import './styles/animation.css';
+import './styles/global.css';
+import './styles/service.css';
+
+/* 
+ * ===========================================
+ * アプリケーション全体構造
+ * ===========================================
+ * このアプリケーションは、Legacyシステムをモダンなシステムに変換するサービスを提供する
+ * サイトのフロントエンドコードです。主に以下のセクションで構成されています：
+ * 
+ * 1. ヘッダー部分 - ナビゲーションとロゴ
+ * 2. ヒーローセクション - メインのキャッチフレーズとCTA
+ * 3. 「2025年の崖」問題の説明セクション
+ * 4. 会社概要セクション
+ * 5. サービス説明セクション
+ * 6. 提供価値セクション
+ * 7. 導入事例（ワークス）セクション
+ * 8. サポートステップ（プロセス）セクション
+ * 9. お問い合わせ（コンタクト）セクション
+ * 10. フッターセクション
+ * 
+ * モバイルとPC表示の両方に対応しており、それぞれで異なるレイアウトを提供します。
+ * アニメーションはanimation.jsで定義されており、スクロールに応じた要素の表示や
+ * インタラクティブな体験を提供します。
+ */
 
 // TypeScriptモジュールとして認識されるために必要な空のexport
 export {};
@@ -51,18 +74,35 @@ const InputFieldWithType = (props: { left: number, type?: string }) => {
 };
 
 function App() {
+  /* 
+   * ===========================================
+   * 状態変数（State Variables）
+   * ===========================================
+   */
+  // ポップアップの表示状態
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  // 各種アニメーションの状態管理
   const [isAnimationTriggered, setIsAnimationTriggered] = useState(false);
   const [serviceAnimationTriggered, setServiceAnimationTriggered] = useState(false);
+  
+  // サービスセクションの要素表示状態
   const [showServiceImage1, setShowServiceImage1] = useState(false);
   const [showServiceImage2, setShowServiceImage2] = useState(false);
   const [showGradientCard1, setShowGradientCard1] = useState(false);
   const [showGradientCard2, setShowGradientCard2] = useState(false);
+  
+  // モバイル表示かどうかの状態
   const [isMobile, setIsMobile] = useState(false);
   
   // アニメーション遅延用の状態
   const [shouldAnimateDelayed, setShouldAnimateDelayed] = useState(false);
 
+  /* 
+   * ===========================================
+   * イベントハンドラ関数
+   * ===========================================
+   */
   // ポップアップ開閉の関数
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -72,7 +112,13 @@ function App() {
     setIsPopupOpen(false);
   };
   
-  // モバイル表示の検出
+  /* 
+   * ===========================================
+   * モバイル表示検出のためのuseEffect
+   * ===========================================
+   * 画面サイズに基づいてモバイル表示かどうかを判定し、状態を更新します。
+   * また、画面サイズが変更された場合のイベントリスナーも設定します。
+   */
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 580px)');
     setIsMobile(mediaQuery.matches);
@@ -81,12 +127,14 @@ function App() {
       setIsMobile(event.matches);
     };
     
+    // ブラウザ互換性を考慮したイベントリスナー追加
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener('change', handleMediaChange);
     } else {
       mediaQuery.addListener(handleMediaChange);
     }
     
+    // クリーンアップ関数
     return () => {
       if (mediaQuery.removeEventListener) {
         mediaQuery.removeEventListener('change', handleMediaChange);
@@ -96,18 +144,13 @@ function App() {
     };
   }, []);
   
-  // isMobileの変更を検知して、サービスイメージ表示状態を更新
-  useEffect(() => {
-    if (!isMobile) {
-      // PC表示の場合は全ての要素を表示
-      setShowServiceImage1(true);
-      setShowServiceImage2(true);
-      setShowGradientCard1(true);
-      setShowGradientCard2(true);
-    }
-  }, [isMobile]);
-
-  // モバイルコンタクトボタンのクリックイベントを処理
+  /* 
+   * ===========================================
+   * コンタクトポップアップのイベントハンドラ設定
+   * ===========================================
+   * グローバルイベント「openContactPopup」が発火したときに
+   * コンタクトフォームのポップアップを表示します。
+   */
   useEffect(() => {
     const handleContactPopup = () => {
       // コンタクトポップアップを開く
@@ -121,7 +164,13 @@ function App() {
     };
   }, []);
 
-  // サービスセクションのアニメーショントリガー
+  /* 
+   * ===========================================
+   * サービスセクションのアニメーション設定
+   * ===========================================
+   * サービスセクションの要素を順番にアニメーション表示するための関数です。
+   * PC表示とモバイル表示で異なるアニメーション挙動を持ちます。
+   */
   const triggerServiceAnimation = () => {
     setServiceAnimationTriggered(true);
     
@@ -154,6 +203,12 @@ function App() {
     }, 4400);
   };
 
+  /* 
+   * ===========================================
+   * カスタムインジケーターコンポーネント
+   * ===========================================
+   * 「必須」を示す赤いインジケーターを表示するコンポーネント
+   */
   const CustomRedIndicator = () => {
     return (
       <div className="red-indicator" 
@@ -167,7 +222,12 @@ function App() {
     );
   };
 
-  // クリック可能な要素にイベントハンドラを追加するための関数コンポーネント
+  /* 
+   * ===========================================
+   * クリック可能なCTAボタンコンポーネント
+   * ===========================================
+   * クリックするとポップアップを表示する白いボタン
+   */
   const ClickableWhiteButton = () => {
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();
@@ -186,6 +246,12 @@ function App() {
     );
   };
 
+  /* 
+   * ===========================================
+   * 「2025年の崖」問題テキストコンポーネント
+   * ===========================================
+   * クリックするとポップアップで詳細を表示するテキスト
+   */
   const ClickableCliffQuestionText = () => {
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();
@@ -204,6 +270,12 @@ function App() {
     );
   };
 
+  /* 
+   * ===========================================
+   * 疑問アイコンコンポーネント
+   * ===========================================
+   * クリックするとポップアップで詳細を表示するアイコン
+   */
   const ClickableQuestionIcon = () => {
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();
@@ -227,6 +299,13 @@ function App() {
     );
   };
 
+  /* 
+   * ===========================================
+   * タイピングアニメーション付きLegacyテキスト
+   * ===========================================
+   * ヒーローセクションの「Legacy to」テキストを
+   * タイピングアニメーションで表示するコンポーネント
+   */
   const AnimatedLegacyText = () => {
     const style = window.innerWidth <= 580 ? {
       position: 'absolute',
@@ -250,6 +329,13 @@ function App() {
     );
   };
 
+  /* 
+   * ===========================================
+   * タイピングアニメーション付きModernテキスト
+   * ===========================================
+   * ヒーローセクションの「Modern.」テキストを
+   * タイピングアニメーションで表示するコンポーネント
+   */
   const AnimatedModernDotText = () => {
     const style = window.innerWidth <= 580 ? {
       position: 'absolute',
@@ -280,7 +366,12 @@ function App() {
     );
   };
 
-  // 特定の要素へスクロールする関数
+  /* 
+   * ===========================================
+   * 特定の要素へのスクロール関数
+   * ===========================================
+   * 指定されたセレクターの要素へスムーズにスクロールする関数
+   */
   const scrollToElement = (elementSelector: string) => {
     console.log(`Attempting to scroll to: ${elementSelector}`);
     const element = document.querySelector(elementSelector);
@@ -312,7 +403,33 @@ function App() {
     }
   };
 
-  // クリック可能なナビゲーションコンポーネント
+  /* 
+   * ===========================================
+   * PC版表示時のサービスアニメーション自動トリガー
+   * ===========================================
+   * PC版表示の場合、初期ロード時にサービスセクションの
+   * アニメーションを自動的に開始します。
+   */
+  useEffect(() => {
+    // PC版の場合は、初期ロード時にサービスアニメーションをトリガー
+    if (window.innerWidth > 580 && !serviceAnimationTriggered) {
+      setTimeout(() => {
+        triggerServiceAnimation();
+      }, 500);
+    }
+  }, [serviceAnimationTriggered]);
+
+  /* 
+   * ===========================================
+   * クリック可能なナビゲーションコンポーネント群
+   * ===========================================
+   * 以下のコンポーネントはヘッダーナビゲーションに配置され、
+   * クリックすると対応するセクションに自動スクロールします。
+   */
+
+  /* 
+   * お問い合わせへスクロールするナビゲーションテキスト
+   */
   const ClickableHeaderText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
@@ -335,6 +452,9 @@ function App() {
     );
   };
 
+  /* 
+   * サポートステップへスクロールするナビゲーションテキスト
+   */
   const ClickableSupportStepText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
@@ -357,6 +477,9 @@ function App() {
     );
   };
 
+  /* 
+   * 導入事例へスクロールするナビゲーションテキスト
+   */
   const ClickableCaseStudyText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
@@ -378,6 +501,9 @@ function App() {
     );
   };
 
+  /* 
+   * 提供価値へスクロールするナビゲーションテキスト
+   */
   const ClickableValueText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
@@ -399,6 +525,9 @@ function App() {
     );
   };
 
+  /* 
+   * 私たちについてへスクロールするナビゲーションテキスト
+   */
   const ClickableAboutUsText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
@@ -420,6 +549,9 @@ function App() {
     );
   };
 
+  /* 
+   * サービスへスクロールするナビゲーションテキスト
+   */
   const ClickableServiceText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
@@ -441,17 +573,14 @@ function App() {
     );
   };
 
-  // PC版表示時にサービスアニメーションを自動的にトリガーする
-  useEffect(() => {
-    // PC版の場合は、初期ロード時にサービスアニメーションをトリガー
-    if (window.innerWidth > 580 && !serviceAnimationTriggered) {
-      setTimeout(() => {
-        triggerServiceAnimation();
-      }, 500);
-    }
-  }, [serviceAnimationTriggered]);
-
   return (
+    /* 
+     * ===========================================
+     * アプリケーションコンテナ
+     * ===========================================
+     * 全てのセクションを含むメインのコンテナです。
+     * このコンテナ内に各セクションが配置されています。
+     */
     <div className="app-container">
       {/* バリューセクションのアニメーション処理 */}
       <ValueStickyComponents />

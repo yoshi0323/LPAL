@@ -186,38 +186,50 @@ export const ServiceBox2 = () => {
 export const ServiceImage1 = () => {
   // isMobile状態を追加
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   
   // メディアクエリをチェック
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
-    setIsMobile(mediaQuery.matches);
+    const mobileQuery = window.matchMedia('(max-width: 580px)');
+    const tabletQuery = window.matchMedia('(min-width: 581px) and (max-width: 991px)');
     
-    const handleMediaChange = (e) => {
+    setIsMobile(mobileQuery.matches);
+    setIsTablet(tabletQuery.matches);
+    
+    const handleMobileChange = (e) => {
       setIsMobile(e.matches);
     };
     
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handleMediaChange);
+    const handleTabletChange = (e) => {
+      setIsTablet(e.matches);
+    };
+    
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener('change', handleMobileChange);
+      tabletQuery.addEventListener('change', handleTabletChange);
     } else {
-      mediaQuery.addListener(handleMediaChange);
+      mobileQuery.addListener(handleMobileChange);
+      tabletQuery.addListener(handleTabletChange);
     }
     
     return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener('change', handleMediaChange);
+      if (mobileQuery.removeEventListener) {
+        mobileQuery.removeEventListener('change', handleMobileChange);
+        tabletQuery.removeEventListener('change', handleTabletChange);
       } else {
-        mediaQuery.removeListener(handleMediaChange);
+        mobileQuery.removeListener(handleMobileChange);
+        tabletQuery.removeListener(handleTabletChange);
       }
     };
   }, []);
   
   return (
-    <div className="service-image-container service-image1-container" 
+    <div className={`service-image-container service-image1-container ${isTablet ? 'tablet-override' : ''}`} 
       style={{
         display: 'flex',
         justifyContent: isMobile ? 'flex-end' : 'flex-start',
         alignItems: 'center',
-        margin: isMobile ? '20px 20px 20px auto' : 'initial',
+        margin: isMobile ? '20px 20px 20px auto' : isTablet ? 'initial' : 'initial',
         width: isMobile ? '80%' : '100%',
         maxWidth: isMobile ? '300px' : 'none'
       }}>

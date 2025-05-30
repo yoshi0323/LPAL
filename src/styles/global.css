@@ -471,7 +471,7 @@
         top: 1659.26px !important; /* service-box-leftの下 + マージン */
     }
     
-    .service-image1-container {
+    .service-image1-container:not(.tablet-override) {
         left: 42px !important;
         top: 1932.1px !important; /* service-box-leftの中 */
         transform: scale(0.8) !important;
@@ -1203,14 +1203,3 @@
         display: none !important;
     }
 }
-
-/* 以下のグローバルスコープの定義を削除します */
-/* .service-mobile-image-container {
-    position: relative !important;
-    top: 1300px !important;
-} */
-
-
-
-
-
