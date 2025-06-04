@@ -8,7 +8,7 @@ const useIsMobile = () => {
   
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 580);
+      setIsMobile(window.innerWidth <= 1000);
     };
     
     // 初期チェック
@@ -46,7 +46,12 @@ export const ContactBackgroundGradient = () => {
           backgroundSize: 'cover',
           opacity: 1,
           width: '375px',
-          height: '1098px'
+          height: '1098px',
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          top: '8289px',
+          zIndex: 3
         }}
       ></div>
     );
@@ -66,19 +71,21 @@ export const ContactMaskImage = () => {
       <div 
         className="contact-mask-image mobile force-visible"
         style={{
-          width: '375px',
-          height: '1098px',
-          left: 0,
-          top: '8289px', // 背景画像と同じ位置に配置
-          zIndex: 10, // z-indexを高くして確実に表示
-          position: 'absolute',
-          opacity: 1,
-          display: 'block', // 要素が表示されることを確実に
-          visibility: 'visible', // 要素が可視であることを確実に
           backgroundImage: `url(${process.env.PUBLIC_URL}/image/bg-mask.png)`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',
-          backgroundSize: 'cover'
+          backgroundSize: 'cover',
+          opacity: 1,
+          width: '345px',
+          height: '1098px',
+          position: 'absolute',
+          top: '8289px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 10,
+          display: 'block',
+          visibility: 'visible',
+          flexShrink: 0
         }}
       >
       </div>
@@ -201,173 +208,197 @@ export const ContactFormMobile = () => {
   if (!isMobile) return null;
   
   return (
-    <div className="contact-form-mobile">
-      <h2 style={{ 
-        color: '#D1342D', 
+    <>
+      {/* Contact Title */}
+      <div style={{
+        position: 'absolute',
+        top: '8360px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '375px',
         textAlign: 'center',
-        fontFamily: '"Lexend Deca"',
-        fontSize: '24px',
-        fontWeight: 700,
-        marginBottom: '5px'
-      }}>Contact</h2>
-      <p style={{ 
-        color: '#343434', 
-        textAlign: 'center',
-        fontFamily: '"Zen Kaku Gothic New"',
-        fontSize: '15px',
-        fontWeight: 700,
-        marginTop: 0,
-        marginBottom: '20px'
-      }}>お問い合わせ</p>
-
-      <div style={{ marginBottom: '15px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-          <div style={{ 
-            backgroundColor: '#D1342D', 
-            color: '#FCFCFC', 
-            padding: '2px 5px', 
-            borderRadius: '2px',
-            fontSize: '12px',
-            marginRight: '8px',
-            fontFamily: '"Zen Kaku Gothic New"'
-          }}>必須</div>
-          <span style={{ 
-            fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: '15px',
-            fontWeight: 700
-          }}>お名前</span>
-        </div>
-        <input 
-          type="text" 
-          placeholder="山田 太郎" 
-          style={{
-            width: '100%',
-            padding: '12px',
-            borderRadius: '4px',
-            border: '1px solid #D3D3D3',
-            fontSize: '15px',
-            boxSizing: 'border-box'
-          }}
-        />
-      </div>
-
-      <div style={{ marginBottom: '15px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-          <div style={{ 
-            backgroundColor: '#D1342D', 
-            color: '#FCFCFC', 
-            padding: '2px 5px', 
-            borderRadius: '2px',
-            fontSize: '12px',
-            marginRight: '8px',
-            fontFamily: '"Zen Kaku Gothic New"'
-          }}>必須</div>
-          <span style={{ 
-            fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: '15px',
-            fontWeight: 700
-          }}>企業名</span>
-        </div>
-        <input 
-          type="text" 
-          placeholder="企業名をご入力してください" 
-          style={{
-            width: '100%',
-            padding: '12px',
-            borderRadius: '4px',
-            border: '1px solid #D3D3D3',
-            fontSize: '15px',
-            boxSizing: 'border-box'
-          }}
-        />
-      </div>
-
-      <div style={{ marginBottom: '15px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-          <div style={{ 
-            backgroundColor: '#D1342D', 
-            color: '#FCFCFC', 
-            padding: '2px 5px', 
-            borderRadius: '2px',
-            fontSize: '12px',
-            marginRight: '8px',
-            fontFamily: '"Zen Kaku Gothic New"'
-          }}>必須</div>
-          <span style={{ 
-            fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: '15px',
-            fontWeight: 700
-          }}>お問い合わせ内容</span>
-        </div>
-        <textarea 
-          placeholder="お問い合わせ内容をご入力ください" 
-          style={{
-            width: '100%',
-            height: '120px',
-            padding: '12px',
-            borderRadius: '4px',
-            border: '1px solid #D3D3D3',
-            fontSize: '15px',
-            boxSizing: 'border-box',
-            resize: 'none'
-          }}
-        />
-      </div>
-
-      <div style={{ marginBottom: '15px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-          <div style={{ 
-            backgroundColor: '#D1342D', 
-            color: '#FCFCFC', 
-            padding: '2px 5px', 
-            borderRadius: '2px',
-            fontSize: '12px',
-            marginRight: '8px',
-            fontFamily: '"Zen Kaku Gothic New"'
-          }}>必須</div>
-          <span style={{ 
-            fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: '15px',
-            fontWeight: 700
-          }}>個人情報の取り扱いについての同意</span>
-        </div>
-        <p style={{ 
-          fontSize: '14px',
-          lineHeight: '1.75',
-          marginTop: '5px',
-          fontFamily: '"Zen Kaku Gothic New"'
-        }}>
-          問い合わせにあたり当社がお預かりする個人情報については、「<a href="#" style={{ color: '#1976D2', textDecoration: 'underline' }}>個人情報の取り扱いについて</a>」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
-        </p>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
-          <input type="checkbox" id="agree" style={{ marginRight: '8px' }} />
-          <label htmlFor="agree" style={{ fontSize: '15px', fontFamily: '"Zen Kaku Gothic New"' }}>同意する</label>
-        </div>
-      </div>
-
-      <button style={{ 
-        width: '278px',
-        height: '63px',
-        top: '8373px',
-        padding: '20px 16px',
-        backgroundColor: '#F6835F',
-        color: '#FAD4D3',
-        border: 'none',
-        borderRadius: '80px',
-        fontSize: '16px',
-        fontWeight: 'bold',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        marginTop: '20px'
+        zIndex: 14
       }}>
-        送信する
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '8px' }}>
-          <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
-        </svg>
-      </button>
-    </div>
+        <h2 style={{ 
+          color: '#fff', 
+          textAlign: 'center',
+          fontFamily: '"Lexend Deca"',
+          fontSize: '24px',
+          fontWeight: 700,
+          marginBottom: '5px'
+        }}>Contact</h2>
+        <p style={{ 
+          color: '#fff', 
+          textAlign: 'center',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '15px',
+          fontWeight: 700,
+          marginTop: 0
+        }}>お問い合わせ</p>
+      </div>
+      
+      {/* Form Container */}
+      <div style={{
+        position: 'absolute',
+        top: '8450px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '335px',
+        backgroundColor: '#fff',
+        borderRadius: '8px',
+        padding: '20px',
+        boxSizing: 'border-box',
+        zIndex: 15
+      }}>
+        <div style={{ marginBottom: '15px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+            <div style={{ 
+              backgroundColor: '#D1342D', 
+              color: '#FCFCFC', 
+              padding: '2px 5px', 
+              borderRadius: '2px',
+              fontSize: '12px',
+              marginRight: '8px',
+              fontFamily: '"Zen Kaku Gothic New"'
+            }}>必須</div>
+            <span style={{ 
+              fontFamily: '"Zen Kaku Gothic New"',
+              fontSize: '15px',
+              fontWeight: 700
+            }}>お名前</span>
+          </div>
+          <input 
+            type="text" 
+            placeholder="山田 太郎" 
+            style={{
+              width: '100%',
+              padding: '12px',
+              borderRadius: '4px',
+              border: '1px solid #D3D3D3',
+              fontSize: '15px',
+              boxSizing: 'border-box'
+            }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '15px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+            <div style={{ 
+              backgroundColor: '#D1342D', 
+              color: '#FCFCFC', 
+              padding: '2px 5px', 
+              borderRadius: '2px',
+              fontSize: '12px',
+              marginRight: '8px',
+              fontFamily: '"Zen Kaku Gothic New"'
+            }}>必須</div>
+            <span style={{ 
+              fontFamily: '"Zen Kaku Gothic New"',
+              fontSize: '15px',
+              fontWeight: 700
+            }}>企業名</span>
+          </div>
+          <input 
+            type="text" 
+            placeholder="企業名をご入力してください" 
+            style={{
+              width: '100%',
+              padding: '12px',
+              borderRadius: '4px',
+              border: '1px solid #D3D3D3',
+              fontSize: '15px',
+              boxSizing: 'border-box'
+            }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '15px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+            <div style={{ 
+              backgroundColor: '#D1342D', 
+              color: '#FCFCFC', 
+              padding: '2px 5px', 
+              borderRadius: '2px',
+              fontSize: '12px',
+              marginRight: '8px',
+              fontFamily: '"Zen Kaku Gothic New"'
+            }}>必須</div>
+            <span style={{ 
+              fontFamily: '"Zen Kaku Gothic New"',
+              fontSize: '15px',
+              fontWeight: 700
+            }}>お問い合わせ内容</span>
+          </div>
+          <textarea 
+            placeholder="お問い合わせ内容をご入力ください" 
+            style={{
+              width: '100%',
+              height: '120px',
+              padding: '12px',
+              borderRadius: '4px',
+              border: '1px solid #D3D3D3',
+              fontSize: '15px',
+              boxSizing: 'border-box',
+              resize: 'none'
+            }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '15px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+            <div style={{ 
+              backgroundColor: '#D1342D', 
+              color: '#FCFCFC', 
+              padding: '2px 5px', 
+              borderRadius: '2px',
+              fontSize: '12px',
+              marginRight: '8px',
+              fontFamily: '"Zen Kaku Gothic New"'
+            }}>必須</div>
+            <span style={{ 
+              fontFamily: '"Zen Kaku Gothic New"',
+              fontSize: '15px',
+              fontWeight: 700
+            }}>個人情報の取り扱いについての同意</span>
+          </div>
+          <p style={{ 
+            fontSize: '14px',
+            lineHeight: '1.75',
+            marginTop: '5px',
+            fontFamily: '"Zen Kaku Gothic New"'
+          }}>
+            問い合わせにあたり当社がお預かりする個人情報については、「<a href="#" style={{ color: '#1976D2', textDecoration: 'underline' }}>個人情報の取り扱いについて</a>」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
+          </p>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
+            <input type="checkbox" id="agree" style={{ marginRight: '8px' }} />
+            <label htmlFor="agree" style={{ fontSize: '15px', fontFamily: '"Zen Kaku Gothic New"' }}>同意する</label>
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <button style={{ 
+            width: '200px',
+            height: '50px',
+            backgroundColor: '#F6835F',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '25px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            marginTop: '20px'
+          }}>
+            送信する
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '8px' }}>
+              <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="white"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -378,32 +409,72 @@ export const ContactMobileFooter = () => {
   if (!isMobile) return null;
   
   return (
-    <div className="contact-mobile-footer">
-      <div className="alchemy-logo-container">
-        <img 
-          src={process.env.PUBLIC_URL + "/image/logo.png"} 
-          alt="Alchemy Logo"
-        />
-        <div 
-          style={{
-            color: '#666666',
-            fontFamily: '"Lexend Deca"',
-            fontSize: '20px',
-            fontWeight: 500,
-            marginLeft: '8px'
-          }}
-        >
-          Alchemy
-        </div>
+    <div style={{
+      position: 'absolute',
+      top: '9387px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      display: 'flex',
+      width: '375px',
+      padding: '40px 24px',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '24px',
+      background: 'var(--fcfcfc, #FCFCFC)',
+      zIndex: 2
+    }}>
+      {/* Alchemyテキスト */}
+      <div style={{
+        color: '#666666',
+        fontFamily: '"Lexend Deca"',
+        fontSize: '20px',
+        fontWeight: 500
+      }}>
+        Alchemy
       </div>
       
-      <div>
-        <a href="#">運用会社情報</a>
-        <a href="#">プライバシーポリシー</a>
-        <a href="#">個人情報の取り扱いについて</a>
+      {/* フッターリンク */}
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '16px'
+      }}>
+        <a href="#" style={{
+          color: '#343434',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '14px',
+          fontWeight: 400,
+          textDecoration: 'none',
+          lineHeight: '150%'
+        }}>運用会社情報</a>
+        <a href="#" style={{
+          color: '#343434',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '14px',
+          fontWeight: 400,
+          textDecoration: 'none',
+          lineHeight: '150%'
+        }}>プライバシーポリシー</a>
+        <a href="#" style={{
+          color: '#343434',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '14px',
+          fontWeight: 400,
+          textDecoration: 'none',
+          lineHeight: '150%'
+        }}>個人情報の取り扱いについて</a>
       </div>
       
-      <div className="copyright">
+      {/* 著作権表示 */}
+      <div style={{
+        color: '#C4C4C4',
+        fontFamily: '"Zen Kaku Gothic New"',
+        fontSize: '14px',
+        fontWeight: 400,
+        lineHeight: '150%',
+        textAlign: 'center'
+      }}>
         @2025 ReAlice inc.
       </div>
     </div>

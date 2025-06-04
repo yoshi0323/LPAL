@@ -926,12 +926,263 @@ function App() {
         <ContactBackgroundGradient />
         <ContactMaskImage />
         
-        {!isMobile && <ContactGroupImage />}
-        {!isMobile && <ContactSecondImage />}
-        {!isMobile && <input type="text" className="contact-textbox-left" placeholder="山田太郎" />}
-        {!isMobile && <input type="text" className="contact-textbox-right" placeholder="企業名を入力してください" />}
-        {!isMobile && <textarea className="contact-textarea" placeholder="こちらにお問い合わせ内容をご記入ください"></textarea>}
-        {!isMobile && <input type="checkbox" className="contact-checkbox" id="privacy-checkbox" />}
+        {!isMobile && (
+          <>
+            {/* Contactタイトル - contact-background-gradientの上辺から80px */}
+            <div style={{
+              position: 'absolute',
+              bottom: 'calc(8vh + 60px + clamp(600px, 68vw, 978px) - 80px - 60px)',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 16,
+              textAlign: 'center'
+            }}>
+              <div style={{
+                color: '#fff',
+                fontFamily: '"Lexend Deca", sans-serif',
+                fontSize: '48px',
+                fontWeight: '700',
+                lineHeight: '100%',
+                marginBottom: '8px'
+              }}>
+                Contact
+              </div>
+              <div style={{
+                color: '#fff',
+                fontFamily: '"Zen Kaku Gothic New"',
+                fontSize: '16px',
+                fontWeight: '400',
+                lineHeight: '150%'
+              }}>
+                お問い合わせ
+              </div>
+            </div>
+            
+            {/* フォームの白いコンテナ - contact-background-gradientの上辺から232px */}
+            <div style={{
+              position: 'absolute',
+              bottom: 'calc(8vh + 60px + clamp(600px, 68vw, 978px) - 232px - 666px)',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '800px',
+              height: '666px',
+              backgroundColor: '#fff',
+              borderRadius: '8px',
+              zIndex: 15,
+              padding: '40px',
+              boxSizing: 'border-box'
+            }}>
+              {/* お名前ラベルと入力フィールド */}
+              <div style={{
+                position: 'absolute',
+                left: '40px',
+                top: '40px',
+                zIndex: 20,
+                color: '#333',
+                fontFamily: '"Zen Kaku Gothic New"',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}>
+                <span style={{ 
+                  backgroundColor: '#D1342D',
+                  color: '#fff',
+                  padding: '2px 6px',
+                  fontSize: '12px',
+                  borderRadius: '2px',
+                  marginRight: '8px'
+                }}>
+                  必須
+                </span>
+                お名前
+              </div>
+              <input 
+                type="text" 
+                placeholder="山田太郎" 
+                style={{
+                  position: 'absolute',
+                  left: '40px',
+                  top: '70px',
+                  width: '330px',
+                  height: '50px',
+                  border: '2px solid #ddd',
+                  borderRadius: '4px',
+                  padding: '15px',
+                  fontSize: '16px',
+                  fontFamily: '"Zen Kaku Gothic New"',
+                  boxSizing: 'border-box'
+                }}
+              />
+              
+              {/* 企業名ラベルと入力フィールド */}
+              <div style={{
+                position: 'absolute',
+                left: '410px',
+                top: '40px',
+                zIndex: 20,
+                color: '#333',
+                fontFamily: '"Zen Kaku Gothic New"',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}>
+                <span style={{ 
+                  backgroundColor: '#D1342D',
+                  color: '#fff',
+                  padding: '2px 6px',
+                  fontSize: '12px',
+                  borderRadius: '2px',
+                  marginRight: '8px'
+                }}>
+                  必須
+                </span>
+                企業名
+              </div>
+              <input 
+                type="text" 
+                placeholder="企業名を入力してください" 
+                style={{
+                  position: 'absolute',
+                  left: '410px',
+                  top: '70px',
+                  width: '330px',
+                  height: '50px',
+                  border: '2px solid #ddd',
+                  borderRadius: '4px',
+                  padding: '15px',
+                  fontSize: '16px',
+                  fontFamily: '"Zen Kaku Gothic New"',
+                  boxSizing: 'border-box'
+                }}
+              />
+              
+              {/* お問い合わせ内容ラベルとテキストエリア */}
+              <div style={{
+                position: 'absolute',
+                left: '40px',
+                top: '150px',
+                zIndex: 20,
+                color: '#333',
+                fontFamily: '"Zen Kaku Gothic New"',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}>
+                <span style={{ 
+                  backgroundColor: '#D1342D',
+                  color: '#fff',
+                  padding: '2px 6px',
+                  fontSize: '12px',
+                  borderRadius: '2px',
+                  marginRight: '8px'
+                }}>
+                  必須
+                </span>
+                お問い合わせ内容
+              </div>
+              <textarea 
+                placeholder="こちらにお問い合わせ内容をご記入ください"
+                style={{
+                  position: 'absolute',
+                  left: '40px',
+                  right: '40px',
+                  top: '180px',
+                  height: '120px',
+                  border: '2px solid #ddd',
+                  borderRadius: '4px',
+                  padding: '15px',
+                  fontSize: '16px',
+                  fontFamily: '"Zen Kaku Gothic New"',
+                  resize: 'none',
+                  boxSizing: 'border-box'
+                }}
+              ></textarea>
+              
+              {/* 個人情報の取り扱いについてのラベル */}
+              <div style={{
+                position: 'absolute',
+                left: '40px',
+                top: '320px',
+                zIndex: 20,
+                color: '#333',
+                fontFamily: '"Zen Kaku Gothic New"',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}>
+                <span style={{ 
+                  backgroundColor: '#D1342D',
+                  color: '#fff',
+                  padding: '2px 6px',
+                  fontSize: '12px',
+                  borderRadius: '2px',
+                  marginRight: '8px'
+                }}>
+                  必須
+                </span>
+                個人情報の取り扱いについての同意
+              </div>
+              
+              {/* プライバシーテキスト - 普通のテキスト表示 */}
+              <div style={{
+                position: 'absolute',
+                left: '40px',
+                right: '40px',
+                top: '350px',
+                zIndex: 20,
+                color: '#333',
+                fontFamily: '"Zen Kaku Gothic New"',
+                fontSize: '14px',
+                lineHeight: '150%'
+              }}>
+                問い合わせにあたり当社がお預かりする個人情報については、「個人情報の取り扱いについて」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
+              </div>
+              
+              {/* チェックボックス */}
+              <div style={{
+                position: 'absolute',
+                left: '40px',
+                top: '420px',
+                zIndex: 20,
+                display: 'flex',
+                alignItems: 'center',
+                color: '#333'
+              }}>
+                <input 
+                  type="checkbox" 
+                  id="privacy-checkbox" 
+                  style={{
+                    marginRight: '8px',
+                    transform: 'scale(1.2)'
+                  }}
+                />
+                <label htmlFor="privacy-checkbox" style={{
+                  fontFamily: '"Zen Kaku Gothic New"',
+                  fontSize: '14px',
+                  cursor: 'pointer'
+                }}>
+                  同意する
+                </label>
+              </div>
+              
+              {/* 送信ボタン */}
+              <button style={{
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                top: '480px',
+                width: '200px',
+                height: '50px',
+                backgroundColor: '#D1342D',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                fontFamily: '"Zen Kaku Gothic New"',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}>
+                送信する
+              </button>
+            </div>
+          </>
+        )}
         <ContactFormMobile />
         <ContactCircleGradient />
         <ContactFooterLogo />
