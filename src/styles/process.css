@@ -45,7 +45,7 @@
 }
 
 /* モバイル表示用のスタイル */
-@media (max-width: 580px) {
+@media (max-width: 1000px) {
   .process-header-text {
     position: absolute;
     left: 13px;

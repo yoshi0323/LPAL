@@ -60,7 +60,11 @@
 }
 
 /* モバイル画面のレスポンシブデザイン */
-@media (max-width: 580px) {
+@media (max-width: 1000px) {
+    .app {
+        width: 375px;
+    }
+
     /* メインコンテンツのレイアウト調整 */
     .app-container {
         padding: 0 15px;
@@ -705,8 +709,8 @@
     }
 }
 
-/* PC表示での設定（580px超） */
-@media (min-width: 581px) {
+/* PC表示での設定（1000px超） */
+@media (min-width: 1001px) {
     /* モバイル用の画像コンテナを非表示 */
     .service-mobile-image-container {
         display: none !important;
@@ -855,7 +859,7 @@
 }
 
 /* PC表示のグラデーションアイコン設定 */
-@media (min-width: 581px) {
+@media (min-width: 1001px) {
     .gradient-icon {
         position: absolute !important;
         left: 60.29px !important;
@@ -933,7 +937,7 @@
         font-weight: 400;
         line-height: 200%; /* 30px */
         z-index: 2;
-        width: 580px;
+        width: 1000px;
     }
     
     .about-white-container {
@@ -1012,7 +1016,7 @@
         top: 1834.7772px;
         z-index: 4;
         white-space: pre-line !important; /* 改行を保持して表示 */
-        width: 580px; /* テキストの幅を設定 */
+        width: 1000px; /* テキストの幅を設定 */
     }
     
     .service-box {
@@ -1049,8 +1053,8 @@
     object-fit: contain;
 }
 
-/* サービスコンポーネントのモバイル表示切り替え (580px以下) */
-@media (max-width: 580px) {
+/* サービスコンポーネントのモバイル表示切り替え (1000px以下) */
+@media (max-width: 1000px) {
     /* サービスセクションのモバイル対応 - 不要な要素を非表示 */
     .service-box,
     .service-gradient-card1,
@@ -1191,8 +1195,8 @@
     }
 }
 
-/* PC表示での設定（580px超） */
-@media (min-width: 581px) {
+/* PC表示での設定（1000px超） */
+@media (min-width: 1001px) {
     /* モバイル用の画像コンテナを非表示 */
     .service-mobile-image-container {
         display: none !important;

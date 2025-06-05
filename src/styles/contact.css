@@ -136,103 +136,99 @@
 }
 
 /* モバイル表示用のスタイル */
-@media (max-width: 580px) {
-  .contact-circle-gradient.mobile {
-    width: 375px;
-    height: 375px;
-    left: 0;
-    top: 8254px;
-    bottom: auto;
-    border-radius: 375px;
-    transform: scale(0.8);
-    opacity: 0.6;
-  }
-  
-  .contact-background-gradient.mobile {
-    width: 375px;
-    height: 1098px;
-    left: 0;
-    top: 8289px;
-    bottom: auto;
-    z-index: 3;
-    background: none;
-    opacity: 1;
-  }
-  
-  .contact-mask-image.mobile {
-    width: 375px;
-    height: 1098px;
-    left: 0;
-    top: 8289px;
-    bottom: auto;
-    z-index: 10;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-  
-  .contact-mask-image.mobile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-  
-  .contact-group-image.mobile {
-    width: 335px;
-    left: 20px;
-    top: 8000px;
-    bottom: auto;
-    z-index: 15;
-  }
-  
-  .contact-group-image.mobile img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .contact-second-image.mobile {
-    width: 200px;
-    left: 88px;
-    top: 8660px;
-    bottom: auto;
-    z-index: 16;
-  }
-  
-  .contact-second-image.mobile img {
-    width: 100%;
-    height: auto;
-  }
-  
+@media (max-width: 1000px) {
   .contact-white-footer.mobile {
-    width: 375px;
-    height: 60px;
-    left: 0;
+    position: absolute;
     top: 9387px;
-    bottom: auto;
+    left: 0;
+    width: 375px;
+    height: 190px;
+    background: #FCFCFC;
     z-index: 1;
   }
-  
+
   .contact-footer-logo.mobile {
-    left: 20px;
-    bottom: 15px;
-    width: 80px;
-    height: auto;
+    position: absolute;
+    top: 9427px;
+    left: 177px;
+    width: 21px;
+    height: 21px;
+    z-index: 5;
   }
-  
+
   .contact-footer-links-container.mobile {
-    display: none;
+    position: absolute;
+    top: 9463px;
+    left: 0;
+    width: 375px;
+    z-index: 5;
   }
-  
+
+  .contact-footer-links.mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contact-footer-link {
+    color: #343434;
+    font-family: 'Zen Kaku Gothic New';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    text-decoration: none;
+  }
+
   .contact-footer-copyright.mobile {
-    display: none;
+    position: absolute;
+    top: 9547px;
+    left: 0;
+    width: 375px;
+    color: #C4C4C4;
+    text-align: center;
+    font-family: 'Zen Kaku Gothic New';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    z-index: 5;
+  }
+
+  .contact-circle-gradient.mobile {
+    position: absolute;
+    top: 9230px;
+    left: 187px;
+    width: 1px;
+    height: 1px;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 1000px) {
+  .contact-mask-image.mobile {
+    position: absolute;
+    top: 8289px;
+    left: 0;
+    width: 375px;
+    height: 1098px;
+    z-index: 10;
+    opacity: 1;
+    display: block;
+    visibility: visible;
+  }
+
+  .contact-background-gradient.mobile {
+    position: absolute;
+    top: 8289px;
+    left: 0;
+    width: 375px;
+    height: 1098px;
+    z-index: 3;
   }
 }
 
 /* レスポンシブ対応（PC） */
-@media (min-width: 581px) {
+@media (min-width: 1001px) {
   .contact-group-image {
     left: 50%; 
     transform: translateX(-50%);
@@ -313,7 +309,7 @@
 }
 
 /* モバイル用のフォームスタイル */
-@media (max-width: 580px) {
+@media (max-width: 1000px) {
   .contact-input-left.mobile {
     left: 20px;
     top: 8500px;

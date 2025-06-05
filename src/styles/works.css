@@ -97,7 +97,7 @@
 }
 
 /* モバイル表示用のスタイル */
-@media (max-width: 580px) {
+@media (max-width: 1000px) {
   .works-header-text {
     position: absolute;
     left: 13px;
@@ -180,7 +180,7 @@
 }
 
 /* PC表示では明示的にモバイル画像を非表示にする */
-@media (min-width: 581px) {
+@media (min-width: 1001px) {
   .works-mobile-full-image {
     display: none !important;
   }

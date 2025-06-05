@@ -136,7 +136,7 @@
 }
 
 /* モバイル表示用のスタイル */
-@media (max-width: 580px) {
+@media (max-width: 1000px) {
   .contact-circle-gradient.mobile {
     width: 375px;
     height: 375px;
@@ -232,7 +232,7 @@
 }
 
 /* レスポンシブ対応（PC） */
-@media (min-width: 581px) {
+@media (min-width: 1001px) {
   .contact-group-image {
     left: 50%; 
     transform: translateX(-50%);
@@ -313,7 +313,7 @@
 }
 
 /* モバイル用のフォームスタイル */
-@media (max-width: 580px) {
+@media (max-width: 1000px) {
   .contact-input-left.mobile {
     left: 20px;
     top: 8500px;

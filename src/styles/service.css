@@ -367,7 +367,7 @@
 }
 
 /* レスポンシブ対応のためのメディアクエリ */
-@media (max-width: 580px) {
+@media (max-width: 1000px) {
   .gradient-background {
     width: 375px !important;
     height: 1158px !important;
