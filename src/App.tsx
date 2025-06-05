@@ -120,7 +120,7 @@ function App() {
    * また、画面サイズが変更された場合のイベントリスナーも設定します。
    */
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 580px)');
+    const mediaQuery = window.matchMedia('(max-width: 1000px)');
     setIsMobile(mediaQuery.matches);
     
     const handleMediaChange = (event: MediaQueryListEvent) => {
@@ -175,7 +175,7 @@ function App() {
     setServiceAnimationTriggered(true);
     
     // PC表示の場合はすぐに表示
-    if (window.innerWidth > 580) {
+    if (window.innerWidth > 1000) {
       setShowServiceImage1(true);
       setShowServiceImage2(true);
       setShowGradientCard1(true);
@@ -307,7 +307,7 @@ function App() {
    * タイピングアニメーションで表示するコンポーネント
    */
   const AnimatedLegacyText = () => {
-    const style = window.innerWidth <= 580 ? {
+    const style = window.innerWidth <= 1000 ? {
       position: 'absolute',
       left: '24px',
       top: '148.13px',
@@ -337,7 +337,7 @@ function App() {
    * タイピングアニメーションで表示するコンポーネント
    */
   const AnimatedModernDotText = () => {
-    const style = window.innerWidth <= 580 ? {
+    const style = window.innerWidth <= 1000 ? {
       position: 'absolute',
       left: '358px',
       top: '148.13px',
@@ -412,7 +412,7 @@ function App() {
    */
   useEffect(() => {
     // PC版の場合は、初期ロード時にサービスアニメーションをトリガー
-    if (window.innerWidth > 580 && !serviceAnimationTriggered) {
+    if (window.innerWidth > 1000 && !serviceAnimationTriggered) {
       setTimeout(() => {
         triggerServiceAnimation();
       }, 500);
@@ -433,7 +433,7 @@ function App() {
   const ClickableHeaderText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
-      const isMobileDevice = window.innerWidth <= 580;
+      const isMobileDevice = window.innerWidth <= 1000;
       // スクロール位置を600px下に調整（元の位置 + 600px）
       const scrollPosition = isMobileDevice ? 4800 : 6000; // 元の値4200/5400から600px増加
       
@@ -458,7 +458,7 @@ function App() {
   const ClickableSupportStepText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
-      const isMobileDevice = window.innerWidth <= 580;
+      const isMobileDevice = window.innerWidth <= 1000;
       // スクロール位置を600px下に調整（元の位置 + 600px）
       const scrollPosition = isMobileDevice ? 4300 : 5300; // 元の値3700/4700から600px増加
       
@@ -483,7 +483,7 @@ function App() {
   const ClickableCaseStudyText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
-      const isMobileDevice = window.innerWidth <= 580;
+      const isMobileDevice = window.innerWidth <= 1000;
       const scrollPosition = isMobileDevice ? 3300 : 4200; // モバイルとデスクトップで異なる位置
       
       // 導入事例セクションへ直接スクロール
@@ -507,7 +507,7 @@ function App() {
   const ClickableValueText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
-      const isMobileDevice = window.innerWidth <= 580;
+      const isMobileDevice = window.innerWidth <= 1000;
       const scrollPosition = isMobileDevice ? 1860 : 2833; // モバイルとデスクトップで異なる位置
       
       // 提供価値セクションへ直接スクロール
@@ -531,7 +531,7 @@ function App() {
   const ClickableAboutUsText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
-      const isMobileDevice = window.innerWidth <= 580;
+      const isMobileDevice = window.innerWidth <= 1000;
       const scrollPosition = isMobileDevice ? 900 : 1100; // モバイルとデスクトップで異なる位置
       
       // 私たちについてセクションへ直接スクロール
@@ -555,7 +555,7 @@ function App() {
   const ClickableServiceText = () => {
     const handleClick = () => {
       // デバイスによって適切なスクロール位置を計算
-      const isMobileDevice = window.innerWidth <= 580;
+      const isMobileDevice = window.innerWidth <= 1000;
       const scrollPosition = isMobileDevice ? 1400 : 1800; // モバイルとデスクトップで異なる位置
       
       // サービスセクションへ直接スクロール

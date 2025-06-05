@@ -157,11 +157,7 @@
   }
 
   .contact-footer-links-container.mobile {
-    position: absolute;
-    top: 9463px;
-    left: 0;
-    width: 375px;
-    z-index: 5;
+    display: none !important;
   }
 
   .contact-footer-links.mobile {
@@ -181,17 +177,7 @@
   }
 
   .contact-footer-copyright.mobile {
-    position: absolute;
-    top: 9547px;
-    left: 0;
-    width: 375px;
-    color: #C4C4C4;
-    text-align: center;
-    font-family: 'Zen Kaku Gothic New';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 150%;
-    z-index: 5;
+    display: none !important;
   }
 
   .contact-circle-gradient.mobile {

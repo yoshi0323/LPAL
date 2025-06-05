@@ -419,51 +419,32 @@ export const ContactMobileFooter = () => {
       padding: '40px 24px',
       flexDirection: 'column',
       alignItems: 'center',
-      gap: '24px',
+      gap: '16px',
       background: 'var(--fcfcfc, #FCFCFC)',
       zIndex: 2
     }}>
-      {/* Alchemyテキスト */}
-      <div style={{
-        color: '#666666',
-        fontFamily: '"Lexend Deca"',
-        fontSize: '20px',
-        fontWeight: 500
-      }}>
-        Alchemy
-      </div>
-      
-      {/* フッターリンク */}
+      {/* Alchemyロゴアイコン */}
       <div style={{
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
-        gap: '16px'
+        gap: '8px'
       }}>
-        <a href="#" style={{
-          color: '#343434',
-          fontFamily: '"Zen Kaku Gothic New"',
-          fontSize: '14px',
-          fontWeight: 400,
-          textDecoration: 'none',
-          lineHeight: '150%'
-        }}>運用会社情報</a>
-        <a href="#" style={{
-          color: '#343434',
-          fontFamily: '"Zen Kaku Gothic New"',
-          fontSize: '14px',
-          fontWeight: 400,
-          textDecoration: 'none',
-          lineHeight: '150%'
-        }}>プライバシーポリシー</a>
-        <a href="#" style={{
-          color: '#343434',
-          fontFamily: '"Zen Kaku Gothic New"',
-          fontSize: '14px',
-          fontWeight: 400,
-          textDecoration: 'none',
-          lineHeight: '150%'
-        }}>個人情報の取り扱いについて</a>
+        <img 
+          src={process.env.PUBLIC_URL + "/image/logo.png"} 
+          alt="Alchemy Logo"
+          style={{
+            width: '24px',
+            height: '24px'
+          }}
+        />
+        <div style={{
+          color: '#666666',
+          fontFamily: '"Lexend Deca"',
+          fontSize: '20px',
+          fontWeight: 500
+        }}>
+          Alchemy
+        </div>
       </div>
       
       {/* 著作権表示 */}

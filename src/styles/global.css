@@ -41,40 +41,29 @@
     p { font-size: 16px; }
 }
 
-/* タブレット向けスタイル (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .container {
-        padding: 0 var(--tablet-padding);
-    }
-
-    .grid-container {
-        grid-template-columns: repeat(8, 1fr);
-        gap: 20px;
-    }
-
-    /* フォントサイズ */
-    h1 { font-size: 36px; }
-    h2 { font-size: 28px; }
-    h3 { font-size: 20px; }
-    p { font-size: 15px; }
-}
-
 /* タブレット向けスタイル (1001px - 1440px) */
 @media (min-width: 1001px) and (max-width: 1440px) {
     /* アプリ全体のプロポーショナルスケーリング */
     .app {
         width: 1440px;
+        height: 7190px;
+        max-width: none;
         transform: scale(calc(100vw / 1440px));
         transform-origin: top center;
+        margin: 0 auto;
+        position: relative;
     }
     
     .app-container {
-        width: 100vw;
-        max-width: 100vw;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: calc(7190px * (100vw / 1440px));
+        padding: 0;
         display: flex;
         justify-content: center;
         align-items: flex-start;
         overflow-x: hidden;
+        background: var(--ececec, #ECECEC);
     }
     
     /* 基本要素はスケーリング対象から除外（.appのscaleで処理される） */
