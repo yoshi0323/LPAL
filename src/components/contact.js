@@ -5,13 +5,11 @@ import '../styles/styles.css';
 // モバイル表示の検出用カスタムフック
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
   
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
       setIsMobile(width <= 1000);
-      setIsTablet(width > 1000 && width <= 1440);
     };
     
     // 初期チェック
@@ -22,7 +20,7 @@ const useIsMobile = () => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
   
-  return { isMobile, isTablet };
+  return { isMobile };
 };
 
 // ContactCircleGradient Component
@@ -486,22 +484,20 @@ export const ContactMobileFooter = () => {
 
 // PCコンタクトコンテナ
 export const PcContactContainer = () => {
-  const { isMobile, isTablet } = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
-
-  const scaleRatio = isTablet ? `(100vw / 1440px)` : '1';
 
   return (
     <div
       style={{
         position: 'absolute',
-        width: isTablet ? `calc(800px * ${scaleRatio})` : '800px',
-        height: isTablet ? `calc(666px * ${scaleRatio})` : '666px',
-        left: isTablet ? `calc(320px * ${scaleRatio})` : '320px',
-        right: isTablet ? `calc(320px * ${scaleRatio})` : '320px',
-        bottom: isTablet ? `calc(232px * ${scaleRatio})` : '232px',
-        borderRadius: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+        width: '800px',
+        height: '666px',
+        left: '320px',
+        right: '320px',
+        bottom: '232px',
+        borderRadius: '8px',
         zIndex: 20,
         backgroundColor: 'transparent'
       }}
@@ -511,10 +507,10 @@ export const PcContactContainer = () => {
         style={{
           position: 'absolute',
           left: '0px',
-          top: isTablet ? `calc(-152px * ${scaleRatio})` : '-152px',
+          top: '-152px',
           color: '#FFF',
           fontFamily: '"Lexend Deca"',
-          fontSize: isTablet ? `calc(48px * ${scaleRatio})` : '48px',
+          fontSize: '48px',
           fontWeight: 700,
           lineHeight: '175%',
           zIndex: 21
@@ -529,10 +525,10 @@ export const PcContactContainer = () => {
         style={{
           position: 'absolute',
           left: '0px',
-          top: isTablet ? `calc(32px * ${scaleRatio})` : '32px',
+          top: '32px',
           display: 'flex',
           alignItems: 'center',
-          gap: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+          gap: '8px',
           zIndex: 21
         }}
       >
@@ -540,13 +536,13 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 700,
             backgroundColor: '#FFF',
             color: '#D1342D',
-            padding: isTablet ? `calc(4px * ${scaleRatio}) calc(8px * ${scaleRatio})` : '4px 8px',
-            borderRadius: isTablet ? `calc(4px * ${scaleRatio})` : '4px',
-            fontSize: isTablet ? `calc(12px * ${scaleRatio})` : '12px'
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px'
           }}
         >
           必須
@@ -555,7 +551,7 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 700
           }}
         >
@@ -568,10 +564,10 @@ export const PcContactContainer = () => {
         style={{
           position: 'absolute',
           left: '0px',
-          top: isTablet ? `calc(64px * ${scaleRatio})` : '64px',
+          top: '64px',
           display: 'flex',
           alignItems: 'center',
-          gap: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+          gap: '8px',
           zIndex: 21
         }}
       >
@@ -579,13 +575,13 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 700,
             backgroundColor: '#FFF',
             color: '#D1342D',
-            padding: isTablet ? `calc(4px * ${scaleRatio}) calc(8px * ${scaleRatio})` : '4px 8px',
-            borderRadius: isTablet ? `calc(4px * ${scaleRatio})` : '4px',
-            fontSize: isTablet ? `calc(12px * ${scaleRatio})` : '12px'
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px'
           }}
         >
           必須
@@ -594,7 +590,7 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 700
           }}
         >
@@ -607,10 +603,10 @@ export const PcContactContainer = () => {
         style={{
           position: 'absolute',
           left: '0px',
-          top: isTablet ? `calc(96px * ${scaleRatio})` : '96px',
+          top: '96px',
           display: 'flex',
           alignItems: 'center',
-          gap: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+          gap: '8px',
           zIndex: 21
         }}
       >
@@ -618,13 +614,13 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 700,
             backgroundColor: '#FFF',
             color: '#D1342D',
-            padding: isTablet ? `calc(4px * ${scaleRatio}) calc(8px * ${scaleRatio})` : '4px 8px',
-            borderRadius: isTablet ? `calc(4px * ${scaleRatio})` : '4px',
-            fontSize: isTablet ? `calc(12px * ${scaleRatio})` : '12px'
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px'
           }}
         >
           必須
@@ -633,7 +629,7 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 700
           }}
         >
@@ -641,15 +637,82 @@ export const PcContactContainer = () => {
         </span>
       </div>
 
+      {/* 入力フィールド群 */}
+      {/* 名前入力フィールド */}
+      <input
+        type="text"
+        placeholder="山田 太郎"
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: '60px',
+          width: '390px',
+          height: '50px',
+          border: '2px solid #fff',
+          background: 'rgba(255, 255, 255, 0.1)',
+          color: '#fff',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '16px',
+          padding: '15px',
+          boxSizing: 'border-box',
+          borderRadius: '4px',
+          zIndex: 21
+        }}
+      />
+
+      {/* 企業名入力フィールド */}
+      <input
+        type="text"
+        placeholder="企業名をご入力してください"
+        style={{
+          position: 'absolute',
+          left: '410px',
+          top: '60px',
+          width: '390px',
+          height: '50px',
+          border: '2px solid #fff',
+          background: 'rgba(255, 255, 255, 0.1)',
+          color: '#fff',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '16px',
+          padding: '15px',
+          boxSizing: 'border-box',
+          borderRadius: '4px',
+          zIndex: 21
+        }}
+      />
+
+      {/* お問い合わせ内容テキストエリア */}
+      <textarea
+        placeholder="こちらにお問い合わせ内容をご記入ください"
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: '124px',
+          width: '800px',
+          height: '120px',
+          border: '2px solid #fff',
+          background: 'rgba(255, 255, 255, 0.1)',
+          color: '#fff',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '16px',
+          padding: '15px',
+          boxSizing: 'border-box',
+          resize: 'none',
+          borderRadius: '4px',
+          zIndex: 21
+        }}
+      />
+
       {/* プライバシーラベル */}
       <div
         style={{
           position: 'absolute',
           left: '0px',
-          top: isTablet ? `calc(128px * ${scaleRatio})` : '128px',
+          top: '260px',
           display: 'flex',
           alignItems: 'center',
-          gap: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+          gap: '8px',
           zIndex: 21
         }}
       >
@@ -657,13 +720,13 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 700,
             backgroundColor: '#FFF',
             color: '#D1342D',
-            padding: isTablet ? `calc(4px * ${scaleRatio}) calc(8px * ${scaleRatio})` : '4px 8px',
-            borderRadius: isTablet ? `calc(4px * ${scaleRatio})` : '4px',
-            fontSize: isTablet ? `calc(12px * ${scaleRatio})` : '12px'
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px'
           }}
         >
           必須
@@ -672,7 +735,7 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 700
           }}
         >
@@ -685,16 +748,16 @@ export const PcContactContainer = () => {
         style={{
           position: 'absolute',
           left: '0px',
-          top: isTablet ? `calc(160px * ${scaleRatio})` : '160px',
+          top: '292px',
           color: '#FFF',
           fontFamily: '"Zen Kaku Gothic New"',
-          fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+          fontSize: '14px',
           fontWeight: 400,
           lineHeight: '150%',
           zIndex: 21
         }}
       >
-        問い合わせにあたり当社がお預かりする個人情報については、「<a href="#">個人情報の取り扱いについて</a>」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
+        問い合わせにあたり当社がお預かりする個人情報については、「<a href="#" style={{ color: '#1976D2', textDecoration: 'underline' }}>個人情報の取り扱いについて</a>」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
       </div>
 
       {/* チェックボックス */}
@@ -702,19 +765,19 @@ export const PcContactContainer = () => {
         style={{
           position: 'absolute',
           left: '0px',
-          top: isTablet ? `calc(192px * ${scaleRatio})` : '192px',
+          top: '340px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           zIndex: 21
         }}
       >
         <input
           type="checkbox"
           style={{
-            width: isTablet ? `calc(24px * ${scaleRatio})` : '24px',
-            height: isTablet ? `calc(24px * ${scaleRatio})` : '24px',
-            marginRight: isTablet ? `calc(8px * ${scaleRatio})` : '8px'
+            width: '24px',
+            height: '24px',
+            marginRight: '8px'
           }}
         />
         <label
@@ -722,7 +785,7 @@ export const PcContactContainer = () => {
           style={{
             color: '#FFF',
             fontFamily: '"Zen Kaku Gothic New"',
-            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontSize: '14px',
             fontWeight: 400
           }}
         >
@@ -734,33 +797,36 @@ export const PcContactContainer = () => {
       <div
         style={{
           position: 'absolute',
-          left: '0px',
-          top: isTablet ? `calc(224px * ${scaleRatio})` : '224px',
+          left: '300px',
+          top: '380px',
           textAlign: 'center',
           zIndex: 21
         }}
       >
         <button
           style={{
-            width: isTablet ? `calc(200px * ${scaleRatio})` : '200px',
-            height: isTablet ? `calc(50px * ${scaleRatio})` : '50px',
+            width: '200px',
+            height: '50px',
             backgroundColor: '#F6835F',
             color: '#fff',
             border: 'none',
-            borderRadius: isTablet ? `calc(25px * ${scaleRatio})` : '25px',
-            fontSize: isTablet ? `calc(16px * ${scaleRatio})` : '16px',
+            borderRadius: '25px',
+            fontSize: '16px',
             fontWeight: 'bold',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}
         >
           送信する
           <svg
-            width={isTablet ? `calc(20px * ${scaleRatio})` : '20px'}
-            height={isTablet ? `calc(20px * ${scaleRatio})` : '20px'}
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ marginLeft: isTablet ? `calc(8px * ${scaleRatio})` : '8px' }}
+            style={{ marginLeft: '8px' }}
           >
             <path
               d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"

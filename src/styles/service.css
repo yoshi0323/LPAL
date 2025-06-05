@@ -441,74 +441,9 @@
 
 /* タブレット向けレスポンシブ対応 (1001px - 1440px) */
 @media (min-width: 1001px) and (max-width: 1440px) {
-  .gradient-background {
-    width: 100vw !important;
-    height: calc(1158px * (100vw / 1440px)) !important;
-    top: calc(1030px * (100vw / 1440px)) !important;
-    left: calc(-15px * (100vw / 1440px)) !important;
-  }
-
-  .service-box {
-    width: calc(520px * (100vw / 1440px)) !important;
-    height: calc(320px * (100vw / 1440px)) !important;
-    left: calc(90px * (100vw / 1440px)) !important;
-    top: calc(2004px * (100vw / 1440px)) !important;
-  }
-
-  .service-gradient-card1 {
-    left: calc(832px * (100vw / 1440px));
-    top: calc(1984.7472px * (100vw / 1440px));
-    width: calc(264px * (100vw / 1440px));
-    height: calc(182px * (100vw / 1440px));
-  }
-
-  .service-gradient-card2 {
-    left: calc(884px * (100vw / 1440px));
-    top: calc(2023.4872px * (100vw / 1440px));
-    width: calc(264px * (100vw / 1440px));
-    height: calc(182px * (100vw / 1440px));
-  }
-
-  .service-title-text {
-    left: calc(118px * (100vw / 1440px)) !important;
-    top: calc(2020px * (100vw / 1440px)) !important;
-    font-size: calc(40px * (100vw / 1440px)) !important;
-  }
-
-  .service-consulting-description {
-    left: calc(118px * (100vw / 1440px)) !important;
-    top: calc(2124px * (100vw / 1440px)) !important;
-    width: calc(472px * (100vw / 1440px)) !important;
-    font-size: calc(20px * (100vw / 1440px)) !important;
-  }
-
-  .service-saas-title {
-    left: calc(118px * (100vw / 1440px)) !important;
-    top: calc(2228px * (100vw / 1440px)) !important;
-    font-size: calc(40px * (100vw / 1440px)) !important;
-  }
-
-  .service-saas-description {
-    left: calc(118px * (100vw / 1440px)) !important;
-    top: calc(2284px * (100vw / 1440px)) !important;
-    width: calc(472px * (100vw / 1440px)) !important;
-    font-size: calc(20px * (100vw / 1440px)) !important;
-  }
-
-  .service-image1-container {
-    left: calc(1216px * (100vw / 1440px)) !important;
-    top: calc(1858px * (100vw / 1440px)) !important;
-    width: calc(351px * (100vw / 1440px)) !important;
-    height: calc(291px * (100vw / 1440px)) !important;
-  }
-
-  .service-image2-container {
-    left: calc(1216px * (100vw / 1440px)) !important;
-    top: calc(2161px * (100vw / 1440px)) !important;
-    width: calc(264px * (100vw / 1440px)) !important;
-    height: calc(182px * (100vw / 1440px)) !important;
-  }
-
+  /* 全体スケーリングで統一処理されるため、個別スケーリングは不要 */
+  /* 元の値をそのまま使用し、.appのtransform: scale()で処理 */
+  
   .service-mobile-image-container {
     display: none !important;
   }

@@ -47,10 +47,15 @@
         padding: 0 calc(var(--tablet-padding) * (100vw / 1440px));
     }
 
+    /* アプリ全体のスケーリングと中央寄せ */
     .app {
-        width: 100vw;
-        height: calc(7190px * (100vw / 1440px));
+        width: 1440px; /* 基準サイズを維持 */
+        height: 7190px;
         max-width: none;
+        transform: scale(calc(100vw / 1440px));
+        transform-origin: top center; /* 上端中央を基準点に */
+        margin: 0 auto; /* 水平中央寄せ */
+        position: relative;
     }
 
     .app-container {
@@ -58,57 +63,22 @@
         max-width: 100vw !important;
         height: calc(7190px * (100vw / 1440px));
         padding: 0;
+        display: flex;
+        justify-content: center; /* 中央寄せ */
+        align-items: flex-start;
     }
 
-    /* 統一されたスケーリング */
-    .gradient-icon {
-        left: calc(100.29px * (100vw / 1440px));
-        top: calc(40px * (100vw / 1440px));
-        width: calc(35.703px * (100vw / 1440px));
-        height: calc(30.134px * (100vw / 1440px));
-    }
-
-    .logo-svg {
-        left: calc(108.77px * (100vw / 1440px));
-        top: calc(45.15px * (100vw / 1440px));
-        width: calc(121.517px * (100vw / 1440px));
-        height: calc(32.378px * (100vw / 1440px));
-    }
-
-    .legacy-text {
-        left: calc(189.29px * (100vw / 1440px));
-        top: calc(208.13px * (100vw / 1440px));
-        width: calc(241px * (100vw / 1440px));
-        height: calc(46.125px * (100vw / 1440px));
-        font-size: calc(40px * (100vw / 1440px));
-    }
-
-    .japanese-text {
-        left: calc(189.29px * (100vw / 1440px));
-        top: calc(262.5px * (100vw / 1440px));
-        width: calc(1188px * (100vw / 1440px));
-        height: calc(40px * (100vw / 1440px));
-        font-size: calc(24px * (100vw / 1440px));
-    }
-
-    .about-header-text {
-        left: calc(180.29px * (100vw / 1440px));
-        top: calc(1070px * (100vw / 1440px));
-        font-size: calc(48px * (100vw / 1440px));
-    }
-
+    /* 基本要素はスケーリング対象から除外（.appのscaleで処理される） */
+    .gradient-icon,
+    .logo-svg,
+    .legacy-text,
+    .japanese-text,
+    .about-header-text,
     .gradient-shape {
-        width: calc(600px * (100vw / 1440px)) !important;
-        height: calc(508.721px * (100vw / 1440px)) !important;
-        left: calc(0px * (100vw / 1440px)) !important;
-        top: calc(721px * (100vw / 1440px)) !important;
+        /* 個別のスケーリングを削除（.appのscaleで統一処理） */
     }
 
-    /* フォントサイズのスケーリング */
-    h1 { font-size: calc(48px * (100vw / 1440px)); }
-    h2 { font-size: calc(36px * (100vw / 1440px)); }
-    h3 { font-size: calc(24px * (100vw / 1440px)); }
-    p { font-size: calc(16px * (100vw / 1440px)); }
+    /* フォントサイズのスケーリングも不要（全体スケールで対応） */
 }
 
 /* タブレット向けスタイル (768px - 1023px) */
