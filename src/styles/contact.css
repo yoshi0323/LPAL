@@ -239,6 +239,35 @@
     transform: translateX(-50%);
     bottom: clamp(350px, calc(60vw + 150px), 700px);
   }
+
+  /* PcContactContainerのベーススタイル */
+  .pc-contact-container {
+    position: absolute;
+    width: 800px;
+    height: 666px;
+    left: 320px;
+    right: 320px;
+    bottom: 232px;
+    background-color: #fff;
+    border-radius: 8px;
+    z-index: 20;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* PC版のフォーム入力要素 */
+  .pc-contact-container input,
+  .pc-contact-container textarea {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: #333;
+  }
+
+  .pc-contact-container input::placeholder,
+  .pc-contact-container textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
 }
 
 /* タブレット用レスポンシブ対応 (1001px - 1440px) */
@@ -343,5 +372,9 @@
     top: 8780px;
     width: 200px;
     bottom: auto;
+  }
+
+  .pc-contact-container {
+    display: none !important;
   }
 } 

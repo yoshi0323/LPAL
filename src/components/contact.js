@@ -490,6 +490,7 @@ export const PcContactContainer = () => {
 
   return (
     <div
+      className="pc-contact-container"
       style={{
         position: 'absolute',
         width: '800px',
@@ -499,7 +500,7 @@ export const PcContactContainer = () => {
         bottom: '232px',
         borderRadius: '8px',
         zIndex: 20,
-        backgroundColor: 'transparent'
+        backgroundColor: '#fff'
       }}
     >
       {/* コンタクトタイトル */}
