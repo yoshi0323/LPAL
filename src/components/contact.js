@@ -179,6 +179,8 @@ export const ContactFooterLogo = () => {
 export const ContactFooterLinks = () => {
   const isMobile = useIsMobile();
   
+  if (isMobile) return null;
+  
   return (
     <div className={`contact-footer-links-container ${isMobile ? 'mobile' : ''}`}>
       <div className={`contact-footer-links ${isMobile ? 'mobile' : ''}`}>
@@ -419,32 +421,51 @@ export const ContactMobileFooter = () => {
       padding: '40px 24px',
       flexDirection: 'column',
       alignItems: 'center',
-      gap: '16px',
+      gap: '24px',
       background: 'var(--fcfcfc, #FCFCFC)',
       zIndex: 2
     }}>
-      {/* Alchemyロゴアイコン */}
+      {/* Alchemyテキスト */}
+      <div style={{
+        color: '#666666',
+        fontFamily: '"Lexend Deca"',
+        fontSize: '20px',
+        fontWeight: 500
+      }}>
+        Alchemy
+      </div>
+      
+      {/* フッターリンク */}
       <div style={{
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
-        gap: '8px'
+        gap: '16px'
       }}>
-        <img 
-          src={process.env.PUBLIC_URL + "/image/logo.png"} 
-          alt="Alchemy Logo"
-          style={{
-            width: '24px',
-            height: '24px'
-          }}
-        />
-        <div style={{
-          color: '#666666',
-          fontFamily: '"Lexend Deca"',
-          fontSize: '20px',
-          fontWeight: 500
-        }}>
-          Alchemy
-        </div>
+        <a href="#" style={{
+          color: '#343434',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '14px',
+          fontWeight: 400,
+          textDecoration: 'none',
+          lineHeight: '150%'
+        }}>運用会社情報</a>
+        <a href="#" style={{
+          color: '#343434',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '14px',
+          fontWeight: 400,
+          textDecoration: 'none',
+          lineHeight: '150%'
+        }}>プライバシーポリシー</a>
+        <a href="#" style={{
+          color: '#343434',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: '14px',
+          fontWeight: 400,
+          textDecoration: 'none',
+          lineHeight: '150%'
+        }}>個人情報の取り扱いについて</a>
       </div>
       
       {/* 著作権表示 */}

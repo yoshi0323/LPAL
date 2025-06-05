@@ -2,17 +2,13 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
-  background: rgba(52, 52, 52, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-  z-index: 99999;
-  overflow-y: auto;
-  padding-bottom: 0;
+  align-items: center;
 }
 
 .popup-container {
@@ -23,91 +19,87 @@
 
 .popup-content {
   position: relative;
-  width: 1080px;
-  height: 1348px;
-  margin-top: 199.98px;
-  flex-shrink: 0;
-  border-radius: 4px;
-  background: #ECECEC;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  z-index: 100000;
+  max-width: 624px;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* モバイル用のスタイル */
-@media (max-width: 767px) {
-  .popup-content {
-    position: relative;
-    width: 327px !important;
-    height: 1464.81px !important;
-    flex-shrink: 0;
-    top: 0;
-    margin: 60px auto 20px;
-    overflow-y: auto;
-  }
-  
-  /* モバイル版での画像コンテナと画像位置調整 */
-  .popup-content .popup-images-wrapper .popup-image-container {
-    position: absolute !important;
-    top: 40px !important; /* ここを変更: イメージコンテナの上端位置 */
-    left: 24px !important;
-    width: 279px !important;
-    display: block !important;
-    justify-content: flex-start !important;
-  }
-  
-  .popup-content .popup-images-wrapper .popup-image-container .popup-image {
-    position: absolute !important;
-    top: 0px !important; /* ここを変更: コンテナ内での画像の上端位置 */
-    width: 279.5px !important;
-    height: 1042.81018px !important;
-    max-width: 327px !important; /* ここを変更: 画像の最大幅 */
-    margin-top: 0 !important;
-  }
-  
-  .popup-content .popup-images-wrapper .popup-bottom-image-container .popup-bottom-image {
-    width: 100% !important;
-    height: auto !important;
-    max-width: 327px !important;
-  }
-  
-  .popup-content .popup-images-wrapper {
-    width: 327px !important;
-    height: 1464.81px !important;
-  }
+.popup-image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.popup-close-button {
+.popup-close {
   position: absolute;
-  top: 119.71px;
-  right: calc(50% - 540px + 20px); /* 中央から右側にポップアップの半分の幅+20px */
-  width: 64px;
-  height: 64px;
-  flex-shrink: 0;
-  aspect-ratio: 1/1;
-  background: none;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.9);
   border: none;
-  padding: 0;
+  border-radius: 50%;
   cursor: pointer;
-  z-index: 100001;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 18px;
+  color: #333;
+  z-index: 10000;
 }
 
-/* モバイル用の閉じるボタンスタイル */
-@media (max-width: 767px) {
-  .popup-close-button {
-    top: 6.98px;
-    right: calc(50% - 163.5px + 10px); /* 中央から右側にポップアップの半分の幅+10px */
-    width: 48px;
-    height: 48px;
+/* モバイル表示用のスタイル */
+@media (max-width: 1000px) {
+  .popup-content {
+    width: 95%;
+    max-width: 327px;
+    margin: 20px auto;
+    border-radius: 6px;
+  }
+  
+  .popup-close {
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+  
+  .popup-image {
+    width: 100%;
+    height: auto;
+    max-width: 327px !important; /* ここを変更: 画像の最大幅 */
+    border-radius: 6px;
+  }
+  
+  .popup-overlay {
+    padding: 20px;
+    max-width: 327px !important;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 327px;
   }
 }
 
-.popup-close-button svg {
-  width: 100%;
-  height: 100%;
+.popup-overlay.active {
+  display: flex;
+}
+
+/* クロスアイコン */
+.popup-close::before {
+  content: '×';
+  font-weight: bold;
+}
+
+/* ホバー効果 */
+@media (max-width: 1000px) {
+  .popup-close:hover {
+    background: rgba(255, 255, 255, 1);
+  }
 }
 
 .popup-title {

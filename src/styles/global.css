@@ -14,8 +14,8 @@
     padding: 0 var(--mobile-padding);
 }
 
-/* デスクトップ向けスタイル (1024px以上) */
-@media (min-width: 1024px) {
+/* デスクトップ向けスタイル (1440px以上) */
+@media (min-width: 1440px) {
     .container {
         padding: 0 var(--desktop-padding);
     }
@@ -41,40 +41,22 @@
     p { font-size: 16px; }
 }
 
-/* タブレット向けスタイル (1001px - 1440px) */
-@media (min-width: 1001px) and (max-width: 1440px) {
-    /* アプリ全体のプロポーショナルスケーリング */
-    .app {
-        width: 1440px;
-        height: 7190px;
-        max-width: none;
-        transform: scale(calc(100vw / 1440px));
-        transform-origin: top center;
-        margin: 0 auto;
-        position: relative;
+/* タブレット向けスタイル (1000px - 1440px) */
+@media (min-width: 1000px) and (max-width: 1440px) {
+    .container {
+        padding: 0 var(--tablet-padding);
     }
-    
-    .app-container {
-        width: 100vw !important;
-        max-width: 100vw !important;
-        height: calc(7190px * (100vw / 1440px));
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        overflow-x: hidden;
-        background: var(--ececec, #ECECEC);
+
+    .grid-container {
+        grid-template-columns: repeat(8, 1fr);
+        gap: 20px;
     }
-    
-    /* 基本要素はスケーリング対象から除外（.appのscaleで処理される） */
-    .gradient-icon,
-    .logo-svg,
-    .legacy-text,
-    .japanese-text,
-    .about-header-text,
-    .gradient-shape {
-        /* 個別のスケーリングを削除（.appのscaleで統一処理） */
-    }
+
+    /* フォントサイズ */
+    h1 { font-size: 36px; }
+    h2 { font-size: 28px; }
+    h3 { font-size: 20px; }
+    p { font-size: 15px; }
 }
 
 /* モバイル画面のレスポンシブデザイン */
@@ -741,44 +723,38 @@
 }
 
 /* スマートフォン向け追加調整 */
-@media (max-width: 480px) {
+@media (max-width: 1000px) {
     .legacy-text, .modern-dot-text {
-        font-size: 28px;
+        font-size: 18px !important;
     }
     
     .japanese-text {
-        font-size: 20px;
+        font-size: 16px !important;
     }
     
-    /* 縦積みレイアウト */
     .form-row {
         flex-direction: column;
     }
     
     .form-group {
-        width: 100%;
         margin-bottom: 15px;
+        width: 100%;
     }
     
-    /* 入力フィールドの調整 */
     .input-field, .large-input-field {
-        width: 100%;
-        position: relative;
-        left: 0 !important;
-    }
-    
-    /* プレースホルダーの位置調整 */
-    .name-placeholder, .company-placeholder, .content-placeholder {
-        left: 16px !important;
-        top: auto !important;
-    }
-    
-    /* 送信ボタン */
-    .submit-button {
-        width: 100%;
+        width: 100% !important;
+        margin-bottom: 10px;
         max-width: 280px;
-        left: 50% !important;
-        transform: translateX(-50%);
+    }
+    
+    .name-placeholder, .company-placeholder, .content-placeholder {
+        font-size: 14px !important;
+    }
+    
+    .submit-button {
+        width: 100% !important;
+        max-width: 280px;
+        margin: 20px auto;
     }
 }
 
@@ -866,13 +842,13 @@
 }
 
 /* タブレット・モバイル表示時のコンテンツ切り替え */
-@media (max-width: 1023px) {
+@media (max-width: 1000px) {
     .desktop-only {
-        display: none;
+        display: none !important;
     }
-
+    
     .mobile-only {
-        display: block;
+        display: block !important;
     }
 }
 

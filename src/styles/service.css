@@ -188,13 +188,14 @@
   display: flex !important;
 }
 
-@media screen and (max-width: 767px) {
+/* レスポンシブデザイン調整 */
+@media screen and (max-width: 1000px) {
   .service-image1-container {
     margin-right: 20px;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1000px) {
   .service-image1-container {
     margin: 20px auto;
   }
@@ -437,9 +438,4 @@
     display: block !important;
     transform: none !important;
   }
-}
-
-/* タブレット用レスポンシブ対応 (1001px - 1440px) */
-@media (min-width: 1001px) and (max-width: 1440px) {
-  /* 全体スケーリングで統一処理されるため、個別スケーリングは不要 */
 }

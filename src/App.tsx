@@ -120,26 +120,27 @@ function App() {
    * また、画面サイズが変更された場合のイベントリスナーも設定します。
    */
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 1000px)');
-    setIsMobile(mediaQuery.matches);
+    const mobileMediaQuery = window.matchMedia('(max-width: 1000px)');
     
-    const handleMediaChange = (event: MediaQueryListEvent) => {
+    setIsMobile(mobileMediaQuery.matches);
+    
+    const handleMobileMediaChange = (event: MediaQueryListEvent) => {
       setIsMobile(event.matches);
     };
     
     // ブラウザ互換性を考慮したイベントリスナー追加
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handleMediaChange);
+    if (mobileMediaQuery.addEventListener) {
+      mobileMediaQuery.addEventListener('change', handleMobileMediaChange);
     } else {
-      mediaQuery.addListener(handleMediaChange);
+      mobileMediaQuery.addListener(handleMobileMediaChange);
     }
     
     // クリーンアップ関数
     return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener('change', handleMediaChange);
+      if (mobileMediaQuery.removeEventListener) {
+        mobileMediaQuery.removeEventListener('change', handleMobileMediaChange);
       } else {
-        mediaQuery.removeListener(handleMediaChange);
+        mobileMediaQuery.removeListener(handleMobileMediaChange);
       }
     };
   }, []);
@@ -776,7 +777,7 @@ function App() {
           </div>
           
           {/* 11. サービスイメージ1 - ボックスの後に表示 */}
-          {showServiceImage1 && !isMobile && (
+          {!isMobile && (
             <div 
               className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
               style={{ position: 'relative', zIndex: 15, transitionDelay: '3300ms' }}
@@ -786,7 +787,7 @@ function App() {
           )}
           
           {/* 12. サービスイメージ2 */}
-          {showServiceImage2 && !isMobile && (
+          {!isMobile && (
             <div 
               className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
               style={{ position: 'relative', zIndex: 15, transitionDelay: '3600ms' }}
@@ -837,7 +838,7 @@ function App() {
           )}
           
           {/* 13. サービスグラディエントカード1 - 最後に表示 (最前面) */}
-          {(showGradientCard1 || !isMobile) && (
+          {!isMobile && (
             <div 
               className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
               style={{ position: 'relative', zIndex: 15 }}
@@ -847,7 +848,7 @@ function App() {
           )}
           
           {/* 14. サービスグラディエントカード2 - 最後に表示 (最前面) */}
-          {(showGradientCard2 || !isMobile) && (
+          {!isMobile && (
             <div 
               className={`fade-in-element ${serviceAnimationTriggered ? 'visible' : ''}`}
               style={{ position: 'relative', zIndex: 15 }}
