@@ -41,6 +41,76 @@
     p { font-size: 16px; }
 }
 
+/* タブレット向けスタイル (1001px - 1440px) */
+@media (min-width: 1001px) and (max-width: 1440px) {
+    .container {
+        padding: 0 calc(var(--tablet-padding) * (100vw / 1440px));
+    }
+
+    .app {
+        width: 100vw;
+        height: calc(7190px * (100vw / 1440px));
+        max-width: none;
+    }
+
+    .app-container {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: calc(7190px * (100vw / 1440px));
+        padding: 0;
+    }
+
+    /* 統一されたスケーリング */
+    .gradient-icon {
+        left: calc(100.29px * (100vw / 1440px));
+        top: calc(40px * (100vw / 1440px));
+        width: calc(35.703px * (100vw / 1440px));
+        height: calc(30.134px * (100vw / 1440px));
+    }
+
+    .logo-svg {
+        left: calc(108.77px * (100vw / 1440px));
+        top: calc(45.15px * (100vw / 1440px));
+        width: calc(121.517px * (100vw / 1440px));
+        height: calc(32.378px * (100vw / 1440px));
+    }
+
+    .legacy-text {
+        left: calc(189.29px * (100vw / 1440px));
+        top: calc(208.13px * (100vw / 1440px));
+        width: calc(241px * (100vw / 1440px));
+        height: calc(46.125px * (100vw / 1440px));
+        font-size: calc(40px * (100vw / 1440px));
+    }
+
+    .japanese-text {
+        left: calc(189.29px * (100vw / 1440px));
+        top: calc(262.5px * (100vw / 1440px));
+        width: calc(1188px * (100vw / 1440px));
+        height: calc(40px * (100vw / 1440px));
+        font-size: calc(24px * (100vw / 1440px));
+    }
+
+    .about-header-text {
+        left: calc(180.29px * (100vw / 1440px));
+        top: calc(1070px * (100vw / 1440px));
+        font-size: calc(48px * (100vw / 1440px));
+    }
+
+    .gradient-shape {
+        width: calc(600px * (100vw / 1440px)) !important;
+        height: calc(508.721px * (100vw / 1440px)) !important;
+        left: calc(0px * (100vw / 1440px)) !important;
+        top: calc(721px * (100vw / 1440px)) !important;
+    }
+
+    /* フォントサイズのスケーリング */
+    h1 { font-size: calc(48px * (100vw / 1440px)); }
+    h2 { font-size: calc(36px * (100vw / 1440px)); }
+    h3 { font-size: calc(24px * (100vw / 1440px)); }
+    p { font-size: calc(16px * (100vw / 1440px)); }
+}
+
 /* タブレット向けスタイル (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
     .container {

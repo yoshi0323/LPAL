@@ -5,26 +5,29 @@ import '../styles/styles.css';
 // モバイル表示の検出用カスタムフック
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   
   useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 1000);
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width <= 1000);
+      setIsTablet(width > 1000 && width <= 1440);
     };
     
     // 初期チェック
-    checkIsMobile();
+    checkScreenSize();
     
     // リサイズ時の処理
-    window.addEventListener('resize', checkIsMobile);
-    return () => window.removeEventListener('resize', checkIsMobile);
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
   
-  return isMobile;
+  return { isMobile, isTablet };
 };
 
 // ContactCircleGradient Component
 export const ContactCircleGradient = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   return (
     <div className={`contact-circle-gradient ${isMobile ? 'mobile' : ''}`}></div>
@@ -33,7 +36,7 @@ export const ContactCircleGradient = () => {
 
 // ContactBackgroundGradient Component
 export const ContactBackgroundGradient = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) {
     return (
@@ -64,7 +67,7 @@ export const ContactBackgroundGradient = () => {
 
 // ContactMaskImage Component
 export const ContactMaskImage = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) {
     return (
@@ -104,7 +107,7 @@ export const ContactMaskImage = () => {
 
 // ContactGroupImage Component
 export const ContactGroupImage = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) {
     return (
@@ -129,7 +132,7 @@ export const ContactGroupImage = () => {
 
 // ContactSecondImage Component
 export const ContactSecondImage = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) {
     return (
@@ -154,7 +157,7 @@ export const ContactSecondImage = () => {
 
 // ContactWhiteFooter Component
 export const ContactWhiteFooter = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   return (
     <div className={`contact-white-footer ${isMobile ? 'mobile' : ''}`}></div>
@@ -163,7 +166,7 @@ export const ContactWhiteFooter = () => {
 
 // ContactFooterLogo Component
 export const ContactFooterLogo = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   return (
     <div className={`contact-footer-logo ${isMobile ? 'mobile' : ''}`}>
@@ -177,7 +180,7 @@ export const ContactFooterLogo = () => {
 
 // ContactFooterLinks Component
 export const ContactFooterLinks = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   return (
     <div className={`contact-footer-links-container ${isMobile ? 'mobile' : ''}`}>
@@ -192,7 +195,7 @@ export const ContactFooterLinks = () => {
 
 // ContactFooterCopyright Component
 export const ContactFooterCopyright = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   return (
     <div className={`contact-footer-copyright ${isMobile ? 'mobile' : ''}`}>
@@ -203,7 +206,7 @@ export const ContactFooterCopyright = () => {
 
 // ContactFormMobile Component
 export const ContactFormMobile = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (!isMobile) return null;
   
@@ -404,7 +407,7 @@ export const ContactFormMobile = () => {
 
 // ContactMobileFooter Component
 export const ContactMobileFooter = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (!isMobile) return null;
   
@@ -483,18 +486,296 @@ export const ContactMobileFooter = () => {
 
 // PCコンタクトコンテナ
 export const PcContactContainer = () => {
-  const isMobile = useIsMobile();
+  const { isMobile, isTablet } = useIsMobile();
   
   if (isMobile) return null;
-  
+
+  const scaleRatio = isTablet ? `(100vw / 1440px)` : '1';
+
   return (
-    <div className="pc-contact-container"></div>
+    <div
+      style={{
+        position: 'absolute',
+        width: isTablet ? `calc(800px * ${scaleRatio})` : '800px',
+        height: isTablet ? `calc(666px * ${scaleRatio})` : '666px',
+        left: isTablet ? `calc(320px * ${scaleRatio})` : '320px',
+        right: isTablet ? `calc(320px * ${scaleRatio})` : '320px',
+        bottom: isTablet ? `calc(232px * ${scaleRatio})` : '232px',
+        borderRadius: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+        zIndex: 20,
+        backgroundColor: 'transparent'
+      }}
+    >
+      {/* コンタクトタイトル */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: isTablet ? `calc(-152px * ${scaleRatio})` : '-152px',
+          color: '#FFF',
+          fontFamily: '"Lexend Deca"',
+          fontSize: isTablet ? `calc(48px * ${scaleRatio})` : '48px',
+          fontWeight: 700,
+          lineHeight: '175%',
+          zIndex: 21
+        }}
+      >
+        Contact
+      </div>
+
+      {/* 必須バッジとラベルのスタイルを統一 */}
+      {/* お名前ラベル */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: isTablet ? `calc(32px * ${scaleRatio})` : '32px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+          zIndex: 21
+        }}
+      >
+        <span
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 700,
+            backgroundColor: '#FFF',
+            color: '#D1342D',
+            padding: isTablet ? `calc(4px * ${scaleRatio}) calc(8px * ${scaleRatio})` : '4px 8px',
+            borderRadius: isTablet ? `calc(4px * ${scaleRatio})` : '4px',
+            fontSize: isTablet ? `calc(12px * ${scaleRatio})` : '12px'
+          }}
+        >
+          必須
+        </span>
+        <span
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 700
+          }}
+        >
+          お名前
+        </span>
+      </div>
+
+      {/* 企業ラベル */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: isTablet ? `calc(64px * ${scaleRatio})` : '64px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+          zIndex: 21
+        }}
+      >
+        <span
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 700,
+            backgroundColor: '#FFF',
+            color: '#D1342D',
+            padding: isTablet ? `calc(4px * ${scaleRatio}) calc(8px * ${scaleRatio})` : '4px 8px',
+            borderRadius: isTablet ? `calc(4px * ${scaleRatio})` : '4px',
+            fontSize: isTablet ? `calc(12px * ${scaleRatio})` : '12px'
+          }}
+        >
+          必須
+        </span>
+        <span
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 700
+          }}
+        >
+          企業名
+        </span>
+      </div>
+
+      {/* お問い合わせ内容ラベル */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: isTablet ? `calc(96px * ${scaleRatio})` : '96px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+          zIndex: 21
+        }}
+      >
+        <span
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 700,
+            backgroundColor: '#FFF',
+            color: '#D1342D',
+            padding: isTablet ? `calc(4px * ${scaleRatio}) calc(8px * ${scaleRatio})` : '4px 8px',
+            borderRadius: isTablet ? `calc(4px * ${scaleRatio})` : '4px',
+            fontSize: isTablet ? `calc(12px * ${scaleRatio})` : '12px'
+          }}
+        >
+          必須
+        </span>
+        <span
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 700
+          }}
+        >
+          お問い合わせ内容
+        </span>
+      </div>
+
+      {/* プライバシーラベル */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: isTablet ? `calc(128px * ${scaleRatio})` : '128px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: isTablet ? `calc(8px * ${scaleRatio})` : '8px',
+          zIndex: 21
+        }}
+      >
+        <span
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 700,
+            backgroundColor: '#FFF',
+            color: '#D1342D',
+            padding: isTablet ? `calc(4px * ${scaleRatio}) calc(8px * ${scaleRatio})` : '4px 8px',
+            borderRadius: isTablet ? `calc(4px * ${scaleRatio})` : '4px',
+            fontSize: isTablet ? `calc(12px * ${scaleRatio})` : '12px'
+          }}
+        >
+          必須
+        </span>
+        <span
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 700
+          }}
+        >
+          個人情報の取り扱いについての同意
+        </span>
+      </div>
+
+      {/* プライバシーテキスト */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: isTablet ? `calc(160px * ${scaleRatio})` : '160px',
+          color: '#FFF',
+          fontFamily: '"Zen Kaku Gothic New"',
+          fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+          fontWeight: 400,
+          lineHeight: '150%',
+          zIndex: 21
+        }}
+      >
+        問い合わせにあたり当社がお預かりする個人情報については、「<a href="#">個人情報の取り扱いについて</a>」に従い、取り扱います。同意いただける場合は、「同意する」にチェックを入れてください。
+      </div>
+
+      {/* チェックボックス */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: isTablet ? `calc(192px * ${scaleRatio})` : '192px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 21
+        }}
+      >
+        <input
+          type="checkbox"
+          style={{
+            width: isTablet ? `calc(24px * ${scaleRatio})` : '24px',
+            height: isTablet ? `calc(24px * ${scaleRatio})` : '24px',
+            marginRight: isTablet ? `calc(8px * ${scaleRatio})` : '8px'
+          }}
+        />
+        <label
+          htmlFor="agree"
+          style={{
+            color: '#FFF',
+            fontFamily: '"Zen Kaku Gothic New"',
+            fontSize: isTablet ? `calc(14px * ${scaleRatio})` : '14px',
+            fontWeight: 400
+          }}
+        >
+          同意する
+        </label>
+      </div>
+
+      {/* 送信ボタン */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '0px',
+          top: isTablet ? `calc(224px * ${scaleRatio})` : '224px',
+          textAlign: 'center',
+          zIndex: 21
+        }}
+      >
+        <button
+          style={{
+            width: isTablet ? `calc(200px * ${scaleRatio})` : '200px',
+            height: isTablet ? `calc(50px * ${scaleRatio})` : '50px',
+            backgroundColor: '#F6835F',
+            color: '#fff',
+            border: 'none',
+            borderRadius: isTablet ? `calc(25px * ${scaleRatio})` : '25px',
+            fontSize: isTablet ? `calc(16px * ${scaleRatio})` : '16px',
+            fontWeight: 'bold',
+            cursor: 'pointer'
+          }}
+        >
+          送信する
+          <svg
+            width={isTablet ? `calc(20px * ${scaleRatio})` : '20px'}
+            height={isTablet ? `calc(20px * ${scaleRatio})` : '20px'}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ marginLeft: isTablet ? `calc(8px * ${scaleRatio})` : '8px' }}
+          >
+            <path
+              d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"
+              fill="white"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
   );
 };
 
 // PC Redインジケーター
 export const PcRedIndicator = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -507,7 +788,7 @@ export const PcRedIndicator = ({ top, left }) => {
 
 // PC入力フィールド
 export const PcInputField = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -522,7 +803,7 @@ export const PcInputField = ({ top, left }) => {
 
 // PC大型入力フィールド（テキストエリア）
 export const PcLargeInputField = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -536,7 +817,7 @@ export const PcLargeInputField = ({ top, left }) => {
 
 // PC名前ラベル
 export const PcNameLabel = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -549,7 +830,7 @@ export const PcNameLabel = ({ top, left }) => {
 
 // PC企業ラベル
 export const PcCompanyLabel = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -562,7 +843,7 @@ export const PcCompanyLabel = ({ top, left }) => {
 
 // PCお問い合わせ内容ラベル
 export const PcContactContentLabel = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -575,7 +856,7 @@ export const PcContactContentLabel = ({ top, left }) => {
 
 // PCプライバシーラベル
 export const PcPrivacyLabel = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -588,7 +869,7 @@ export const PcPrivacyLabel = ({ top, left }) => {
 
 // PCプライバシーテキスト
 export const PcPrivacyText = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -601,7 +882,7 @@ export const PcPrivacyText = ({ top, left }) => {
 
 // PCチェックボックス
 export const PcCheckBox = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -616,7 +897,7 @@ export const PcCheckBox = ({ top, left }) => {
 
 // PC同意テキスト
 export const PcAgreeText = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   
@@ -656,7 +937,7 @@ export const PcContentPlaceholder = ({ top, left }) => {
 
 // PC送信ボタン
 export const PcSubmitButton = ({ top, left }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   
   if (isMobile) return null;
   

@@ -241,6 +241,93 @@
   }
 }
 
+/* タブレット用レスポンシブ対応 (1001px - 1440px) */
+@media (min-width: 1001px) and (max-width: 1440px) {
+  .contact-circle-gradient {
+    width: calc(1080px * (100vw / 1440px));
+    height: calc(1080px * (100vw / 1440px));
+    left: calc(180px * (100vw / 1440px));
+    border-radius: calc(1080px * (100vw / 1440px));
+  }
+
+  .contact-background-gradient {
+    width: 100vw;
+    height: calc(978px * (100vw / 1440px));
+    left: 0;
+    bottom: calc((8vh + 60px) * (100vw / 1440px));
+  }
+
+  .contact-mask-image {
+    width: 100vw;
+    height: calc(978px * (100vw / 1440px));
+    left: 0;
+    bottom: calc(117.53px * (100vw / 1440px));
+  }
+
+  .contact-group-image {
+    width: calc(55vw);
+    bottom: calc((15vh + 100px) * (100vw / 1440px));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .contact-second-image {
+    width: calc(25vw);
+    bottom: calc((60vw + 300px) * (100vw / 1440px));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .contact-white-footer {
+    width: 100vw;
+    height: calc(117.53px * (100vw / 1440px));
+    left: 0;
+    bottom: 0;
+  }
+
+  .contact-footer-logo {
+    left: calc(60px * (100vw / 1440px));
+    bottom: calc(40px * (100vw / 1440px));
+  }
+
+  .contact-footer-links-container {
+    left: calc(290px * (100vw / 1440px));
+  }
+
+  .contact-footer-copyright {
+    right: calc(70px * (100vw / 1440px));
+    bottom: calc(48.26px * (100vw / 1440px));
+  }
+
+  /* タブレット用のフォームスタイル */
+  .contact-input-left,
+  .contact-input-right {
+    width: calc(25vw);
+    height: calc(50px * (100vw / 1440px));
+    font-size: calc(16px * (100vw / 1440px));
+    padding: calc(15px * (100vw / 1440px));
+  }
+
+  .contact-input-left {
+    left: calc((50% - 450px + 80px) * (100vw / 1440px));
+    bottom: calc((20vh + 350px) * (100vw / 1440px));
+  }
+
+  .contact-input-right {
+    right: calc((50% - 450px + 80px) * (100vw / 1440px));
+    bottom: calc((20vh + 350px) * (100vw / 1440px));
+  }
+
+  .contact-textarea {
+    left: calc((50% - 450px + 80px) * (100vw / 1440px));
+    right: calc((50% - 450px + 80px) * (100vw / 1440px));
+    bottom: calc((20vh + 220px) * (100vw / 1440px));
+    height: calc(120px * (100vw / 1440px));
+    font-size: calc(16px * (100vw / 1440px));
+    padding: calc(15px * (100vw / 1440px));
+  }
+}
+
 /* PC用のフォームスタイル */
 .contact-input-left {
   position: absolute;
