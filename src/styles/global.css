@@ -66,6 +66,8 @@
         display: flex;
         justify-content: center; /* 中央寄せ */
         align-items: flex-start;
+        overflow-x: hidden; /* 横方向のオーバーフローを防止 */
+        background: var(--ececec, #ECECEC);
     }
 
     /* 基本要素はスケーリング対象から除外（.appのscaleで処理される） */
