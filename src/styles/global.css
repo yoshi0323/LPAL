@@ -796,7 +796,7 @@
     flex-direction: column;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
     .nav-responsive {
         flex-direction: row;
     }
@@ -809,7 +809,7 @@
     padding: 12px 24px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
     .button-responsive {
         width: auto;
     }
@@ -826,7 +826,7 @@
     margin-bottom: 20px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
     .form-group-responsive {
         margin-bottom: 30px;
     }
@@ -1200,4 +1200,25 @@
     .mobile-value-section {
         display: none !important;
     }
+}
+
+/* PC表示では明示的にモバイル画像を非表示にする */
+@media (min-width: 1001px) {
+  .works-mobile-full-image {
+    display: none !important;
+  }
+}
+
+/* コンタクトフォームのレスポンシブ対応 */
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .contact-form-container {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1)) !important;
+  }
+}
+
+/* デスクトップサイズ（1201px以上）ではスケールしない */
+@media (min-width: 1201px) {
+  .contact-form-container {
+    transform: translateX(-50%) !important;
+  }
 }

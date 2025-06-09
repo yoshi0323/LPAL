@@ -6,9 +6,11 @@
   font-weight: 700;
   line-height: 175%; /* 84px */
   position: absolute;
-  left: 180px;
+  left: 50%;
+  transform: translateX(-50%);
   top: calc(1771.00712px + 830px + 160px); /* 2761.00712px */
   z-index: 4;
+  transform-origin: center center;
 }
 
 .value-subtitle-text {
@@ -19,9 +21,11 @@
   font-weight: 700;
   line-height: 175%; /* 31.5px */
   position: absolute;
-  left: 180px;
+  left: 50%;
+  transform: translateX(-50%);
   top: calc(1771.00712px + 830px + 232px); /* 2833.00712px */
   z-index: 4;
+  transform-origin: center center;
 }
 
 .value-white-container {
@@ -562,4 +566,87 @@
 .value-small-title-active {
   opacity: 1;
   transition: opacity 0.25s ease;
+}
+
+/* タブレット表示用のスタイル (1001px ~ 1200px) */
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .value-header-text {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+  }
+  
+  .value-subtitle-text {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+  }
+  
+  /* バリューの数字とタイトル、説明文もタブレット対応 */
+  .value-number-1, .value-number-2, .value-number-3, .value-number-4, .value-number-5 {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .value-title-1, .value-title-2, .value-title-3, .value-title-4, .value-title-5 {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .value-description-1, .value-description-2, .value-description-3, .value-description-4, .value-description-5 {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .value-white-container {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .value-images-container {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .triangle-gradient {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .value-small-number-1, .value-small-number-2, .value-small-number-3, .value-small-number-4, .value-small-number-5 {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .value-small-title-1, .value-small-title-2, .value-small-title-3, .value-small-title-4, .value-small-title-5 {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+}
+
+/* デスクトップ表示用のスタイル (1201px以上) */
+@media (min-width: 1201px) {
+  .value-header-text {
+    transform: translateX(-50%) !important;
+  }
+  
+  .value-subtitle-text {
+    transform: translateX(-50%) !important;
+  }
+  
+  .value-number-1, .value-number-2, .value-number-3, .value-number-4, .value-number-5,
+  .value-title-1, .value-title-2, .value-title-3, .value-title-4, .value-title-5,
+  .value-description-1, .value-description-2, .value-description-3, .value-description-4, .value-description-5,
+  .value-white-container, .value-images-container, .triangle-gradient,
+  .value-small-number-1, .value-small-number-2, .value-small-number-3, .value-small-number-4, .value-small-number-5,
+  .value-small-title-1, .value-small-title-2, .value-small-title-3, .value-small-title-4, .value-small-title-5 {
+    transform: none !important;
+  }
+}
+
+/* モバイル表示の場合の特別対応 */
+@media (max-width: 1000px) {
+  .value-header-text {
+    transform: none;
+  }
+  
+  .value-subtitle-text {
+    transform: none;
+  }
 }

@@ -105,8 +105,9 @@
   line-height: 175%;
   position: absolute;
   left: 260px;
-  top: 1714.7772px; /* gradient-backgroundの最底辺(1771.00712px + 830px) + 802.23px */
+  top: 1714.7772px;
   z-index: 4;
+  transform-origin: left center;
 }
 
 /* サービスサブタイトル */
@@ -121,6 +122,7 @@
   left: 260px;
   top: 1786.7772px;
   z-index: 4;
+  transform-origin: left center;
 }
 
 /* サービス説明文 */
@@ -400,42 +402,26 @@
   }
 }
 
-/* 581以上: PC版レスポンシブデザイン */
-@media screen and (min-width: 581px) {
-  /* global.cssで非表示にされた要素をPC版では表示する */
-  .service-box,
-  .service-gradient-card1,
-  .service-gradient-card2,
-  .service-title-text,
-  .service-consulting-description,
-  .service-saas-title,
-  .service-saas-description {
-    display: block !important;  /* 非表示を解除 */
+/* タブレット表示用のスタイル (1001px ~ 1200px) */
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .service-header-text {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
   }
   
-  /* サービスイメージ1をPC版の位置に戻す */
-  .service-image-container.service-image1-container {
-    position: absolute !important;
-    left: 300.5px !important;
-    top: 1946.7772px !important;
-    margin: 0 !important;  /* marginをリセット */
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
+  .service-subtitle-text {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+}
+
+/* デスクトップ表示用のスタイル (1201px以上) */
+@media (min-width: 1201px) {
+  .service-header-text {
     transform: none !important;
-    width: auto !important;
-    max-width: none !important;
   }
   
-  /* サービスイメージ2もPC版の位置に */
-  .service-image2-container {
-    position: absolute !important;
-    left: 781.15px !important;
-    top: 1947.7472px !important;
-    width: 264px !important;
-    height: 182px !important;
-    margin: 0 !important;
-    display: block !important;
+  .service-subtitle-text {
     transform: none !important;
   }
 }

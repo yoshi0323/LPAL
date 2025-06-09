@@ -50,7 +50,7 @@ export const WorksImagesContainer = () => {
   // 画面サイズの監視
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 580);
+      setIsMobile(window.innerWidth <= 1000);
     };
     
     // 初期チェック
@@ -137,8 +137,8 @@ export const WorksImagesContainer = () => {
 
 // WorksCircleGradient Component
 export const WorksCircleGradient = () => {
-  // isMobile状態を確認（window.innerWidthが580px以下ならモバイル表示）
-  const isMobile = window.innerWidth <= 580;
+  // isMobile状態を確認（window.innerWidthが1000px以下ならモバイル表示）
+  const isMobile = window.innerWidth <= 1000;
   
   // モバイル表示とPC表示で少し異なるSVGを表示
   return (

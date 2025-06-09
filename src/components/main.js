@@ -132,8 +132,8 @@ export const ModernDotText = () => {
 
 // DescriptionText Component
 export const DescriptionText = () => {
-  // レスポンシブの条件判定（580px以下の場合）
-  const isResponsive = window.innerWidth <= 580;
+  // レスポンシブの条件判定（1000px以下の場合）
+  const isResponsive = window.innerWidth <= 1000;
   
   return (
     <div className="description-text">

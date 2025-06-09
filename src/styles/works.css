@@ -6,9 +6,11 @@
   font-weight: 700;
   line-height: 175%; /* 84px */
   position: absolute;
-  left: 180px;
+  left: 50%;
+  transform: translateX(-50%);
   top: calc(1771.00712px + 830px + 1530px); /* 4131.00712px */
   z-index: 4;
+  transform-origin: center center;
 }
 
 .works-subtitle-text {
@@ -19,18 +21,23 @@
   font-weight: 700;
   line-height: 175%; /* 31.5px */
   position: absolute;
-  left: 180px;
+  left: 50%;
+  transform: translateX(-50%);
   top: calc(1771.00712px + 830px + 1602px); /* 4203.00712px */
   z-index: 4;
+  transform-origin: center center;
 }
 
 .works-images-container {
   position: absolute;
-  left: 180px;
+  left: 50%;
+  transform: translateX(-50%);
   top: calc(1771.00712px + 830px + 1682px); /* 4283.00712px */
   display: flex;
   gap: 56px; /* 画像間の間隔を56pxに設定 */
   z-index: 4;
+  justify-content: center;
+  transform-origin: center center;
 }
 
 .works-image {
@@ -89,11 +96,50 @@
   left: 960px;
   top: calc(1771.00712px + 830px + 2504.51px); /* 5105.51712px */
   z-index: 3; /* 適切なz-indexに調整 */
+  transform-origin: center center;
 }
 
 .works-circle-gradient svg {
   width: 100%;
   height: 100%;
+}
+
+/* タブレット表示用のスタイル (1001px ~ 1200px) */
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .works-header-text {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+  }
+  
+  .works-subtitle-text {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+  }
+  
+  .works-images-container {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+  }
+  
+  .works-circle-gradient {
+    transform: scale(clamp(0.8, calc(100vw / 1440), 0.9));
+  }
+}
+
+/* デスクトップ表示用のスタイル (1201px以上) */
+@media (min-width: 1201px) {
+  .works-header-text {
+    transform: translateX(-50%) !important;
+  }
+  
+  .works-subtitle-text {
+    transform: translateX(-50%) !important;
+  }
+  
+  .works-images-container {
+    transform: translateX(-50%) !important;
+  }
+  
+  .works-circle-gradient {
+    transform: none !important;
+  }
 }
 
 /* モバイル表示用のスタイル */
@@ -108,6 +154,7 @@
     z-index: 10;
     color: #D1342D; /* 色を明示的に指定 */
     font-family: "Lexend Deca";
+    transform: none; /* transformをリセット */
   }
   
   .works-subtitle-text {
@@ -120,6 +167,7 @@
     z-index: 10;
     color: #343434; /* 色を明示的に指定 */
     font-family: "Zen Kaku Gothic New";
+    transform: none; /* transformをリセット */
   }
   
   .works-images-container {
@@ -135,6 +183,7 @@
     padding: 0; /* パディングを削除 */
     border-radius: 0;
     box-shadow: none;
+    transform: none; /* transformをリセット */
   }
   
   /* モバイル用の全幅画像スタイル */
@@ -163,7 +212,7 @@
     top: 6940px; /* 画像の下に配置 - この値を変更するとグラデーションの位置が変わります */
     width: 600px; /* 幅を小さく */
     height: 509px; /* 高さを小さく */
-    transform: scale(1); /* スケールをリセット */
+    transform: scale(1) !important; /* スケールをリセット */
     z-index: 2; /* 重なり順を高く設定して確実に表示 */
     opacity: 1; /* 完全に不透明に */
     display: block !important; /* 強制表示 */

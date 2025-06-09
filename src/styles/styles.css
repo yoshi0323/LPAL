@@ -714,6 +714,358 @@ body {
   transform: translateY(-50%);
 }
 
+/* タブレット専用レスポンシブ対応 (1000px-1440px) */
+@media (min-width: 1000px) and (max-width: 1440px) {
+  /* 既存の右上フォーム要素を非表示 */
+  .gradient-header,
+  .white-container,
+  .contact-title,
+  .contact-title-jp,
+  .input-field,
+  .large-input-field,
+  .name-label,
+  .company-label,
+  .contact-content-label,
+  .privacy-label,
+  .privacy-text,
+  .check-box,
+  .agree-text,
+  .name-placeholder,
+  .company-placeholder,
+  .content-placeholder,
+  .submit-button,
+  .arrow-icon,
+  .red-indicator {
+    display: none !important;
+  }
+  
+  /* 右上ナビゲーションテキストを固定位置で配置 */
+  .header-text {
+    position: fixed !important;
+    right: 20px !important;
+    top: 48.27px !important;
+    left: auto !important;
+  }
+  
+  .support-step-text {
+    position: fixed !important;
+    right: 150px !important;
+    top: 48.27px !important;
+    left: auto !important;
+  }
+  
+  .case-study-text {
+    position: fixed !important;
+    right: 300px !important;
+    top: 48.27px !important;
+    left: auto !important;
+  }
+  
+  .value-text {
+    position: fixed !important;
+    right: 420px !important;
+    top: 48.27px !important;
+    left: auto !important;
+  }
+  
+  .service-text {
+    position: fixed !important;
+    right: 520px !important;
+    top: 48.27px !important;
+    left: auto !important;
+  }
+  
+  .about-us-text {
+    position: fixed !important;
+    right: 620px !important;
+    top: 48.27px !important;
+    left: auto !important;
+  }
+  
+  /* ヒーローセクション全体の調整 */
+  .legacy-text {
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 208.13px !important;
+    margin-left: -200px !important; /* -144pxから-200pxに調整 */
+  }
+  
+  .new-element {
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 200px !important;
+    margin-left: 100px !important; /* -113pxから100pxに調整して右側に配置 */
+  }
+  
+  .modern-dot-text {
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 208.13px !important;
+    margin-left: 85px !important; /* -101pxから85pxに調整して右側に配置 */
+  }
+  
+  .japanese-text {
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 320px !important; /* 274.1pxから320pxに下げて調整 */
+    margin-left: 0px !important; /* -350pxから0pxに変更して中央配置 */
+    transform: translateX(-50%) scale(1.4) !important; /* 中央配置のためtranslateX追加 */
+  }
+  
+  .description-text {
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 540px !important; /* 510pxから540pxにさらに下げて調整 */
+    margin-left: 0px !important; /* -350pxから0pxに変更して中央配置 */
+    transform: translateX(-50%) scale(1.4) !important; /* 中央配置のためtranslateX追加 */
+  }
+  
+  .white-button {
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 660px !important; /* 610pxから660pxに下げて調整 */
+    margin-left: -214px !important; /* -183pxから-214pxに調整 */
+  }
+  
+  .cliff-question-text {
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 680px !important; /* 630pxから680pxに下げて調整 */
+    margin-left: -190px !important; /* -163pxから-190pxに調整 */
+  }
+  
+  .question-icon {
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 675px !important; /* 625pxから675pxに下げて調整 */
+    margin-left: 220px !important; /* 200pxから220pxに調整 */
+  }
+  
+  /* タブレット専用フォームを表示 */
+  .tablet-contact-section {
+    display: block !important;
+  }
+  
+  /* タブレット用横長フォームコンテナ */
+  .tablet-form-container {
+    width: 85vw;
+    max-width: 1000px;
+    height: 320px;
+    background: #FCFCFC;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 750px;
+    z-index: 25;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
+  
+  /* タブレット用フォームヘッダー */
+  .tablet-form-header {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(91deg, #D1342D 50.48%, #F6835F 100%);
+    border-radius: 8px 8px 0 0;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .tablet-form-title {
+    color: #FCFCFC;
+    font-family: "Lexend Deca";
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .tablet-form-subtitle {
+    color: #FCFCFC;
+    font-family: "Zen Kaku Gothic New";
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: 16px;
+  }
+  
+  /* タブレット用フォーム行レイアウト */
+  .tablet-form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .tablet-form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tablet-form-group.full-width {
+    flex: 2;
+  }
+  
+  /* タブレット用フォーム要素 */
+  .tablet-form-label {
+    color: #343434;
+    font-family: "Zen Kaku Gothic New";
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* 必須マーク - ラベルの左側に配置 */
+  .tablet-required {
+    background: #D1342D;
+    color: #FCFCFC;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-right: 8px;
+    display: inline-block;
+  }
+  
+  .tablet-form-input {
+    width: 100%;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid #D3D3D3;
+    border-radius: 4px;
+    background: #FCFCFC;
+    font-family: "Zen Kaku Gothic New";
+    font-size: 13px;
+    color: #343434;
+  }
+  
+  .tablet-form-textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px 12px;
+    border: 1px solid #D3D3D3;
+    border-radius: 4px;
+    background: #FCFCFC;
+    font-family: "Zen Kaku Gothic New";
+    font-size: 13px;
+    color: #343434;
+    resize: vertical;
+  }
+  
+  .tablet-form-input::placeholder,
+  .tablet-form-textarea::placeholder {
+    color: #C4C4C4;
+  }
+  
+  /* プライバシー関連 */
+  .tablet-privacy-section {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .tablet-privacy-text {
+    color: #343434;
+    font-family: "Zen Kaku Gothic New";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 150%;
+  }
+  
+  .tablet-privacy-link {
+    color: #343434;
+    text-decoration: underline;
+  }
+  
+  .tablet-agreement {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  
+  .tablet-checkbox {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #D3D3D3;
+    border-radius: 2px;
+    background: #FCFCFC;
+  }
+  
+  .tablet-agree-text {
+    color: #343434;
+    font-family: "Zen Kaku Gothic New";
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  /* 送信ボタン */
+  .tablet-submit-button {
+    width: 250px;
+    height: 50px;
+    border-radius: 60px;
+    background: #FAD4D3;
+    border: none;
+    color: #FCFCFC;
+    font-family: "Zen Kaku Gothic New";
+    font-size: 13px;
+    font-weight: 700;
+    margin: 15px auto 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .tablet-submit-button:hover {
+    background: #F5C2C1;
+  }
+  
+  .tablet-arrow-icon {
+    position: absolute;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* タブレット専用フォームのデフォルト非表示設定 */
+.tablet-contact-section {
+  display: none;
+}
+
+/* 1440px以上のPC表示でタブレットフォームを非表示 */
+@media (min-width: 1441px) {
+  .tablet-contact-section {
+    display: none !important;
+  }
+}
+
+/* 1000px以下のモバイル表示でタブレットフォームを非表示 */
+@media (max-width: 999px) {
+  .tablet-contact-section {
+    display: none !important;
+  }
+}
+
 
 
 

@@ -22,7 +22,7 @@ export const ProcessImagesContainer = () => {
   // 画面サイズの監視
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 580);
+      setIsMobile(window.innerWidth <= 1000);
     };
     
     // 初期チェック

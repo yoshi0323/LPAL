@@ -6,9 +6,12 @@
   font-weight: 700;
   line-height: 175%; /* 84px */
   position: absolute;
-  left: 180px;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 1776px; /* 最底辺から1776px上 */
   z-index: 4;
+  /* レスポンシブ対応: 画面幅に応じて縮小 */
+  transform-origin: center center;
 }
 
 .process-subtitle-text {
@@ -19,18 +22,23 @@
   font-weight: 700;
   line-height: 175%; /* 31.5px */
   position: absolute;
-  left: 180px;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 1756px; /* 最底辺から1756px上 */
   z-index: 4;
+  transform-origin: center center;
 }
 
 .process-images-container {
   position: absolute;
-  left: 180px;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 1256px; /* 底辺から1256px上*/
   display: flex;
   gap: 16px;
   z-index: 4;
+  justify-content: center;
+  transform-origin: center center;
 }
 
 .process-image-wrapper {
@@ -39,9 +47,42 @@
 }
 
 .process-image {
-  max-width: 100%;
-  height: auto;
+  width: 258px;
+  height: 350px;
+  flex-shrink: 0;
   display: block;
+  object-fit: contain;
+  object-position: center top;
+}
+
+/* タブレット表示用のスタイル (1001px ~ 1200px) */
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .process-header-text {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+  }
+  
+  .process-subtitle-text {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+  }
+  
+  .process-images-container {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+  }
+}
+
+/* デスクトップ表示用のスタイル (1201px以上) */
+@media (min-width: 1201px) {
+  .process-header-text {
+    transform: translateX(-50%) !important;
+  }
+  
+  .process-subtitle-text {
+    transform: translateX(-50%) !important;
+  }
+  
+  .process-images-container {
+    transform: translateX(-50%) !important;
+  }
 }
 
 /* モバイル表示用のスタイル */
@@ -55,6 +96,7 @@
     font-weight: 700;
     line-height: 150%;
     z-index: 10;
+    transform: none; /* transformをリセット */
   }
   
   .process-subtitle-text {
@@ -66,6 +108,7 @@
     font-weight: 700;
     line-height: 150%;
     z-index: 10;
+    transform: none; /* transformをリセット */
   }
   
   .process-images-container {
@@ -78,6 +121,7 @@
     display: block; /* flexからblockに変更 */
     gap: 0;
     z-index: 10;
+    transform: none; /* transformをリセット */
   }
   
   /* モバイル用の画像ラッパー */

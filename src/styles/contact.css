@@ -241,6 +241,130 @@
   }
 }
 
+/* タブレット表示用のスタイル (1001px ~ 1200px) */
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .contact-circle-gradient {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-background-gradient {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-mask-image {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-group-image {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-second-image {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-white-footer {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-footer-logo {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-footer-links-container {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-footer-copyright {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  /* PC用のフォーム要素もタブレットで縮小 */
+  .contact-input-left {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .contact-input-right {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: right center;
+  }
+  
+  .contact-textarea {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .contact-submit-button {
+    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+}
+
+/* デスクトップ表示用のスタイル (1201px以上) */
+@media (min-width: 1201px) {
+  .contact-circle-gradient {
+    transform: none !important;
+  }
+  
+  .contact-background-gradient {
+    transform: none !important;
+  }
+  
+  .contact-mask-image {
+    transform: none !important;
+  }
+  
+  .contact-group-image {
+    transform: translateX(-50%) !important;
+  }
+  
+  .contact-second-image {
+    transform: translateX(-50%) !important;
+  }
+  
+  .contact-white-footer {
+    transform: none !important;
+  }
+  
+  .contact-footer-logo {
+    transform: none !important;
+  }
+  
+  .contact-footer-links-container {
+    transform: none !important;
+  }
+  
+  .contact-footer-copyright {
+    transform: none !important;
+  }
+  
+  .contact-input-left {
+    transform: none !important;
+  }
+  
+  .contact-input-right {
+    transform: none !important;
+  }
+  
+  .contact-textarea {
+    transform: none !important;
+  }
+  
+  .contact-submit-button {
+    transform: translateX(-50%) !important;
+  }
+}
+
 /* PC用のフォームスタイル */
 .contact-input-left {
   position: absolute;

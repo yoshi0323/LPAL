@@ -9,11 +9,11 @@
   left: 180.29px;
   top: 1070px;
   z-index: 2;
+  transform-origin: left center;
 }
 
 .about-subtitle-text {
   color: #343434;
-  text-align: center;
   font-family: "Zen Kaku Gothic New";
   font-size: 18px;
   font-style: normal;
@@ -23,6 +23,7 @@
   left: 180.29px;
   top: 1169px;
   z-index: 2;
+  transform-origin: left center;
 }
 
 .alchemy-title-text {
@@ -36,6 +37,7 @@
   left: 180.29px;
   top: 1242px; /* 私たちについてのテキスト位置(1169px) + 48px */
   z-index: 2;
+  transform-origin: left center;
 }
 
 .alchemy-description-text {
@@ -50,6 +52,7 @@
   top: 1300px; /* Alchemyとはの位置(1242px) + 58px */
   z-index: 2;
   width: 1000px; /* テキストの幅を設定（必要に応じて調整） */
+  transform-origin: left center;
 }
 
 .alchemy-description-text .bold-text {
@@ -66,6 +69,7 @@
   left: 615.29px;
   top: 1093.54px;
   z-index: 1; /* テキストの下に配置されるように */
+  transform-origin: center center;
 }
 
 .rotated-rectangle {
@@ -79,10 +83,98 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform-origin: center center;
 }
 
 .logo-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* タブレット表示用のスタイル (1001px ~ 1200px) */
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .about-header-text {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .about-subtitle-text {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .alchemy-title-text {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .alchemy-description-text {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: left center;
+  }
+  
+  .about-white-container {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+  
+  .rotated-rectangle {
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
+  }
+}
+
+/* デスクトップ表示用のスタイル (1201px以上) */
+@media (min-width: 1201px) {
+  .about-header-text {
+    transform: none !important;
+  }
+  
+  .about-subtitle-text {
+    transform: none !important;
+  }
+  
+  .alchemy-title-text {
+    transform: none !important;
+  }
+  
+  .alchemy-description-text {
+    transform: none !important;
+  }
+  
+  .about-white-container {
+    transform: none !important;
+  }
+  
+  .rotated-rectangle {
+    transform: none !important;
+  }
+}
+
+/* モバイル表示の場合の特別対応 */
+@media (max-width: 1000px) {
+  .about-header-text {
+    transform: none;
+  }
+  
+  .about-subtitle-text {
+    transform: none;
+  }
+  
+  .alchemy-title-text {
+    transform: none;
+  }
+  
+  .alchemy-description-text {
+    transform: none;
+  }
+  
+  .about-white-container {
+    transform: none;
+  }
+  
+  .rotated-rectangle {
+    transform: none;
+  }
 }

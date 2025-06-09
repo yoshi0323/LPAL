@@ -10,7 +10,7 @@ export const GradientBackground = () => {
   
   // メディアクエリの状態を監視する
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    const mediaQuery = window.matchMedia('(max-width: 1000px)');
     
     // 初期値を設定
     setIsMobile(mediaQuery.matches);
@@ -190,8 +190,8 @@ export const ServiceImage1 = () => {
   
   // メディアクエリをチェック
   useEffect(() => {
-    const mobileQuery = window.matchMedia('(max-width: 580px)');
-    const tabletQuery = window.matchMedia('(min-width: 581px) and (max-width: 991px)');
+    const mobileQuery = window.matchMedia('(max-width: 1000px)');
+    const tabletQuery = window.matchMedia('(min-width: 1001px) and (max-width: 1440px)');
     
     setIsMobile(mobileQuery.matches);
     setIsTablet(tabletQuery.matches);
@@ -259,7 +259,7 @@ export const ServiceImage2 = () => {
   
   // メディアクエリをチェック
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    const mediaQuery = window.matchMedia('(max-width: 1000px)');
     setIsMobile(mediaQuery.matches);
     
     const handleMediaChange = (e) => {

@@ -95,6 +95,9 @@ function App() {
   // モバイル表示かどうかの状態
   const [isMobile, setIsMobile] = useState(false);
   
+  // タブレット表示かどうかの状態（1001px〜1440px）
+  const [isTablet, setIsTablet] = useState(false);
+  
   // アニメーション遅延用の状態
   const [shouldAnimateDelayed, setShouldAnimateDelayed] = useState(false);
 
@@ -114,33 +117,43 @@ function App() {
   
   /* 
    * ===========================================
-   * モバイル表示検出のためのuseEffect
+   * モバイル・タブレット表示検出のためのuseEffect
    * ===========================================
-   * 画面サイズに基づいてモバイル表示かどうかを判定し、状態を更新します。
+   * 画面サイズに基づいてモバイル・タブレット表示かどうかを判定し、状態を更新します。
    * また、画面サイズが変更された場合のイベントリスナーも設定します。
    */
   useEffect(() => {
     const mobileMediaQuery = window.matchMedia('(max-width: 1000px)');
+    const tabletMediaQuery = window.matchMedia('(min-width: 1001px) and (max-width: 1200px)');
     
     setIsMobile(mobileMediaQuery.matches);
+    setIsTablet(tabletMediaQuery.matches);
     
     const handleMobileMediaChange = (event: MediaQueryListEvent) => {
       setIsMobile(event.matches);
     };
     
+    const handleTabletMediaChange = (event: MediaQueryListEvent) => {
+      setIsTablet(event.matches);
+    };
+    
     // ブラウザ互換性を考慮したイベントリスナー追加
     if (mobileMediaQuery.addEventListener) {
       mobileMediaQuery.addEventListener('change', handleMobileMediaChange);
+      tabletMediaQuery.addEventListener('change', handleTabletMediaChange);
     } else {
       mobileMediaQuery.addListener(handleMobileMediaChange);
+      tabletMediaQuery.addListener(handleTabletMediaChange);
     }
     
     // クリーンアップ関数
     return () => {
       if (mobileMediaQuery.removeEventListener) {
         mobileMediaQuery.removeEventListener('change', handleMobileMediaChange);
+        tabletMediaQuery.removeEventListener('change', handleTabletMediaChange);
       } else {
         mobileMediaQuery.removeListener(handleMobileMediaChange);
+        tabletMediaQuery.removeListener(handleTabletMediaChange);
       }
     };
   }, []);
@@ -960,18 +973,20 @@ function App() {
             </div>
             
             {/* フォームの白いコンテナ - contact-background-gradientの上辺から232px */}
-            <div style={{
+            <div className="contact-form-container" style={{
               position: 'absolute',
               bottom: 'calc(8vh + 60px + clamp(600px, 68vw, 978px) - 232px - 666px)',
               left: '50%',
-              transform: 'translateX(-50%)',
+              transform: isTablet ? 'translateX(-50%) scale(0.9)' : 'translateX(-50%)',
               width: '800px',
               height: '666px',
               backgroundColor: '#fff',
               borderRadius: '8px',
               zIndex: 15,
               padding: '40px',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
+              transformOrigin: 'center center',
+              transition: 'transform 0.3s ease'
             }}>
               {/* お名前ラベルと入力フィールド */}
               <div style={{
