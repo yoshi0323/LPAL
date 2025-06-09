@@ -150,36 +150,41 @@
 @media (min-width: 1000px) and (max-width: 1440px) {
   /* About部分の縮小調整 */
   .about-header-text {
-    transform: scale(0.8) !important;
+    transform: scale(0.9) !important;
     transform-origin: left center !important;
+    left: 50px !important; /* テキストを右に移動 */
   }
   
   .about-subtitle-text {
-    transform: scale(0.8) !important;
+    transform: scale(0.9) !important;
     transform-origin: left center !important;
+    left: 50px !important; /* テキストを右に移動 */
   }
   
   .alchemy-title-text {
-    transform: scale(0.8) !important;
+    transform: scale(0.9) !important;
     transform-origin: left center !important;
+    left: 50px !important; /* テキストを右に移動 */
   }
   
   .alchemy-description-text {
-    transform: scale(0.8) !important;
+    transform: scale(0.9) !important;
     transform-origin: left center !important;
+    left: 50px !important; /* テキストを右に移動 */
+    width: 800px !important; /* 幅も調整 */
   }
   
   .about-white-container {
-    transform: scale(0.8) !important;
+    transform: scale(0.9) !important;
     transform-origin: center center !important;
-    left: 50% !important;
-    margin-left: -258px !important; /* 中央配置のための調整 (645 * 0.8 / 2 = 258px) */
+    left: 60% !important; /* 画像をテキストの左に配置 */
+    margin-left: -290px !important; /* 中央配置のための調整 (645 * 0.9 / 2 = 290px) */
   }
   
   .rotated-rectangle {
-    transform: scale(0.8) !important;
+    transform: scale(0.9) !important;
     transform-origin: center center !important;
-    left: 50% !important;
-    margin-left: -164.4px !important; /* 中央配置のための調整 (411 * 0.8 / 2 = 164.4px) */
+    left: 60% !important; /* 画像をテキストの左に配置 */
+    margin-left: -185px !important; /* 中央配置のための調整 (411 * 0.9 / 2 = 185px) */
   }
 }

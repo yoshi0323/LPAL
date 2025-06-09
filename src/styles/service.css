@@ -419,50 +419,86 @@
 @media (min-width: 1000px) and (max-width: 1440px) {
   /* Service部分の縮小調整 */
   .service-white-container {
-    transform: scale(0.8) !important;
+    transform: scale(0.85) !important;
     transform-origin: center center !important;
     left: 50% !important;
     top: 1651.00712px !important;
-    margin-left: -432px !important; /* 中央配置のための調整 (1080 * 0.8 / 2 = 432px) */
+    margin-left: -459px !important; /* 中央配置のための調整 (1080 * 0.85 / 2 = 459px) */
   }
   
   .service-header-text {
-    transform: scale(0.8) !important;
-    transform-origin: left center !important;
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: -400px !important; /* 中央配置 */
   }
   
   .service-subtitle-text {
-    transform: scale(0.8) !important;
-    transform-origin: left center !important;
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: -400px !important; /* 中央配置 */
   }
   
   .service-description-text {
-    transform: scale(0.8) !important;
-    transform-origin: left center !important;
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: -400px !important; /* 中央配置 */
+    width: 800px !important; /* 幅を調整して白い背景内に収める */
   }
   
   .service-box {
-    transform: scale(0.8) !important;
+    transform: scale(0.85) !important;
     transform-origin: center center !important;
   }
   
   .service-image1-container {
-    transform: scale(0.8) !important;
+    transform: scale(0.85) !important;
     transform-origin: center center !important;
   }
   
   .service-image2-container {
-    transform: scale(0.8) !important;
+    transform: scale(0.85) !important;
     transform-origin: center center !important;
   }
   
   .service-gradient-card1 {
-    transform: scale(0.8) !important;
+    transform: scale(0.85) !important;
     transform-origin: center center !important;
   }
   
   .service-gradient-card2 {
-    transform: scale(0.8) !important;
+    transform: scale(0.85) !important;
     transform-origin: center center !important;
+  }
+  
+  /* サービスタイトルとSaaS関連のテキストも中央配置 */
+  .service-title-text {
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: -360px !important; /* 中央配置 */
+  }
+  
+  .service-consulting-description {
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: -360px !important; /* 中央配置 */
+  }
+  
+  .service-saas-title {
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: 60px !important; /* 右側に配置 */
+  }
+  
+  .service-saas-description {
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: 60px !important; /* 右側に配置 */
   }
 }
