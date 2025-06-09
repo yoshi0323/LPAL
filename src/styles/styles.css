@@ -849,6 +849,39 @@ body {
     margin-left: 220px !important; /* 200pxから220pxに調整 */
   }
   
+  /* About部分の縮小調整 */
+  .about-header-text {
+    transform: scale(0.65) !important;
+    transform-origin: left center !important;
+  }
+  
+  .about-subtitle-text {
+    transform: scale(0.65) !important;
+    transform-origin: left center !important;
+  }
+  
+  .alchemy-title-text {
+    transform: scale(0.65) !important;
+    transform-origin: left center !important;
+  }
+  
+  .alchemy-description-text {
+    transform: scale(0.65) !important;
+    transform-origin: left center !important;
+  }
+  
+  .about-white-container {
+    transform: scale(0.65) !important;
+    transform-origin: center center !important;
+    left: 450px !important; /* 615.29pxから450pxに左に移動 */
+  }
+  
+  .rotated-rectangle {
+    transform: scale(0.65) !important;
+    transform-origin: center center !important;
+    left: 550px !important; /* 732.29pxから550pxに左に移動 */
+  }
+  
   /* タブレット専用フォームを表示 */
   .tablet-contact-section {
     display: block !important;

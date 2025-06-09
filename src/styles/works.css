@@ -106,20 +106,20 @@
 
 /* タブレット表示用のスタイル (1001px ~ 1200px) */
 @media (min-width: 1001px) and (max-width: 1200px) {
-  .works-header-text {
-    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
-  }
-  
+  .works-header-text,
   .works-subtitle-text {
-    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
   }
   
   .works-images-container {
-    transform: translateX(-50%) scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
   }
   
   .works-circle-gradient {
-    transform: scale(clamp(0.8, calc(100vw / 1440), 0.9));
+    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
+    transform-origin: center center;
   }
 }
 

@@ -415,13 +415,54 @@
   }
 }
 
-/* デスクトップ表示用のスタイル (1201px以上) */
-@media (min-width: 1201px) {
+/* タブレット専用レスポンシブ対応 (1000px-1440px) */
+@media (min-width: 1000px) and (max-width: 1440px) {
+  /* Service部分の縮小調整 */
+  .service-white-container {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    top: 1651.00712px !important;
+    margin-left: -432px !important; /* 中央配置のための調整 (1080 * 0.8 / 2 = 432px) */
+  }
+  
   .service-header-text {
-    transform: none !important;
+    transform: scale(0.8) !important;
+    transform-origin: left center !important;
   }
   
   .service-subtitle-text {
-    transform: none !important;
+    transform: scale(0.8) !important;
+    transform-origin: left center !important;
+  }
+  
+  .service-description-text {
+    transform: scale(0.8) !important;
+    transform-origin: left center !important;
+  }
+  
+  .service-box {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
+  }
+  
+  .service-image1-container {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
+  }
+  
+  .service-image2-container {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
+  }
+  
+  .service-gradient-card1 {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
+  }
+  
+  .service-gradient-card2 {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
   }
 }

@@ -92,39 +92,6 @@
   object-fit: contain;
 }
 
-/* タブレット表示用のスタイル (1001px ~ 1200px) */
-@media (min-width: 1001px) and (max-width: 1200px) {
-  .about-header-text {
-    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
-    transform-origin: left center;
-  }
-  
-  .about-subtitle-text {
-    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
-    transform-origin: left center;
-  }
-  
-  .alchemy-title-text {
-    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
-    transform-origin: left center;
-  }
-  
-  .alchemy-description-text {
-    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
-    transform-origin: left center;
-  }
-  
-  .about-white-container {
-    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
-    transform-origin: center center;
-  }
-  
-  .rotated-rectangle {
-    transform: scale(clamp(0.9, calc(100vw / 1440), 1));
-    transform-origin: center center;
-  }
-}
-
 /* デスクトップ表示用のスタイル (1201px以上) */
 @media (min-width: 1201px) {
   .about-header-text {
@@ -176,5 +143,43 @@
   
   .rotated-rectangle {
     transform: none;
+  }
+}
+
+/* タブレット専用レスポンシブ対応 (1000px-1440px) */
+@media (min-width: 1000px) and (max-width: 1440px) {
+  /* About部分の縮小調整 */
+  .about-header-text {
+    transform: scale(0.8) !important;
+    transform-origin: left center !important;
+  }
+  
+  .about-subtitle-text {
+    transform: scale(0.8) !important;
+    transform-origin: left center !important;
+  }
+  
+  .alchemy-title-text {
+    transform: scale(0.8) !important;
+    transform-origin: left center !important;
+  }
+  
+  .alchemy-description-text {
+    transform: scale(0.8) !important;
+    transform-origin: left center !important;
+  }
+  
+  .about-white-container {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: -258px !important; /* 中央配置のための調整 (645 * 0.8 / 2 = 258px) */
+  }
+  
+  .rotated-rectangle {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: -164.4px !important; /* 中央配置のための調整 (411 * 0.8 / 2 = 164.4px) */
   }
 }

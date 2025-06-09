@@ -29,7 +29,6 @@ import './body.css';
 import './styles/value.css';
 import './styles/works.css';
 import './styles/process.css';
-import './styles/contact.css';
 import './styles/popup.css';
 import './styles/animation.css';
 import './styles/global.css';
