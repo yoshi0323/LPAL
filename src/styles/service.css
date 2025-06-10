@@ -417,88 +417,116 @@
 
 /* タブレット専用レスポンシブ対応 (1000px-1440px) */
 @media (min-width: 1000px) and (max-width: 1440px) {
-  /* Service部分の縮小調整 */
+  /* Service部分の調整 - 白いコンテナを確実に中央配置し少し大きく */
   .service-white-container {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
     left: 50% !important;
     top: 1651.00712px !important;
-    margin-left: -459px !important; /* 中央配置のための調整 (1080 * 0.85 / 2 = 459px) */
+    margin-left: -513px !important; /* 中央配置のための調整 (1080 * 0.95 / 2 = 513px) */
   }
   
   .service-header-text {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
     left: 50% !important;
-    margin-left: -400px !important; /* 中央配置 */
+    margin-left: -432px !important; /* 白いコンテナ内に固定 */
   }
   
   .service-subtitle-text {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
     left: 50% !important;
-    margin-left: -400px !important; /* 中央配置 */
+    margin-left: -432px !important; /* 白いコンテナ内に固定 */
   }
   
   .service-description-text {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
     left: 50% !important;
-    margin-left: -400px !important; /* 中央配置 */
-    width: 800px !important; /* 幅を調整して白い背景内に収める */
+    margin-left: -432px !important; /* 白いコンテナ内に固定 */
+    width: 800px !important; /* 白いコンテナ内に収まるよう幅を調整 */
   }
   
+  /* 薄い肌色の背景ボックスを中央配置 */
   .service-box {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
   }
   
-  .service-image1-container {
-    transform: scale(0.85) !important;
+  .service-box-left {
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: -380px !important; /* 左側ボックスを中央配置 */
+  }
+  
+  .service-box-right {
+    transform: scale(0.95) !important;
+    transform-origin: center center !important;
+    left: 50% !important;
+    margin-left: 108px !important; /* 右側ボックスを中央配置 */
+  }
+  
+  /* 画像を白いコンテナの中央に固定配置 */
+  .service-image1-container {
+    transform: scale(0.95) !important;
+    transform-origin: center center !important;
+    left: 50% !important; /* 白いコンテナの中央基準 */
+    margin-left: -350px !important; /* 左側画像を白いコンテナ内の左側に固定 */
   }
   
   .service-image2-container {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
+    left: 50% !important; /* 白いコンテナの中央基準 */
+    margin-left: 100px !important; /* 右側画像を白いコンテナ内の右側に固定 */
   }
   
   .service-gradient-card1 {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
+    left: 50% !important; /* 白いコンテナの中央基準 */
+    margin-left: 50px !important; /* 白いコンテナ内の右側に固定 */
   }
   
   .service-gradient-card2 {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
+    left: 50% !important; /* 白いコンテナの中央基準 */
+    margin-left: 100px !important; /* 白いコンテナ内の右側に固定 */
   }
   
-  /* サービスタイトルとSaaS関連のテキストも中央配置 */
+  /* サービスタイトルとSaaS関連のテキストの重なりを解決 */
   .service-title-text {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
     left: 50% !important;
-    margin-left: -360px !important; /* 中央配置 */
+    margin-left: -420px !important; /* 左側のテキストを左に移動 */
+    width: 380px !important; /* 幅を調整して重なりを防ぐ */
   }
   
   .service-consulting-description {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
     left: 50% !important;
-    margin-left: -360px !important; /* 中央配置 */
+    margin-left: -420px !important; /* 左側のテキストを左に移動 */
+    width: 380px !important; /* 幅を調整して重なりを防ぐ */
   }
   
   .service-saas-title {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
     left: 50% !important;
-    margin-left: 60px !important; /* 右側に配置 */
+    margin-left: 60px !important; /* 右側のテキストを右に移動 */
+    width: 380px !important; /* 幅を調整して重なりを防ぐ */
   }
   
   .service-saas-description {
-    transform: scale(0.85) !important;
+    transform: scale(0.95) !important;
     transform-origin: center center !important;
     left: 50% !important;
-    margin-left: 60px !important; /* 右側に配置 */
+    margin-left: 60px !important; /* 右側のテキストを右に移動 */
+    width: 380px !important; /* 幅を調整して重なりを防ぐ */
   }
 }

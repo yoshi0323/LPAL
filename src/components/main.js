@@ -279,14 +279,17 @@ export const InputField = (props) => {
   const { left, type } = props;
   // 左右の位置によって異なるプレースホルダーを設定
   let placeholder = "山田太郎";
+  let className = "input-field";
+  
   if (left === 1132.29 || type === "company") {
     placeholder = "企業名を入力してください";
+    className = "input-field company";
   }
   
   return (
     <input
       type="text"
-      className="input-field"
+      className={className}
       style={{ left: `${left}px` }}
       placeholder={placeholder}
     />

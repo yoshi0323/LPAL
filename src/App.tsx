@@ -29,6 +29,7 @@ import './body.css';
 import './styles/value.css';
 import './styles/works.css';
 import './styles/process.css';
+import './styles/contact.css';
 import './styles/popup.css';
 import './styles/animation.css';
 import './styles/global.css';
@@ -944,7 +945,7 @@ function App() {
             {/* Contactタイトル - contact-background-gradientの上辺から80px */}
             <div style={{
               position: 'absolute',
-              bottom: 'calc(8vh + 60px + clamp(600px, 68vw, 978px) - 80px - 60px)',
+              top: 'calc(100vh * 6.0 + 80px)',
               left: '50%',
               transform: 'translateX(-50%)',
               zIndex: 16,
@@ -974,11 +975,11 @@ function App() {
             {/* フォームの白いコンテナ - contact-background-gradientの上辺から232px */}
             <div className="contact-form-container" style={{
               position: 'absolute',
-              bottom: 'calc(8vh + 60px + clamp(600px, 68vw, 978px) - 232px - 666px)',
+              top: 'calc(100vh * 6.0 + 232px)',
               left: '50%',
               transform: isTablet ? 'translateX(-50%) scale(0.9)' : 'translateX(-50%)',
               width: '800px',
-              height: '666px',
+              height: '586px',
               backgroundColor: '#fff',
               borderRadius: '8px',
               zIndex: 15,
@@ -1017,7 +1018,7 @@ function App() {
                   position: 'absolute',
                   left: '40px',
                   top: '70px',
-                  width: '330px',
+                  width: '310px',
                   height: '50px',
                   border: '2px solid #ddd',
                   borderRadius: '4px',
@@ -1058,7 +1059,7 @@ function App() {
                   position: 'absolute',
                   left: '410px',
                   top: '70px',
-                  width: '330px',
+                  width: '310px',
                   height: '50px',
                   border: '2px solid #ddd',
                   borderRadius: '4px',
@@ -1097,9 +1098,9 @@ function App() {
                 style={{
                   position: 'absolute',
                   left: '40px',
-                  right: '40px',
                   top: '180px',
-                  height: '120px',
+                  width: '680px',
+                  height: '100px',
                   border: '2px solid #ddd',
                   borderRadius: '4px',
                   padding: '15px',
@@ -1114,7 +1115,7 @@ function App() {
               <div style={{
                 position: 'absolute',
                 left: '40px',
-                top: '320px',
+                top: '310px',
                 zIndex: 20,
                 color: '#333',
                 fontFamily: '"Zen Kaku Gothic New"',
@@ -1138,8 +1139,8 @@ function App() {
               <div style={{
                 position: 'absolute',
                 left: '40px',
-                right: '40px',
-                top: '350px',
+                top: '340px',
+                width: '680px',
                 zIndex: 20,
                 color: '#333',
                 fontFamily: '"Zen Kaku Gothic New"',
@@ -1153,7 +1154,7 @@ function App() {
               <div style={{
                 position: 'absolute',
                 left: '40px',
-                top: '420px',
+                top: '410px',
                 zIndex: 20,
                 display: 'flex',
                 alignItems: 'center',
@@ -1181,7 +1182,7 @@ function App() {
                 position: 'absolute',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                top: '480px',
+                top: '460px',
                 width: '200px',
                 height: '50px',
                 backgroundColor: '#D1342D',

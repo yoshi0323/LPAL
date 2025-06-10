@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
+import '../styles/contact.css';
 import '../styles/styles.css';
 
 // モバイル表示の検出用カスタムフック

@@ -6,29 +6,29 @@
   background: linear-gradient(180deg, #E73D26 0%, rgba(231, 61, 38, 0.00) 100%);
   position: absolute;
   left: 180px;
-  top: calc(100vh * 5.5);
+  top: calc(100vh * 5.9);
   z-index: 2;
   pointer-events: none;
 }
 
 .contact-background-gradient {
-  width: clamp(800px, 100vw, 1440px);
-  height: clamp(600px, 68vw, 978px);
+  width: 1440px;
+  height: 978px;
   flex-shrink: 0;
   background: linear-gradient(128deg, #D1342D 50.48%, #F6835F 100%);
   position: absolute;
   left: 0;
-  top: calc(100vh * 5.6);
+  top: calc(100vh * 6.0);
   z-index: 3;
 }
 
 .contact-mask-image {
   position: absolute;
   left: 0;
-  top: calc(100vh * 5.6 + 5px);
+  top: calc(100vh * 6.0 + 5px);
   z-index: 4;
-  width: clamp(800px, 100vw, 1440px);
-  height: clamp(600px, 68vw, 978px);
+  width: 1440px;
+  height: 978px;
 }
 
 .contact-mask-image img {
@@ -76,14 +76,14 @@
   background: #FCFCFC;
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: calc(100vh * 6.0 + 978px);
   z-index: 1;
 }
 
 .contact-footer-logo {
   position: absolute;
   left: 60px;
-  bottom: 40px;
+  top: calc(100vh * 6.0 + 978px + 40px);
   z-index: 2;
   width: auto;
   height: auto;
@@ -97,7 +97,7 @@
 
 .contact-footer-links {
   position: absolute;
-  bottom: 48.26px;
+  top: 0px;
   z-index: 2;
   display: flex;
   flex-direction: row;
@@ -118,14 +118,14 @@
 .contact-footer-links-container {
   position: absolute;
   left: 290px;
-  bottom: 0px; 
+  top: calc(100vh * 6.0 + 978px + 48px);
   z-index: 2;
 }
 
 .contact-footer-copyright {
   position: absolute;
   right: 70px;
-  bottom: 48.26px;
+  top: calc(100vh * 6.0 + 978px + 48px);
   color: #C4C4C4;
   font-family: "Zen Kaku Gothic New";
   font-size: 14px;

@@ -452,14 +452,13 @@ body {
   line-height: 150%;
 }
 
-/* 企業名の入力フィールド */
+/* お名前の入力フィールド */
 .input-field {
   position: absolute;
   top: 240.23px;
-  left: calc(100% - 92px - 216px); /* 最右辺から92px左に配置、幅が216pxに変更 */
   z-index: 25;
-  width: 216px; /* 184pxから216pxに変更 */
-  height: 47px; /* 40pxから47pxに変更 */
+  width: 216px;
+  height: 47px;
   display: flex;
   padding: 12px 16px;
   align-items: center;
@@ -467,6 +466,14 @@ body {
   border-radius: 4px;
   border: 1px solid #D3D3D3;
   background: #FCFCFC;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  color: #343434;
+}
+
+/* 企業名の入力フィールド */
+.input-field.company {
+  /* leftはinline styleで指定されるため削除 */
 }
 
 .large-input-field {
@@ -484,6 +491,13 @@ body {
 }
 
 .name-label {
+  color: #343434;
+  font-family: "Zen Kaku Gothic New";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 22.5px */
+  
   position: absolute;
   top: 209.73px;
   left: 936.29px;
@@ -1097,6 +1111,87 @@ body {
   .tablet-contact-section {
     display: none !important;
   }
+}
+
+/* Contact Form Container */
+.contact-form-container {
+  position: relative;
+  width: 800px;
+  height: 666px;
+}
+
+.contact-form-header {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 35;
+}
+
+.contact-form-content {
+  position: relative;
+  padding: 40px;
+  height: 100%;
+}
+
+/* Updated form element positions for new layout */
+.contact-form-content .name-label {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.contact-form-content .company-label {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.contact-form-content .input-field {
+  position: relative;
+  top: 25px;
+  left: 0;
+  width: 280px;
+}
+
+.contact-form-content .large-input-field {
+  position: relative;
+  top: 25px;
+  left: 0;
+  width: calc(100% - 80px);
+}
+
+.contact-form-content .contact-content-label {
+  position: absolute;
+  top: 150px;
+  left: 40px;
+}
+
+.contact-form-content .privacy-label {
+  position: absolute;
+  bottom: 120px;
+  left: 40px;
+}
+
+.contact-form-content .privacy-text {
+  position: relative;
+  margin-top: 15px;
+  left: 0;
+  top: auto;
+}
+
+.contact-form-content .submit-button {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Red indicator positioning in new layout */
+.contact-form-content .red-indicator {
+  position: absolute;
+  top: -5px;
+  left: -45px;
 }
 
 
